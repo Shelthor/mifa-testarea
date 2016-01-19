@@ -64,7 +64,7 @@ public class TestFacade {
 		// Gib mir eine <List> mit allen Elementen aus der Tabelle Bewertungen, WHERE bewertungSenderID = 2
 		List<Bewertung> bList = f.getListWithAllBewertungenFromUserByUserId(2);
 		
-		// Gib mir das 2te Element aus dieser Liste -> Druck mir den Vornamen aus (getBewertungEmpfaengerID ist ein User-Objekt)
+		// Gib mir das 1te Element aus dieser Liste ( 'get(0)' ) -> Druck mir den Vornamen aus (getBewertungEmpfaengerID ist ein User-Objekt)
 	 	System.out.println(bList.get(0).getBewertungEmpfaengerID().getvName());
 		
 		// Gib mir für jedes 'element' aus der Liste das Datum
