@@ -1,0 +1,18 @@
+<!DOCTYPE hibernate-mapping PUBLIC  
+     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">  
+      
+     <hibernate-mapping>  
+      <class name="com.mifatest.entities.Fahrzeug" table="fahrzeug">  
+        <id name="fahrzeugID">  
+         <generator class="increment"></generator>  
+        </id>        
+        
+        <property name="fahrzeugTyp"></property>         
+        <property name="fahrzeugBezeichnung"></property>
+        <property name="nummernschild"></property>
+        <property name="fahrzeugBildURL"></property>  
+             
+      </class>  
+                
+     </hibernate-mapping>  

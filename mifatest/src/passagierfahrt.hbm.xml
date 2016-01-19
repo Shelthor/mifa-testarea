@@ -1,0 +1,23 @@
+<!DOCTYPE hibernate-mapping PUBLIC  
+     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">  
+      
+     <hibernate-mapping>  
+      <class name="com.mifatest.entities.PassagierFahrt" table="passagier_fahrt">  
+        <id name="passagier_fahrtID">  
+         <generator class="increment"></generator>  
+        </id>        
+        
+        <property name="userStart"></property>         
+        <property name="userZiel"></property>
+        
+        <many-to-one name="userID" class="com.mifatest.entities.User"
+            column="userID" unique="false" not-null="true"
+            cascade="all" />
+        <many-to-one name="fahrtID" class="com.mifatest.entities.Fahrt"
+            column="fahrtID" unique="false" not-null="true"
+            cascade="all" />
+                
+      </class>  
+                
+     </hibernate-mapping>  

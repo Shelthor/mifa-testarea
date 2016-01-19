@@ -1,0 +1,22 @@
+<!DOCTYPE hibernate-mapping PUBLIC  
+     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">  
+      
+     <hibernate-mapping>  
+      <class name="com.mifatest.entities.User" table="user">  
+        <id name="userID">  
+         <generator class="increment"></generator>  
+        </id>        
+        
+        <property name="userBildURL"></property>         
+        <property name="isAdmin"></property>
+        <property name="isActivated"></property>
+        <property name="telNummer"></property>  
+        <property name="eMail"></property>  
+        <property name="vName"></property>  
+        <property name="nName"></property>  
+        <property name="geburtsDatum" type="date"></property>    
+             
+      </class>  
+                
+     </hibernate-mapping>  

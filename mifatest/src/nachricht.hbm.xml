@@ -1,0 +1,22 @@
+<!DOCTYPE hibernate-mapping PUBLIC  
+     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">  
+      
+     <hibernate-mapping>  
+      <class name="com.mifatest.entities.Nachricht" table="nachricht">  
+        <id name="nachrichtID">  
+         <generator class="increment"></generator>  
+        </id>        
+        
+        <many-to-one name="nachrichtSenderID" class="com.mifatest.entities.User"
+            column="nachrichtSenderID" unique="false" not-null="true"
+            cascade="all" />
+        <many-to-one name="nachrichtEmpfaengerID" class="com.mifatest.entities.User"
+            column="nachrichtEmpfaengerID" unique="false" not-null="true"
+            cascade="all" />
+               
+        <property name="nachrichtZeit"></property>  
+        <property name="nachrichtText"></property>
+      </class>  
+                
+     </hibernate-mapping>  

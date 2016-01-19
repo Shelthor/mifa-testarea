@@ -1,0 +1,29 @@
+<!DOCTYPE hibernate-mapping PUBLIC  
+     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">  
+      
+     <hibernate-mapping>  
+      <class name="com.mifatest.entities.Bewertung" table="bewertung">  
+        <id name="bewertungID">  
+         <generator class="increment"></generator>  
+        </id>        
+        
+        <property name="bewertungText"></property>  
+        <property name="bewertungDatum" type="date"></property>
+        <property name="fahrstilRating"></property>
+        <property name="freundlichkeitRating"></property>       
+        <property name="puenktlichkeitRating"></property>
+        
+        <many-to-one name="bewertungSenderID" class="com.mifatest.entities.User"
+            column="bewertungSenderID" unique="false" not-null="true"
+            cascade="all" />
+        <many-to-one name="bewertungEmpfaengerID" class="com.mifatest.entities.User"
+            column="bewertungEmpfaengerID" unique="false" not-null="true"
+            cascade="all" />
+        <many-to-one name="fahrtID" class="com.mifatest.entities.Fahrt"
+            column="fahrtID" unique="false" not-null="true"
+            cascade="all" />
+                
+      </class>  
+                
+     </hibernate-mapping>  

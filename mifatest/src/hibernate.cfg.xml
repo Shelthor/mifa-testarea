@@ -1,0 +1,25 @@
+<!DOCTYPE hibernate-configuration SYSTEM 
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>  
+  
+    <session-factory>  
+        <property name="hbm2ddl.auto">update</property>  
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>  
+        <property name="connection.url">jdbc:mysql://localhost:3306/mifatest</property>  
+        <property name="connection.username">duser</property>  
+        <property name="connection.password">duser</property>  
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>  
+        
+        <mapping resource="bewertung.hbm.xml"/>
+        <mapping resource="fahrt.hbm.xml"/>
+        <mapping resource="fahrzeug.hbm.xml"/>
+        <mapping resource="nachricht.hbm.xml"/>
+        <mapping resource="passagierfahrt.hbm.xml"/>
+        <mapping resource="user.hbm.xml"/>
+        <mapping resource="userfahrzeug.hbm.xml"/>
+        <mapping resource="ort.hbm.xml"/>
+        <mapping resource="passwort.hbm.xml"/>
+    </session-factory>  
+  
+</hibernate-configuration> 
