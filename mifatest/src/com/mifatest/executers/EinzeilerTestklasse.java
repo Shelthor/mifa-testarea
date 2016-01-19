@@ -11,8 +11,8 @@ public class EinzeilerTestklasse {
 	public static void main(String[] args) {
 		Facade f = new Facade();
 		
-		f.newPassagierFahrt(f.getUserById(1), f.getFahrtById(1), "Dresden", "Leipzig");
-		f.session.close();
+		f.newBewertung("haalll", 2, 2, 3, f.getUserById(1), f.getUserById(2), new Date(), f.getFahrtById(1));
+		//f.newPassagierFahrt(f.getUserById(1), f.getFahrtById(1), "Dresden", "Leipzig");
 
 	}
 

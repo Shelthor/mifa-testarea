@@ -55,6 +55,7 @@ public class Facade {
  		bewertung.setBewertungEmpfaengerID(empfid);
  		bewertung.setBewertungSenderID(senderid);
  		bewertung.setBewertungDatum(datum);
+ 		bewertung.setFahrtID(fahrtid);
  		
  		session.merge(bewertung);
  		t.commit();
@@ -224,8 +225,7 @@ public class Facade {
 		
 		
 		org.hibernate.Query q= session.createQuery("from UserFahrzeug as u where u.userID =" + " " + userid + "");
-		
-		//return (Fahrzeug) session.load(Fahrzeug.class, userid);
+
 		List<UserFahrzeug> luf;
 		
 		luf=q.list();
