@@ -36,46 +36,40 @@
 
 <form action="Bewerten.jsp" method="post">
 
-Enter 2 Numbers:
-<input type="text" name="numone" />
-
-<input type="text" name="numtwo" />
-
-<input type="submit" value="Calculate" />
+Fahrstil?:
+<input type="text" name="formfahrstil" />
+Pünktlichkeit?:
+<input type="text" name="formPuenktlichkeit" />
+Freundlichkeit?:
+<input type="text" name="formFreundlichkeit" />
+Kommentar?:
+<input type="text" name="formKommentar" />
+<input type="submit" name="ok" value="OK" />
 
 </form>
-
-The Answer:
-
-<!-- JSP expression code that prints the values of the fields -->
-
-<%= request.getParameter("numone") %>
-+
-<%= request.getParameter("numtwo") %>
-
-<!-- Another Scriplet block of code -->
 
 <% 
 	Facade f = new Facade();
 
-	heute = new java.util.Date();
-	text = "hi";
-	fahrs = 2;
-	freundli = 2;
-	punkt = 2;
-	fahrtid = f.getFahrtById(1);
-	
-	empf = f.getUserById(1);
-	send = f.getUserById(2);
-	
-try{
-	
-	f.newBewertung(text, fahrs, punkt, freundli, empf, send, heute, fahrtid);
-	
-}
-catch (Exception ex)
-{
-  out.print(ex.toString());
+if (request.getParameter("ok") != null){
+	try{
+		heute = new java.util.Date();
+		text = request.getParameter("formKommentar");
+		fahrs = Integer.parseInt(request.getParameter("formfahrstil"));
+		freundli = Integer.parseInt(request.getParameter("formFreundlichkeit"));;
+		punkt = Integer.parseInt(request.getParameter("formPuenktlichkeit"));;
+		fahrtid = f.getFahrtById(1);
+		
+		empf = f.getUserById(1);
+		send = f.getUserById(2);
+		
+		f.newBewertung(text, fahrs, punkt, freundli, empf, send, heute, fahrtid);
+		
+	}
+	catch (Exception ex)
+	{
+	  out.print(ex.toString());
+	}
 }
 %>
 </body>
