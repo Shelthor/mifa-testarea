@@ -18,6 +18,20 @@
 </head>
 <body>
 
+<%
+
+if(kontrolle == 0){
+	try{
+		empfurl = Integer.parseInt(request.getParameter("empfid"));
+		sendurl = Integer.parseInt(request.getParameter("senderid"));
+	}
+
+	catch (Exception ex) {
+		out.print("keine IDs übergeben");
+	}
+}
+%>
+
 <div class="container">
   <div class="jumbotron">
     <h1>Hi</h1>
@@ -121,6 +135,11 @@
 	User empf, send;
 	Date heute;
 	
+	int empfurl;
+	int sendurl;
+	
+	int kontrolle;
+	
 	String status;
 %>
 
@@ -140,6 +159,9 @@ function fail(){
 </script>
 <% 
 	Facade f = new Facade();
+	
+empf = f.getUserById(empfurl);
+send = f.getUserById(sendurl);
 
 if (request.getParameter("ok") != null){
 	
@@ -152,8 +174,10 @@ if (request.getParameter("ok") != null){
 			punkt = Integer.parseInt(request.getParameter("formPuenktlichkeit"));;
 			fahrtid = f.getFahrtById(1);
 			
-			empf = f.getUserById(1);// nur zu testzwecken, später dann->  f.getUserById(request.getParameter("empfid"))
-			send = f.getUserById(2);// nur zu testzwecken, später dann->  f.getUserById(request.getParameter("senderid"))
+			//empf = f.getUserById(1);// nur zu testzwecken, später dann->  f.getUserById(request.getParameter("empfid"))
+			//send = f.getUserById(2);// nur zu testzwecken, später dann->  f.getUserById(request.getParameter("senderid"))
+			
+			
 			
 			// VERGLEICHE AUCH DEN LINK
 			// http://stackoverflow.com/questions/1890438/how-to-get-parameters-from-the-url-with-jsp
@@ -162,6 +186,8 @@ if (request.getParameter("ok") != null){
 			
 		    out.print("<script>sendSQL();</script>");
 		    out.print("<script>suc();</script>");
+		    
+		    kontrolle = 1;
 		    
 		}
 		catch (Exception ex)
