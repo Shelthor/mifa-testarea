@@ -11,6 +11,7 @@
 
 <link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
 <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+<link rel="stylesheet" href="css/custom.css" type="text/css" />
 <script src="js/npm.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -23,7 +24,7 @@
     <p>Gib eine Bewertung ab!</p> 
   </div>
   <div class="row">
-    <div class="col-sm-3">
+    <div class="col-sm-3 gruen">
 		<div class="row">
 			<div class="col-sm-12">
 				<p>Mein Profil -> UserOeffentlich.jsp</p>
@@ -72,28 +73,32 @@
 
     </div>
     <div class="col-sm-9">
-		<div id="sqlForm">
-		
-			
+		<div id="sqlForm" class="grau">
 				<form class="row" action="Bewerten.jsp" method="post">
-				<div class="col-sm-4">
-					Fahrstil?:
-					<input type="text" name="formfahrstil" />
-				</div>
-				<div class="col-sm-4">
-					Pünktlichkeit?:
-					<input type="text" name="formPuenktlichkeit" />
-				</div>
-				<div class="col-sm-4">
-					Freundlichkeit?:
-					<input type="text" name="formFreundlichkeit" />
-				</div>
-				<div class="col-sm-12">
-					Kommentar?:
-					<input type="text" name="formKommentar" />
-					<input id="knopf" type="submit" name="ok" value="OK"/>
-				</div>
-				
+					<div class="col-sm-4">
+						Fahrstil?:
+						<input type="text" name="formfahrstil" />
+					</div>
+					<div class="col-sm-4">
+						Pünktlichkeit?:
+						<input type="text" name="formPuenktlichkeit" />
+					</div>
+					<div class="col-sm-4">
+						Freundlichkeit?:
+						<input type="text" name="formFreundlichkeit" />
+					</div>
+					<br/>
+					<br/>
+					<div class="col-sm-12">
+						Kommentar?: 
+						<br/>
+						<br/>
+						<input type="text" name="formKommentar" style="width: 100%; height: 75px;"/>
+						<br/>
+						<br/>
+						<input id="knopf" style="width: 100%;" type="submit" name="ok" value="OK"/>
+					</div>
+
 				</form>
 	
 			
@@ -137,30 +142,36 @@ function fail(){
 	Facade f = new Facade();
 
 if (request.getParameter("ok") != null){
-	try{
-		heute = new java.util.Date();
-		text = request.getParameter("formKommentar");
-		fahrs = Integer.parseInt(request.getParameter("formfahrstil"));
-		freundli = Integer.parseInt(request.getParameter("formFreundlichkeit"));;
-		punkt = Integer.parseInt(request.getParameter("formPuenktlichkeit"));;
-		fahrtid = f.getFahrtById(1);
-		
-		empf = f.getUserById(1);// nur zu testzwecken, später dann->  f.getUserById(request.getParameter("empfid"))
-		send = f.getUserById(2);// nur zu testzwecken, später dann->  f.getUserById(request.getParameter("senderid"))
-		
-		// VERGLEICHE AUCH DEN LINK
-		// http://stackoverflow.com/questions/1890438/how-to-get-parameters-from-the-url-with-jsp
-		
-		f.newBewertung(text, fahrs, punkt, freundli, empf, send, heute, fahrtid);
-		
-	    out.print("<script>sendSQL();</script>");
-	    out.print("<script>suc();</script>");
-	    
+	
+	if (empf == null & send == null){
+		try
+		{
+			heute = new java.util.Date();
+			text = request.getParameter("formKommentar");
+			fahrs = Integer.parseInt(request.getParameter("formfahrstil"));
+			freundli = Integer.parseInt(request.getParameter("formFreundlichkeit"));;
+			punkt = Integer.parseInt(request.getParameter("formPuenktlichkeit"));;
+			fahrtid = f.getFahrtById(1);
+			
+			empf = f.getUserById(1);// nur zu testzwecken, später dann->  f.getUserById(request.getParameter("empfid"))
+			send = f.getUserById(2);// nur zu testzwecken, später dann->  f.getUserById(request.getParameter("senderid"))
+			
+			// VERGLEICHE AUCH DEN LINK
+			// http://stackoverflow.com/questions/1890438/how-to-get-parameters-from-the-url-with-jsp
+			
+			f.newBewertung(text, fahrs, punkt, freundli, empf, send, heute, fahrtid);
+			
+		    out.print("<script>sendSQL();</script>");
+		    out.print("<script>suc();</script>");
+		    
+		}
+		catch (Exception ex)
+		{
+			out.print("<script>fail();</script>" + "Fehler: " + ex.toString());
+
+		}
 	}
-	catch (Exception ex)
-	{
-		out.print("<script>fail();</script>");
-	}
+	
 }
 %>
 
