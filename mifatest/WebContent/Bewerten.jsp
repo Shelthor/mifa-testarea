@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
 <script src="js/npm.js"></script>
 <script src="js/bootstrap.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 <body>
 
@@ -28,28 +29,35 @@
 	int fahrs, freundli, punkt;
 	User empf, send;
 	Date heute;
+	Boolean tester;
 %>
 
 <br /><br />
+<div id="holz">
+	<form action="Bewerten.jsp" method="post">
+	
+	Fahrstil?:
+	<input type="text" name="formfahrstil" />
+	Pünktlichkeit?:
+	<input type="text" name="formPuenktlichkeit" />
+	Freundlichkeit?:
+	<input type="text" name="formFreundlichkeit" />
+	Kommentar?:
+	<input type="text" name="formKommentar" />
+	<input id="knopf" type="submit" name="ok" value="OK"/>
+	
+	</form>
+</div>
 
-<!-- I create a form that will talk to this page -->
-
-<form action="Bewerten.jsp" method="post">
-
-Fahrstil?:
-<input type="text" name="formfahrstil" />
-Pünktlichkeit?:
-<input type="text" name="formPuenktlichkeit" />
-Freundlichkeit?:
-<input type="text" name="formFreundlichkeit" />
-Kommentar?:
-<input type="text" name="formKommentar" />
-<input type="submit" name="ok" value="OK" />
-
-</form>
-
+<script>
+function duschen(){
+	  $( "#holz" ).slideUp();
+	}
+		
+</script>
 <% 
 	Facade f = new Facade();
+	tester = false;
 
 if (request.getParameter("ok") != null){
 	try{
@@ -64,13 +72,20 @@ if (request.getParameter("ok") != null){
 		send = f.getUserById(2);
 		
 		f.newBewertung(text, fahrs, punkt, freundli, empf, send, heute, fahrtid);
+		tester = true;
+		
+		
+		
+	    out.print("<script>duschen();</script>");
 		
 	}
 	catch (Exception ex)
 	{
+	  tester = false;
 	  out.print(ex.toString());
 	}
 }
 %>
+
 </body>
 </html>
