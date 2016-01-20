@@ -29,7 +29,6 @@
 	int fahrs, freundli, punkt;
 	User empf, send;
 	Date heute;
-	Boolean tester;
 %>
 
 <br /><br />
@@ -57,7 +56,6 @@ function duschen(){
 </script>
 <% 
 	Facade f = new Facade();
-	tester = false;
 
 if (request.getParameter("ok") != null){
 	try{
@@ -72,16 +70,13 @@ if (request.getParameter("ok") != null){
 		send = f.getUserById(2);
 		
 		f.newBewertung(text, fahrs, punkt, freundli, empf, send, heute, fahrtid);
-		tester = true;
-		
-		
-		
+
 	    out.print("<script>duschen();</script>");
+	    out.print("SUCCESS");
 		
 	}
 	catch (Exception ex)
 	{
-	  tester = false;
 	  out.print(ex.toString());
 	}
 }
