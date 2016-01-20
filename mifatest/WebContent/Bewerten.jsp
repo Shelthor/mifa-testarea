@@ -17,11 +17,97 @@
 </head>
 <body>
 
-<% out.print("Todays Date: "); %>
+<div class="container">
+  <div class="jumbotron">
+    <h1>Hi</h1>
+    <p>Gib eine Bewertung ab!</p> 
+  </div>
+  <div class="row">
+    <div class="col-sm-3">
+		<div class="row">
+			<div class="col-sm-12">
+				<p>Mein Profil -> UserOeffentlich.jsp</p>
+   			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<p>Fahrt Suchen -> FahrtSuchen.jsp</p>
+   			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<p>Fahrt Anbieten -> FahrtAnbieten.jsp</p>
+   			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<p>Meine Fahrten -> MeineFahrten.jsp</p>
+   			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<p>Meine angebotenen Fahrten -> MeineFahrten.jsp</p>
+   			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<p>Historie -> LetzteFahrten.jsp</p>
+   			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<p>Erhaltene Bewertungen -> Bewertungen.jsp</p>
+   			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<p>Meine Einstellungen -> Settings.jsp</p>
+   			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<p>Mailbox -> Mailbox.jsp</p>
+   			</div>
+		</div>
 
-
-<%=new java.util.Date() %>
-
+    </div>
+    <div class="col-sm-9">
+		<div id="sqlForm">
+		
+			
+				<form class="row" action="Bewerten.jsp" method="post">
+				<div class="col-sm-4">
+					Fahrstil?:
+					<input type="text" name="formfahrstil" />
+				</div>
+				<div class="col-sm-4">
+					Pünktlichkeit?:
+					<input type="text" name="formPuenktlichkeit" />
+				</div>
+				<div class="col-sm-4">
+					Freundlichkeit?:
+					<input type="text" name="formFreundlichkeit" />
+				</div>
+				<div class="col-sm-12">
+					Kommentar?:
+					<input type="text" name="formKommentar" />
+					<input id="knopf" type="submit" name="ok" value="OK"/>
+				</div>
+				
+				</form>
+	
+			
+		</div>
+		<br/>
+		<div id="sendSuccess" style="display:none">
+			<p>SUCCESS</p>
+		</div>
+		<div id="sendFail" style="display:none">
+			<p>FAIL</p>
+		</div>
+	</div>
+  </div>
+</div>
 
 <%! 
 	Fahrt fahrtid;
@@ -29,29 +115,22 @@
 	int fahrs, freundli, punkt;
 	User empf, send;
 	Date heute;
+	
+	String status;
 %>
 
-<br /><br />
-<div id="holz">
-	<form action="Bewerten.jsp" method="post">
-	
-	Fahrstil?:
-	<input type="text" name="formfahrstil" />
-	Pünktlichkeit?:
-	<input type="text" name="formPuenktlichkeit" />
-	Freundlichkeit?:
-	<input type="text" name="formFreundlichkeit" />
-	Kommentar?:
-	<input type="text" name="formKommentar" />
-	<input id="knopf" type="submit" name="ok" value="OK"/>
-	
-	</form>
-</div>
-
 <script>
-function duschen(){
-	  $( "#holz" ).slideUp();
+function sendSQL(){
+	  $( "#sqlForm" ).slideUp();
 	}
+
+function suc(){
+	$( "#sendSuccess" ).show();
+}
+
+function fail(){
+	$( "#sendFail" ).show();
+}
 		
 </script>
 <% 
@@ -66,18 +145,21 @@ if (request.getParameter("ok") != null){
 		punkt = Integer.parseInt(request.getParameter("formPuenktlichkeit"));;
 		fahrtid = f.getFahrtById(1);
 		
-		empf = f.getUserById(1);
-		send = f.getUserById(2);
+		empf = f.getUserById(1);// nur zu testzwecken, später dann->  f.getUserById(request.getParameter("empfid"))
+		send = f.getUserById(2);// nur zu testzwecken, später dann->  f.getUserById(request.getParameter("senderid"))
+		
+		// VERGLEICHE AUCH DEN LINK
+		// http://stackoverflow.com/questions/1890438/how-to-get-parameters-from-the-url-with-jsp
 		
 		f.newBewertung(text, fahrs, punkt, freundli, empf, send, heute, fahrtid);
-
-	    out.print("<script>duschen();</script>");
-	    out.print("SUCCESS");
 		
+	    out.print("<script>sendSQL();</script>");
+	    out.print("<script>suc();</script>");
+	    
 	}
 	catch (Exception ex)
 	{
-	  out.print(ex.toString());
+		out.print("<script>fail();</script>");
 	}
 }
 %>
