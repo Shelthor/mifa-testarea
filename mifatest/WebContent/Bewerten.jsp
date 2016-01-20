@@ -143,7 +143,6 @@ function fail(){
 
 if (request.getParameter("ok") != null){
 	
-	if (empf == null & send == null){
 		try
 		{
 			heute = new java.util.Date();
@@ -172,7 +171,6 @@ if (request.getParameter("ok") != null){
 		}
 	}
 	
-}
 %>
 
 </body>
