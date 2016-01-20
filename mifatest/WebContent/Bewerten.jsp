@@ -24,10 +24,11 @@ if(kontrolle == 0){
 	try{
 		empfurl = Integer.parseInt(request.getParameter("empfid"));
 		sendurl = Integer.parseInt(request.getParameter("senderid"));
+		fahrturl = Integer.parseInt(request.getParameter("fahrtid"));
 	}
 
 	catch (Exception ex) {
-		out.print("keine IDs übergeben");
+		
 	}
 }
 %>
@@ -112,10 +113,7 @@ if(kontrolle == 0){
 						<br/>
 						<input id="knopf" style="width: 100%;" type="submit" name="ok" value="OK"/>
 					</div>
-
 				</form>
-	
-			
 		</div>
 		<br/>
 		<div id="sendSuccess" style="display:none">
@@ -137,8 +135,9 @@ if(kontrolle == 0){
 	
 	int empfurl;
 	int sendurl;
+	int fahrturl;
 	
-	int kontrolle;
+	int kontrolle = 0;
 	
 	String status;
 %>
@@ -160,43 +159,44 @@ function fail(){
 <% 
 	Facade f = new Facade();
 	
-empf = f.getUserById(empfurl);
-send = f.getUserById(sendurl);
+	empf = f.getUserById(empfurl);
+	send = f.getUserById(sendurl);
+	fahrtid = f.getFahrtById(fahrturl);
 
-if (request.getParameter("ok") != null){
-	
-		try
-		{
-			heute = new java.util.Date();
-			text = request.getParameter("formKommentar");
-			fahrs = Integer.parseInt(request.getParameter("formfahrstil"));
-			freundli = Integer.parseInt(request.getParameter("formFreundlichkeit"));;
-			punkt = Integer.parseInt(request.getParameter("formPuenktlichkeit"));;
-			fahrtid = f.getFahrtById(1);
-			
-			//empf = f.getUserById(1);// nur zu testzwecken, später dann->  f.getUserById(request.getParameter("empfid"))
-			//send = f.getUserById(2);// nur zu testzwecken, später dann->  f.getUserById(request.getParameter("senderid"))
-			
-			
-			
-			// VERGLEICHE AUCH DEN LINK
-			// http://stackoverflow.com/questions/1890438/how-to-get-parameters-from-the-url-with-jsp
-			
-			f.newBewertung(text, fahrs, punkt, freundli, empf, send, heute, fahrtid);
-			
-		    out.print("<script>sendSQL();</script>");
-		    out.print("<script>suc();</script>");
-		    
-		    kontrolle = 1;
-		    
+	if (request.getParameter("ok") != null){
+		
+			try
+			{
+				heute = new java.util.Date();
+				text = request.getParameter("formKommentar");
+				fahrs = Integer.parseInt(request.getParameter("formfahrstil"));
+				freundli = Integer.parseInt(request.getParameter("formFreundlichkeit"));;
+				punkt = Integer.parseInt(request.getParameter("formPuenktlichkeit"));;
+				
+				//fahrtid = f.getFahrtById(1);
+				
+				//empf = f.getUserById(1);// nur zu testzwecken, später dann->  f.getUserById(request.getParameter("empfid"))
+				//send = f.getUserById(2);// nur zu testzwecken, später dann->  f.getUserById(request.getParameter("senderid"))
+				
+				
+				
+				// VERGLEICHE AUCH DEN LINK
+				// http://stackoverflow.com/questions/1890438/how-to-get-parameters-from-the-url-with-jsp
+				
+				f.newBewertung(text, fahrs, punkt, freundli, empf, send, heute, fahrtid);
+				
+			    out.print("<script>sendSQL();</script>");
+			    out.print("<script>suc();</script>");
+			    
+			    kontrolle = 1;
+			    
+			}
+			catch (Exception ex)
+			{
+				out.print("<script>fail();</script>" + "Fehler: " + ex.toString());
+				out.print("möglicherweise keine IDs übergeben?");
+			}
 		}
-		catch (Exception ex)
-		{
-			out.print("<script>fail();</script>" + "Fehler: " + ex.toString());
-
-		}
-	}
-	
 %>
 
 </body>

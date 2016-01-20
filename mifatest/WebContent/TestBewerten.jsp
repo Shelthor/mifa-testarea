@@ -7,6 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="http://localhost:8080/mifatest/Bewerten.jsp?empfid=1&senderid=2">Gib Bewertung ab [SenderID = 2], [EmpfaengerID = 1]</a>
+	<%!
+		int iDempf=1;
+		int iDsend=2;
+		int iDfahrt=2;
+	%>
+
+	<a href="http://localhost:8080/mifatest/Bewerten.jsp?empfid=<%= iDempf %>&senderid=<%= iDsend %>&fahrtid=<%= iDfahrt %>">Gib Bewertung ab [SenderID = <%= iDsend %>], [EmpfaengerID = <%= iDempf %>], [FahrtID = <%= iDfahrt %>]</a>
 </body>
 </html>
