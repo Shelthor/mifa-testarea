@@ -38,10 +38,10 @@ public class TestFacade {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////			
 		/*fahrtanlegen-test*/
 		//es kann immer nur ein jsp ausgef¸hrt werden
-		Date DATUM = new Date(90, 9, 16);
+		Date DATUM = new Date();
 		User FAHRER = f.getUserById(1);
-		Time UHRZEIT = new Time(12, 44, 0);
-		String GEPAECK = "klein";
+		Time UHRZEIT = new Time(0, 0, 0);
+		String GEPAECK = "GROﬂ";
 		int KAPAZITAET = 2;
 		String KOMMENTAR = "keine Umwege > 2km";
 		
@@ -59,7 +59,7 @@ public class TestFacade {
 		int P5 = 2;
 		int P6 = 2;
 		
-		f.newFahrt(DATUM, FAHRER, UHRZEIT, GEPAECK, KAPAZITAET, KOMMENTAR, S1, S2, S3, S4, S5, S6, P1, P2, P3, P4, P5, P6);
+	 	f.newFahrt(DATUM, FAHRER, UHRZEIT, GEPAECK, KAPAZITAET, KOMMENTAR, S1, S2, S3, S4, S5, S6, P1, P2, P3, P4, P5, P6);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////		
 		/* Arbeit mit Listen - SELECT * FROM Tabelle 
 		
@@ -84,7 +84,7 @@ public class TestFacade {
 		f.newPassagierFahrt(f.getUserById(1), f.getFahrtById(1), "Dresden", "Leipzig"); */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		/* Am Ende der SQL-Arbeit die Session wieder schlieﬂen */
-		f.session.close();
+		//f.session.close();
 		
 	}
 

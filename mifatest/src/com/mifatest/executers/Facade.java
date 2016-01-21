@@ -198,9 +198,11 @@ public class Facade {
  		passwort.setUserID(userid);
  		passwort.setPasswortValue(value);
  		
- 		session.merge(passwort);
+ 		session.persist(passwort);
  		
- 		System.out.println("success");
+ 		t.commit();
+ 		
+ 		System.out.println("passwort success");
  	}
 	
 //Fahrzeuge//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -219,6 +221,8 @@ public class Facade {
  		session.merge(fahrzeug);
  		
  		t.commit();
+ 		
+ 		System.out.println("fahrzeug success");
  	}
  	
  	public Fahrzeug getFahrzeugByUserId(int userid){
