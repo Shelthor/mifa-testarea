@@ -27,7 +27,7 @@ public class TestFacade {
 		String ISADMIN = "true";
 		String ISACTIVATED = "true";
 		
-	 //   f.newUser(EMAILADRESSE, HEUTE, NACHNAME, VORNAME,TELEFONNUMMER, ISADMIN, ISACTIVATED);
+	    //f.newUser(EMAILADRESSE, HEUTE, NACHNAME, VORNAME,TELEFONNUMMER, ISADMIN, ISACTIVATED);
 		
 		// --- ACHTUNG --- Reihenfolge der Parameter beachten!		
 		//Aber keine Sorge: immer wenn man eine Funktion aufruft, die Parameter verlangt, werden die 
@@ -35,8 +35,7 @@ public class TestFacade {
 		
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////			
 		/*fahrtanlegen-test*/
-		/* ACHTUNG - Nur ein f.newIRGENDWAS-Befehl pro JSP */
-		
+		//es kann immer nur ein jsp ausgeführt werden
 		Date DATUM = new Date(90, 9, 16);
 		User FAHRER = f.getUserById(1);
 		Time UHRZEIT = new Time(12, 44, 0);
@@ -60,7 +59,7 @@ public class TestFacade {
 		
 		f.newFahrt(DATUM, FAHRER, UHRZEIT, GEPAECK, KAPAZITAET, KOMMENTAR, S1, S2, S3, S4, S5, S6, P1, P2, P3, P4, P5, P6);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////		
-		/* Arbeit mit Listen - SELECT * FROM Tabelle */
+		/* Arbeit mit Listen - SELECT * FROM Tabelle 
 		
 		// Gib mir eine <List> mit allen Elementen aus der Tabelle Bewertungen, WHERE bewertungSenderID = 2
 		List<Bewertung> bList = f.getListWithAllBewertungenFromUserByUserId(2);
@@ -73,14 +72,14 @@ public class TestFacade {
 			System.out.println(element.getBewertungDatum());
 		} 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		/* Arbeit mit fahrzeug-Objekten */
+		/* Arbeit mit fahrzeug-Objekten 
 	    String typ;
 		typ = f.getFahrzeugByUserId(1).getFahrzeugTyp();
 		
-		System.out.println(typ); 
+		System.out.println(typ); */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		/* Anlegen einer neuen Passagier-Fahrt-Beziehung*/
-		f.newPassagierFahrt(f.getUserById(1), f.getFahrtById(1), "Dresden", "Leipzig");
+		/* Anlegen einer neuen Passagier-Fahrt-Beziehung
+		f.newPassagierFahrt(f.getUserById(1), f.getFahrtById(1), "Dresden", "Leipzig"); */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		/* Am Ende der SQL-Arbeit die Session wieder schließen */
 		f.session.close();

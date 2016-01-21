@@ -189,7 +189,7 @@ if(kontrolle == 0){
 					<input type="hidden" id="hiddenField1" name="hi1" />
 					<input type="hidden" id="hiddenField2" name="hi2" />
 					<input type="hidden" id="hiddenField3" name="hi3" />
-				</form>	
+				</form>
 		</div>
 		<br/>
 		<div id="sendSuccess" style="display:none">
@@ -245,11 +245,33 @@ function fail(){
 			{
 				heute = new java.util.Date();
 				text = request.getParameter("formKommentar");
-
+			  /*fahrs = request.getParameter("hi1");
+				freundli = request.getParameter("hi2");
+				punkt = request.getParameter("hi3");  
+			
+				fahrs = Integer.parseInt(request.getParameter("hi1"));
+				freundli = Integer.parseInt(request.getParameter("hi2"));
+				punkt = Integer.parseInt(request.getParameter("hi3"));
+				
+				fahrs = Integer.parseInt(request.getParameter("formfahrstil"));
+				freundli = Integer.parseInt(request.getParameter("formFreundlichkeit"));;
+				punkt = Integer.parseInt(request.getParameter("formPuenktlichkeit"));;
+				*/
+				
 				punkt = Integer.parseInt(request.getParameter("hi1"));
 				fahrs = Integer.parseInt(request.getParameter("hi2"));
 				freundli = Integer.parseInt(request.getParameter("hi3"));
 
+				//fahrtid = f.getFahrtById(1);
+				
+				//empf = f.getUserById(1);// nur zu testzwecken, später dann->  f.getUserById(request.getParameter("empfid"))
+				//send = f.getUserById(2);// nur zu testzwecken, später dann->  f.getUserById(request.getParameter("senderid"))
+				
+				
+				
+				// VERGLEICHE AUCH DEN LINK
+				// http://stackoverflow.com/questions/1890438/how-to-get-parameters-from-the-url-with-jsp
+				
 				f.newBewertung(text, fahrs, punkt, freundli, empf, send, heute, fahrtid);
 				
 			    out.print("<script>sendSQL();</script>");
@@ -260,7 +282,7 @@ function fail(){
 			}
 			catch (Exception ex)
 			{
-				out.print("<script>fail();</script>" + "Fehler: " + ex.toString() + "<br/><br/>");
+				out.print("<script>fail();</script>" + "Fehler: " + ex.toString());
 				out.print("möglicherweise keine IDs übergeben?");
 			}
 		}
