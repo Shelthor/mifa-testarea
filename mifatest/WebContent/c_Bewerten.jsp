@@ -173,7 +173,7 @@ if(kontrolle == 0){
 	            </tr>
 	    	</table>
 			<br />
-				<form class="row" action="Bewerten.jsp" method="post">
+				<form class="row" action="c_Bewerten.jsp" method="post">
 					<br/>
 					<br/>
 					<div class="col-sm-12">
