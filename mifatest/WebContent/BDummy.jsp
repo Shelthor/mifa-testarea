@@ -35,7 +35,8 @@ td.star {
         var wert;
 
         //Sterne
-
+		//duschengehen
+		
         function leuchten(a, tabelleX) {
         	var posi = "sterne"+tabelleX;
         	var table = document.getElementById(posi);
