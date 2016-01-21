@@ -5,3 +5,10 @@
 .col-sm-3.gruen{
 	background-color:green;
 }
+
+.star {
+    background-repeat: no-repeat;
+    background-image: url('img/2.png');
+    height: 61px;
+    width: 61px;
+}
