@@ -27,7 +27,7 @@ public class TestFacade {
 		String ISADMIN = "true";
 		String ISACTIVATED = "true";
 		
-	    f.newUser(EMAILADRESSE, HEUTE, NACHNAME, VORNAME,TELEFONNUMMER, ISADMIN, ISACTIVATED);
+	 //   f.newUser(EMAILADRESSE, HEUTE, NACHNAME, VORNAME,TELEFONNUMMER, ISADMIN, ISACTIVATED);
 		
 		// --- ACHTUNG --- Reihenfolge der Parameter beachten!		
 		//Aber keine Sorge: immer wenn man eine Funktion aufruft, die Parameter verlangt, werden die 
@@ -35,6 +35,7 @@ public class TestFacade {
 		
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////			
 		/*fahrtanlegen-test*/
+		/* ACHTUNG - Nur ein f.newIRGENDWAS-Befehl pro JSP */
 		
 		Date DATUM = new Date(90, 9, 16);
 		User FAHRER = f.getUserById(1);
