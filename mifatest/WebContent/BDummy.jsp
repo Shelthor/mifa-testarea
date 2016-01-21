@@ -30,57 +30,45 @@ td.star {
 
 <script type="text/javascript">
 
-        var checked = false;
+        checked = new Array(false,false,false);
+        
         var wert;
 
         //Sterne
 
-        function leuchten(a) {
-        
-        	if (checked == false)
+        function leuchten(a, tabelleX) {
+        	var posi = "sterne"+tabelleX;
+        	var table = document.getElementById(posi);
+        	var tds = table.getElementsByTagName("td");
+        	
+        	
+        	if(checked[tabelleX-1]==false)
+        	//if(checked[0]==false)
         	{
-        		for (var i = 1; i <= a; i++) {
-	                document.getElementById(i).style.backgroundImage = "url('img/1.png')";
-	            }
-        		a++;
-        		for (var i = a; i <= 5; i++) {
-	                document.getElementById(i).style.backgroundImage = "url('img/2.png')";
-        		}
-        		a--;
+        		for (var i = 0; i < tds.length; i++) {
+    	            if(i < a)
+    		           	{
+    		     	     	  tds[i].style.backgroundImage = "url('img/1.png')";
+    		            }
+    	            else
+    		            {
+    		                 tds[i].style.backgroundImage = "url('img/2.png')";
+    		            }
+    	            } 
         	}
-        		
-	           
+	        	
         }
 
-        function nichtLeuchten(a) {
-            if (checked == false)
-                document.getElementById(a).style.backgroundImage = "url('img/2.png')";
+        function setzen(a, tabelleY) {
+        	
+        checked[tabelleY-1] = false;
+      //  checked[0] = false;
+		leuchten(a, tabelleY);
+		checked[tabelleY-1] = true;
 
-        }
-
-        function setzen(a, b) {
-            checked = true;
+        wert = a;
             
-            
-            for (var i = 1; i <= a; i++) {
-                document.getElementById(i).style.backgroundImage = "url('img/1.png')";
-            }
-            
-            a++;
-
-            for (var j = a; j <= 5; j++) {
-	                document.getElementById(j).style.backgroundImage = "url('img/2.png')";
-        		}
-	           
-            a--;
-            
-            wert = a;
-            
-            alert(wert);
-        }
-
-        function setzeChecked() {
-            checked = false;
+        alert(wert); 
         }
 </script>
 
@@ -98,6 +86,10 @@ if(kontrolle == 0){
 	}
 }
 %>
+
+<input type="hidden" id="hiddenField1"/>
+<input type="hidden" id="hiddenField2"/>
+<input type="hidden" id="hiddenField3"/>
 
 <div class="container">
   <div class="jumbotron">
@@ -154,16 +146,26 @@ if(kontrolle == 0){
 
     </div>
     <div class="col-sm-9">
-    	<table>
+    	<table id="sterne1">
     		<tr>
-				<td class="star" id="1" onclick="setzen('1','Enttaeuscht'); return false;" onmouseover="leuchten('1'); return false;" onmouseout="nichtLeuchten('1'); return false;"></td>
-                <td class="star" id="2" onclick="setzen('2','Unzufrieden'); return false;" onmouseover="leuchten('2'); return false;" onmouseout="nichtLeuchten('2'); return false;"></td>
-                <td class="star" id="3" onclick="setzen('3','Mittel'); return false;" onmouseover="leuchten('3'); return false;" onmouseout="nichtLeuchten('3'); return false;"></td>
-                <td class="star" id="4" onclick="setzen('4','Zufrieden'); return false;" onmouseover="leuchten('4'); return false;" onmouseout="nichtLeuchten('4'); return false;"></td>
-                <td class="star" id="5" onclick="setzen('5','Voll Zufrieden'); return false;" onmouseover="leuchten('5'); return false;" onmouseout="nichtLeuchten('5'); return false;"></td>
+				<td class="star" id="1" onclick="setzen('1', '1'); return false;" onmouseover="leuchten('1', '1'); return false;"></td>
+                <td class="star" id="2" onclick="setzen('2', '1'); return false;" onmouseover="leuchten('2', '1'); return false;"></td>
+                <td class="star" id="3" onclick="setzen('3', '1'); return false;" onmouseover="leuchten('3', '1'); return false;"></td>
+                <td class="star" id="4" onclick="setzen('4', '1'); return false;" onmouseover="leuchten('4', '1'); return false;"></td>
+                <td class="star" id="5" onclick="setzen('5', '1'); return false;" onmouseover="leuchten('5', '1'); return false;"></td>
             </tr>
     	</table>
-   
+    	
+    	<table id="sterne2">
+    		<tr>
+				<td class="star" id="1" onclick="setzen('1', '2'); return false;" onmouseover="leuchten('1', '2'); return false;"></td>
+                <td class="star" id="2" onclick="setzen('2', '2'); return false;" onmouseover="leuchten('2', '2'); return false;"></td>
+                <td class="star" id="3" onclick="setzen('3', '2'); return false;" onmouseover="leuchten('3', '2'); return false;"></td>
+                <td class="star" id="4" onclick="setzen('4', '2'); return false;" onmouseover="leuchten('4', '2'); return false;"></td>
+                <td class="star" id="5" onclick="setzen('5', '2'); return false;" onmouseover="leuchten('5', '2'); return false;"></td>
+            </tr>
+    	</table>
+    	
     
 		<div id="sqlForm" class="grau">
 				<form class="row" action="Bewerten.jsp" method="post">
