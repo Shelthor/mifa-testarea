@@ -62,13 +62,14 @@ td.star {
         function setzen(a, tabelleY) {
         	
         checked[tabelleY-1] = false;
-      //  checked[0] = false;
+
 		leuchten(a, tabelleY);
 		checked[tabelleY-1] = true;
 
-        wert = a;
-            
-        alert(wert); 
+		var hFeld = "hiddenField" + tabelleY
+        
+        document.getElementById(hfeld).value=a;
+
         }
 </script>
 
@@ -87,9 +88,9 @@ if(kontrolle == 0){
 }
 %>
 
-<input type="hidden" id="hiddenField1"/>
-<input type="hidden" id="hiddenField2"/>
-<input type="hidden" id="hiddenField3"/>
+<input type="hidden" id="hiddenField1" name="hi1"/>
+<input type="hidden" id="hiddenField2" name="hi2"/>
+<input type="hidden" id="hiddenField3" name="hi3"/>
 
 <div class="container">
   <div class="jumbotron">
@@ -166,7 +167,16 @@ if(kontrolle == 0){
             </tr>
     	</table>
     	
-    
+    	<table id="sterne3">
+    		<tr>
+				<td class="star" id="1" onclick="setzen('1', '3'); return false;" onmouseover="leuchten('1', '3'); return false;"></td>
+                <td class="star" id="2" onclick="setzen('2', '3'); return false;" onmouseover="leuchten('2', '3'); return false;"></td>
+                <td class="star" id="3" onclick="setzen('3', '3'); return false;" onmouseover="leuchten('3', '3'); return false;"></td>
+                <td class="star" id="4" onclick="setzen('4', '3'); return false;" onmouseover="leuchten('4', '3'); return false;"></td>
+                <td class="star" id="5" onclick="setzen('5', '3'); return false;" onmouseover="leuchten('5', '3'); return false;"></td>
+            </tr>
+    	</table>
+    	
 		<div id="sqlForm" class="grau">
 				<form class="row" action="Bewerten.jsp" method="post">
 					<div class="col-sm-4">
@@ -248,9 +258,9 @@ function fail(){
 			{
 				heute = new java.util.Date();
 				text = request.getParameter("formKommentar");
-				fahrs = Integer.parseInt(request.getParameter("formfahrstil"));
-				freundli = Integer.parseInt(request.getParameter("formFreundlichkeit"));;
-				punkt = Integer.parseInt(request.getParameter("formPuenktlichkeit"));;
+				fahrs = Integer.parseInt(request.getParameter("hi2"));
+				freundli = Integer.parseInt(request.getParameter("hi3"));;
+				punkt = Integer.parseInt(request.getParameter("hi3"));;
 				
 				//fahrtid = f.getFahrtById(1);
 				
@@ -277,8 +287,6 @@ function fail(){
 			}
 		}
 %>
-
-</body>
 
 </body>
 </html>
