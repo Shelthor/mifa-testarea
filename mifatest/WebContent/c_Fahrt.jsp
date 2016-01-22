@@ -23,6 +23,75 @@
 
 <script>
 
+<%! 
+	Facade f;
+	Fahrt fa;
+	
+	int id;
+	
+	String  kommentar;
+	
+	String 	s1,s2,s3,s4,s5,s6;
+	int 	p1,p2,p3,p4,p5,p6;
+	
+	String 	fahrtDatum;
+	String 	gepaeck;
+	String	startZeit;
+	String 	fahrer;
+	
+	int kap;
+%>
+<%
+	f = new Facade();
+	id = 1; //kommt aus cookie ODER link (mal sehen)
+				
+	try{
+		fa = f.getFahrtById(id);
+		
+		kommentar = fa.getKommentar();
+		
+		fahrtDatum = fa.getFahrtDatum().toString();
+		gepaeck = fa.getGepaeck();
+		startZeit = fa.getFahrtStartZeit().toString();
+		
+		fahrer = f.getFahrerByFahrtId(id).getvName() + " " + f.getFahrerByFahrtId(id).getnName() ;
+		
+		kap = fa.getKapazitaet();
+	
+		s1 = fa.getS1();
+		s2 = fa.getS2();
+		s3 = fa.getS3();
+		s4 = fa.getS4();
+		s5 = fa.getS5();
+		s6 = fa.getS6();
+		
+		p1 = fa.getP1();
+		p2 = fa.getP2();
+		p3 = fa.getP3();
+		p4 = fa.getP4();
+		p5 = fa.getP5();
+		p6 = fa.getP6();
+		
+		//
+		
+		List<Bewertung> bList = f.getListWithAllBewertungenToUserByUserId(id);
+		
+		List<Integer> fahrstilRating = new ArrayList<Integer>();
+		List<Integer> puenktlichkeitRating = new ArrayList<Integer>();
+		List<Integer> freundlichkeitRating = new ArrayList<Integer>();
+		
+		for(int i = 0; i < bList.size(); i++){
+			fahrstilRating.add(bList.get(i).getFahrstilRating());
+			puenktlichkeitRating.add(bList.get(i).getPuenktlichkeitRating());
+			freundlichkeitRating.add(bList.get(i).getFreundlichkeitRating());
+		}			
+	}
+	catch (Exception e){
+		out.print(e);
+	}
+%>
+
+
 function initMap() {
 	  var directionsService = new google.maps.DirectionsService;
 	  var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -37,14 +106,26 @@ function initMap() {
 
 	function calculateAndDisplayRoute(directionsService, directionsDisplay) {
 	  var waypts = [];
-	  waypts.push({
-	        location: "Nossen, Deutschland",
-	        stopover: true
-	      });
+	  var stationsAusDB = new Array("<%= s2%>", "<%= s3%>", "<%= s4%>", "<%= s5%>");
+	  ///
 	  
+			// Define the callback function.
+			function setzePoints(value, index, ar) {
+			    if(value != "null"){
+			    	waypts.push({
+				        location: value + ", Deutschland",
+				        stopover: true
+				      });
+			    }
+			    
+			}
+			
+			stationsAusDB.forEach(setzePoints);
+ 	  
+	  ////
 	  directionsService.route({
-	    origin: "Dresden, Deutschland",
-	    destination: "Leipzig, Deutschland",
+	    origin: "<%=s1%>" + ", Deutschland",
+	    destination: "<%=s6%>" + ", Deutschland",
 	    waypoints: waypts,
 	    optimizeWaypoints: true,
 	    travelMode: google.maps.TravelMode.DRIVING
@@ -57,9 +138,9 @@ function initMap() {
 	      // For each route, display summary information.
 	      for (var i = 0; i < route.legs.length; i++) {
 	        var routeSegment = i + 1;
-	        summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
+	        summaryPanel.innerHTML += '<b>Streckenabschnitt: ' + routeSegment +
 	            '</b><br>';
-	        summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+	        summaryPanel.innerHTML += route.legs[i].start_address + ' nach ';
 	        summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
 	        summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
 	      }
@@ -76,77 +157,6 @@ function initMap() {
 
 </head>
 <body>
-
-<%! 
-		Facade f;
-		Fahrt fa;
-		
-		int id;
-
-		String  kommentar;
-		
-		String 	s1,s2,s3,s4,s5,s6;
-		int 	p1,p2,p3,p4,p5,p6;
-		
-		String 	fahrtDatum;
-		String 	gepaeck;
-		String	startZeit;
-		String 	fahrer;
-
-		int kap;
-	%>
-	<%
-		f = new Facade();
-		id = 1; //kommt aus cookie ODER link (mal sehen)
-					
-		try{
-			fa = f.getFahrtById(id);
-			
-			kommentar = fa.getKommentar();
-			
-			fahrtDatum = fa.getFahrtDatum().toString();
-			gepaeck = fa.getGepaeck();
-			startZeit = fa.getFahrtStartZeit().toString();
-			
-			fahrer = f.getFahrerByFahrtId(id).getvName() + " " + f.getFahrerByFahrtId(id).getnName() ;
-			
-			kap = fa.getKapazitaet();
-		
-			s1 = fa.getS1();
-			s2 = fa.getS2();
-			s3 = fa.getS3();
-			s4 = fa.getS4();
-			s5 = fa.getS5();
-			s6 = fa.getS6();
-			
-			p1 = fa.getP1();
-			p2 = fa.getP2();
-			p3 = fa.getP3();
-			p4 = fa.getP4();
-			p5 = fa.getP5();
-			p6 = fa.getP6();
-			
-			//
-			
-			List<Bewertung> bList = f.getListWithAllBewertungenToUserByUserId(id);
-			
-			List<Integer> fahrstilRating = new ArrayList<Integer>();
-			List<Integer> puenktlichkeitRating = new ArrayList<Integer>();
-			List<Integer> freundlichkeitRating = new ArrayList<Integer>();
-			
-			for(int i = 0; i < bList.size(); i++){
-				fahrstilRating.add(bList.get(i).getFahrstilRating());
-				puenktlichkeitRating.add(bList.get(i).getPuenktlichkeitRating());
-				freundlichkeitRating.add(bList.get(i).getFreundlichkeitRating());
-			}			
-		}
-		catch (Exception e){
-			out.print(e);
-		}
-	
-	%>
-
-	
 	<div class="container">
 	
 		<div class="jumbotron">
@@ -157,6 +167,7 @@ function initMap() {
 		
 		<div class="row">
 	   		 <div id="map" style="width:100%; height:200px;"></div>
+	   		 <div id="directions-panel"></div>
 		</div>
 		<div class="row">
 			<div class="col-sm-12">
@@ -164,6 +175,7 @@ function initMap() {
 			<p>	nach: <%= s6 %></p>
 			<p>	gepäck: <%= gepaeck %></p>
 			<p>	startzeit: <%= startZeit %></p>
+			<p>	Datum: <%= fahrtDatum %></p>
 			<p>	fahrer: <%= fahrer %></p>
 			<p>	komm: <%= kommentar %></p>
 			<p>	freie plätze: <%= kap %></p>
