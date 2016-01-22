@@ -25,6 +25,18 @@
 
 <script>
 
+function sendSQL(){
+	  $( ".container" ).hide();
+	}
+
+function suc(){
+	$( "#sendSuccess" ).show();
+}
+
+function fail(){
+	$( "#sendFail" ).show();
+}
+
 <%! 
 	Facade f;
 	Fahrt fa;
@@ -44,28 +56,9 @@
 %>
 <%
 	f = new Facade();
-	/*
-		Facade f;
-		Fahrt fa;
-		
-		int id;
-		
-		String  kommentar;
-		
-		String 	s1,s2,s3,s4,s5,s6;
-		int 	p1,p2,p3,p4,p5,p6;
-		
-		String 	fahrtDatum;
-		String 	gepaeck;
-		String	startZeit;
-		String 	fahrer;
-		
-		int kap;
-	*/
-
 	if (request.getParameter("ok") != null){
 		try{
-		//	kommentar = request.getParameter("formDatum");	DATE
+		//	kommentar = request.getParameter("formDatum");		DATE
 		//	kommentar = request.getParameter("formUhrzeit");	TIME
 			kap = Integer.parseInt(request.getParameter("formKapazitaet"));
 			gepaeck = request.getParameter("formGepaeck");
@@ -88,6 +81,9 @@
 			kommentar = request.getParameter("formKommentar");
 			
 			f.newFahrt(new Date(), f.getUserById(1), new Time(0,0,0), gepaeck, kap, kommentar, s1, sList.get(0),sList.get(1), sList.get(2), sList.get(3), s6, kap, kap, kap, kap, kap, kap);
+			
+			 out.print("<script>sendSQL();</script>");
+			 out.print("<script>suc();</script>");
 		}
 		catch (Exception ex){
 			out.print("<script>fail();</script>" + "Fehler: " + ex.toString());
@@ -105,18 +101,26 @@ function initMap() {
 	    center: {lat: 51.00, lng: 9.00}
 	  });
 	  directionsDisplay.setMap(map);
-
-	  calculateAndDisplayRoute(directionsService, directionsDisplay);
-	}
+}
 
 	function calculateAndDisplayRoute(directionsService, directionsDisplay) {
 	  var waypts = [];
-	  var stationsAusDB = new Array("<%= s2%>", "<%= s3%>", "<%= s4%>", "<%= s5%>");
+	  
+	  var station1, station2, station3, station4, station5, station6;
+	  station1 = document.getElementById('inS1').value;
+	  station2 = document.getElementById('inS2').value;
+	  station3 = document.getElementById('inS3').value;
+	  station4 = document.getElementById('inS4').value;
+	  station5 = document.getElementById('inS5').value;
+	  station6 = document.getElementById('inS6').value;
+	  
+	  
+	  var stationsAusDB = new Array(station2, station3, station4, station5);
 	  ///
 	  
 			// Define the callback function.
 			function setzePoints(value, index, ar) {
-			    if(value != "null"){
+			    if(value != ""){
 			    	waypts.push({
 				        location: value + ", Deutschland",
 				        stopover: true
@@ -126,11 +130,11 @@ function initMap() {
 			}
 			
 			stationsAusDB.forEach(setzePoints);
- 	  
+ 	  	
 	  ////
 	  directionsService.route({
-	    origin: "<%=s1%>" + ", Deutschland",
-	    destination: "<%=s6%>" + ", Deutschland",
+	    origin: station1 + ", Deutschland",
+	    destination: station6 + ", Deutschland",
 	    waypoints: waypts,
 	    optimizeWaypoints: true,
 	    travelMode: google.maps.TravelMode.DRIVING
@@ -155,7 +159,32 @@ function initMap() {
 	  });
 	}
 
+	var zwischenStZaehler = 2;
+	
+	function zeigen(){
+		//document.getElementById('s2-s5').show();
+		$("#s2-s5").slideDown();
+			
+		if(zwischenStZaehler < 6){
+			$("#inS"+zwischenStZaehler).slideDown();
+			zwischenStZaehler++;
+		}
 
+		
+		
+	}
+	
+	function aktualisiereMap(){
+		 var directionsService = new google.maps.DirectionsService;
+		  var directionsDisplay = new google.maps.DirectionsRenderer;
+		  var map = new google.maps.Map(document.getElementById('map'), {
+		    zoom: 7,
+		    center: {lat: 51.00, lng: 9.00}
+		  });
+		  directionsDisplay.setMap(map);
+		  
+		calculateAndDisplayRoute(directionsService, directionsDisplay);
+	}
 </script>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -175,6 +204,7 @@ function initMap() {
 	   		 <div id="directions-panel"></div>
 		</div>
 		<div class="row">
+		<div id="sqlForm">
 			<form class="row" action="c_FahrtAnbieten.jsp" method="post">
 					<div class="col-sm-12">
 						Datum?: 
@@ -198,22 +228,20 @@ function initMap() {
 
 						Von?: 
 						<br/>
-						<input type="text" name="formStart"/><br/>
+						<input type="text" name="formStart" id="inS1"/><br/>
 						Nach?: 
 						<br/>
-						<input type="text" name="formZiel"/><br/>
-						s2: 
-						<br/>
-						<input type="text" name="formS2"/><br/>	
-						s3: 
-						<br/>
-						<input type="text" name="formS3"/><br/>	
-						s4: 
-						<br/>
-						<input type="text" name="formS4"/><br/>	
-						s5: 
-						<br/>
-						<input type="text" name="formS5"/><br/>				
+						<input type="text" name="formZiel" onblur="aktualisiereMap()" id="inS6"/><br/>
+						<input type="button" style="width: 100%;" onclick="zeigen()" value="füge Zwischenstation hinzu"/>
+						<div id="s2-s5" style="display:none;" class="verlauf-orange">
+							<p>Über?:</p>
+							<br/>
+							 
+							<input type="text" name="formS2" onblur="aktualisiereMap()" id="inS2" style="display:none;"/><br/>	
+							<input type="text" name="formS3" onblur="aktualisiereMap()" id="inS3" style="display:none;"/><br/>	
+							<input type="text" name="formS4" onblur="aktualisiereMap()" id="inS4" style="display:none;"/><br/>	
+							<input type="text" name="formS5" onblur="aktualisiereMap()" id="inS5" style="display:none;"/><br/>				
+						</div>
 						Kommentar?: 
 						<br/>
 						<input type="text" name="formKommentar" style="width: 100%; height: 75px;"/><br/>
@@ -223,11 +251,21 @@ function initMap() {
 					</div>
 				</form>
 		</div>
+		
+		<br/>
+		
+
+		</div>
 		<div class="row">
 			<div class="col-sm-12">
 			</div>
 		</div>
 	</div>
-
+<	<div id="sendSuccess" style="display:none">
+			<p>SUCCESS</p>
+	</div>
+	<div id="sendFail" style="display:none">
+		<p>FAIL</p>
+	</div>
 </body>
 </html>
