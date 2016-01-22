@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>INTERN - Fahrtanbieten.jsp</title>
 
 <link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
 <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
@@ -72,7 +72,7 @@
 			s1 = request.getParameter("formStart");
 			s6 = request.getParameter("formZiel");
 			
-			//Liste mit Zwischenstops
+			//Liste mit Zwischenstops [s2 - s5]
 			List<String> sList = new ArrayList<String>();
 						
 			for(int i = 2; i <6;i++){
@@ -165,8 +165,8 @@ function initMap() {
 	<div class="container">
 	
 		<div class="jumbotron">
-		    <h1>Fahrt</h1>
-		    <p>von <%= s1 %> nach <%= s6 %></p>
+		    <h1>Wo willst du hin?</h1>
+		    <p>denn es macht jetzt keinen Zinn</p>
 	
 		</div>
 		
@@ -188,7 +188,14 @@ function initMap() {
 						<input type="text" name="formKapazitaet"/><br/>
 						Angaben zum Gepäck?: 
 						<br/>
-						<input type="text" name="formGepaeck"/><br/>
+						
+						 <select name="formGepaeck">
+						    <option value="ausreichen Platz">ausreichen Platz</option>
+						    <option value="Reisetasche">Reisetasche</option>
+						    <option value="nur Handgepäck">nur Handgepäck</option>
+						  </select>
+						<br/>
+
 						Von?: 
 						<br/>
 						<input type="text" name="formStart"/><br/>
