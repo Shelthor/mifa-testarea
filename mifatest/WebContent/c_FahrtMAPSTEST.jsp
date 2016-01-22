@@ -146,22 +146,20 @@ function initMap() {
 	
 	%>
 
-
-    <div id="map"></div>
-
-	<div id="meta">
-		<h1>Info:</h1>
-		<p>gimme more</p>
-	</div>
 	
 	<div class="container">
 	
 	<div class="jumbotron">
+		
 	    <h1>Fahrt</h1>
 	    <p>von <%= s1 %> nach <%= s6 %></p>
+	    
+	   
+	    
 	</div>
+	
 	<div class="row">
-   
+   		 <div id="map" style="width:100%; height:200px;"></div>
 	</div>
 	<div class="row">
 		<div class="col-sm-12">
