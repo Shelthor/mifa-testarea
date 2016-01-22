@@ -36,7 +36,7 @@
 	%>
 	<%
 		f = new Facade();
-		id = 11;
+		id = 11; //kommt aus cookie
 					
 		try{
 			u = f.getUserById(id);
@@ -130,12 +130,24 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-6">
-			<h1>Letzte Fahrten</h1>
+		<div class="col-sm-6" style="background-color:#ee82ee;">
+			<h1>MARTINS PART - Letzte Fahrten</h1>
+			<p>
+				// müssen wir noch überlegen, ob wir das so öffentlich anzeigen, wer wann wohin gefahren ist,
+				die DB abfrage und Anpassung der facade.java muss trotzdem erfolgen, da z.B noch für 
+				die Meinefahrten.jsp benötigt.
+			</p>
+			<p>Angeboten</p>
 			<div class="verlauf-graublau">
-				<p>TEST</p>
-				<p>TEST</p>
-				<p>TEST</p>
+				<p>Martins Part</p>
+				<p>Martins Part</p>
+				<p>Martins Part</p>
+			</div>
+			<p>als Passagier</p>
+			<div class="verlauf-graublau">
+				<p>Martins Part</p>
+				<p>Martins Part</p>
+				<p>Martins Part</p>
 			</div>
 		</div>
 		<div class="col-sm-6">
