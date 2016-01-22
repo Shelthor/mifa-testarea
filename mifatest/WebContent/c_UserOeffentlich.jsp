@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>INTERN - Bewerten</title>
+<title>UserOeffentlich</title>
 
 <link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
 <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
@@ -19,66 +19,113 @@
 </head>
 <body>
 
+	<%! 
+		Facade f;
+		User u;
+		
+		String  vorName;
+		String 	nachName;
+		String 	geburtsDatum;
+		String 	bildUrl;
+		String	telefon;
+		String 	mail;
+	%>
+	<%
+		f = new Facade();
+					
+		try{
+			u = f.getUserById(11);
+			
+			vorName = u.getvName();
+			nachName = u.getnName();
+			geburtsDatum = u.getGeburtsDatum().toString();
+			bildUrl = u.getUserBildURL();
+			telefon = u.getTelNummer();
+			mail = u.geteMail();
+					
+		}
+		catch (Exception e){
+			out.print(e);
+		}
+	
+	%>
+
+<script>
+	function Age()
+	{
+		var datee = "<%=geburtsDatum %>";
+		
+		var byr = datee.substr(0, 3);
+		var bmo = datee.substr(5, 6);
+		var bday = datee.substr(8, 9);
+		
+		//
+		var age;
+		var now = new Date();
+		tday=now.getDate();
+		tmo=(now.getMonth());
+		tyr=(now.getFullYear());
+			{
+			if((tmo > bmo)||(tmo==bmo & tday>=bday))
+			{age=byr}
+			else
+			{age=byr+1}
+			
+			var result = (tyr-age) + " Jahre alt";
+			return result;
+			}
+	}
+
+</script>
+
 <div class="container">
-  <div class="jumbotron">
-    <h1>Hi</h1>
-    <p>Gib eine Bewertung ab!</p> 
-  </div>
-  <div class="row">
-    <div class="col-sm-3 gruen">
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Mein Profil -> UserOeffentlich.jsp</p>
-   			</div>
+	<div class="jumbotron">
+	    <h1>Mifahrzentrale</h1>
+	    <p>Userprofil</p>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+	    	<div class="row grau">
+	    		<div class="col-sm-6">
+		    		<h1><%=vorName %> <%=nachName %></h1>
+	   		 	</div>
+	   		 	<div class="col-sm-6">
+		    		<img src="<%=bildUrl %>" alt="hierBild">
+	   		 	</div> 	
+	   		</div>
+			<div class="row hellgrau">
+	    		<div class="col-sm-3">	
+			    	<script>
+						document.write(Age());
+					</script>
+			    </div>
+			    <div class="col-sm-3">
+			    	<%=telefon %>
+			    </div>
+			    <div class="col-sm-3">
+			    	<%=mail %>
+	   			</div>	    	
+		    </div> 
 		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Fahrt Suchen -> FahrtSuchen.jsp</p>
-   			</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-6">
+			<h1>Letzte Fahrten</h1>
+			<div class="verlauf-graublau">
+				<p>TEST</p>
+				<p>TEST</p>
+				<p>TEST</p>
+			</div>
 		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Fahrt Anbieten -> FahrtAnbieten.jsp</p>
-   			</div>
+		<div class="col-sm-6">
+			<h1>Erhaltene Bewertungen</h1>
+			
+			<div class="verlauf-orange">
+				<p>durchschnittlich: </p>
+		
+			</div>
 		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Meine Fahrten -> MeineFahrten.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Meine angebotenen Fahrten -> MeineFahrten.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Historie -> LetzteFahrten.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Erhaltene Bewertungen -> Bewertungen.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Meine Einstellungen -> Settings.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Mailbox -> Mailbox.jsp</p>
-   			</div>
-		</div>
-
-    </div>
-    
-  </div>
+	</div>
 </div>
-
-
-
-
 </body>
 </html>
