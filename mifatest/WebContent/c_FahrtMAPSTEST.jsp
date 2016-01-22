@@ -149,35 +149,31 @@ function initMap() {
 	
 	<div class="container">
 	
-	<div class="jumbotron">
+		<div class="jumbotron">
+		    <h1>Fahrt</h1>
+		    <p>von <%= s1 %> nach <%= s6 %></p>
+	
+		</div>
 		
-	    <h1>Fahrt</h1>
-	    <p>von <%= s1 %> nach <%= s6 %></p>
-	    
-	   
-	    
-	</div>
-	
-	<div class="row">
-   		 <div id="map" style="width:100%; height:200px;"></div>
-	</div>
-	<div class="row">
-		<div class="col-sm-12">
-		<p>	von :<%= s1 %> </p>
-		<p>	nach: <%= s6 %></p>
-		<p>	gepäck: <%= gepaeck %></p>
-		<p>	startzeit: <%= startZeit %></p>
-		<p>	fahrer: <%= fahrer %></p>
-		<p>	komm: <%= kommentar %></p>
-		<p>	freie plätze: <%= kap %></p>
+		<div class="row">
+	   		 <div id="map" style="width:100%; height:200px;"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+			<p>	von :<%= s1 %> </p>
+			<p>	nach: <%= s6 %></p>
+			<p>	gepäck: <%= gepaeck %></p>
+			<p>	startzeit: <%= startZeit %></p>
+			<p>	fahrer: <%= fahrer %></p>
+			<p>	komm: <%= kommentar %></p>
+			<p>	freie plätze: <%= kap %></p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+			</div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-sm-12">
-		</div>
-	</div>
-</div>
-	
-	
+
 </body>
 </html>

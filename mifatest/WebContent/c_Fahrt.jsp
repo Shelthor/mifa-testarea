@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Fahrt (Oeffentlich)</title>
+<title>Insert title here</title>
 
 <link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
 <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
@@ -20,66 +20,62 @@
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3f0-lP6PquSnOUBu8j85B5MGM3pDLFx4&signed_in=true&callback=initMap"
         async defer></script>
+
+<script>
+
+function initMap() {
+	  var directionsService = new google.maps.DirectionsService;
+	  var directionsDisplay = new google.maps.DirectionsRenderer;
+	  var map = new google.maps.Map(document.getElementById('map'), {
+	    zoom: 7,
+	    center: {lat: 51.00, lng: 9.00}
+	  });
+	  directionsDisplay.setMap(map);
+
+	  calculateAndDisplayRoute(directionsService, directionsDisplay);
+	}
+
+	function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+	  var waypts = [];
+	  waypts.push({
+	        location: "Nossen, Deutschland",
+	        stopover: true
+	      });
+	  
+	  directionsService.route({
+	    origin: "Dresden, Deutschland",
+	    destination: "Leipzig, Deutschland",
+	    waypoints: waypts,
+	    optimizeWaypoints: true,
+	    travelMode: google.maps.TravelMode.DRIVING
+	  }, function(response, status) {
+	    if (status === google.maps.DirectionsStatus.OK) {
+	      directionsDisplay.setDirections(response);
+	      var route = response.routes[0];
+	      var summaryPanel = document.getElementById('directions-panel');
+	      summaryPanel.innerHTML = '';
+	      // For each route, display summary information.
+	      for (var i = 0; i < route.legs.length; i++) {
+	        var routeSegment = i + 1;
+	        summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
+	            '</b><br>';
+	        summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+	        summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+	        summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+	      }
+	    } else {
+	      window.alert('Directions request failed due to ' + status);
+	    }
+	  });
+	}
+
+
+</script>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+
 </head>
 <body>
-<div class="container">
-	<div class="jumbotron">
-	    <h1>Fahrt</h1>
-	    <p>von <%= s1 %> nach <%= s6 %></p>
-	</div>
-	<div class="row">
-		<div id="map"></div>
-    <div id="right-panel">
-    <div>
-    <b>Start:</b>
-    <select id="start">
-      <option value="Dresden">Dresden</option>
-      <option value="Chemnitz">Chemnitz</option>
-      <option value="Leipzig">Leipzig</option>
-    </select>
-    <br>
-    <b>Waypoints:</b> <br>
-    <i>(Ctrl-Click for multiple selection)</i> <br>
-    <select multiple id="waypoints">
-      <option value="Dresden">Dresden</option>
-      <option value="Chemnitz">Chemnitz</option>
-      <option value="Leipzig">Leipzig</option>
-
-    </select>
-    <br>
-    <b>End:</b>
-    <select id="end">
-      <option value="Dresden">Dresden</option>
-      <option value="Chemnitz">Chemnitz</option>
-      <option value="Leipzig">Leipzig</option>
-    </select>
-    <br>
-      <input type="submit" id="submit">
-    </div>
-    <div id="directions-panel"></div>
-    </div>
-
-	<div id="meta">
-		<h1>Info:</h1>
-		<p>gimme more</p>
-	</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-12">
-		<p>	von :<%= s1 %> </p>
-		<p>	nach: <%= s6 %></p>
-		<p>	gepäck: <%= gepaeck %></p>
-		<p>	startzeit: <%= startZeit %></p>
-		<p>	fahrer: <%= fahrer %></p>
-		<p>	komm: <%= kommentar %></p>
-		<p>	freie plätze: <%= kap %></p>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-12">
-		</div>
-	</div>
-</div>
 
 <%! 
 		Facade f;
@@ -149,6 +145,35 @@
 		}
 	
 	%>
+
+	
+	<div class="container">
+	
+		<div class="jumbotron">
+		    <h1>Fahrt</h1>
+		    <p>von <%= s1 %> nach <%= s6 %></p>
+	
+		</div>
+		
+		<div class="row">
+	   		 <div id="map" style="width:100%; height:200px;"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+			<p>	von :<%= s1 %> </p>
+			<p>	nach: <%= s6 %></p>
+			<p>	gepäck: <%= gepaeck %></p>
+			<p>	startzeit: <%= startZeit %></p>
+			<p>	fahrer: <%= fahrer %></p>
+			<p>	komm: <%= kommentar %></p>
+			<p>	freie plätze: <%= kap %></p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+			</div>
+		</div>
+	</div>
 
 </body>
 </html>
