@@ -23,6 +23,10 @@
 		Facade f;
 		User u;
 		
+		int id;
+		
+		double drPuenktlich, drFahrstil, drFreundlich;
+
 		String  vorName;
 		String 	nachName;
 		String 	geburtsDatum;
@@ -32,9 +36,10 @@
 	%>
 	<%
 		f = new Facade();
+		id = 11;
 					
 		try{
-			u = f.getUserById(11);
+			u = f.getUserById(id);
 			
 			vorName = u.getvName();
 			nachName = u.getnName();
@@ -42,7 +47,23 @@
 			bildUrl = u.getUserBildURL();
 			telefon = u.getTelNummer();
 			mail = u.geteMail();
-					
+			
+			List<Bewertung> bList = f.getListWithAllBewertungenToUserByUserId(id);
+			
+			List<Integer> fahrstilRating = new ArrayList<Integer>();
+			List<Integer> puenktlichkeitRating = new ArrayList<Integer>();
+			List<Integer> freundlichkeitRating = new ArrayList<Integer>();
+			
+			for(int i = 0; i < bList.size(); i++){
+				fahrstilRating.add(bList.get(i).getFahrstilRating());
+				puenktlichkeitRating.add(bList.get(i).getPuenktlichkeitRating());
+				freundlichkeitRating.add(bList.get(i).getFreundlichkeitRating());
+			}
+/////////////////////////////////////////////////////////////////////////////////	  
+			drFahrstil = f.durchschnitt(fahrstilRating);
+			drPuenktlich = f.durchschnitt(puenktlichkeitRating);
+			drFreundlich = f.durchschnitt(freundlichkeitRating);
+////////////////////////////////////////////////////////////////////////////////////////////////////////////			
 		}
 		catch (Exception e){
 			out.print(e);
@@ -122,7 +143,9 @@
 			
 			<div class="verlauf-orange">
 				<p>durchschnittlich: </p>
-		
+				<div class="col-sm-3"><h4>Fahrstil: </h4><p class="verlauf-graublau"><%=drFahrstil %></p></div>
+				<div class="col-sm-3"><h4>Pünktlichkeit: </h4><p class="verlauf-graublau"><%=drPuenktlich %></p></div>
+				<div class="col-sm-3"><h4>Freundlichkeit: </h4><p class="verlauf-graublau"><%=drFreundlich %></p></div>
 			</div>
 		</div>
 	</div>

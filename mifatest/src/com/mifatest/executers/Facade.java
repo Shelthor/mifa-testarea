@@ -78,6 +78,32 @@ public class Facade {
 				
 		return result;
 	}
+	
+	public double durchschnitt(List<Integer> rating){
+		
+		int max = 0;
+        int min = 0;
+        double mittelwert = 0;
+        double summe = 0;
+        
+        boolean first = true;
+		
+		for (Integer next : rating) {
+            summe = summe + next;
+            if (next > max)
+                max = next;
+            if (first){
+                min = next;
+                                first = false;
+            }else if (next < min)
+                min = next;        
+        }
+
+        mittelwert = summe / rating.size();
+        
+        return mittelwert;
+	}
+	
 //Nachrichten//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	public void newNachricht(User senderid, User empfid, String text, Time zeit){
