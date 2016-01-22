@@ -207,6 +207,26 @@ public class Facade {
 		return (Fahrt) session.load(Fahrt.class, id);
 	}
 	
+	public User getFahrerByFahrtId(int fahrtid){
+		org.hibernate.Query q= session.createQuery("from Fahrt as u where u.fahrtID =" + " " + fahrtid + "");
+
+		List<Fahrt> lf;
+		
+		lf=q.list();
+		
+		return  (User) session.load(User.class, lf.get(0).getFahrerID().getUserID());
+		
+		
+		
+		/*
+		
+	List<UserFahrzeug> luf;
+		
+		luf=q.list();
+		
+		  (Fahrzeug) session.load(Fahrzeug.class, luf.get(0).getFahrzeugID().getFahrzeugID()); */
+	}
+	
 	public List<Fahrt> getListWithAllAngeboteneFahrtenOfUserByUserId(int userid){
 		
 		org.hibernate.Query q= session.createQuery("from Fahrt as u where u.fahrerID =" + " " + userid + "");
