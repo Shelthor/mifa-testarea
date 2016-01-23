@@ -18,18 +18,18 @@ public class TestFacade {
 		
 		//TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESR
 		
-		//Aus Gründen der Wartbarkeit ist es immer besser, man jaucht die Werte nicht direkt in die Methode,
-		//sondern deklariert vorher Variablen, die dann immer wieder neue Werte annehmen können
+		//Aus Grï¿½nden der Wartbarkeit ist es immer besser, man jaucht die Werte nicht direkt in die Methode,
+		//sondern deklariert vorher Variablen, die dann immer wieder neue Werte annehmen kï¿½nnen
 		
 		String EMAILADRESSE = "cle.kruse@googlemail.com";
 		Date HEUTE = new Date(90, 9, 16);
-		String NACHNAME = "TEST";
-		String VORNAME = "222222";
+		String NACHNAME = "1";
+		String VORNAME = "Mitfahrer";
 		String TELEFONNUMMER = "017684127806";
 		String ISADMIN = "true";
 		String ISACTIVATED = "true";
 		
-	    //f.newUser(EMAILADRESSE, HEUTE, NACHNAME, VORNAME,TELEFONNUMMER, ISADMIN, ISACTIVATED);
+	  //  f.newUser(EMAILADRESSE, HEUTE, NACHNAME, VORNAME,TELEFONNUMMER, ISADMIN, ISACTIVATED);
 		
 		// --- ACHTUNG --- Reihenfolge der Parameter beachten!		
 		//Aber keine Sorge: immer wenn man eine Funktion aufruft, die Parameter verlangt, werden die 
@@ -37,15 +37,15 @@ public class TestFacade {
 		
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////			
 		/*fahrtanlegen-test*/
-		//es kann immer nur ein jsp ausgeführt werden
+		//es kann immer nur ein jsp ausgefï¿½hrt werden
 		Date DATUM = new Date();
 		User FAHRER = f.getUserById(1);
 		Time UHRZEIT = new Time(0, 0, 0);
-		String GEPAECK = "GROß";
+		String GEPAECK = "GROï¿½";
 		int KAPAZITAET = 2;
 		String KOMMENTAR = "keine Umwege > 2km";
 		
-		String S1 = "Mülltown";
+		String S1 = "Dresden";
 		String S2 = null;
 		String S3 = "Grimma";
 		String S4 = null;
@@ -59,7 +59,13 @@ public class TestFacade {
 		int P5 = 2;
 		int P6 = 2;
 		
-	 	f.newFahrt(DATUM, FAHRER, UHRZEIT, GEPAECK, KAPAZITAET, KOMMENTAR, S1, S2, S3, S4, S5, S6, P1, P2, P3, P4, P5, P6);
+		Facade[] fA = new Facade[10];
+		
+		for(int i = 0; i < 10; i++){
+			fA[i] = new Facade();
+			fA[i].newFahrt(DATUM, FAHRER, UHRZEIT, GEPAECK, KAPAZITAET, KOMMENTAR, S1, S2, S3, S4, S5, S6, P1, P2, P3, P4, P5, P6);
+		}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////		
 		/* Arbeit mit Listen - SELECT * FROM Tabelle 
 		
@@ -69,7 +75,7 @@ public class TestFacade {
 		// Gib mir das 1te Element aus dieser Liste ( 'get(0)' ) -> Druck mir den Vornamen aus (getBewertungEmpfaengerID ist ein User-Objekt)
 	 	System.out.println(bList.get(0).getBewertungEmpfaengerID().getvName());
 		
-		// Gib mir für jedes 'element' aus der Liste das Datum
+		// Gib mir fï¿½r jedes 'element' aus der Liste das Datum
 	    for (Bewertung element : bList) {
 			System.out.println(element.getBewertungDatum());
 		} 
@@ -83,7 +89,7 @@ public class TestFacade {
 		/* Anlegen einer neuen Passagier-Fahrt-Beziehung
 		f.newPassagierFahrt(f.getUserById(1), f.getFahrtById(1), "Dresden", "Leipzig"); */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		/* Am Ende der SQL-Arbeit die Session wieder schließen */
+		/* Am Ende der SQL-Arbeit die Session wieder schlieï¿½en */
 		//f.session.close();
 		
 	}

@@ -19,6 +19,11 @@
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9c667', endColorstr='#f79621',GradientType=0 ); /* IE6-9 */	
 }
 
+.roterback{
+	background-repeat: background-repeat: repeat-y repeat-x;
+    background-image: url('img/muster.jpg');
+}
+
 .grau{
 	background-color:#d3d3d3;
 }
