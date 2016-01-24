@@ -36,7 +36,7 @@
 	%>
 	<%
 		f = new Facade();
-		id = 11; //kommt aus cookie
+		id = 1; //kommt aus cookie
 					
 		try{
 			u = f.getUserById(id);

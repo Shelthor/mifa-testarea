@@ -159,7 +159,7 @@ function initMap() {
 <body>
 	<div class="container">
 	
-		<div class="jumbotron roterback">
+		<div class="jumbotron muster">
 		    <h1>Fahrt</h1>
 		    <p>von <%= s1 %> nach <%= s6 %></p>
 	
