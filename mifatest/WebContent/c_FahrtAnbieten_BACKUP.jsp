@@ -23,15 +23,10 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3f0-lP6PquSnOUBu8j85B5MGM3pDLFx4&signed_in=true&callback=initMap"
         async defer></script>
 
-<link rel="stylesheet" href="css/style.css" type="text/css" />
-
-</head>
-<body>
-
 <script>
 
 function sendSQL(){
-	  $( "#whole" ).hide();
+	  $( ".container" ).hide();
 	}
 
 function suc(){
@@ -41,85 +36,6 @@ function suc(){
 function fail(){
 	$( "#sendFail" ).show();
 }
-</script>
-
-	<div class="container" id="whole">
-	
-		<div class="jumbotron">
-		    <h1>Wo willst du hin?</h1>
-		    <p>denn es macht jetzt keinen Zinn</p>
-	
-		</div>
-		
-		<div class="row">
-	   		 <div id="map" style="width:100%; height:200px;"></div>
-	   		 <div id="directions-panel"></div>
-		</div>
-		<div class="row">
-		<div id="sqlForm">
-			<form class="row" action="c_FahrtAnbieten.jsp" method="post">
-					<div class="col-sm-12">
-						Datum?: 
-						<br/>
-						<input type="text" name="formDatum"/><br/>
-						Uhrzeit?: 
-						<br/>
-						<input type="text" name="formUhrzeit"/><br/>
-						Wieviele Mitfahrer möchtest du mitnehmen?: 
-						<br/>
-						<input type="text" name="formKapazitaet"/><br/>
-						Angaben zum Gepäck?: 
-						<br/>
-						
-						 <select name="formGepaeck">
-						    <option value="ausreichen Platz">ausreichen Platz</option>
-						    <option value="Reisetasche">Reisetasche</option>
-						    <option value="nur Handgepäck">nur Handgepäck</option>
-						  </select>
-						<br/>
-
-						Von?: 
-						<br/>
-						<input type="text" name="formStart" id="inS1"/><br/>
-						Nach?: 
-						<br/>
-						<input type="text" name="formZiel" onblur="aktualisiereMap()" id="inS6"/><br/>
-						<input type="button" style="width: 100%;" onclick="zeigen()" value="füge Zwischenstation hinzu"/>
-						<div id="s2-s5" style="display:none;" class="verlauf-orange">
-							<p>Über?:</p>
-							<br/>
-							 
-							<input type="text" name="formS2" onblur="aktualisiereMap()" id="inS2" style="display:none;"/><br/>	
-							<input type="text" name="formS3" onblur="aktualisiereMap()" id="inS3" style="display:none;"/><br/>	
-							<input type="text" name="formS4" onblur="aktualisiereMap()" id="inS4" style="display:none;"/><br/>	
-							<input type="text" name="formS5" onblur="aktualisiereMap()" id="inS5" style="display:none;"/><br/>				
-						</div>
-						Kommentar?: 
-						<br/>
-						<input type="text" name="formKommentar" style="width: 100%; height: 75px;"/><br/>
-						<br/>
-						<br/>
-						<input id="knopf" style="width: 100%;" type="submit" name="ok" value="OK"/>
-					</div>
-				</form>
-		</div>
-		
-		<br/>
-		
-
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-			</div>
-		</div>
-	</div>
-	<div id="sendSuccess" style="display:none">
-			<p>SUCCESS</p>
-	</div>
-	<div id="sendFail" style="display:none">
-		<p>FAIL</p>
-	</div>
-</body>
 
 <%! 
 	Facade f;
@@ -176,7 +92,6 @@ function fail(){
 	}
 %>
 
-<script>
 
 function initMap() {
 	  var directionsService = new google.maps.DirectionsService;
@@ -255,6 +170,8 @@ function initMap() {
 			zwischenStZaehler++;
 		}
 
+		
+		
 	}
 	
 	function aktualisiereMap(){
@@ -270,4 +187,85 @@ function initMap() {
 	}
 </script>
 
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+
+</head>
+<body>
+	<div class="container">
+	
+		<div class="jumbotron">
+		    <h1>Wo willst du hin?</h1>
+		    <p>denn es macht jetzt keinen Zinn</p>
+	
+		</div>
+		
+		<div class="row">
+	   		 <div id="map" style="width:100%; height:200px;"></div>
+	   		 <div id="directions-panel"></div>
+		</div>
+		<div class="row">
+		<div id="sqlForm">
+			<form class="row" action="c_FahrtAnbieten.jsp" method="post">
+					<div class="col-sm-12">
+						Datum?: 
+						<br/>
+						<input type="text" name="formDatum"/><br/>
+						Uhrzeit?: 
+						<br/>
+						<input type="text" name="formUhrzeit"/><br/>
+						Wieviele Mitfahrer möchtest du mitnehmen?: 
+						<br/>
+						<input type="text" name="formKapazitaet"/><br/>
+						Angaben zum Gepäck?: 
+						<br/>
+						
+						 <select name="formGepaeck">
+						    <option value="ausreichen Platz">ausreichen Platz</option>
+						    <option value="Reisetasche">Reisetasche</option>
+						    <option value="nur Handgepäck">nur Handgepäck</option>
+						  </select>
+						<br/>
+
+						Von?: 
+						<br/>
+						<input type="text" name="formStart" id="inS1"/><br/>
+						Nach?: 
+						<br/>
+						<input type="text" name="formZiel" onblur="aktualisiereMap()" id="inS6"/><br/>
+						<input type="button" style="width: 100%;" onclick="zeigen()" value="füge Zwischenstation hinzu"/>
+						<div id="s2-s5" style="display:none;" class="verlauf-orange">
+							<p>Über?:</p>
+							<br/>
+							 
+							<input type="text" name="formS2" onblur="aktualisiereMap()" id="inS2" style="display:none;"/><br/>	
+							<input type="text" name="formS3" onblur="aktualisiereMap()" id="inS3" style="display:none;"/><br/>	
+							<input type="text" name="formS4" onblur="aktualisiereMap()" id="inS4" style="display:none;"/><br/>	
+							<input type="text" name="formS5" onblur="aktualisiereMap()" id="inS5" style="display:none;"/><br/>				
+						</div>
+						Kommentar?: 
+						<br/>
+						<input type="text" name="formKommentar" style="width: 100%; height: 75px;"/><br/>
+						<br/>
+						<br/>
+						<input id="knopf" style="width: 100%;" type="submit" name="ok" value="OK"/>
+					</div>
+				</form>
+		</div>
+		
+		<br/>
+		
+
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+			</div>
+		</div>
+	</div>
+<	<div id="sendSuccess" style="display:none">
+			<p>SUCCESS</p>
+	</div>
+	<div id="sendFail" style="display:none">
+		<p>FAIL</p>
+	</div>
+</body>
 </html>

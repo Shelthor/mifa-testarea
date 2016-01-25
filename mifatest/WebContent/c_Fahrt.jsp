@@ -43,7 +43,7 @@
 %>
 <%
 	f = new Facade();
-	id = 8; //kommt aus cookie ODER link (mal sehen)
+	id = 16; //kommt aus cookie ODER link (mal sehen)
 				
 	try{
 		fa = f.getFahrtById(id);
