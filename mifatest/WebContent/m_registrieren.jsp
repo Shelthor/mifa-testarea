@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
+<%@page import="com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="javax.persistence.criteria.CriteriaBuilder.In"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -173,19 +175,53 @@
 	String password =request.getParameter("password1");
 	String passwordB =request.getParameter("password2");
 	
-	String DayOfBirth = day+"."+month+"."+year;
+	//Datumskonvertierung
+	/*
+	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+	String DayOfBirth = year+"."+month+"."+day;
+	String TestBirth ="7-Jun-2013";
+	
+	
+	
+		Date GebDat = formatter.parse(TestBirth);
+		out.println(formatter.format(GebDat));
+	*/
+
+	/*
+	try
+	{
+		SimpleDateFormat sdfToDate = new SimpleDateFormat("yyyy-MM-dd");
+		Date GebDat = sdfToDate.parse(DayOfBirth);
+		out.print(GebDat);
+	}	
+	catch (Exception e)
+	{
+		e.toString();
+	} 
+	*/
 	
 	Boolean formRegister=true;
 	
 //////////////////////// nur beispiel
+    /*
+
+	int YearInt = Integer.parseInt(year);
+	int YearSQL = YearInt-1900;
+	
+	int DayInt = Integer.parseInt(day);
+	int DaySQL = DayInt-1;
+	
+	int MonthInt = Integer.parseInt(month);
+	
 	    
-	Date d = new Date(90,10,10);
+	Date d = new Date(YearSQL,DaySQL,MonthInt);
 	                  //1900-1991
-	                  
-	                  
+	                  //out.println("Geburtsdatum: "+d);
+	                  //out.print("Geburtsdatum: "+DayOfBirth);
+	 */                 
 	                   
 	//Date d = new Date(YearInt-1900,DayInt-1,month);                  
-	                  
+	 Date d = new Date(90,10,10);                  
 ////////////////////////	
 	//Felder nicht leer
 	//Telefonnummer --> nur Zahlen
@@ -279,24 +315,24 @@
 	//Wenn keine Fehler auftreten, Daten in DB
 	if (formRegister==true)
 	{
-		out.print("Registrierung kann beginnen");
+		out.print("Registrierung erfolgt");
 	}
 	
 	
-	/*
+	
 	if(request.getParameter("register")!= null)
-	{
-	try
-	{
-		//fUser.newUser(emailR, d, nachname, vorname, telefon, "false", "true");
+		{
+		try
+			{
+				fUser.newUser(emailR, d, nachname, vorname, telefon, "false", "true");
 		
-		fUser.newPasswort(fUser.getUserById(5), password);
-	}
-	catch(Exception e)
-	{
+				//fUser.newPasswort(fUser.getUserById(5), password);
+			}
+		catch(Exception e)
+			{
 		
-	}
-	}*/
+			}
+		}
 	
 	
 
