@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
+<%@page import="javax.persistence.criteria.CriteriaBuilder.In"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="com.mifatest.entities.*" %>
@@ -170,14 +171,21 @@
 	String emailR = request.getParameter("email");
 	String telefon = request.getParameter("telefon");
 	String password =request.getParameter("password1");
+	String passwordB =request.getParameter("password2");
 	
 	String DayOfBirth = day+"."+month+"."+year;
 	
 	Boolean formRegister=true;
 	
 //////////////////////// nur beispiel
-	Date d = new Date(90, 10, 10);
+	    
+	Date d = new Date(90,10,10);
 	                  //1900-1991
+	                  
+	                  
+	                   
+	//Date d = new Date(YearInt-1900,DayInt-1,month);                  
+	                  
 ////////////////////////	
 	//Felder nicht leer
 	//Telefonnummer --> nur Zahlen
@@ -211,33 +219,69 @@
 		out.print("Bitte Vornamen eingeben.");
 		formRegister=false;
 	}
-	
-	if(nachname=="")
-	{
-		out.print("Bitte Nachnamen eingeben.");
-		formRegister=false;
-	}
-	
-	if(emailR=="")
-	{
-		out.print("Bitte E-Mail eingeben.");
-		formRegister=false;
-	}
-	
-	if(formRegister==false)
-	{
-		out.print("Registrierung fehlgeschlagen.");
-	}
-	
-	if(telefon.matches("[0-9]+"))
-	{
-		
-	}
 	else
 	{
-		out.print("Bitte Telefonnummer korrekt eingeben!");
-		formRegister=false;	
+	
+		if(nachname=="")
+		{
+			out.print("Bitte Nachnamen eingeben.");
+			formRegister=false;
+		}
+		else
+		{
+	
+			if(emailR=="")
+			{
+				out.print("Bitte E-Mail eingeben.");
+				formRegister=false;
+			}
+			else
+			{
+				if(telefon.matches("[0-9]+"))
+				{
+		
+				}
+				else
+				{
+					out.print("Bitte Telefonnummer korrekt eingeben!");
+					formRegister=false;	
+				}
+				
+				
+	//Überprüfung, ob Kennwort == bestätigtes Kennwort
+	//+Überprüfung auf != leer
+					if(password==""|passwordB=="")
+					{
+						out.print("Kennwort darf nicht leer sein!");	
+					}
+	
+	
+					if (password.equals(passwordB))
+					{
+		
+					}
+					else
+					{
+						out.print("Die Kennwörter stimmen nicht überein!");
+						formRegister=false;
+					}
+					
+					
+						if(formRegister==false)
+						{
+							out.print("Registrierung fehlgeschlagen.");
+						}
+			}
+		}
 	}
+	//Fehler bis hier her abfangen
+	//////////////////////////////////////////////////////////////
+	//Wenn keine Fehler auftreten, Daten in DB
+	if (formRegister==true)
+	{
+		out.print("Registrierung kann beginnen");
+	}
+	
 	
 	/*
 	if(request.getParameter("register")!= null)
