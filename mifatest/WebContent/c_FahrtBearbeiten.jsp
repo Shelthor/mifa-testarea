@@ -141,7 +141,7 @@
 
     </div>
     <div class="col-sm-9">
-		<form>
+		<form action="c_FahrtBearbeiten.jsp">
 				<div class="row">
 					<div class="col-sm-8">
 						<p>Datum: <%= fahrtDatum %></p>
