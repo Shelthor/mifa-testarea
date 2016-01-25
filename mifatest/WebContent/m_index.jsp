@@ -46,7 +46,15 @@
 
 %>
 
+<script>
+function duschen(){
+	
+}
 
+duschen();
+
+
+</script>
 
 </body>
 </html>
