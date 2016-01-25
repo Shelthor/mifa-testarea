@@ -67,10 +67,16 @@
 
     </div>
     <div class="col-sm-9">
-		<p>Hallo :) willkommen auf deinem Benutzerkonto</p>
+		
+		
+
+
+
 	</div>
   </div>
 </div>
+
+
 
 </body>
 </html>

@@ -19,6 +19,12 @@
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9c667', endColorstr='#f79621',GradientType=0 ); /* IE6-9 */	
 }
 
+.bearbeitenPNG{
+	background-image: url('../img/bearb.png');
+	height:50px;
+	width:50px;
+}
+
 .muster{
 	
 	background-repeat: background-repeat: repeat-y repeat-x;

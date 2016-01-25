@@ -169,6 +169,10 @@ public class Facade {
 		return (User) session.load(User.class, id);
 	}
  	
+ 	public void updateUser(User f){
+		session.update(f); 
+		t.commit();
+	}
 //Fahrten//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
  	public void newFahrt(Date fDatum, User fahrerid, Time uhrzeit, String gepaeck, int kap, String comment, String s1, String s2, String s3, String s4, String s5, String s6, int p1, int p2, int p3, int p4, int p5, int p6) {
@@ -227,6 +231,11 @@ public class Facade {
 		return result;
 	}
 	
+	public void updateFahrt(Fahrt f){
+		session.update(f); 
+		t.commit();
+	}
+	
 //Passwörter//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  
 	public void newPasswort(User userid, String value){
@@ -241,6 +250,11 @@ public class Facade {
  		
  		System.out.println("passwort success");
  	}
+	
+	public void updatePasswort(Passwort f){
+		session.update(f); 
+		t.commit();
+	}
 	
 //Fahrzeuge//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -274,6 +288,10 @@ public class Facade {
 		return  (Fahrzeug) session.load(Fahrzeug.class, luf.get(0).getFahrzeugID().getFahrzeugID());
 	}
  	
+ 	public void updateFahrzeug(Fahrzeug f){
+		session.update(f); 
+		t.commit();
+	}
 //Orte//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  	public void newOrt(String bez, String plz){
 

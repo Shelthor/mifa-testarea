@@ -255,9 +255,7 @@ function checkKap(){
 	String 	gepaeck;
 	Time	startZeit;
 	String 	fahrer;
-	
-	SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);;
-	
+		
 	int kap;
 %>
 <%
