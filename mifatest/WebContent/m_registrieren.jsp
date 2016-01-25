@@ -173,6 +173,8 @@
 	
 	String DayOfBirth = day+"."+month+"."+year;
 	
+	Boolean formRegister=true;
+	
 //////////////////////// nur beispiel
 	Date d = new Date(90, 10, 10);
 	                  //1900-1991
@@ -181,13 +183,21 @@
 	//Telefonnummer --> nur Zahlen
 	//Kennwort muss mit Kennwort bestätigen übereinstimmen
 	
-	out.println("Vorname: "+vorname);
-	out.println(nachname);
+	//out.println("Vorname: "+vorname);
+	//out.println(nachname);
 	//out.println(day);
-	out.println(emailR);
-	out.println(telefon);
-	out.print(DayOfBirth);
-	out.print(password);
+	//out.println(emailR);
+	//out.println(telefon);
+	//out.print(DayOfBirth);
+	//out.print(password);
+	
+	//int TelAsNumber = Integer.parseInt(telefon);
+	
+	/*public static boolean isNumber(String telefon)
+	{
+		return telefon.matches("-?\\d+(\\.\\d+)?");
+		
+	}*/
 	
 	Facade fUser = new Facade();
 	
@@ -196,19 +206,53 @@
 		
 		diese userid dann in die Funktion fUser.newPasswort
 	*/
+	if(vorname=="")
+	{
+		out.print("Bitte Vornamen eingeben.");
+		formRegister=false;
+	}
 	
+	if(nachname=="")
+	{
+		out.print("Bitte Nachnamen eingeben.");
+		formRegister=false;
+	}
+	
+	if(emailR=="")
+	{
+		out.print("Bitte E-Mail eingeben.");
+		formRegister=false;
+	}
+	
+	if(formRegister==false)
+	{
+		out.print("Registrierung fehlgeschlagen.");
+	}
+	
+	if(telefon.matches("[0-9]+"))
+	{
+		
+	}
+	else
+	{
+		out.print("Bitte Telefonnummer korrekt eingeben!");
+		formRegister=false;	
+	}
+	
+	/*
 	if(request.getParameter("register")!= null)
 	{
 	try
 	{
 		//fUser.newUser(emailR, d, nachname, vorname, telefon, "false", "true");
+		
 		fUser.newPasswort(fUser.getUserById(5), password);
 	}
 	catch(Exception e)
 	{
 		
 	}
-	}
+	}*/
 	
 	
 
