@@ -110,6 +110,9 @@
 			startZeit = fa.getFahrtStartZeit();
 			gepaeck = fa.getGepaeck();
 			kap = fa.getKapazitaet();
+			
+			kommentar = fa.getKommentar();
+			
 			s1 = fa.getS1();
 			s6 = fa.getS6();			
 		}
@@ -246,7 +249,15 @@
 						<div class="bearbeitenPNG" onclick="zeigeBearbeitungsFeld('3')" onmouseover="glow(this)" onmouseout="blass(this)"></div>
 					</div>
 					<div class="col-sm-12" id="b3" style="display:none;">
-						<input type=text" name="formGepaeck">
+						Angaben zum Gepäck?: 
+							<br/>
+							 <select name="formGepaeck">
+								<option value="Z">bitte wählen..</option>
+							    <option value="unbegrenzt Platz vorhanden">unbegrenzt Platz vorhanden</option>
+							    <option value="mittleres Gepäck">mittleres Gepäck</option>
+							    <option value="nur Handgepäck">nur Handgepäck</option>
+							  </select>
+							<br/>
 					</div>
 				</div>
 				<div class="row grau">
@@ -280,6 +291,17 @@
 					</div>
 					<div class="col-sm-12" id="b6" style="display:none;">
 						<input type=text" name="formS6">
+					</div>
+				</div>
+				<div class="row hellgrau">
+					<div class="col-sm-8">
+						<p>Kommentar: <%= kommentar %></p>
+					</div>
+					<div class="col-sm-4">
+						<div class="bearbeitenPNG" onclick="zeigeBearbeitungsFeld('7')" onmouseover="glow(this)" onmouseout="blass(this)"></div>
+					</div>
+					<div class="col-sm-12" id="b7" style="display:none;">
+						<input type=text" name="formKommentar" style="width: 100%; height: 75px;">
 					</div>
 				</div>
 				<input type="submit" name="ok" value="senden">
@@ -327,7 +349,7 @@
 			int zaehlen = 0;
 			List<String> alertList = new ArrayList();
 	
-			if(request.getParameter("hTag") != "" && request.getParameter("hMonat") != "" && request.getParameter("hJahr") != ""){
+			if(request.getParameter("hTag").equals("") != true && request.getParameter("hMonat").equals("") != true && request.getParameter("hJahr").equals("") != true){
 				tag = Integer.parseInt(request.getParameter("hTag"));
 				monat = Integer.parseInt(request.getParameter("hMonat"));
 				jahr = Integer.parseInt(request.getParameter("hJahr"));	
@@ -341,8 +363,7 @@
 			}
 			//UHRZEIT
 	
-			if(request.getParameter("formStunden") != "Z" && request.getParameter("formMinuten") != "Z"){	
-				try{
+			if(request.getParameter("formStunden").equals("Z") != true && request.getParameter("formMinuten").equals("Z") != true){	
 					stunde = Integer.parseInt(request.getParameter("formStunden"));
 					minute = Integer.parseInt(request.getParameter("formMinuten"));
 					
@@ -352,15 +373,10 @@
 					zaehlen++;
 					
 					alertList.add("Zeit: " + startZeit);
-				}
-	
-				catch (NumberFormatException nEx){
-					//out.print(nEx);
-				}
 			}
 			
 			//GEPÄCK
-			if(request.getParameter("formGepaeck") != ""){
+			if(request.getParameter("formGepaeck").equals("Z") != true){
 				gepaeck = request.getParameter("formGepaeck");
 				fa.setGepaeck(gepaeck);
 				
@@ -371,16 +387,22 @@
 			
 			//Kapazität
 			
-			if(request.getParameter("formKapazitaet") != ""){
+			if(request.getParameter("formKapazitaet").equals("") != true){
 				kap = Integer.parseInt(request.getParameter("formKapazitaet"));
 				fa.setKapazitaet(kap);
+				fa.setP1(kap);
+				fa.setP2(kap);
+				fa.setP3(kap);
+				fa.setP4(kap);
+				fa.setP5(kap);
+				fa.setP6(kap);
 				zaehlen++;
 				alertList.add("Plätze frei: " + kap);
 			}
 			
 			//Stationen
 			
-			if(request.getParameter("formS1") != ""){
+			if(request.getParameter("formS1").equals("") != true){
 				s1 = request.getParameter("formS1");
 				fa.setS1(s1);
 				
@@ -389,7 +411,7 @@
 				alertList.add("Start: " + s1);
 			}
 			
-			if(request.getParameter("formS6") != ""){
+			if(request.getParameter("formS6").equals("") != true){
 				s6 = request.getParameter("formS6");
 				fa.setS6(s6);
 				
@@ -397,6 +419,17 @@
 				
 				alertList.add("Ziel: " + s6);
 			}
+			
+			if(request.getParameter("formKommentar").equals("") != true){
+				kommentar = request.getParameter("formKommentar");
+				fa.setKommentar(kommentar);
+				zaehlen++;
+				
+				alertList.add("Kommentar: " + kommentar);
+			}
+			
+			
+			// abschicken
 			
 			if(zaehlen > 0){
 				try{
