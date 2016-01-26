@@ -237,8 +237,7 @@ public class Facade {
 		
 		lf=q.list();
 		
-		return  (User) session.load(User.class, lf.get(0).getFahrerID().getUserID());
-		
+		return  (User) session.load(User.class, lf.get(0).getFahrerID().getUserID());	
 	}
 	
 	public List<Fahrt> getListWithAllAngeboteneFahrtenOfUserByUserId(int userid){

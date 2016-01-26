@@ -27,10 +27,17 @@ public class EinzeilerTestklasse {
 	    f.newUser(EMAILADRESSE, HEUTE, NACHNAME, VORNAME,TELEFONNUMMER, ISADMIN, ISACTIVATED);
 	    */
 		
-		List<User> uList = f.checkBewertungen(f.getFahrtById(2), f.getUserById(2));
+		List<User> uListA = f.checkBewertungenA(f.getFahrtById(2), f.getUserById(1));
 		
-		for( int i = 0; i < uList.size() ; i++)
-			System.out.println(uList.get(i).getnName());
+		for( int i = 0; i < uListA.size() ; i++)
+			System.out.println(uListA.get(i).getnName());
+		
+		List<User> uListB = f.checkBewertungenB(f.getFahrtById(2));
+		for( int i = 0; i < uListB.size() ; i++)
+			System.out.println(uListB.get(i).getnName());
+		
+		 boolean b  = uListA.equals(uListB);
+		 System.out.println(b);
 	}
 
 }
