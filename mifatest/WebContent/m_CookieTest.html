@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Cookie Test</title>
+<script type="text/javascript">
+
+	function getACookie(name) 
+	{
+		var cookieName = document.getElementById("getcookie").value;
+		var allCookies = document.cookie.split(';');
+		var cookieData = "";
+		
+		for (var i=0;i<allCookies.length;i++)
+			{
+				if ((allCookies[i].indexOf(cookieName))!=-1)
+					{
+						match = allCookies[i].replace(" ","");
+						cookieData = match.substr((cookieName.length+1));
+						alert(cookieName+" "+cookieData);
+					}
+			}
+	}
+	
+	function createCookie(newCookie)
+	{
+		//Gültigkeit festlegen --> 1 Monat
+		var expDate = new Date();
+		expDate.setMonth(expDate.getMonth()+1); //Addiert einen Monat zum angegebenen
+		var cookieVal = document.getElementById(newCookie).value;
+		
+		document.cookie=newCookie+"="+cookieVal+";path=/;expires="+expDate.toGMTString();//Creates the cookie
+	}
+	
+	function deleteCookie()
+	{
+		var cookieToDel = document.getElementById("deletecookie").value;
+		createCookie(cookieToDel,"",-1);
+	}
+	
+	function checkLogin()
+	{
+		var loginName = document.getElementById("firstname");
+		
+	}
+
+</script>
+	<noscript>
+
+		<h3>Diese Seite verwendet JavaScript</h3>
+	</noscript>
+</head>
+<body>
+
+<p>Enter your First Name</p>
+<input type="text" id="firstname" onblur="createCookie('firstname')"/>
+<!-- onblur event occurs when an user forgets to fullfill a form field -->
+</p>
+<p>Enter your Last Name</p>
+<input type="text" id="lastname" onblur="createCookie('lastname')"/>
+<!-- onblur event occurs when an user forgets to fullfill a form field -->
+</p>
+<p>Cookie to Delete</p>
+<input type="text" id="deletecookie" onblur="deleteCookie()"/>
+<!-- onblur event occurs when an user forgets to fullfill a form field -->
+</p>
+<p>Cookie to get</p>
+<input type="text" id="getcookie" onblur="getACookie()"/>
+<!-- onblur event occurs when an user forgets to fullfill a form field -->
+</p>
+
+<script type="text/javascript">
+
+document.write("Every Cookie: "+document.cookie);
+
+</script>
+
+</body>
+</html>
