@@ -27,7 +27,6 @@
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 
-
 <script>
 	function zeigeBearbeitungsFeld(a){
 		$('#b'+ a).show();
@@ -42,6 +41,29 @@
 		a.style.backgroundImage = "url('img/bearb.png')";
 		a.style["background-image"] = "url('img/bearb.png')";
 	}
+	
+	$(function() {
+	    $( "#datepicker" ).datepicker({ dateFormat: 'dd-mm-yy',
+	    								onSelect: function()
+	    									{
+	    									ueberfuehreDatum();
+	    									}
+	    });
+	});
+	  
+	function ueberfuehreDatum(){
+		var Datestring = document.getElementById('datepicker').value;
+		
+		var byr = Datestring.substr(6, 4);
+		var bmo = Datestring.substr(0, 2);
+		var bday = Datestring.substr(3, 2);
+		
+		//abspeichern der Werte in Hiddenfields, die später wieder von der JSP benutzt werden
+		document.getElementById('hiddenJahr').value = byr;
+		document.getElementById('hiddenMonat').value = bmo;
+		document.getElementById('hiddenTag').value = bday;
+	}
+	
 	
 </script>
 </head>
@@ -141,8 +163,8 @@
 
     </div>
     <div class="col-sm-9">
-		<form action="c_FahrtBearbeiten.jsp">
-				<div class="row">
+		<form action="c_FahrtBearbeiten.jsp" method="post">
+				<div class="row hellgrau">
 					<div class="col-sm-8">
 						<p>Datum: <%= fahrtDatum %></p>
 					</div>
@@ -150,10 +172,14 @@
 						<div class="bearbeitenPNG" onclick="zeigeBearbeitungsFeld('1')" onmouseover="glow(this)" onmouseout="blass(this)"></div>
 					</div>
 					<div class="col-sm-12" id="b1" style="display:none;">
-						<p>TEEST</p>
+						<input type="text" id="datepicker" name="formDatum" size="30"><br/>
+							 
+							    <input type="hidden" id="hiddenJahr" name="hJahr" />
+						    	<input type="hidden" id="hiddenMonat" name="hMonat" />
+						        <input type="hidden" id="hiddenTag" name="hTag" />
 					</div>
 				</div>
-				<div class="row">
+				<div class="row grau">
 					<div class="col-sm-8">
 						<p>Startzeit: <%= startZeit %></p>
 					</div>
@@ -161,10 +187,46 @@
 						<div class="bearbeitenPNG" onclick="zeigeBearbeitungsFeld('2')" onmouseover="glow(this)" onmouseout="blass(this)"></div>
 					</div>
 					<div class="col-sm-12" id="b2" style="display:none;">
-						<p>TEEST</p>
+							<br/>
+								<select name="formStunden">
+									<option value="Z">h</option>
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>
+									<option value="11">11</option>
+									<option value="12">12</option>
+									<option value="13">3</option>
+									<option value="14">14</option>
+									<option value="15">15</option>
+									<option value="16">16</option>
+									<option value="17">17</option>
+									<option value="18">18</option>
+									<option value="19">19</option>
+									<option value="20">20</option>
+									<option value="21">21</option>
+									<option value="22">22</option>
+									<option value="23">23</option>
+								</select>
+								:
+								<select name="formMinuten">
+									<option value="Z">min</option>
+									<option value="0">00</option>
+									<option value="15">15</option>
+									<option value="30">30</option>
+									<option value="45">45</option>
+								</select>
+								<br/>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row hellgrau">
 					<div class="col-sm-8">
 						<p>Gepäck: <%= gepaeck %></p>
 					</div>
@@ -172,10 +234,10 @@
 						<div class="bearbeitenPNG" onclick="zeigeBearbeitungsFeld('3')" onmouseover="glow(this)" onmouseout="blass(this)"></div>
 					</div>
 					<div class="col-sm-12" id="b3" style="display:none;">
-						<p>TEEST</p>
+						<input type=text" name="formGepaeck">
 					</div>
 				</div>
-				<div class="row">
+				<div class="row grau">
 					<div class="col-sm-8">
 						<p>Plätze Frei: <%= kap %></p>
 					</div>
@@ -183,10 +245,10 @@
 						<div class="bearbeitenPNG" onclick="zeigeBearbeitungsFeld('4')" onmouseover="glow(this)" onmouseout="blass(this)"></div>
 					</div>
 					<div class="col-sm-12" id="b4" style="display:none;">
-						<p>TEEST</p>
+						<input type=text" name="formKapazitaet">
 					</div>
 				</div>
-				<div class="row">
+				<div class="row hellgrau">
 					<div class="col-sm-8">
 						<p>Start: <%= s1 %></p>
 					</div>
@@ -194,10 +256,10 @@
 						<div class="bearbeitenPNG" onclick="zeigeBearbeitungsFeld('5')" onmouseover="glow(this)" onmouseout="blass(this)"></div>
 					</div>
 					<div class="col-sm-12" id="b5" style="display:none;">
-						<p>TEEST</p>
+						<input type=text" name="formS1">
 					</div>
 				</div>
-				<div class="row">
+				<div class="row grau">
 					<div class="col-sm-8">
 						<p>Ziel: <%= s6 %></p>
 					</div>
@@ -205,9 +267,10 @@
 						<div class="bearbeitenPNG" onclick="zeigeBearbeitungsFeld('6')" onmouseover="glow(this)" onmouseout="blass(this)"></div>
 					</div>
 					<div class="col-sm-12" id="b6" style="display:none;">
-						<p>TEEST</p>
+						<input type=text" name="formS6">
 					</div>
 				</div>
+				<input type="submit" name="ok" value="senden">
 		</form>
 		<div id="sendSuccess" style="display:none">
 			<p>SUCCESS</p>
@@ -223,12 +286,127 @@
 </div>
 
 <%
-	try{
-		fa.setGepaeck("NEUES UPDATE");
-		f.updateFahrt(fa);
-	}
-	catch (Exception e){
-		out.print(e);
+
+/* 
+	Facade f;
+	Fahrt fa;
+	
+	int id;
+	
+	int tag, monat, jahr;
+	int stunde, minute;
+	
+	String  kommentar;
+	
+	String 	s1,s2,s3,s4,s5,s6;
+	
+	Date 	fahrtDatum;
+	String 	gepaeck;
+	Time	startZeit;
+	String 	fahrer;
+		
+	int kap;	
+*/
+	if (request.getParameter("ok") != null){
+		try{
+			//DATUM
+			int zaehlen = 0;
+			List<String> alertList = new ArrayList();
+	
+			if(request.getParameter("hTag") != "" && request.getParameter("hMonat") != "" && request.getParameter("hJahr") != ""){
+				tag = Integer.parseInt(request.getParameter("hTag"));
+				monat = Integer.parseInt(request.getParameter("hMonat"));
+				jahr = Integer.parseInt(request.getParameter("hJahr"));	
+	
+				fahrtDatum= new Date(jahr-1900, tag-1, monat);
+				fa.setFahrtDatum(fahrtDatum);
+				
+				zaehlen++;
+				
+				alertList.add("Datum: " + fahrtDatum + "<br/>");
+			}
+			//UHRZEIT
+	
+			if(request.getParameter("formStunden") != "Z" && request.getParameter("formMinuten") != "Z"){	
+				try{
+					stunde = Integer.parseInt(request.getParameter("formStunden"));
+					minute = Integer.parseInt(request.getParameter("formMinuten"));
+					
+					startZeit = new Time(stunde, minute, 0);
+					fa.setFahrtStartZeit(startZeit);
+					
+					zaehlen++;
+					
+					alertList.add("Zeit: " + startZeit + "<br/>");
+				}
+	
+				catch (NumberFormatException nEx){
+					//out.print(nEx);
+				}
+			}
+			
+			//GEPÄCK
+			if(request.getParameter("formGepaeck") != ""){
+				gepaeck = request.getParameter("formGepaeck");
+				fa.setGepaeck(gepaeck);
+				
+				zaehlen++;
+				
+				alertList.add("Gepäck: " + gepaeck + "<br/>");
+			}
+			
+			//Kapazität
+			
+			if(request.getParameter("formKapazitaet") != ""){
+				kap = Integer.parseInt(request.getParameter("formKapazitaet"));
+				fa.setKapazitaet(kap);
+				zaehlen++;
+				alertList.add("Plätze frei: " + kap + "<br/>");
+			}
+			
+			//Stationen
+			
+			if(request.getParameter("formS1") != ""){
+				s1 = request.getParameter("formS1");
+				fa.setS1(s1);
+				
+				zaehlen++;
+				
+				alertList.add("Start: " + s1);
+			}
+			
+			if(request.getParameter("formS6") != ""){
+				s6 = request.getParameter("formS6");
+				fa.setS6(s6);
+				
+				zaehlen++;
+				
+				alertList.add("Ziel: " + s6 + "<br/>");
+			}
+			
+			
+			
+			if(zaehlen > 0){
+				try{
+					f.updateFahrt(fa);
+					
+					out.print("<h1>ÄNDERUNGEN</h1><br/>");
+					
+					for(int i = 0; i < alertList.size(); i++){
+						out.print(alertList.get(i));
+					}
+					
+				}
+				catch (Exception e){
+					out.print("Fehler während des Updates: " + e);
+				}
+			}
+	
+		}
+		catch (Exception e)
+		{
+			//out.print("FEHLER: " + e);
+		}
 	}
 %>
 
