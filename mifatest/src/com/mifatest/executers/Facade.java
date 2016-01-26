@@ -44,6 +44,7 @@ public class Facade {
 	}
 		
 //Bewertungen/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/* Clemens - 25.01. */
 	public void newBewertung(String text, int fahrstil, int puenktlich, int freundlich, User empfid, User senderid, Date datum, Fahrt fahrtid ){
 
  		bewertung = new Bewertung();
@@ -106,9 +107,17 @@ public class Facade {
 	
 	/* Clemens 26.1.2016 */
 	
-	public List<User> checkBewertungen(Fahrt fahrtID, User userID){
+	public List<User> checkBewertungenA(Fahrt fahrtID, User userID){
 		//gib Liste mit Bewerteten Usern zurück, zugehörig zur Fahrt *fahrtID und zum Sender *userID
 		org.hibernate.Query q= session.createQuery("select bewertungEmpfaengerID from Bewertung as u where u.bewertungSenderID =" + " " + userID.getUserID() + " and u.fahrtID = " + fahrtID.getFahrtID());
+		
+		List result = q.list();
+		return result;
+	}
+	
+	public List<User> checkBewertungenB(Fahrt fahrtID){
+		//gib Liste mit Bewerteten Usern zurück, zugehörig zur Fahrt *fahrtID und zum Sender *userID
+		org.hibernate.Query q= session.createQuery("select userID from PassagierFahrt as u where u.fahrtID =" + fahrtID.getFahrtID());
 		
 		List result = q.list();
 		return result;
@@ -158,7 +167,7 @@ public class Facade {
 	
  	public void newUser(String mail, Date bDate, String nachn, String vorn, String tel, String admin, String act ){
  		
-	    bDate = new Date(90, 9, 16);// hilfsobjekt für Datum 
+	    //bDate = new Date(90, 9, 16);// hilfsobjekt für Datum 
 	    
 	    user.seteMail(mail);
 	    user.setGeburtsDatum(bDate);
