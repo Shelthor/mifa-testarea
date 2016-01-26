@@ -64,6 +64,18 @@
 		document.getElementById('hiddenTag').value = bday;
 	}
 	
+	function sendSQL(){
+		  $( "#whole" ).slideUp();
+		}
+
+	function suc(){
+		$( "#sendSuccess" ).show();
+	}
+
+	function fail(){
+		$( "#sendFail" ).show();
+	}
+	
 	
 </script>
 </head>
@@ -162,7 +174,7 @@
 		</div>
 
     </div>
-    <div class="col-sm-9">
+    <div class="col-sm-9" id="whole">
 		<form action="c_FahrtBearbeiten.jsp" method="post">
 				<div class="row hellgrau">
 					<div class="col-sm-8">
@@ -272,13 +284,15 @@
 				</div>
 				<input type="submit" name="ok" value="senden">
 		</form>
+		</div>
 		<div id="sendSuccess" style="display:none">
-			<p>SUCCESS</p>
+			<p>SUCCESS</p><br/><br/>
+			<h1>Änderungen: </h1><br/>
+			<p id="Absatz"></p>
 		</div>
 		<div id="sendFail" style="display:none">
 			<p>FAIL</p>
 		</div>	
-				</div>
 	</div>
 	
 	</div>
@@ -323,7 +337,7 @@
 				
 				zaehlen++;
 				
-				alertList.add("Datum: " + fahrtDatum + "<br/>");
+				alertList.add("Datum: " + fahrtDatum);
 			}
 			//UHRZEIT
 	
@@ -337,7 +351,7 @@
 					
 					zaehlen++;
 					
-					alertList.add("Zeit: " + startZeit + "<br/>");
+					alertList.add("Zeit: " + startZeit);
 				}
 	
 				catch (NumberFormatException nEx){
@@ -352,7 +366,7 @@
 				
 				zaehlen++;
 				
-				alertList.add("Gepäck: " + gepaeck + "<br/>");
+				alertList.add("Gepäck: " + gepaeck);
 			}
 			
 			//Kapazität
@@ -361,7 +375,7 @@
 				kap = Integer.parseInt(request.getParameter("formKapazitaet"));
 				fa.setKapazitaet(kap);
 				zaehlen++;
-				alertList.add("Plätze frei: " + kap + "<br/>");
+				alertList.add("Plätze frei: " + kap);
 			}
 			
 			//Stationen
@@ -381,24 +395,27 @@
 				
 				zaehlen++;
 				
-				alertList.add("Ziel: " + s6 + "<br/>");
+				alertList.add("Ziel: " + s6);
 			}
-			
-			
 			
 			if(zaehlen > 0){
 				try{
 					f.updateFahrt(fa);
 					
-					out.print("<h1>ÄNDERUNGEN</h1><br/>");
-					
+					out.print("<script>sendSQL();</script>");
+					out.print("<script>suc();</script>");
+										
 					for(int i = 0; i < alertList.size(); i++){
-						out.print(alertList.get(i));
+
+						out.print("<script>var text = document.createTextNode('" + alertList.get(i) + "');");
+						out.print("var linebreak = document.createElement('br');");
+						out.print("document.getElementById('Absatz').appendChild(text);");
+						out.print("document.getElementById('Absatz').appendChild(linebreak);</script>");
 					}
 					
 				}
 				catch (Exception e){
-					out.print("Fehler während des Updates: " + e);
+					out.print("<script>fail();</script>" + "Fehler während des Updates: " + e);	
 				}
 			}
 	
