@@ -21,14 +21,14 @@
  	
   		<td align="center">Vorname:</td>
   		<form action="m_registrieren.jsp" method="post">
-  		<td><input type="text" name="vorname" size="33"/></td>
+  		<td><input type="text" name="vorname" size="33" required/></td>
   		
  </tr>
  
  <tr>
  	
   		<td align="center">Nachname</td>
-  		<td><input type="text" name="nachname" size="33"/></td>
+  		<td><input type="text" name="nachname" size="33" required/></td>
   	
  </tr>
  
@@ -142,19 +142,19 @@
  </tr>
  <tr>
   <td align="center">E-Mail</td>
-  <td><input type="text" name="email" size="33"/></td>
+  <td><input type="text" name="email" size="33" required/></td>
  </tr>
  <tr>
   <td align="center">Telefonnummer</td>
-  <td><input type="text" name="telefon" size="33"/></td>
+  <td><input type="text" name="telefon" size="33" required/></td>
  </tr>
  <tr>
   <td align="center">Kennwort</td>
-  <td><input type="password" name="password1" size="33"/></td>
+  <td><input type="password" name="password1" size="33" required/></td>
  </tr>
  <tr>
   <td align="center">Kennwort best&auml;tigen</td>
-  <td><input type="password" name="password2" size="33"/></td>
+  <td><input type="password" name="password2" size="33" required/></td>
  </tr>
  <tr>
  
@@ -167,183 +167,89 @@
 <%
 
 	
+if(request.getParameter("register")!= null)
+{
+	String vorname = request.getParameter("vorname");
+	String nachname = request.getParameter("nachname");
+	String day = request.getParameter("Tag");
+	String month = request.getParameter("Monat");
+	String year = request.getParameter("Jahr");
+	String emailR = request.getParameter("email");
+	String telefon = request.getParameter("telefon");
+	String password =request.getParameter("password1");
+	String passwordB =request.getParameter("password2");
 	
+	Boolean formRegister=true;
+	//Date d = new Date(YearInt-1900,DayInt-1,month); 
+	int YearInt = Integer.parseInt(year);
+	int DayInt = Integer.parseInt(day);
+	int MonthInt = Integer.parseInt(month);
+	Date d = new Date(YearInt-1900,DayInt-1,MonthInt);                  
+    ////////////////		
+	Facade fUser = new Facade();
+	/*
+		suche mir erst den user (userID) wo user.email = eingegebene.email
+		diese userid dann in die Funktion fUser.newPasswort
+	*/
 	
-	if(request.getParameter("register")!= null)
-		{
-		String vorname = request.getParameter("vorname");
-		String nachname = request.getParameter("nachname");
-		String day = request.getParameter("Tag");
-		String month = request.getParameter("Monat");
-		String year = request.getParameter("Jahr");
-		String emailR = request.getParameter("email");
-		String telefon = request.getParameter("telefon");
-		String password =request.getParameter("password1");
-		String passwordB =request.getParameter("password2");
-		
-		//Datumskonvertierung
-		/*
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		String DayOfBirth = year+"."+month+"."+day;
-		String TestBirth ="7-Jun-2013";
-		
-		
-		
-			Date GebDat = formatter.parse(TestBirth);
-			out.println(formatter.format(GebDat));
-		*/
-
-		/*
-		try
-		{
-			SimpleDateFormat sdfToDate = new SimpleDateFormat("yyyy-MM-dd");
-			Date GebDat = sdfToDate.parse(DayOfBirth);
-			out.print(GebDat);
-		}	
-		catch (Exception e)
-		{
-			e.toString();
-		} 
-		*/
-		
-		Boolean formRegister=true;
-		
-	//////////////////////// nur beispiel
-	    /*
-
-		int YearInt = Integer.parseInt(year);
-		int YearSQL = YearInt-1900;
-		
-		int DayInt = Integer.parseInt(day);
-		int DaySQL = DayInt-1;
-		
-		int MonthInt = Integer.parseInt(month);
-		
-		    
-		Date d = new Date(YearSQL,DaySQL,MonthInt);
-		                  //1900-1991
-		                  //out.println("Geburtsdatum: "+d);
-		                  //out.print("Geburtsdatum: "+DayOfBirth);
-		 */                 
-		                   
-		//Date d = new Date(YearInt-1900,DayInt-1,month); 
-		 int YearInt = Integer.parseInt(year);
-		 int DayInt = Integer.parseInt(day);
-		 int MonthInt = Integer.parseInt(month);
-		 Date d = new Date(YearInt-1900,DayInt-1,MonthInt);                  
-	////////////////////////	
-		//Felder nicht leer
-		//Telefonnummer --> nur Zahlen
-		//Kennwort muss mit Kennwort bestätigen übereinstimmen
-		
-		//out.println("Vorname: "+vorname);
-		//out.println(nachname);
-		//out.println(day);
-		//out.println(emailR);
-		//out.println(telefon);
-		//out.print(DayOfBirth);
-		//out.print(password);
-		
-		//int TelAsNumber = Integer.parseInt(telefon);
-		
-		/*public static boolean isNumber(String telefon)
-		{
-			return telefon.matches("-?\\d+(\\.\\d+)?");
-			
-		}*/
-		
-		Facade fUser = new Facade();
-		
-		/*
-			suche mir erst den user (userID) wo user.email = eingegebene.email
-			
-			diese userid dann in die Funktion fUser.newPasswort
-		*/
-		if(vorname=="")
-		{
-			out.print("Bitte Vornamen eingeben.");
-			formRegister=false;
-		}
-		else
-		{
-		
-			if(nachname=="")
-			{
-				out.print("Bitte Nachnamen eingeben.");
-				formRegister=false;
-			}
-			else
-			{
-		
-				if(emailR=="")
+/////////////////////////////////////////////////////////////////////////////////////////					
+				if(telefon.matches("[0-9]+"))
 				{
-					out.print("Bitte E-Mail eingeben.");
-					formRegister=false;
+		
 				}
 				else
 				{
-					if(telefon.matches("[0-9]+"))
+					out.print("Bitte Telefonnummer korrekt eingeben!");
+					formRegister=false;	
+				}
+				
+				
+	//Überprüfung, ob Kennwort == bestätigtes Kennwort
+	//+Überprüfung auf != leer
+					if(password==""|passwordB=="")
 					{
-			
+						out.print("Kennwort darf nicht leer sein!");	
+					}
+	
+	
+					if (password.equals(passwordB))
+					{
+		
 					}
 					else
 					{
-						out.print("Bitte Telefonnummer korrekt eingeben!");
-						formRegister=false;	
+						out.print("Die Kennwörter stimmen nicht überein!");
+						formRegister=false;
 					}
 					
 					
-		//Überprüfung, ob Kennwort == bestätigtes Kennwort
-		//+Überprüfung auf != leer
-						if(password==""|passwordB=="")
+						if(formRegister==false)
 						{
-							out.print("Kennwort darf nicht leer sein!");	
+							out.print("Registrierung fehlgeschlagen.");
 						}
-		
-		
-						if (password.equals(passwordB))
-						{
 			
-						}
-						else
-						{
-							out.print("Die Kennwörter stimmen nicht überein!");
-							formRegister=false;
-						}
-						
-						
-							if(formRegister==false)
-							{
-								out.print("Registrierung fehlgeschlagen.");
-							}
-				}
-			}
-		}
-		//Fehler bis hier her abfangen
-		//////////////////////////////////////////////////////////////
-		//Wenn keine Fehler auftreten, Daten in DB
-		if (formRegister==true)
+		//}
+	//}
+	//Fehler bis hier her abfangen
+	//////////////////////////////////////////////////////////////
+	//Wenn keine Fehler auftreten, Daten in DB
+	if (formRegister==true)
+	{
+		out.print("Registrierung erfolgt");
+	
+	
+	try
 		{
-			out.print("Registrierung erfolgt");
-		}
-		
-		try
-			{
-				fUser.newUser(emailR, d, nachname, vorname, telefon, "false", "true");
-		
-				//fUser.newPasswort(fUser.getUserById(5), password);
-			}
-		catch(Exception e)
-			{
-		
-			}
-		}
+			fUser.newUser(emailR, d, nachname, vorname, telefon, "false", "true");
 	
+			//fUser.newPasswort(fUser.getUserById(5), password);
+		}
+	catch(Exception e)
+		{
 	
-
-
-
-
+		}
+	}
+}
 
 
 %>
