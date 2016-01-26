@@ -455,7 +455,7 @@
 		}
 		catch (Exception e)
 		{
-			//out.print("FEHLER: " + e);
+			out.print("FEHLER: " + e);
 		}
 	}
 %>

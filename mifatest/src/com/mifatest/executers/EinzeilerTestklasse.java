@@ -15,7 +15,7 @@ public class EinzeilerTestklasse {
 		//f.newPassagierFahrt(f.getUserById(1), f.getFahrtById(1), "Dresden", "Leipzig");
 		//fdsadasd.newPasswort(fdsadasd.getUserById(2), "duschen");
 		
-		
+		/*
 		String EMAILADRESSE = "cle.kruse@googlemail.com";
 		Date HEUTE = new Date(90, 9, 16);
 		String NACHNAME = "Kruse";
@@ -25,6 +25,12 @@ public class EinzeilerTestklasse {
 		String ISACTIVATED = "true";
 		
 	    f.newUser(EMAILADRESSE, HEUTE, NACHNAME, VORNAME,TELEFONNUMMER, ISADMIN, ISACTIVATED);
+	    */
+		
+		List<User> uList = f.checkBewertungen(f.getFahrtById(2), f.getUserById(2));
+		
+		for( int i = 0; i < uList.size() ; i++)
+			System.out.println(uList.get(i).getnName());
 	}
 
 }

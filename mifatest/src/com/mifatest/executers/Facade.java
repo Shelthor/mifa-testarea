@@ -104,6 +104,16 @@ public class Facade {
         return mittelwert;
 	}
 	
+	/* Clemens 26.1.2016 */
+	
+	public List<User> checkBewertungen(Fahrt fahrtID, User userID){
+		//gib Liste mit Bewerteten Usern zurück, zugehörig zur Fahrt *fahrtID und zum Sender *userID
+		org.hibernate.Query q= session.createQuery("select bewertungEmpfaengerID from Bewertung as u where u.bewertungSenderID =" + " " + userID.getUserID() + " and u.fahrtID = " + fahrtID.getFahrtID());
+		
+		List result = q.list();
+		return result;
+	}
+	
 //Nachrichten//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	public void newNachricht(User senderid, User empfid, String text, Time zeit){
