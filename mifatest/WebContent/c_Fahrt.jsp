@@ -27,7 +27,7 @@
 	Facade f;
 	Fahrt fa;
 	
-	int id;
+	int id, userId;
 	
 	String  kommentar;
 	
@@ -43,8 +43,8 @@
 %>
 <%
 	f = new Facade();
-	id = 16; //kommt aus cookie ODER link (mal sehen)
-				
+	id = 34; //kommt aus cookie ODER link (mal sehen)
+		
 	try{
 		fa = f.getFahrtById(id);
 		
@@ -150,6 +150,10 @@ function initMap() {
 	  });
 	}
 
+	
+	function zeigen(x){
+		document.getElementById(x).style.display = "block";
+	}
 
 </script>
 
@@ -182,10 +186,44 @@ function initMap() {
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-sm-12">
+			<div class="col-sm-12" id="buchenFeld" style="display:none">
+			<button id="buchenKnopf" onclick="zeigen('buchenForm')">BUCHEN</button><br/><br/>
+				<form id="buchenForm" action="c_Fahrt.jsp" style="display:none">
+					<p>Von: <input type="text" name="buchenStart"> Nach: <input type="text" name="buchenZiel"><p><br/>
+					<input type="submit" name="buchen" value="Senden">
+				</form>
 			</div>
 		</div>
 	</div>
+
+<%
+	userId = 4; //kommt von cookie
+
+	//VERFEINERN: wenn user WEDER fahrer NOCH in passagier_fahrt Tabelle, Dann zeige Buchen-Feld an
+	if(userId != f.getFahrerByFahrtId(id).getUserID()){
+		out.print("<script>document.getElementById('buchenFeld').style.display = 'block'</script>");
+	}else{
+		out.print("<script>document.getElementById('buchenFeld').style.display = 'none'</script>");
+	}
+	
+	Facade f2 = new Facade();
+	if (request.getParameter("buchen") != null){
+		try{
+			String uStart, uZiel;
+			//VERFEINERN: nur Orte zur Auswahl anzeigen, die auch auf Strecke liegen
+			uStart = request.getParameter("buchenStart");
+			uZiel = request.getParameter("buchenZiel");
+			
+			f2.newPassagierFahrt(userId, id, uStart, uZiel);
+			 out.print("gebucht");
+
+		}
+		catch (Exception ex){
+			out.print("FAIL");
+		}
+	}
+	
+%>
 
 </body>
 </html>

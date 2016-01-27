@@ -325,12 +325,12 @@ public class Facade {
  	} 	
 //Passagier-Fahrt-Relations//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  	
- 	public void newPassagierFahrt(User userid, Fahrt fahrtid, String uStart, String uZiel){
+ 	public void newPassagierFahrt(int userid, int fahrtid, String uStart, String uZiel){
  		
  		passagierFahrt = new PassagierFahrt();
  		
- 		passagierFahrt.setFahrtID(fahrtid);
- 		passagierFahrt.setUserID(userid);
+ 		passagierFahrt.setFahrtID(getFahrtById(fahrtid));
+ 		passagierFahrt.setUserID(getUserById(userid));
  		passagierFahrt.setUserStart(uStart);
  		passagierFahrt.setUserZiel(uZiel);
  		

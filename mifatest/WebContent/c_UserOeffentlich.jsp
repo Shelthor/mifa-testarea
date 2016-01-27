@@ -36,7 +36,7 @@
 	%>
 	<%
 		f = new Facade();
-		id = 1; //kommt aus cookie
+		id = 11; //kommt aus cookie
 					
 		try{
 			u = f.getUserById(id);
@@ -55,7 +55,20 @@
 			List<Integer> freundlichkeitRating = new ArrayList<Integer>();
 			
 			for(int i = 0; i < bList.size(); i++){
-				fahrstilRating.add(bList.get(i).getFahrstilRating());
+				
+				/*
+				
+				Sämtliche Ratings reichen von 1 - 5 (Sterne).
+				Eine 0 Beim Fahrstil bedeutet, dass derjenige Passagier war und kein Fahrer,
+				daher ignoriere bei der Bildung des Durchschnitts aller Fahrstil-Bewertungen
+				alle Einträge mit 0
+				
+				*/
+				
+				if(bList.get(i).getFahrstilRating() != 0)
+					fahrstilRating.add(bList.get(i).getFahrstilRating());
+				
+				// Rest normal
 				puenktlichkeitRating.add(bList.get(i).getPuenktlichkeitRating());
 				freundlichkeitRating.add(bList.get(i).getFreundlichkeitRating());
 			}
