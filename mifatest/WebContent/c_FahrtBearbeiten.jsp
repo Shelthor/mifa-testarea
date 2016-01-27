@@ -103,7 +103,7 @@
 %>
 <%
 	f = new Facade();
-	id = 37;
+	id = 1; //id von Fahrt die zu bearbeiten ist, VERFEINERN: soll aus Parameter kommen (AJAX Möglich)
 	fa = f.getFahrtById(id);
 		try{		
 			fahrtDatum = fa.getFahrtDatum();

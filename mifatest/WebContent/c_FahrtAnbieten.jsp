@@ -194,7 +194,7 @@ function checkKap(){
 							<br/>
 							
 							 <select name="formGepaeck">
-							    <option value="unbegrenzt Platz vorhanden">unbegrenzt Platz vorhanden</option>
+							    <option value="ausreichend Platz vorhanden">ausreichend Platz vorhanden</option>
 							    <option value="mittleres Gepäck">mittleres Gepäck</option>
 							    <option value="nur Handgepäck">nur Handgepäck</option>
 							  </select>
@@ -263,7 +263,7 @@ function checkKap(){
 	if (request.getParameter("ok") != null){
 		try{
 			//FAHRER
-			id = 1; //VERFEINERN: soll aus coockie kommen
+			id = 7; //VERFEINERN: soll aus coockie kommen
 			
 			//DATUM
 			tag = Integer.parseInt(request.getParameter("hTag"));

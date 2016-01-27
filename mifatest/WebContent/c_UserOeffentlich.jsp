@@ -36,7 +36,7 @@
 	%>
 	<%
 		f = new Facade();
-		id = 11; //kommt aus cookie
+		id = 3; //kommt aus cookie
 					
 		try{
 			u = f.getUserById(id);
@@ -89,25 +89,31 @@
 	{
 		var datee = "<%=geburtsDatum %>";
 		
+		/*
 		var byr = datee.substr(0, 3);
 		var bmo = datee.substr(5, 6);
 		var bday = datee.substr(8, 9);
+		*/
+		parseInt(datee.substr(0, 4));
+		
+		var byr = parseInt(datee.substr(0, 4));
+		var bmo = parseInt(datee.substr(5, 2));
+		var bday = parseInt(datee.substr(8, 2));
 		
 		//
 		var age;
 		var now = new Date();
-		tday=now.getDate();
-		tmo=(now.getMonth());
-		tyr=(now.getFullYear());
-			{
+		tday=parseInt(now.getDate());
+		tmo=parseInt(now.getMonth());
+		tyr=parseInt(now.getFullYear());
+			
 			if((tmo > bmo)||(tmo==bmo & tday>=bday))
-			{age=byr}
+				{age=byr}
 			else
-			{age=byr+1}
+				{age=byr+1}
 			
 			var result = (tyr-age) + " Jahre alt";
-			return result;
-			}
+			return result;		
 	}
 
 </script>

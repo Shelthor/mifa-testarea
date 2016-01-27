@@ -15,7 +15,7 @@
 <div class="container">
   <div class="jumbotron">
     <h1>Hi</h1>
-    <p>Resize this responsive page to see the effect!</p> 
+    <p>Willkommen in deinem Persönlichen Bereich :)</p> 
   </div>
   <div class="row">
     <div class="col-sm-3">
@@ -69,7 +69,7 @@
     <div class="col-sm-9">
 		
 		
-
+		<p>Welcome</p>
 
 
 	</div>

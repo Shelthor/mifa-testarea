@@ -43,7 +43,7 @@
 %>
 <%
 	f = new Facade();
-	id = 34; //kommt aus cookie ODER link (mal sehen)
+	id = 1; //kommt aus cookie ODER link (mal sehen)
 		
 	try{
 		fa = f.getFahrtById(id);
@@ -197,7 +197,7 @@ function initMap() {
 	</div>
 
 <%
-	userId = 4; //VERFEINERN: kommt von cookie
+	userId = 1; //VERFEINERN: kommt von cookie
 
 	//VERFEINERN: wenn user WEDER fahrer NOCH in passagier_fahrt Tabelle, Dann zeige Buchen-Feld an
 	if(userId != f.getFahrerByFahrtId(id).getUserID()){
@@ -218,7 +218,10 @@ function initMap() {
 			out.print("<script>document.getElementById('anzeige').style.display = 'none'</script>");
 			out.print("<script>document.getElementById('buchenFeld').style.display = 'none'</script>");
 			out.print("gebucht");
-
+			
+			//VERFEINERN: Je nach Einstiegs- und Ausstiegs-Station müssen die P's (Und damit freie Plätze) angepasst werden
+			//			  Möglicherweise lassen wir die Anzeige der freien plätze auf der Fahrt.jsp auch komplett weg, da
+			//		      Meist nicht eindeutig sobald mehrere Stationen
 		}
 		catch (Exception ex){
 			out.print("FAIL");
