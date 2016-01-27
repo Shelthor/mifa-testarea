@@ -2,6 +2,7 @@ package com.mifatest.executers;
 import com.mifatest.entities.*;
 
 import java.util.*;
+import java.math.*;
 
 import javax.management.Query;
 
@@ -102,7 +103,7 @@ public class Facade {
 
         mittelwert = summe / rating.size();
         
-        return mittelwert;
+        return Math.round(100.0 *mittelwert) / 100.0;
 	}
 	
 	/* Clemens 26.1.2016 */
