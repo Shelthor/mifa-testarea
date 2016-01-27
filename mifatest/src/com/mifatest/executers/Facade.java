@@ -195,12 +195,12 @@ public class Facade {
 	}
 //Fahrten//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
- 	public void newFahrt(Date fDatum, User fahrerid, Time uhrzeit, String gepaeck, int kap, String comment, String s1, String s2, String s3, String s4, String s5, String s6, int p1, int p2, int p3, int p4, int p5, int p6) {
+ 	public void newFahrt(Date fDatum, int fahrerid, Time uhrzeit, String gepaeck, int kap, String comment, String s1, String s2, String s3, String s4, String s5, String s6, int p1, int p2, int p3, int p4, int p5, int p6) {
  		
  		fahrt = new Fahrt();
 	    
  		fahrt.setFahrtDatum(fDatum);
- 		fahrt.setFahrerID(fahrerid);
+ 		fahrt.setFahrerID(getUserById(fahrerid));
  		fahrt.setFahrtStartZeit(uhrzeit);
  		fahrt.setGepaeck(gepaeck);
 	    fahrt.setKapazitaet(kap);

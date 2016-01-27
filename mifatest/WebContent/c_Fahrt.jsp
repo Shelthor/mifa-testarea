@@ -174,7 +174,7 @@ function initMap() {
 	   		 <div id="directions-panel"></div>
 		</div>
 		<div class="row">
-			<div class="col-sm-12">
+			<div class="col-sm-12" id="anzeige">
 			<p>	von :<%= s1 %> </p>
 			<p>	nach: <%= s6 %></p>
 			<p>	gepäck: <%= gepaeck %></p>
@@ -197,7 +197,7 @@ function initMap() {
 	</div>
 
 <%
-	userId = 4; //kommt von cookie
+	userId = 4; //VERFEINERN: kommt von cookie
 
 	//VERFEINERN: wenn user WEDER fahrer NOCH in passagier_fahrt Tabelle, Dann zeige Buchen-Feld an
 	if(userId != f.getFahrerByFahrtId(id).getUserID()){
@@ -215,7 +215,9 @@ function initMap() {
 			uZiel = request.getParameter("buchenZiel");
 			
 			f2.newPassagierFahrt(userId, id, uStart, uZiel);
-			 out.print("gebucht");
+			out.print("<script>document.getElementById('anzeige').style.display = 'none'</script>");
+			out.print("<script>document.getElementById('buchenFeld').style.display = 'none'</script>");
+			out.print("gebucht");
 
 		}
 		catch (Exception ex){

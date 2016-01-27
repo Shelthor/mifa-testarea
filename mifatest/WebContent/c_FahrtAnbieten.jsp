@@ -262,6 +262,9 @@ function checkKap(){
 	f = new Facade();
 	if (request.getParameter("ok") != null){
 		try{
+			//FAHRER
+			id = 1; //VERFEINERN: soll aus coockie kommen
+			
 			//DATUM
 			tag = Integer.parseInt(request.getParameter("hTag"));
 			monat = Integer.parseInt(request.getParameter("hMonat"));
@@ -293,7 +296,7 @@ function checkKap(){
 
 			kommentar = request.getParameter("formKommentar");
 			
-			f.newFahrt(fahrtDatum, f.getUserById(1), startZeit, gepaeck, kap, kommentar, s1, sList.get(0),sList.get(1), sList.get(2), sList.get(3), s6, kap, kap, kap, kap, kap, kap);
+			f.newFahrt(fahrtDatum, id, startZeit, gepaeck, kap, kommentar, s1, sList.get(0),sList.get(1), sList.get(2), sList.get(3), s6, kap, kap, kap, kap, kap, kap);
 			
 			 out.print("<script>sendSQL();</script>");
 			 out.print("<script>suc();</script>");
