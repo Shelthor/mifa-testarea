@@ -108,17 +108,17 @@ public class Facade {
 	
 	/* Clemens 26.1.2016 */
 	
-	public List<User> checkBewertungenA(Fahrt fahrtID, User userID){
+	public List<User> getUsersWhoAreRatedByUserId(int fahrtID, int userID){
 		//gib Liste mit Bewerteten Usern zurück, zugehörig zur Fahrt *fahrtID und zum Sender *userID
-		org.hibernate.Query q= session.createQuery("select bewertungEmpfaengerID from Bewertung as u where u.bewertungSenderID =" + " " + userID.getUserID() + " and u.fahrtID = " + fahrtID.getFahrtID());
+		org.hibernate.Query q= session.createQuery("select bewertungEmpfaengerID from Bewertung as u where u.bewertungSenderID =" + " " + userID + " and u.fahrtID = " + fahrtID);
 		
 		List result = q.list();
 		return result;
 	}
 	
-	public List<User> checkBewertungenB(Fahrt fahrtID){
-		//gib Liste mit Bewerteten Usern zurück, zugehörig zur Fahrt *fahrtID und zum Sender *userID
-		org.hibernate.Query q= session.createQuery("select userID from PassagierFahrt as u where u.fahrtID =" + fahrtID.getFahrtID());
+	public List<User> getPassengersOfFahrtByFahrt(int fahrtID){
+		//gib Liste mit Bewerteten Usern zurück, zugehörig zur Fahrt *fahrtID 
+		org.hibernate.Query q= session.createQuery("select userID from PassagierFahrt as u where u.fahrtID =" + fahrtID);
 		
 		List result = q.list();
 		return result;
@@ -339,6 +339,16 @@ public class Facade {
  		t.commit();
  		
  		System.out.println("success");
+ 	}
+ 	
+ 	public List<User> getAllPassagiereOfFahrtByFahrtId(int fId){
+ 		org.hibernate.Query q= session.createQuery("select userID from PassagierFahrt as u where u.fahrtID =" + " " + fId + "");
+
+		List<User> luf;
+		
+		luf=q.list();
+		
+		return  luf;
  	}
  	
 //User-Fahrzeug-Relations//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

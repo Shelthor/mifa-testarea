@@ -27,6 +27,7 @@ public class EinzeilerTestklasse {
 	    f.newUser(EMAILADRESSE, HEUTE, NACHNAME, VORNAME,TELEFONNUMMER, ISADMIN, ISACTIVATED);
 	    */
 		
+		/*
 		List<User> uListA = f.checkBewertungenA(f.getFahrtById(2), f.getUserById(1));
 		
 		for( int i = 0; i < uListA.size() ; i++)
@@ -38,6 +39,11 @@ public class EinzeilerTestklasse {
 		
 		 boolean b  = uListA.equals(uListB);
 		 System.out.println(b);
+		 */
+		
+		List<User> l = f.getAllPassagiereOfFahrtByFahrtId(2);
+		System.out.println(l.get(0).geteMail());
+		System.out.println(l.get(1));
 	}
 
 }

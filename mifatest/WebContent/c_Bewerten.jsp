@@ -78,6 +78,7 @@ if(kontrolle == 0){
 		empfurl = Integer.parseInt(request.getParameter("empfid"));
 		sendurl = Integer.parseInt(request.getParameter("senderid"));
 		fahrturl = Integer.parseInt(request.getParameter("fahrtid"));
+		
 	}
 
 	catch (Exception ex) {
@@ -142,7 +143,7 @@ if(kontrolle == 0){
     </div>
     <div class="col-sm-9">
 		<div id="sqlForm" class="grau">
-			<p>Bitte bewerte die Pünktlichkeit</p>
+			<p>Bitte bewerte die Pünktlichkeit (nicht erschienen = 1 Stern)</p>
 			<table class="text-center" id="sterne1">
 	    		<tr>
 					<td class="star" id="1" onclick="setzen('1', '1'); return false;" onmouseover="leuchten('1', '1'); return false;"></td>
@@ -152,16 +153,18 @@ if(kontrolle == 0){
 	                <td class="star" id="5" onclick="setzen('5', '1'); return false;" onmouseover="leuchten('5', '1'); return false;"></td>
 	            </tr>
 	    	</table>
-	    	<p>Bitte bewerte den Fahrstil</p>
-	    	<table class="text-center" id="sterne2">
-	    		<tr>
-					<td class="star" id="1" onclick="setzen('1', '2'); return false;" onmouseover="leuchten('1', '2'); return false;"></td>
-	                <td class="star" id="2" onclick="setzen('2', '2'); return false;" onmouseover="leuchten('2', '2'); return false;"></td>
-	                <td class="star" id="3" onclick="setzen('3', '2'); return false;" onmouseover="leuchten('3', '2'); return false;"></td>
-	                <td class="star" id="4" onclick="setzen('4', '2'); return false;" onmouseover="leuchten('4', '2'); return false;"></td>
-	                <td class="star" id="5" onclick="setzen('5', '2'); return false;" onmouseover="leuchten('5', '2'); return false;"></td>
-	            </tr>
-	    	</table>
+	    	<div id="fahrstil">
+	    		<p>Bitte bewerte den Fahrstil</p>
+		    	<table class="text-center" id="sterne2">
+		    		<tr>
+						<td class="star" id="1" onclick="setzen('1', '2'); return false;" onmouseover="leuchten('1', '2'); return false;"></td>
+		                <td class="star" id="2" onclick="setzen('2', '2'); return false;" onmouseover="leuchten('2', '2'); return false;"></td>
+		                <td class="star" id="3" onclick="setzen('3', '2'); return false;" onmouseover="leuchten('3', '2'); return false;"></td>
+		                <td class="star" id="4" onclick="setzen('4', '2'); return false;" onmouseover="leuchten('4', '2'); return false;"></td>
+		                <td class="star" id="5" onclick="setzen('5', '2'); return false;" onmouseover="leuchten('5', '2'); return false;"></td>
+		            </tr>
+		    	</table>
+	    	</div>
 	    	<p>Bitte bewerte die Freundlichkeit</p>
 	    	<table class="text-center" id="sterne3">
 	    		<tr>
@@ -238,7 +241,20 @@ function fail(){
 	empf = f.getUserById(empfurl);
 	send = f.getUserById(sendurl);
 	fahrtid = f.getFahrtById(fahrturl);
-
+	
+	out.print(f.getFahrerByFahrtId(fahrturl).getUserID());
+	
+	//prüfen ob bewertung an Fahrer oder Passagier geht
+			if(f.getFahrerByFahrtId(fahrturl).getUserID() == empfurl)
+			{
+				//out.print(fCheck.getFahrerByFahrtId(fahrturl).getnName() + "IST FAHRER");
+				out.print("<script>document.getElementById('fahrstil').style.display = 'block'</script>");
+			}
+			else{
+				out.print("<script>document.getElementById('fahrstil').style.display = 'none'</script>");
+			}
+	
+	//absenden
 	if (request.getParameter("ok") != null){
 		
 			try
@@ -246,8 +262,10 @@ function fail(){
 				heute = new java.util.Date();
 				text = request.getParameter("formKommentar");
 				
+				if(request.getParameter("hi2") != ""){
+					fahrs = Integer.parseInt(request.getParameter("hi2"));
+				}
 				punkt = Integer.parseInt(request.getParameter("hi1"));
-				fahrs = Integer.parseInt(request.getParameter("hi2"));
 				freundli = Integer.parseInt(request.getParameter("hi3"));
 				
 				f.newBewertung(text, fahrs, punkt, freundli, empf, send, heute, fahrtid);
