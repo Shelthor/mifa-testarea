@@ -39,7 +39,7 @@ public class TestFacade {
 		/*fahrtanlegen-test*/
 		//es kann immer nur ein jsp ausgef�hrt werden
 		Date DATUM = new Date();
-		User FAHRER = f.getUserById(1);
+		int FAHRER = 1; 
 		Time UHRZEIT = new Time(0, 0, 0);
 		String GEPAECK = "GRO�";
 		int KAPAZITAET = 2;

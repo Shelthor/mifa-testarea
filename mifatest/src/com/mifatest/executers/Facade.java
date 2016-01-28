@@ -2,6 +2,7 @@ package com.mifatest.executers;
 import com.mifatest.entities.*;
 
 import java.util.*;
+import java.math.*;
 
 import javax.management.Query;
 
@@ -102,22 +103,22 @@ public class Facade {
 
         mittelwert = summe / rating.size();
         
-        return mittelwert;
+        return Math.round(100.0 *mittelwert) / 100.0;
 	}
 	
 	/* Clemens 26.1.2016 */
 	
-	public List<User> checkBewertungenA(Fahrt fahrtID, User userID){
+	public List<User> getUsersWhoAreRatedByUserId(int fahrtID, int userID){
 		//gib Liste mit Bewerteten Usern zurück, zugehörig zur Fahrt *fahrtID und zum Sender *userID
-		org.hibernate.Query q= session.createQuery("select bewertungEmpfaengerID from Bewertung as u where u.bewertungSenderID =" + " " + userID.getUserID() + " and u.fahrtID = " + fahrtID.getFahrtID());
+		org.hibernate.Query q= session.createQuery("select bewertungEmpfaengerID from Bewertung as u where u.bewertungSenderID =" + " " + userID + " and u.fahrtID = " + fahrtID);
 		
 		List result = q.list();
 		return result;
 	}
 	
-	public List<User> checkBewertungenB(Fahrt fahrtID){
-		//gib Liste mit Bewerteten Usern zurück, zugehörig zur Fahrt *fahrtID und zum Sender *userID
-		org.hibernate.Query q= session.createQuery("select userID from PassagierFahrt as u where u.fahrtID =" + fahrtID.getFahrtID());
+	public List<User> getPassengersOfFahrtByFahrt(int fahrtID){
+		//gib Liste mit Bewerteten Usern zurück, zugehörig zur Fahrt *fahrtID 
+		org.hibernate.Query q= session.createQuery("select userID from PassagierFahrt as u where u.fahrtID =" + fahrtID);
 		
 		List result = q.list();
 		return result;
@@ -194,12 +195,12 @@ public class Facade {
 	}
 //Fahrten//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
- 	public void newFahrt(Date fDatum, User fahrerid, Time uhrzeit, String gepaeck, int kap, String comment, String s1, String s2, String s3, String s4, String s5, String s6, int p1, int p2, int p3, int p4, int p5, int p6) {
+ 	public void newFahrt(Date fDatum, int fahrerid, Time uhrzeit, String gepaeck, int kap, String comment, String s1, String s2, String s3, String s4, String s5, String s6, int p1, int p2, int p3, int p4, int p5, int p6) {
  		
  		fahrt = new Fahrt();
 	    
  		fahrt.setFahrtDatum(fDatum);
- 		fahrt.setFahrerID(fahrerid);
+ 		fahrt.setFahrerID(getUserById(fahrerid));
  		fahrt.setFahrtStartZeit(uhrzeit);
  		fahrt.setGepaeck(gepaeck);
 	    fahrt.setKapazitaet(kap);
@@ -237,8 +238,7 @@ public class Facade {
 		
 		lf=q.list();
 		
-		return  (User) session.load(User.class, lf.get(0).getFahrerID().getUserID());
-		
+		return  (User) session.load(User.class, lf.get(0).getFahrerID().getUserID());	
 	}
 	
 	public List<Fahrt> getListWithAllAngeboteneFahrtenOfUserByUserId(int userid){
@@ -325,12 +325,12 @@ public class Facade {
  	} 	
 //Passagier-Fahrt-Relations//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  	
- 	public void newPassagierFahrt(User userid, Fahrt fahrtid, String uStart, String uZiel){
+ 	public void newPassagierFahrt(int userid, int fahrtid, String uStart, String uZiel){
  		
  		passagierFahrt = new PassagierFahrt();
  		
- 		passagierFahrt.setFahrtID(fahrtid);
- 		passagierFahrt.setUserID(userid);
+ 		passagierFahrt.setFahrtID(getFahrtById(fahrtid));
+ 		passagierFahrt.setUserID(getUserById(userid));
  		passagierFahrt.setUserStart(uStart);
  		passagierFahrt.setUserZiel(uZiel);
  		
@@ -339,6 +339,16 @@ public class Facade {
  		t.commit();
  		
  		System.out.println("success");
+ 	}
+ 	
+ 	public List<User> getAllPassagiereOfFahrtByFahrtId(int fId){
+ 		org.hibernate.Query q= session.createQuery("select userID from PassagierFahrt as u where u.fahrtID =" + " " + fId + "");
+
+		List<User> luf;
+		
+		luf=q.list();
+		
+		return  luf;
  	}
  	
 //User-Fahrzeug-Relations//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

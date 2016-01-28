@@ -14,9 +14,10 @@
 <link rel="stylesheet" href="css/custom.css" type="text/css" />
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
 <script src="js/npm.js"></script>
 <script src="js/bootstrap.js"></script>
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3f0-lP6PquSnOUBu8j85B5MGM3pDLFx4&signed_in=true&callback=initMap"
         async defer></script>
@@ -27,7 +28,7 @@
 	Facade f;
 	Fahrt fa;
 	
-	int id;
+	int id, userId;
 	
 	String  kommentar;
 	
@@ -43,8 +44,8 @@
 %>
 <%
 	f = new Facade();
-	id = 16; //kommt aus cookie ODER link (mal sehen)
-				
+	id = 6; //kommt aus cookie ODER link (mal sehen)
+		
 	try{
 		fa = f.getFahrtById(id);
 		
@@ -150,6 +151,11 @@ function initMap() {
 	  });
 	}
 
+	
+	function zeigen(x){
+		document.getElementById("buchenKnopf").style.display = "none";
+		document.getElementById(x).style.display = "block";
+	}
 
 </script>
 
@@ -158,6 +164,34 @@ function initMap() {
 </head>
 <body>
 	<div class="container">
+	
+		<nav class="navbar navbar-default navbar-fixed-top">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="c_index.jsp"><img src="img/logo_ba_dresden.png" style="height:100%;"/></a>
+		    </div>
+			    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		    
+		    <ul class="nav navbar-nav navbar-right">
+		        <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hallo [USERNAME / BILD]!<span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="#">Mein öffentliches Profil</a></li>
+		            <li><a href="#">Terminal</a></li>
+		          </ul>
+		        </li>
+	      	</ul>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
 	
 		<div class="jumbotron muster">
 		    <h1>Fahrt</h1>
@@ -170,22 +204,66 @@ function initMap() {
 	   		 <div id="directions-panel"></div>
 		</div>
 		<div class="row">
-			<div class="col-sm-12">
-			<p>	von :<%= s1 %> </p>
-			<p>	nach: <%= s6 %></p>
-			<p>	gepäck: <%= gepaeck %></p>
-			<p>	startzeit: <%= startZeit %></p>
-			<p>	Datum: <%= fahrtDatum %></p>
-			<p>	fahrer: <%= fahrer %></p>
-			<p>	komm: <%= kommentar %></p>
-			<p>	freie plätze: <%= kap %></p>
+			<div class="col-md-12" id="anzeige">
+				<div class="col-xs-12 col-md-12">
+					<p>	<b><%= fahrer %></b> fährt von <b><%= s1 %></b> nach <b><%= s6 %></b></p>
+		
+					<p>	Angaben zum Gepäck: <b><%= gepaeck %></b></p>
+				</div>
+				<div class="col-xs-12 col-md-6 grau">
+					<p>Startzeit: <b><%= startZeit %></b></p>
+					<p>Datum: <b><%= fahrtDatum %></b></p>
+				</div>
+				<div class="col-xs-12 col-md-6 hellgrau">
+					Bemerkungen vom Fahrer:
+					<div class="col-xs-12"><b><%= kommentar %></b></div>
+				</div>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-sm-12">
+			<div class="col-sm-12" id="buchenFeld" style="display:none">
+			<button id="buchenKnopf" onclick="zeigen('buchenForm')">BUCHEN</button><br/><br/>
+				<form id="buchenForm" action="c_Fahrt.jsp" style="display:none">
+					<p>Von: <input type="text" name="buchenStart"> Nach: <input type="text" name="buchenZiel"><p><br/>
+					<input type="submit" name="buchen" value="Senden">
+				</form>
 			</div>
 		</div>
 	</div>
+
+<%
+	userId = 1; //VERFEINERN: kommt von cookie
+
+	//VERFEINERN: wenn user WEDER fahrer NOCH in passagier_fahrt Tabelle, Dann zeige Buchen-Feld an
+	if(userId != f.getFahrerByFahrtId(id).getUserID()){
+		out.print("<script>document.getElementById('buchenFeld').style.display = 'block'</script>");
+	}else{
+		out.print("<script>document.getElementById('buchenFeld').style.display = 'none'</script>");
+	}
+	
+	Facade f2 = new Facade();
+	if (request.getParameter("buchen") != null){
+		try{
+			String uStart, uZiel;
+			//VERFEINERN: nur Orte zur Auswahl anzeigen, die auch auf Strecke liegen
+			uStart = request.getParameter("buchenStart");
+			uZiel = request.getParameter("buchenZiel");
+			
+			f2.newPassagierFahrt(userId, id, uStart, uZiel);
+			out.print("<script>document.getElementById('anzeige').style.display = 'none'</script>");
+			out.print("<script>document.getElementById('buchenFeld').style.display = 'none'</script>");
+			out.print("gebucht");
+			
+			//VERFEINERN: Je nach Einstiegs- und Ausstiegs-Station müssen die P's (Und damit freie Plätze) angepasst werden
+			//			  Möglicherweise lassen wir die Anzeige der freien plätze auf der Fahrt.jsp auch komplett weg, da
+			//		      Meist nicht eindeutig sobald mehrere Stationen
+		}
+		catch (Exception ex){
+			out.print("FAIL");
+		}
+	}
+	
+%>
 
 </body>
 </html>

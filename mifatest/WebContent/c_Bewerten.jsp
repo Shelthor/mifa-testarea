@@ -12,10 +12,11 @@
 <link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
 <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
 <link rel="stylesheet" href="css/custom.css" type="text/css" />
-<script src="js/npm.js"></script>
-<script src="js/bootstrap.js"></script>
+
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
+<script src="js/npm.js"></script>
+<script src="js/bootstrap.js"></script>
 <style>
 td.star {
             background-repeat: no-repeat;
@@ -78,6 +79,7 @@ if(kontrolle == 0){
 		empfurl = Integer.parseInt(request.getParameter("empfid"));
 		sendurl = Integer.parseInt(request.getParameter("senderid"));
 		fahrturl = Integer.parseInt(request.getParameter("fahrtid"));
+		
 	}
 
 	catch (Exception ex) {
@@ -87,62 +89,45 @@ if(kontrolle == 0){
 %>
 
 <div class="container">
+
+	<nav class="navbar navbar-default navbar-fixed-top">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="c_index.jsp"><img src="img/logo_ba_dresden.png" style="height:100%;"/></a>
+		    </div>
+			    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		    
+		    <ul class="nav navbar-nav navbar-right">
+		        <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hallo [USERNAME / BILD]!<span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="#">Mein öffentliches Profil</a></li>
+		            <li><a href="#">Terminal</a></li>
+		          </ul>
+		        </li>
+	      	</ul>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+
+
   <div class="jumbotron">
     <h1>Hi</h1>
     <p>Gib eine Bewertung ab!</p> 
   </div>
   <div class="row">
-    <div class="col-sm-3 gruen">
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Mein Profil -> UserOeffentlich.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Fahrt Suchen -> FahrtSuchen.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Fahrt Anbieten -> FahrtAnbieten.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Meine Fahrten -> MeineFahrten.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Meine angebotenen Fahrten -> MeineFahrten.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Historie -> LetzteFahrten.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Erhaltene Bewertungen -> Bewertungen.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Meine Einstellungen -> Settings.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Mailbox -> Mailbox.jsp</p>
-   			</div>
-		</div>
 
-    </div>
-    <div class="col-sm-9">
+    <div class="col-md-12">
 		<div id="sqlForm" class="grau">
-			<p>Bitte bewerte die Pünktlichkeit</p>
+			<p>Bitte bewerte die Pünktlichkeit (nicht erschienen = 1 Stern)</p>
 			<table class="text-center" id="sterne1">
 	    		<tr>
 					<td class="star" id="1" onclick="setzen('1', '1'); return false;" onmouseover="leuchten('1', '1'); return false;"></td>
@@ -152,16 +137,18 @@ if(kontrolle == 0){
 	                <td class="star" id="5" onclick="setzen('5', '1'); return false;" onmouseover="leuchten('5', '1'); return false;"></td>
 	            </tr>
 	    	</table>
-	    	<p>Bitte bewerte den Fahrstil</p>
-	    	<table class="text-center" id="sterne2">
-	    		<tr>
-					<td class="star" id="1" onclick="setzen('1', '2'); return false;" onmouseover="leuchten('1', '2'); return false;"></td>
-	                <td class="star" id="2" onclick="setzen('2', '2'); return false;" onmouseover="leuchten('2', '2'); return false;"></td>
-	                <td class="star" id="3" onclick="setzen('3', '2'); return false;" onmouseover="leuchten('3', '2'); return false;"></td>
-	                <td class="star" id="4" onclick="setzen('4', '2'); return false;" onmouseover="leuchten('4', '2'); return false;"></td>
-	                <td class="star" id="5" onclick="setzen('5', '2'); return false;" onmouseover="leuchten('5', '2'); return false;"></td>
-	            </tr>
-	    	</table>
+	    	<div id="fahrstil">
+	    		<p>Bitte bewerte den Fahrstil</p>
+		    	<table class="text-center" id="sterne2">
+		    		<tr>
+						<td class="star" id="1" onclick="setzen('1', '2'); return false;" onmouseover="leuchten('1', '2'); return false;"></td>
+		                <td class="star" id="2" onclick="setzen('2', '2'); return false;" onmouseover="leuchten('2', '2'); return false;"></td>
+		                <td class="star" id="3" onclick="setzen('3', '2'); return false;" onmouseover="leuchten('3', '2'); return false;"></td>
+		                <td class="star" id="4" onclick="setzen('4', '2'); return false;" onmouseover="leuchten('4', '2'); return false;"></td>
+		                <td class="star" id="5" onclick="setzen('5', '2'); return false;" onmouseover="leuchten('5', '2'); return false;"></td>
+		            </tr>
+		    	</table>
+	    	</div>
 	    	<p>Bitte bewerte die Freundlichkeit</p>
 	    	<table class="text-center" id="sterne3">
 	    		<tr>
@@ -238,7 +225,20 @@ function fail(){
 	empf = f.getUserById(empfurl);
 	send = f.getUserById(sendurl);
 	fahrtid = f.getFahrtById(fahrturl);
-
+	
+	out.print(f.getFahrerByFahrtId(fahrturl).getUserID());
+	
+	//prüfen ob bewertung an Fahrer oder Passagier geht
+			if(f.getFahrerByFahrtId(fahrturl).getUserID() == empfurl)
+			{
+				//out.print(fCheck.getFahrerByFahrtId(fahrturl).getnName() + "IST FAHRER");
+				out.print("<script>document.getElementById('fahrstil').style.display = 'block'</script>");
+			}
+			else{
+				out.print("<script>document.getElementById('fahrstil').style.display = 'none'</script>");
+			}
+	
+	//absenden
 	if (request.getParameter("ok") != null){
 		
 			try
@@ -246,8 +246,10 @@ function fail(){
 				heute = new java.util.Date();
 				text = request.getParameter("formKommentar");
 				
+				if(request.getParameter("hi2") != ""){
+					fahrs = Integer.parseInt(request.getParameter("hi2"));
+				}
 				punkt = Integer.parseInt(request.getParameter("hi1"));
-				fahrs = Integer.parseInt(request.getParameter("hi2"));
 				freundli = Integer.parseInt(request.getParameter("hi3"));
 				
 				f.newBewertung(text, fahrs, punkt, freundli, empf, send, heute, fahrtid);

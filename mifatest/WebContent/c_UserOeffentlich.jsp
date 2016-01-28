@@ -12,9 +12,12 @@
 <link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
 <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
 <link rel="stylesheet" href="css/custom.css" type="text/css" />
+
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
 <script src="js/npm.js"></script>
 <script src="js/bootstrap.js"></script>
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
 
 </head>
 <body>
@@ -36,7 +39,7 @@
 	%>
 	<%
 		f = new Facade();
-		id = 1; //kommt aus cookie
+		id = 7; //kommt aus cookie
 					
 		try{
 			u = f.getUserById(id);
@@ -55,7 +58,20 @@
 			List<Integer> freundlichkeitRating = new ArrayList<Integer>();
 			
 			for(int i = 0; i < bList.size(); i++){
-				fahrstilRating.add(bList.get(i).getFahrstilRating());
+				
+				/*
+				
+				Sämtliche Ratings reichen von 1 - 5 (Sterne).
+				Eine 0 Beim Fahrstil bedeutet, dass derjenige Passagier war und kein Fahrer,
+				daher ignoriere bei der Bildung des Durchschnitts aller Fahrstil-Bewertungen
+				alle Einträge mit 0
+				
+				*/
+				
+				if(bList.get(i).getFahrstilRating() != 0)
+					fahrstilRating.add(bList.get(i).getFahrstilRating());
+				
+				// Rest normal
 				puenktlichkeitRating.add(bList.get(i).getPuenktlichkeitRating());
 				freundlichkeitRating.add(bList.get(i).getFreundlichkeitRating());
 			}
@@ -76,33 +92,68 @@
 	{
 		var datee = "<%=geburtsDatum %>";
 		
+		/*
 		var byr = datee.substr(0, 3);
 		var bmo = datee.substr(5, 6);
 		var bday = datee.substr(8, 9);
+		*/
+		parseInt(datee.substr(0, 4));
+		
+		var byr = parseInt(datee.substr(0, 4));
+		var bmo = parseInt(datee.substr(5, 2));
+		var bday = parseInt(datee.substr(8, 2));
 		
 		//
 		var age;
 		var now = new Date();
-		tday=now.getDate();
-		tmo=(now.getMonth());
-		tyr=(now.getFullYear());
-			{
+		tday=parseInt(now.getDate());
+		tmo=parseInt(now.getMonth());
+		tyr=parseInt(now.getFullYear());
+			
 			if((tmo > bmo)||(tmo==bmo & tday>=bday))
-			{age=byr}
+				{age=byr}
 			else
-			{age=byr+1}
+				{age=byr+1}
 			
 			var result = (tyr-age) + " Jahre alt";
-			return result;
-			}
+			return result;		
 	}
 
 </script>
 
 <div class="container">
+	
+		<nav class="navbar navbar-default navbar-fixed-top">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="c_index.jsp"><img src="img/logo_ba_dresden.png" style="height:100%;"/></a>
+		    </div>
+			    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		    
+		    <ul class="nav navbar-nav navbar-right">
+		        <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hallo [USERNAME / BILD]!<span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="#">Mein öffentliches Profil</a></li>
+		            <li><a href="#">Terminal</a></li>
+		          </ul>
+		        </li>
+	      	</ul>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+
 	<div class="jumbotron">
-	    <h1>Mifahrzentrale</h1>
-	    <p>Userprofil</p>
+	    <h1>Mitfahrzentrale</h1>
+	    <p>Hallo! Du befindest dich auf einem öffentlichen Userprofil :)</p>
 	</div>
 	<div class="row">
 		<div class="col-sm-12">

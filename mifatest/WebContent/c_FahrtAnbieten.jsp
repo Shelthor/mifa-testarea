@@ -18,12 +18,12 @@
 <link rel="stylesheet" href="css/custom.css" type="text/css" />
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 
-<script src="js/npm.js"></script>
-<script src="js/bootstrap.js"></script>
-
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<script src="js/npm.js"></script>
+<script src="js/bootstrap.js"></script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3f0-lP6PquSnOUBu8j85B5MGM3pDLFx4&signed_in=true&callback=initMap"
         async defer></script>
@@ -33,114 +33,108 @@
 </head>
 <body>
 
-<script>
-
-function sendSQL(){
-	  $( "#whole" ).slideUp();
-	}
-
-function suc(){
-	$( "#sendSuccess" ).show();
-}
-
-function fail(){
-	$( "#sendFail" ).show();
-}
-
-$(function() {
-    $( "#datepicker" ).datepicker({ dateFormat: 'dd-mm-yy',
-    								onSelect: function()
-    									{
-    									ueberfuehreDatum();
-    									}
-    });
-});
-  
-function ueberfuehreDatum(){
-	var Datestring = document.getElementById('datepicker').value;
+	<script>
 	
-	var byr = Datestring.substr(6, 4);
-	var bmo = Datestring.substr(0, 2);
-	var bday = Datestring.substr(3, 2);
+	function sendSQL(){
+		  $( "#whole" ).slideUp();
+		}
 	
-	//abspeichern der Werte in Hiddenfields, die später wieder von der JSP benutzt werden
-	document.getElementById('hiddenJahr').value = byr;
-	document.getElementById('hiddenMonat').value = bmo;
-	document.getElementById('hiddenTag').value = bday;
-}
-
-function checkKap(){
-	var data = document.getElementById("formkap").value;
-	if(isNaN(data)){
-	  alert("bitte nur Ziffern eingeben");
-	}else {
+	function suc(){
+		$( "#sendSuccess" ).show();
 	}
-}
-</script>
+	
+	function fail(){
+		$( "#sendFail" ).show();
+	}
+	
+	$(function() {
+	    $( "#datepicker" ).datepicker({ dateFormat: 'dd-mm-yy',
+	    								onSelect: function()
+	    									{
+	    									ueberfuehreDatum();
+	    									}
+	    });
+	});
+	  
+	function ueberfuehreDatum(){
+		var Datestring = document.getElementById('datepicker').value;
+		
+		var byr = Datestring.substr(6, 4);
+		var bmo = Datestring.substr(0, 2);
+		var bday = Datestring.substr(3, 2);
+		
+		//abspeichern der Werte in Hiddenfields, die später wieder von der JSP benutzt werden
+		document.getElementById('hiddenJahr').value = byr;
+		document.getElementById('hiddenMonat').value = bmo;
+		document.getElementById('hiddenTag').value = bday;
+	}
+	
+	function checkKap(){
+		var data = document.getElementById("formkap").value;
+		if(isNaN(data)){
+		  alert("bitte nur Ziffern eingeben");
+		}else {
+		}
+	}
+	</script>
 
 	<div class="container">
 	
-	<div class="jumbotron">
-		    <h1>Wo willst du hin?</h1>
-		    <p>denn es macht jetzt keinen Zinn</p>
-		</div>
+		<nav class="navbar navbar-default navbar-fixed-top">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="c_index.jsp"><img src="img/logo_ba_dresden.png" style="height:100%;"/></a>
+		    </div>
+			    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		    
+		    <ul class="nav navbar-nav navbar-right">
+		        <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hallo [USERNAME / BILD]!<span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="#">Mein öffentliches Profil</a></li>
+		            <li><a href="#">Terminal</a></li>
+		          </ul>
+		        </li>
+	      	</ul>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
 	
-	<div class="col-sm-3">
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Mein Profil -> UserOeffentlich.jsp</p>
-   			</div>
+		<div class="jumbotron">
+		    <h1>Terminal</h1>
+		    <p>Wo willst du hin?</p>
 		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Fahrt Suchen -> FahrtSuchen.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Fahrt Anbieten -> FahrtAnbieten.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Meine Fahrten -> MeineFahrten.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Meine angebotenen Fahrten -> MeineFahrten.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Historie -> LetzteFahrten.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Erhaltene Bewertungen -> Bewertungen.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Meine Einstellungen -> Settings.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Mailbox -> Mailbox.jsp</p>
-   			</div>
-		</div>
-
-    </div>
-    <div class="col-sm-9">
+		
+		
+	<div class="row">
+	
+		<ul class="nav nav-pills nav-justified">
+		  <li role="presentation"><a href="#">Fahrt suchen</a></li>
+		  <li role="presentation" class="active"><a href="#">Fahrt anbieten</a></li>
+		  <li role="presentation"><a href="#">Historie</a></li>
+		  <li role="presentation"><a href="#">Settings</a></li>
+		  <li role="presentation"><a href="#">Mailbox</a></li>
+		</ul>
+		
+		<br/><br/>
+		
+		
+    <div class="col-md-12 text-center">
 		<div class="row" id="whole">
-			<div class="row">
-		   		 <div id="map" style="width:100%; height:200px;"></div>
-		   		 <div id="directions-panel"></div>
-			</div>
-			<div id="sqlForm">
-				<form class="row" action="c_FahrtAnbieten.jsp" method="post">
+				<div class="row">
+			   		 <div id="map" style="width:100%; height:200px;"></div>
+			   		 <div id="directions-panel"></div>
+				</div>
+				<div id="sqlForm">
+					<form class="row" action="c_FahrtAnbieten.jsp" method="post">
 						<div class="col-sm-12">
 							<br/>
 							Datum?: 
@@ -167,7 +161,7 @@ function checkKap(){
 									<option value="10">10</option>
 									<option value="11">11</option>
 									<option value="12">12</option>
-									<option value="13">3</option>
+									<option value="13">13</option>
 									<option value="14">14</option>
 									<option value="15">15</option>
 									<option value="16">16</option>
@@ -194,7 +188,7 @@ function checkKap(){
 							<br/>
 							
 							 <select name="formGepaeck">
-							    <option value="unbegrenzt Platz vorhanden">unbegrenzt Platz vorhanden</option>
+							    <option value="ausreichend Platz vorhanden">ausreichend Platz vorhanden</option>
 							    <option value="mittleres Gepäck">mittleres Gepäck</option>
 							    <option value="nur Handgepäck">nur Handgepäck</option>
 							  </select>
@@ -224,18 +218,19 @@ function checkKap(){
 							<input id="knopf" style="width: 100%;" type="submit" name="ok" value="OK"/>
 						</div>
 					</form>
+				</div>
+				<br/>	
 			</div>
-			<br/>	
-		</div>
-		<div id="sendSuccess" style="display:none">
-				<p>SUCCESS</p>
-		</div>
-		<div id="sendFail" style="display:none">
-				<p>FAIL</p>
+			<div id="sendSuccess" style="display:none">
+					<p>SUCCESS</p>
+			</div>
+			<div id="sendFail" style="display:none">
+					<p>FAIL</p>
+			</div>
 		</div>
 	</div>
-</div>
-	
+
+	</div>
 </body>
 
 <%! 
@@ -262,6 +257,9 @@ function checkKap(){
 	f = new Facade();
 	if (request.getParameter("ok") != null){
 		try{
+			//FAHRER
+			id = 7; //VERFEINERN: soll aus coockie kommen
+			
 			//DATUM
 			tag = Integer.parseInt(request.getParameter("hTag"));
 			monat = Integer.parseInt(request.getParameter("hMonat"));
@@ -293,7 +291,7 @@ function checkKap(){
 
 			kommentar = request.getParameter("formKommentar");
 			
-			f.newFahrt(fahrtDatum, f.getUserById(1), startZeit, gepaeck, kap, kommentar, s1, sList.get(0),sList.get(1), sList.get(2), sList.get(3), s6, kap, kap, kap, kap, kap, kap);
+			f.newFahrt(fahrtDatum, id, startZeit, gepaeck, kap, kommentar, s1, sList.get(0),sList.get(1), sList.get(2), sList.get(3), s6, kap, kap, kap, kap, kap, kap);
 			
 			 out.print("<script>sendSQL();</script>");
 			 out.print("<script>suc();</script>");

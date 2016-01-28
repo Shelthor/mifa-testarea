@@ -7,71 +7,77 @@
 <title>INTERN</title>
 <link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
 <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
 <script src="js/npm.js"></script>
 <script src="js/bootstrap.js"></script>
+
+
 </head>
 <body>
 
 <div class="container">
+
+	<nav class="navbar navbar-default navbar-fixed-top">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="c_index.jsp"><img src="img/logo_ba_dresden.png" style="height:100%;"/></a>
+		    </div>
+			    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		    
+		    <ul class="nav navbar-nav navbar-right">
+		        <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hallo [USERNAME / BILD]!<span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="#">Mein öffentliches Profil</a></li>
+		            <li><a href="#">Terminal</a></li>
+		          </ul>
+		        </li>
+	      	</ul>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+
   <div class="jumbotron">
-    <h1>Hi</h1>
-    <p>Resize this responsive page to see the effect!</p> 
+    <h1>Terminal</h1>
+    <p>Hallo [USER]!</p>
+    <p>Willkommen in deinem Persönlichen Bereich! von hier aus kannst du alles regeln, was deine Fahrten betrifft :)</p> 
   </div>
   <div class="row">
-    <div class="col-sm-3">
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Mein Profil -> UserOeffentlich.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Fahrt Suchen -> FahrtSuchen.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Fahrt Anbieten -> FahrtAnbieten.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Meine Fahrten -> MeineFahrten.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Meine angebotenen Fahrten -> MeineFahrten.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Historie -> LetzteFahrten.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Erhaltene Bewertungen -> Bewertungen.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Meine Einstellungen -> Settings.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Mailbox -> Mailbox.jsp</p>
-   			</div>
-		</div>
-
-    </div>
-    <div class="col-sm-9">
+    <div class="col-xs-12 col-md-12">
 		
+		<ul class="nav nav-pills nav-justified">
+		  <li role="presentation"><a href="#">Fahrt suchen</a></li>
+		  <li role="presentation"><a href="c_FahrtAnbieten.jsp">Fahrt anbieten</a></li>
+		  <li role="presentation"><a href="#">Historie</a></li>
+		  <li role="presentation"><a href="#">Settings</a></li>
+		  <li role="presentation"><a href="#">Mailbox</a></li>
+		</ul>
 		
-
-
-
+		<div class="col-xs-12 col-md-6" style="background-color:#ee82ee;">
+			<h1>Meine gebuchten Fahrten</h1>
+			<p>[Martin]</p>
+			<p>[Martin]</p>
+			<p>[Martin]</p>
+			<p>[Martin]</p>
+		</div>
+		
+		<div class="col-xs-12 col-md-6" style="background-color:#ee92ee;">
+			<h1>Von mir angebotene Fahrten</h1>
+			<p>[Martin]</p>
+			<p>[Martin]</p>
+			<p>[Martin]</p>
+			<p>[Martin]</p>
+		</div>
 	</div>
   </div>
 </div>
