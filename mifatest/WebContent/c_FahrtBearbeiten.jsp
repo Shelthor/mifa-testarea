@@ -15,12 +15,13 @@
 <link rel="stylesheet" href="css/custom.css" type="text/css" />
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 
-<script src="js/npm.js"></script>
-<script src="js/bootstrap.js"></script>
-
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+
+<script src="js/npm.js"></script>
+<script src="js/bootstrap.js"></script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3f0-lP6PquSnOUBu8j85B5MGM3pDLFx4&signed_in=true&callback=initMap"
         async defer></script>
@@ -124,60 +125,42 @@
 
 
 <div class="container">
+
+	<nav class="navbar navbar-default navbar-fixed-top">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="c_index.jsp"><img src="img/logo_ba_dresden.png" style="height:100%;"/></a>
+		    </div>
+			    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		    
+		    <ul class="nav navbar-nav navbar-right">
+		        <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hallo [USERNAME / BILD]!<span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="#">Mein öffentliches Profil</a></li>
+		            <li><a href="#">Terminal</a></li>
+		          </ul>
+		        </li>
+	      	</ul>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+
   <div class="jumbotron">
     <h1>INTERN</h1>
     <p>Bearbeite die Fahrt nach <%=s6%></p>
   </div>
   <div class="row">
-    <div class="col-sm-3">
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Mein Profil -> UserOeffentlich.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Fahrt Suchen -> FahrtSuchen.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Fahrt Anbieten -> FahrtAnbieten.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Meine Fahrten -> MeineFahrten.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Meine angebotenen Fahrten -> MeineFahrten.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Historie -> LetzteFahrten.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Erhaltene Bewertungen -> Bewertungen.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Meine Einstellungen -> Settings.jsp</p>
-   			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<p>Mailbox -> Mailbox.jsp</p>
-   			</div>
-		</div>
 
-    </div>
-    <div class="col-sm-9" id="whole">
+    <div class="col-md-12" id="whole">
 		<form action="c_FahrtBearbeiten.jsp" method="post">
 				<div class="row hellgrau">
 					<div class="col-sm-8">
@@ -304,7 +287,7 @@
 						<input type=text" name="formKommentar" style="width: 100%; height: 75px;">
 					</div>
 				</div>
-				<input type="submit" name="ok" value="senden">
+				<input type="submit" name="ok" value="senden" style="width:100%">
 		</form>
 		</div>
 		<div id="sendSuccess" style="display:none">
