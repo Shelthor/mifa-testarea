@@ -33,6 +33,44 @@
 </head>
 <body>
 
+    <script>  
+    var request;  
+    function sendInfo(x)  
+    {  
+	    var v=x.value;  
+	    var url="aj_vergleicheEingabeMitOrtTabelle.jsp?val="+v;  
+	      
+	    if(window.XMLHttpRequest){  
+	    request=new XMLHttpRequest();  
+	    }  
+	    else if(window.ActiveXObject){  
+	    request=new ActiveXObject("Microsoft.XMLHTTP");  
+	    }  
+	      
+	    try{  
+	    request.onreadystatechange= function() {
+	    	getInfo(x);	  
+	    };
+	    
+	    
+	    request.open("GET",url,true);  
+	    request.send();  
+	    }catch(e){alert("Unable to connect to server");}  
+    }  
+      
+    function getInfo(x){  
+	    if(request.readyState==4){  
+	    var val=request.responseText;  
+	    //document.getElementById('amit').innerHTML=val;  
+	    
+	    // x.nextElementSibling.innerHTML +='<div style="width:200px;height:20px;background-color:#d3d3d3"></div>';
+	    
+	    x.nextElementSibling.innerHTML =val;
+	    }  
+    }  
+      
+    </script>  
+
 	<script>
 	
 	function sendSQL(){
@@ -113,6 +151,8 @@
 		    <p>Wo willst du hin?</p>
 		</div>
 		
+
+
 		
 	<div class="row">
 	
@@ -196,10 +236,11 @@
 	
 							Von?: 
 							<br/>
-							<input type="text" name="formStart" id="inS1"/><br/>
+							<input type="text" name="formStart" id="inS1" onkeyup="sendInfo(this)"/><p></p><br/>     
+						    <span id="amit"> </span>  
 							Nach?: 
 							<br/>
-							<input type="text" name="formZiel" onblur="aktualisiereMap()" id="inS6"/><br/>
+							<input type="text" name="formZiel" onblur="aktualisiereMap()" id="inS6" onkeyup="sendInfo(this)"/><p></p><br/>     
 							<input type="button" style="width: 100%;" onclick="zeigen()" value="füge Zwischenstation hinzu"/>
 							<div id="s2-s5" style="display:none;" class="verlauf-orange">
 								<p>Über?:</p>
