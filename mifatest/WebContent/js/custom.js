@@ -52,6 +52,39 @@ function setzen(a, tabelleY)
 }
 
 /*
+	ALTER BERECHNEN
+	UserOeffentlich.jsp 
+*/
+
+
+function giveAge(x)
+{
+	var datee = x;
+
+	parseInt(datee.substr(0, 4));
+
+	var byr = parseInt(datee.substr(0, 4));
+	var bmo = parseInt(datee.substr(5, 2));
+	var bday = parseInt(datee.substr(8, 2));
+
+	//
+	var age;
+	var now = new Date();
+	tday=parseInt(now.getDate());
+	tmo=parseInt(now.getMonth());
+	tyr=parseInt(now.getFullYear());
+		
+		if((tmo > bmo)||(tmo==bmo & tday>=bday))
+			{age=byr}
+		else
+			{age=byr+1}
+		
+		var result = (tyr-age) + " Jahre alt";
+		return result;		
+}
+
+
+/*
 
 	AJAX
 	FahrtAnbieten.jsp , 
