@@ -175,7 +175,7 @@
 			<div id="whole">
 				<div class="col-md-12">
 			   		 <div id="map"></div>
-			   		 <div id="directions-panel" class="blau"></div>
+			   		 <div id="directions-panel" class="blau randUntenRund"></div>
 				</div>
 				<div id="sqlForm">
 					<form action="c_FahrtAnbieten.jsp" method="post">

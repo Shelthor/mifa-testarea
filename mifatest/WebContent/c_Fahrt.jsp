@@ -249,7 +249,7 @@ function initMap() {
 		</div>
 		<div class="row">
 	   		 <div id="map"></div>
-	   		 <div id="directions-panel" class="blau"></div>
+	   		 <div id="directions-panel" class="blau randUntenRund"></div>
 		</div>
 		<div class="row">
 			<div class="abstandNachOben" id="anzeige">
