@@ -182,7 +182,7 @@
 						<div class="col-xs-12 col-md-4 abstandNachOben">
 							Datum?: 
 							<br/>
-							<input type="text" id="datepicker" style="width:100%" autocomplete="off"><br/>
+							<input type="text" id="datepicker" style="width:100%" autocomplete="off" required><br/>
 							 
 							    <input type="hidden" id="hiddenJahr" name="hJahr" />
 						    	<input type="hidden" id="hiddenMonat" name="hMonat" />
@@ -190,7 +190,8 @@
 							 
 							Uhrzeit?: 
 							<br/>
-								<select name="formStunden" style="width:49%">
+								<select name="formStunden" style="width:49%" required>
+									<option value="">h</option>
 									<option value="0">0</option>
 									<option value="1">1</option>
 									<option value="2">2</option>
@@ -216,7 +217,8 @@
 									<option value="22">22</option>
 									<option value="23">23</option>
 								</select>
-								<select name="formMinuten" style="width:49%">
+								<select name="formMinuten" style="width:49%" required>
+									<option value="">min</option>
 									<option value="0">00</option>
 									<option value="15">15</option>
 									<option value="30">30</option>
@@ -225,7 +227,7 @@
 								<br/>
 							Wieviele Mitfahrer möchtest du mitnehmen?: 
 							<br/>
-							<input type="text" name="formKapazitaet" id="formkap" onblur="checkKap()" required/><br/>
+							<input type="text" name="formKapazitaet" id="formkap" onblur="checkKap()" required autocomplete="off"/><br/>
 							Angaben zum Gepäck?: 
 							<br/>
 							
@@ -239,10 +241,10 @@
 						<div class="col-xs-12 col-md-4 abstandNachOben">
 							Von?: 
 							<br/>
-							<input type="text" name="formStart" id="inS1" style="width:100%" onkeyup="sendInfo(this)" autocomplete="off"/><ul class="list-group a"></ul><br/>     
+							<input type="text" name="formStart" id="inS1" style="width:100%" onkeyup="sendInfo(this)" required autocomplete="off"/><ul class="list-group a"></ul><br/>     
 							Nach?: 
 							<br/>
-							<input type="text" name="formZiel"  id="inS6" onkeyup="sendInfo(this)" style="width:100%" autocomplete="off"/><ul class="list-group a"></ul><br/>
+							<input type="text" name="formZiel"  id="inS6" onkeyup="sendInfo(this)" style="width:100%" required autocomplete="off"/><ul class="list-group a"></ul><br/>
 						</div>
 						<div class="col-xs-12 col-md-4 abstandNachOben">  
 							Über?:
