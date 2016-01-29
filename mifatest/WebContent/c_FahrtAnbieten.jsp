@@ -24,6 +24,8 @@
 <script src="js/npm.js"></script>
 <script src="js/bootstrap.js"></script>
 
+<script src="js/custom.js"></script>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3f0-lP6PquSnOUBu8j85B5MGM3pDLFx4&signed_in=true&callback=initMap"
         async defer></script>
 
@@ -31,98 +33,6 @@
 
 </head>
 <body>
-
-    <script>  
-    var request;  
-    function sendInfo(x)  
-    {  
-	    var v=x.value;  
-	    var url="aj_vergleicheEingabeMitOrtTabelle.jsp?val="+v;  
-	      
-	    if(window.XMLHttpRequest){  
-	    request=new XMLHttpRequest();  
-	    }  
-	    else if(window.ActiveXObject){  
-	    request=new ActiveXObject("Microsoft.XMLHTTP");  
-	    }  
-	      
-	    try{  
-	    request.onreadystatechange= function() {
-	    	getInfo(x);	  
-	    };
-	    
-	    
-	    request.open("GET",url,true);  
-	    request.send();  
-	    }catch(e){alert("Unable to connect to server");}  
-    }  
-      
-    function getInfo(x){  
-	    if(request.readyState==4){  
-	    var val=request.responseText;  
-	    //document.getElementById('amit').innerHTML=val;  
-	    
-	    // x.nextElementSibling.innerHTML +='<div style="width:200px;height:20px;background-color:#d3d3d3"></div>';
-	    x.nextElementSibling.style.display = "block";
-	    x.nextElementSibling.innerHTML = val;
-	    }  
-    }
-    
-    function changeFormValue(elem){
-    	var par = elem.parentElement;
-    	var input = elem.parentElement.previousSibling;
-    	
-    	par.style.display = "none";
-    	input.value = elem.innerHTML;
-    }
-      
-    </script>  
-
-	<script>
-	
-	function sendSQL(){
-		  $( "#whole" ).slideUp();
-		}
-	
-	function suc(){
-		$( "#sendSuccess" ).show();
-	}
-	
-	function fail(){
-		$( "#sendFail" ).show();
-	}
-	
-	$(function() {
-	    $( "#datepicker" ).datepicker({ dateFormat: 'dd-mm-yy',
-	    								onSelect: function()
-	    									{
-	    									ueberfuehreDatum();
-	    									}
-	    });
-	});
-	  
-	function ueberfuehreDatum(){
-		var Datestring = document.getElementById('datepicker').value;
-		
-		var byr = Datestring.substr(6, 4);
-		var bmo = Datestring.substr(0, 2);
-		var bday = Datestring.substr(3, 2);
-		
-		//abspeichern der Werte in Hiddenfields, die später wieder von der JSP benutzt werden
-		document.getElementById('hiddenJahr').value = byr;
-		document.getElementById('hiddenMonat').value = bmo;
-		document.getElementById('hiddenTag').value = bday;
-	}
-	
-	function checkKap(){
-		var data = document.getElementById("formkap").value;
-		if(isNaN(data)){
-		  alert("bitte nur Ziffern eingeben");
-		}else {
-		}
-	}
-	</script>
-
 	<div class="container">
 		<div class="row">
 			<nav class="navbar navbar-default navbar-fixed-top">
