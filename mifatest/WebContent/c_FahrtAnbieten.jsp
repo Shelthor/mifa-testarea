@@ -239,7 +239,7 @@
 						<div class="col-xs-12 col-md-4 abstandNachOben">
 							Von?: 
 							<br/>
-							<input type="text" name="formStart" id="inS1" onkeyup="sendInfo(this)" style="width:100%" autocomplete="off"/><ul class="list-group a"></ul><br/>     
+							<input type="text" name="formStart" id="inS1" style="width:100%" onkeyup="sendInfo(this)" autocomplete="off"/><ul class="list-group a"></ul><br/>     
 							Nach?: 
 							<br/>
 							<input type="text" name="formZiel" onblur="aktualisiereMap()" id="inS6" onkeyup="sendInfo(this)" style="width:100%" autocomplete="off"/><ul class="list-group a"></ul><br/>

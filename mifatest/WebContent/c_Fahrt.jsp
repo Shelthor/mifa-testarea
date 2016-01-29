@@ -24,6 +24,8 @@
 
 <script>
 
+
+
 <%! 
 	Facade f;
 	Fahrt fa;
@@ -163,68 +165,116 @@ function initMap() {
 
 </head>
 <body>
+
+ <script>  
+    var request;  
+    function sendInfo(x)  
+    {  
+	    var v=x.value;  
+	    var url="aj_vergleicheEingabeMitOrtTabelle.jsp?val="+v;  
+	      
+	    if(window.XMLHttpRequest){  
+	    request=new XMLHttpRequest();  
+	    }  
+	    else if(window.ActiveXObject){  
+	    request=new ActiveXObject("Microsoft.XMLHTTP");  
+	    }  
+	      
+	    try{  
+	    request.onreadystatechange= function() {
+	    	getInfo(x);	  
+	    };
+	    
+	    
+	    request.open("GET",url,true);  
+	    request.send();  
+	    }catch(e){alert("Unable to connect to server");}  
+    }  
+      
+    function getInfo(x){  
+	    if(request.readyState==4){  
+	    var val=request.responseText;  
+	    //document.getElementById('amit').innerHTML=val;  
+	    
+	    // x.nextElementSibling.innerHTML +='<div style="width:200px;height:20px;background-color:#d3d3d3"></div>';
+	    x.nextElementSibling.style.display = "block";
+	    x.nextElementSibling.innerHTML = val;
+	    }  
+    }
+    
+    function changeFormValue(elem){
+    	var par = elem.parentElement;
+    	var input = elem.parentElement.previousSibling;
+    	
+    	par.style.display = "none";
+    	input.value = elem.innerHTML;
+    }
+      
+    </script>
+
 	<div class="container">
-	
-		<nav class="navbar navbar-default navbar-fixed-top">
-		  <div class="container-fluid">
-		    <!-- Brand and toggle get grouped for better mobile display -->
-		    <div class="navbar-header">
-		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-		        <span class="sr-only">Toggle navigation</span>
-		        <span class="icon-bar"></span>
-		        <span class="icon-bar"></span>
-		        <span class="icon-bar"></span>
-		      </button>
-		      <a class="navbar-brand" href="c_index.jsp"><img src="img/logo_ba_dresden.png" style="height:100%;"/></a>
-		    </div>
-			    <!-- Collect the nav links, forms, and other content for toggling -->
-		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		    
-		    <ul class="nav navbar-nav navbar-right">
-		        <li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hallo [USERNAME / BILD]!<span class="caret"></span></a>
-		          <ul class="dropdown-menu">
-		            <li><a href="#">Mein öffentliches Profil</a></li>
-		            <li><a href="#">Terminal</a></li>
-		          </ul>
-		        </li>
-	      	</ul>
-		    </div><!-- /.navbar-collapse -->
-		  </div><!-- /.container-fluid -->
-		</nav>
-	
-		<div class="jumbotron muster">
-		    <h1>Fahrt</h1>
-		    <p>von <%= s1 %> nach <%= s6 %></p>
-	
-		</div>
+		<div class="row">
+			<nav class="navbar navbar-default navbar-fixed-top">
+			  <div class="container-fluid">
+			    <!-- Brand and toggle get grouped for better mobile display -->
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+			      <a class="navbar-brand" href="c_index.jsp"><img src="img/logo_ba_dresden.png" style="height:100%;"/></a>
+			    </div>
+				    <!-- Collect the nav links, forms, and other content for toggling -->
+			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			    
+			    <ul class="nav navbar-nav navbar-right">
+			        <li class="dropdown">
+			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hallo [USERNAME / BILD]!<span class="caret"></span></a>
+			          <ul class="dropdown-menu">
+			            <li><a href="#">Mein öffentliches Profil</a></li>
+			            <li><a href="#">Terminal</a></li>
+			          </ul>
+			        </li>
+		      	</ul>
+			    </div><!-- /.navbar-collapse -->
+			  </div><!-- /.container-fluid -->
+			</nav>
 		
-		<div class="row">
-	   		 <div id="map" style="width:100%; height:200px;"></div>
-	   		 <div id="directions-panel"></div>
+			<div class="jumbotron">
+			    <h1>Fahrt</h1>
+			    <p>von <%= s1 %> nach <%= s6 %></p>
+			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-12" id="anzeige">
-				<div class="col-xs-12 col-md-12">
+	   		 <div id="map"></div>
+	   		 <div id="directions-panel" class="blau"></div>
+		</div>
+		<div class="row">
+			<div class="abstandNachOben" id="anzeige">
+				<div class="col-xs-12 col-md-6">
 					<p>	<b><%= fahrer %></b> fährt von <b><%= s1 %></b> nach <b><%= s6 %></b></p>
 		
 					<p>	Angaben zum Gepäck: <b><%= gepaeck %></b></p>
 				</div>
-				<div class="col-xs-12 col-md-6 grau">
+				<div class="col-xs-12 col-md-6">
 					<p>Startzeit: <b><%= startZeit %></b></p>
 					<p>Datum: <b><%= fahrtDatum %></b></p>
 				</div>
-				<div class="col-xs-12 col-md-6">
+				<div class="col-xs-12 col-md-12 abstandNachOben">
 					Bemerkungen vom Fahrer:
 					<div class="col-xs-12 well well-sm"><%= kommentar %></div>
 				</div>
 			</div>
-		</div>
-		<div class="row">
+
+
+
 			<div class="col-sm-12" id="buchenFeld" style="display:none">
 			<button id="buchenKnopf" onclick="zeigen('buchenForm')">BUCHEN</button><br/><br/>
 				<form id="buchenForm" action="c_Fahrt.jsp" style="display:none">
-					<p>Von: <input type="text" name="buchenStart"> Nach: <input type="text" name="buchenZiel"><p><br/>
+					 Von: <input type="text" name="buchenStart" onkeyup="sendInfo(this)" autocomplete="off"/><ul class="list-group a"></ul>
+					 Nach: <input type="text" name="buchenZiel" onkeyup="sendInfo(this)" autocomplete="off"/><ul class="list-group a"></ul><br/>
 					<input type="submit" name="buchen" value="Senden">
 				</form>
 			</div>
