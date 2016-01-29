@@ -182,7 +182,7 @@
 						<div class="col-xs-12 col-md-4 abstandNachOben">
 							Datum?: 
 							<br/>
-							<input type="text" id="datepicker" style="width:100%"><br/>
+							<input type="text" id="datepicker" style="width:100%" autocomplete="off"><br/>
 							 
 							    <input type="hidden" id="hiddenJahr" name="hJahr" />
 						    	<input type="hidden" id="hiddenMonat" name="hMonat" />
@@ -242,23 +242,23 @@
 							<input type="text" name="formStart" id="inS1" style="width:100%" onkeyup="sendInfo(this)" autocomplete="off"/><ul class="list-group a"></ul><br/>     
 							Nach?: 
 							<br/>
-							<input type="text" name="formZiel" onblur="aktualisiereMap()" id="inS6" onkeyup="sendInfo(this)" style="width:100%" autocomplete="off"/><ul class="list-group a"></ul><br/>
+							<input type="text" name="formZiel"  id="inS6" onkeyup="sendInfo(this)" style="width:100%" autocomplete="off"/><ul class="list-group a"></ul><br/>
 						</div>
 						<div class="col-xs-12 col-md-4 abstandNachOben">  
 							Über?:
 							<br/>
 							<input type="button" style="width: 100%;" onclick="zeigen()" value="füge Zwischenstation hinzu"/>
 							<div id="s2-s5" style="display:none;">
-								<input type="text" name="formS2" onkeyup="sendInfo(this)" onblur="aktualisiereMap()" id="inS2" style="width:100%; display:none;"/><ul class="list-group a"></ul><br/><br/>
-								<input type="text" name="formS3" onkeyup="sendInfo(this)" onblur="aktualisiereMap()" id="inS3" style="width:100%; display:none;"/><ul class="list-group a"></ul><br/><br/>
-								<input type="text" name="formS4" onkeyup="sendInfo(this)" onblur="aktualisiereMap()" id="inS4" style="width:100%; display:none;"/><ul class="list-group a"></ul><br/><br/>
-								<input type="text" name="formS5" onkeyup="sendInfo(this)" onblur="aktualisiereMap()" id="inS5" style="width:100%; display:none;"/><ul class="list-group a"></ul><br/>				
+								<input type="text" name="formS2" onkeyup="sendInfo(this)" id="inS2" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul><br/><br/>
+								<input type="text" name="formS3" onkeyup="sendInfo(this)" id="inS3" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul><br/><br/>
+								<input type="text" name="formS4" onkeyup="sendInfo(this)" id="inS4" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul><br/><br/>
+								<input type="text" name="formS5" onkeyup="sendInfo(this)" id="inS5" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul><br/>				
 							</div>
 							</div>
 							<div class="col-xs-12 col-md-12 abstandNachOben">
 								Kommentar?: 
 								<br/>
-								<input type="text" name="formKommentar" style="width: 100%; height: 75px;"/><br/>
+								<input type="text" name="formKommentar" style="width: 100%; height: 75px;" autocomplete="off"/><br/>
 								<br/>
 								<br/>
 								<input id="knopf" style="width: 100%;" type="submit" name="ok" value="OK"/>
