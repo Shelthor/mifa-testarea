@@ -16,7 +16,6 @@
 <link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
 <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
 <link rel="stylesheet" href="css/custom.css" type="text/css" />
-<link rel="stylesheet" href="css/style.css" type="text/css" />
 
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -64,13 +63,16 @@
 	    //document.getElementById('amit').innerHTML=val;  
 	    
 	    // x.nextElementSibling.innerHTML +='<div style="width:200px;height:20px;background-color:#d3d3d3"></div>';
-	    
+	    x.nextElementSibling.style.display = "block";
 	    x.nextElementSibling.innerHTML = val;
 	    }  
     }
     
     function changeFormValue(elem){
+    	var par = elem.parentElement;
     	var input = elem.parentElement.previousSibling;
+    	
+    	par.style.display = "none";
     	input.value = elem.innerHTML;
     }
       
@@ -157,28 +159,27 @@
 			</div>
 		</div>
 	
-	<div class="row">
-	
-		<ul class="nav nav-pills nav-justified">
-		  <li role="presentation"><a href="#">Fahrt suchen</a></li>
-		  <li role="presentation" class="active"><a href="#">Fahrt anbieten</a></li>
-		  <li role="presentation"><a href="#">Historie</a></li>
-		  <li role="presentation"><a href="#">Settings</a></li>
-		  <li role="presentation"><a href="#">Mailbox</a></li>
-		</ul>
+		<div class="row">
+			<ul class="nav nav-pills nav-justified">
+			  <li role="presentation"><a href="#">Fahrt suchen</a></li>
+			  <li role="presentation" class="active"><a href="#">Fahrt anbieten</a></li>
+			  <li role="presentation"><a href="#">Historie</a></li>
+			  <li role="presentation"><a href="#">Settings</a></li>
+			  <li role="presentation"><a href="#">Mailbox</a></li>
+			</ul>
+		</div>
 		
 		<br/>
 		
-		
-   		<div class="col-md-12">
-			<div class="row" id="whole">
-				<div class="row">
-			   		 <div id="map" style="width:100%; height:200px;"></div>
-			   		 <div id="directions-panel"></div>
+		<div class="row">
+			<div id="whole">
+				<div class="col-md-12">
+			   		 <div id="map"></div>
+			   		 <div id="directions-panel" class="blau"></div>
 				</div>
 				<div id="sqlForm">
-					<form class="row" action="c_FahrtAnbieten.jsp" method="post">
-						<div class="col-xs-12 col-md-4">
+					<form action="c_FahrtAnbieten.jsp" method="post">
+						<div class="col-xs-12 col-md-4 abstandNachOben">
 							Datum?: 
 							<br/>
 							<input type="text" id="datepicker" style="width:100%"><br/>
@@ -235,26 +236,26 @@
 							  </select>
 							<br/>
 						</div>
-						<div class="col-xs-12 col-md-4">
+						<div class="col-xs-12 col-md-4 abstandNachOben">
 							Von?: 
 							<br/>
-							<input type="text" name="formStart" id="inS1" onkeyup="sendInfo(this)" style="width:100%"/><ul class="list-group a"></ul><br/>     
+							<input type="text" name="formStart" id="inS1" onkeyup="sendInfo(this)" style="width:100%" autocomplete="off"/><ul class="list-group a"></ul><br/>     
 							Nach?: 
 							<br/>
-							<input type="text" name="formZiel" onblur="aktualisiereMap()" id="inS6" onkeyup="sendInfo(this)" style="width:100%"/><ul class="list-group a"></ul><br/>
+							<input type="text" name="formZiel" onblur="aktualisiereMap()" id="inS6" onkeyup="sendInfo(this)" style="width:100%" autocomplete="off"/><ul class="list-group a"></ul><br/>
 						</div>
-						<div class="col-xs-12 col-md-4">  
-								Über?:
-								<br/>
-								<input type="button" style="width: 100%;" onclick="zeigen()" value="füge Zwischenstation hinzu"/>
-								<div id="s2-s5" style="display:none;" class="verlauf-orange">
-									<input type="text" name="formS2" onblur="aktualisiereMap()" id="inS2" style="width:100%; display:none;"/><br/><br/>
-									<input type="text" name="formS3" onblur="aktualisiereMap()" id="inS3" style="width:100%; display:none;"/><br/><br/>	
-									<input type="text" name="formS4" onblur="aktualisiereMap()" id="inS4" style="width:100%; display:none;"/><br/><br/>	
-									<input type="text" name="formS5" onblur="aktualisiereMap()" id="inS5" style="width:100%; display:none;"/><br/><br/>				
-								</div>
+						<div class="col-xs-12 col-md-4 abstandNachOben">  
+							Über?:
+							<br/>
+							<input type="button" style="width: 100%;" onclick="zeigen()" value="füge Zwischenstation hinzu"/>
+							<div id="s2-s5" style="display:none;">
+								<input type="text" name="formS2" onkeyup="sendInfo(this)" onblur="aktualisiereMap()" id="inS2" style="width:100%; display:none;"/><ul class="list-group a"></ul><br/><br/>
+								<input type="text" name="formS3" onkeyup="sendInfo(this)" onblur="aktualisiereMap()" id="inS3" style="width:100%; display:none;"/><ul class="list-group a"></ul><br/><br/>
+								<input type="text" name="formS4" onkeyup="sendInfo(this)" onblur="aktualisiereMap()" id="inS4" style="width:100%; display:none;"/><ul class="list-group a"></ul><br/><br/>
+								<input type="text" name="formS5" onkeyup="sendInfo(this)" onblur="aktualisiereMap()" id="inS5" style="width:100%; display:none;"/><ul class="list-group a"></ul><br/>				
 							</div>
-							<div class="col-xs-12 col-md-12">
+							</div>
+							<div class="col-xs-12 col-md-12 abstandNachOben">
 								Kommentar?: 
 								<br/>
 								<input type="text" name="formKommentar" style="width: 100%; height: 75px;"/><br/>
@@ -273,8 +274,6 @@
 					<p>FAIL</p>
 			</div>
 		</div>
-	</div>
-
 	</div>
 </body>
 

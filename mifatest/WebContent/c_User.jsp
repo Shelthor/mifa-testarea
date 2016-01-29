@@ -7,6 +7,7 @@
 <title>INTERN</title>
 <link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
 <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+<link rel="stylesheet" href="css/custom.css" type="text/css" />
 
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
