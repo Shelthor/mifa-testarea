@@ -45,10 +45,12 @@
 	int kap;
 %>
 <%
-	f = new Facade();
-	id = 6; //kommt aus cookie ODER link (mal sehen)
 		
 	try{
+		id = 1; //kommt aus cookie ODER link (mal sehen)
+		
+		f = new Facade();	
+		
 		fa = f.getFahrtById(id);
 		
 		kommentar = fa.getKommentar();
