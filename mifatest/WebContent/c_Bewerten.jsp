@@ -167,7 +167,7 @@ if(kontrolle == 0){
 						Kommentar?: 
 						<br/>
 						<br/>
-						<input type="text" name="formKommentar" style="width: 100%; height: 75px;"/>
+						<input type="text" name="formKommentar" style="width: 100%; height: 75px;" autocomplete="off"/>
 						<br/>
 						<br/>
 						<input id="knopf" style="width: 100%;" type="submit" name="ok" value="OK"/>

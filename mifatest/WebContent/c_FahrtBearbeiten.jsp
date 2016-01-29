@@ -169,7 +169,7 @@
 						<div class="bearbeitenPNG" onclick="zeigeBearbeitungsFeld('1')" onmouseover="glow(this)" onmouseout="blass(this)"></div>
 					</div>
 					<div class="col-sm-12" id="b1" style="display:none;">
-						<input type="text" id="datepicker" name="formDatum" size="30"><br/>
+						<input type="text" id="datepicker" name="formDatum" size="30" autocomplete="off"><br/>
 							 
 							    <input type="hidden" id="hiddenJahr" name="hJahr" />
 						    	<input type="hidden" id="hiddenMonat" name="hMonat" />
@@ -250,7 +250,7 @@
 						<div class="bearbeitenPNG" onclick="zeigeBearbeitungsFeld('4')" onmouseover="glow(this)" onmouseout="blass(this)"></div>
 					</div>
 					<div class="col-sm-12" id="b4" style="display:none;">
-						<input type=text" name="formKapazitaet">
+						<input type=text" name="formKapazitaet" autocomplete="off"/>
 					</div>
 				</div>
 				<div class="row hellgrau">
@@ -261,7 +261,7 @@
 						<div class="bearbeitenPNG" onclick="zeigeBearbeitungsFeld('5')" onmouseover="glow(this)" onmouseout="blass(this)"></div>
 					</div>
 					<div class="col-sm-12" id="b5" style="display:none;">
-						<input type=text" name="formS1">
+						<input type=text" name="formS1" autocomplete="off"/>
 					</div>
 				</div>
 				<div class="row grau">
@@ -272,7 +272,7 @@
 						<div class="bearbeitenPNG" onclick="zeigeBearbeitungsFeld('6')" onmouseover="glow(this)" onmouseout="blass(this)"></div>
 					</div>
 					<div class="col-sm-12" id="b6" style="display:none;">
-						<input type=text" name="formS6">
+						<input type=text" name="formS6" autocomplete="off"/>
 					</div>
 				</div>
 				<div class="row hellgrau">
@@ -283,7 +283,7 @@
 						<div class="bearbeitenPNG" onclick="zeigeBearbeitungsFeld('7')" onmouseover="glow(this)" onmouseout="blass(this)"></div>
 					</div>
 					<div class="col-sm-12" id="b7" style="display:none;">
-						<input type=text" name="formKommentar" style="width: 100%; height: 75px;">
+						<input type=text" name="formKommentar" style="width: 100%; height: 75px;"autocomplete="off"/>
 					</div>
 				</div>
 				<input type="submit" name="ok" value="senden" style="width:100%">

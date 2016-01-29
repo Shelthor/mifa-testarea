@@ -157,7 +157,7 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-12">
-	    	<div class="row grau">
+	    	<div class="row randObenRund blau">
 	    		<div class="col-sm-6">
 		    		<h1><%=vorName %> <%=nachName %></h1>
 	   		 	</div>
