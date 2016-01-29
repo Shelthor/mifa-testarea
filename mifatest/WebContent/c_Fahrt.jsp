@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
 <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
 <link rel="stylesheet" href="css/custom.css" type="text/css" />
-<link rel="stylesheet" href="css/style.css" type="text/css" />
+
 
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
@@ -214,9 +214,9 @@ function initMap() {
 					<p>Startzeit: <b><%= startZeit %></b></p>
 					<p>Datum: <b><%= fahrtDatum %></b></p>
 				</div>
-				<div class="col-xs-12 col-md-6 hellgrau">
+				<div class="col-xs-12 col-md-6">
 					Bemerkungen vom Fahrer:
-					<div class="col-xs-12"><b><%= kommentar %></b></div>
+					<div class="col-xs-12 well well-sm"><%= kommentar %></div>
 				</div>
 			</div>
 		</div>

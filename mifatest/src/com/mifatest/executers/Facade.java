@@ -322,7 +322,15 @@ public class Facade {
  		session.merge(ort);
  		
  		t.commit();
- 	} 	
+ 	}
+ 	
+ 	public List<Ort> getListLike(String searchKeyword){
+	    org.hibernate.Query q= session.createQuery("from Ort as u where u.ortBezeichnung like '"+ searchKeyword + "%'");
+		
+		List result = q.list();
+		
+		return result;
+	}
 //Passagier-Fahrt-Relations//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  	
  	public void newPassagierFahrt(int userid, int fahrtid, String uStart, String uZiel){

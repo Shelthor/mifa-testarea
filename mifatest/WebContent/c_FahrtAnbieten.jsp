@@ -16,7 +16,6 @@
 <link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
 <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
 <link rel="stylesheet" href="css/custom.css" type="text/css" />
-<link rel="stylesheet" href="css/style.css" type="text/css" />
 
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -32,6 +31,52 @@
 
 </head>
 <body>
+
+    <script>  
+    var request;  
+    function sendInfo(x)  
+    {  
+	    var v=x.value;  
+	    var url="aj_vergleicheEingabeMitOrtTabelle.jsp?val="+v;  
+	      
+	    if(window.XMLHttpRequest){  
+	    request=new XMLHttpRequest();  
+	    }  
+	    else if(window.ActiveXObject){  
+	    request=new ActiveXObject("Microsoft.XMLHTTP");  
+	    }  
+	      
+	    try{  
+	    request.onreadystatechange= function() {
+	    	getInfo(x);	  
+	    };
+	    
+	    
+	    request.open("GET",url,true);  
+	    request.send();  
+	    }catch(e){alert("Unable to connect to server");}  
+    }  
+      
+    function getInfo(x){  
+	    if(request.readyState==4){  
+	    var val=request.responseText;  
+	    //document.getElementById('amit').innerHTML=val;  
+	    
+	    // x.nextElementSibling.innerHTML +='<div style="width:200px;height:20px;background-color:#d3d3d3"></div>';
+	    x.nextElementSibling.style.display = "block";
+	    x.nextElementSibling.innerHTML = val;
+	    }  
+    }
+    
+    function changeFormValue(elem){
+    	var par = elem.parentElement;
+    	var input = elem.parentElement.previousSibling;
+    	
+    	par.style.display = "none";
+    	input.value = elem.innerHTML;
+    }
+      
+    </script>  
 
 	<script>
 	
@@ -79,67 +124,65 @@
 	</script>
 
 	<div class="container">
+		<div class="row">
+			<nav class="navbar navbar-default navbar-fixed-top">
+			  <div class="container-fluid">
+			    <!-- Brand and toggle get grouped for better mobile display -->
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+			      <a class="navbar-brand" href="c_index.jsp"><img src="img/logo_ba_dresden.png" style="height:100%;"/></a>
+			    </div>
+				    <!-- Collect the nav links, forms, and other content for toggling -->
+			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			    
+			    <ul class="nav navbar-nav navbar-right">
+			        <li class="dropdown">
+			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hallo [USERNAME / BILD]!<span class="caret"></span></a>
+			          <ul class="dropdown-menu">
+			            <li><a href="#">Mein öffentliches Profil</a></li>
+			            <li><a href="#">Terminal</a></li>
+			          </ul>
+			        </li>
+		      	</ul>
+			    </div><!-- /.navbar-collapse -->
+			  </div><!-- /.container-fluid -->
+			</nav>
+		
+			<div class="jumbotron">
+			    <h1>Terminal</h1>
+			    <p>Wo willst du hin?</p>
+			</div>
+		</div>
 	
-		<nav class="navbar navbar-default navbar-fixed-top">
-		  <div class="container-fluid">
-		    <!-- Brand and toggle get grouped for better mobile display -->
-		    <div class="navbar-header">
-		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-		        <span class="sr-only">Toggle navigation</span>
-		        <span class="icon-bar"></span>
-		        <span class="icon-bar"></span>
-		        <span class="icon-bar"></span>
-		      </button>
-		      <a class="navbar-brand" href="c_index.jsp"><img src="img/logo_ba_dresden.png" style="height:100%;"/></a>
-		    </div>
-			    <!-- Collect the nav links, forms, and other content for toggling -->
-		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		    
-		    <ul class="nav navbar-nav navbar-right">
-		        <li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hallo [USERNAME / BILD]!<span class="caret"></span></a>
-		          <ul class="dropdown-menu">
-		            <li><a href="#">Mein öffentliches Profil</a></li>
-		            <li><a href="#">Terminal</a></li>
-		          </ul>
-		        </li>
-	      	</ul>
-		    </div><!-- /.navbar-collapse -->
-		  </div><!-- /.container-fluid -->
-		</nav>
-	
-		<div class="jumbotron">
-		    <h1>Terminal</h1>
-		    <p>Wo willst du hin?</p>
+		<div class="row">
+			<ul class="nav nav-pills nav-justified">
+			  <li role="presentation"><a href="#">Fahrt suchen</a></li>
+			  <li role="presentation" class="active"><a href="#">Fahrt anbieten</a></li>
+			  <li role="presentation"><a href="#">Historie</a></li>
+			  <li role="presentation"><a href="#">Settings</a></li>
+			  <li role="presentation"><a href="#">Mailbox</a></li>
+			</ul>
 		</div>
 		
+		<br/>
 		
-	<div class="row">
-	
-		<ul class="nav nav-pills nav-justified">
-		  <li role="presentation"><a href="#">Fahrt suchen</a></li>
-		  <li role="presentation" class="active"><a href="#">Fahrt anbieten</a></li>
-		  <li role="presentation"><a href="#">Historie</a></li>
-		  <li role="presentation"><a href="#">Settings</a></li>
-		  <li role="presentation"><a href="#">Mailbox</a></li>
-		</ul>
-		
-		<br/><br/>
-		
-		
-    <div class="col-md-12 text-center">
-		<div class="row" id="whole">
-				<div class="row">
-			   		 <div id="map" style="width:100%; height:200px;"></div>
-			   		 <div id="directions-panel"></div>
+		<div class="row">
+			<div id="whole">
+				<div class="col-md-12">
+			   		 <div id="map"></div>
+			   		 <div id="directions-panel" class="blau"></div>
 				</div>
 				<div id="sqlForm">
-					<form class="row" action="c_FahrtAnbieten.jsp" method="post">
-						<div class="col-sm-12">
-							<br/>
+					<form action="c_FahrtAnbieten.jsp" method="post">
+						<div class="col-xs-12 col-md-4 abstandNachOben">
 							Datum?: 
 							<br/>
-							<input type="text" id="datepicker" size="30"><br/>
+							<input type="text" id="datepicker" style="width:100%"><br/>
 							 
 							    <input type="hidden" id="hiddenJahr" name="hJahr" />
 						    	<input type="hidden" id="hiddenMonat" name="hMonat" />
@@ -147,7 +190,7 @@
 							 
 							Uhrzeit?: 
 							<br/>
-								<select name="formStunden">
+								<select name="formStunden" style="width:49%">
 									<option value="0">0</option>
 									<option value="1">1</option>
 									<option value="2">2</option>
@@ -173,8 +216,7 @@
 									<option value="22">22</option>
 									<option value="23">23</option>
 								</select>
-								:
-								<select name="formMinuten">
+								<select name="formMinuten" style="width:49%">
 									<option value="0">00</option>
 									<option value="15">15</option>
 									<option value="30">30</option>
@@ -187,36 +229,40 @@
 							Angaben zum Gepäck?: 
 							<br/>
 							
-							 <select name="formGepaeck">
+							 <select name="formGepaeck" style="width:100%">
 							    <option value="ausreichend Platz vorhanden">ausreichend Platz vorhanden</option>
 							    <option value="mittleres Gepäck">mittleres Gepäck</option>
 							    <option value="nur Handgepäck">nur Handgepäck</option>
 							  </select>
 							<br/>
-	
+						</div>
+						<div class="col-xs-12 col-md-4 abstandNachOben">
 							Von?: 
 							<br/>
-							<input type="text" name="formStart" id="inS1"/><br/>
+							<input type="text" name="formStart" id="inS1" onkeyup="sendInfo(this)" style="width:100%" autocomplete="off"/><ul class="list-group a"></ul><br/>     
 							Nach?: 
 							<br/>
-							<input type="text" name="formZiel" onblur="aktualisiereMap()" id="inS6"/><br/>
-							<input type="button" style="width: 100%;" onclick="zeigen()" value="füge Zwischenstation hinzu"/>
-							<div id="s2-s5" style="display:none;" class="verlauf-orange">
-								<p>Über?:</p>
-								<br/>
-								 
-								<input type="text" name="formS2" onblur="aktualisiereMap()" id="inS2" style="display:none;"/><br/>	
-								<input type="text" name="formS3" onblur="aktualisiereMap()" id="inS3" style="display:none;"/><br/>	
-								<input type="text" name="formS4" onblur="aktualisiereMap()" id="inS4" style="display:none;"/><br/>	
-								<input type="text" name="formS5" onblur="aktualisiereMap()" id="inS5" style="display:none;"/><br/>				
-							</div>
-							Kommentar?: 
-							<br/>
-							<input type="text" name="formKommentar" style="width: 100%; height: 75px;"/><br/>
-							<br/>
-							<br/>
-							<input id="knopf" style="width: 100%;" type="submit" name="ok" value="OK"/>
+							<input type="text" name="formZiel" onblur="aktualisiereMap()" id="inS6" onkeyup="sendInfo(this)" style="width:100%" autocomplete="off"/><ul class="list-group a"></ul><br/>
 						</div>
+						<div class="col-xs-12 col-md-4 abstandNachOben">  
+							Über?:
+							<br/>
+							<input type="button" style="width: 100%;" onclick="zeigen()" value="füge Zwischenstation hinzu"/>
+							<div id="s2-s5" style="display:none;">
+								<input type="text" name="formS2" onkeyup="sendInfo(this)" onblur="aktualisiereMap()" id="inS2" style="width:100%; display:none;"/><ul class="list-group a"></ul><br/><br/>
+								<input type="text" name="formS3" onkeyup="sendInfo(this)" onblur="aktualisiereMap()" id="inS3" style="width:100%; display:none;"/><ul class="list-group a"></ul><br/><br/>
+								<input type="text" name="formS4" onkeyup="sendInfo(this)" onblur="aktualisiereMap()" id="inS4" style="width:100%; display:none;"/><ul class="list-group a"></ul><br/><br/>
+								<input type="text" name="formS5" onkeyup="sendInfo(this)" onblur="aktualisiereMap()" id="inS5" style="width:100%; display:none;"/><ul class="list-group a"></ul><br/>				
+							</div>
+							</div>
+							<div class="col-xs-12 col-md-12 abstandNachOben">
+								Kommentar?: 
+								<br/>
+								<input type="text" name="formKommentar" style="width: 100%; height: 75px;"/><br/>
+								<br/>
+								<br/>
+								<input id="knopf" style="width: 100%;" type="submit" name="ok" value="OK"/>
+							</div>
 					</form>
 				</div>
 				<br/>	
@@ -228,8 +274,6 @@
 					<p>FAIL</p>
 			</div>
 		</div>
-	</div>
-
 	</div>
 </body>
 
