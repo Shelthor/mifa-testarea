@@ -30,50 +30,6 @@ td.star {
 </style>
 </head>
 <body>
-
-<script type="text/javascript">
-
-        checked = new Array(false,false,false);
-        
-        var wert;
-
-        //Sterne
-
-        function leuchten(a, tabelleX) {
-        	var posi = "sterne"+tabelleX;
-        	var table = document.getElementById(posi);
-        	var tds = table.getElementsByTagName("td");
-        	
-        	
-        	if(checked[tabelleX-1]==false)
-        	{
-        		for (var i = 0; i < tds.length; i++) {
-    	            if(i < a)
-    		           	{
-    		     	     	  tds[i].style.backgroundImage = "url('img/1.png')";
-    		            }
-    	            else
-    		            {
-    		                 tds[i].style.backgroundImage = "url('img/2.png')";
-    		            }
-    	            } 
-        	}
-	        	
-        }
-
-        function setzen(a, tabelleY) {
-        	
-        checked[tabelleY-1] = false;
-
-		leuchten(a, tabelleY);
-		checked[tabelleY-1] = true;
-
-		var hFeld = "hiddenField" + tabelleY;
-        
-        document.getElementById(hFeld).value=a;       
-        }
-</script>
-
 <%
 
 if(kontrolle == 0){
