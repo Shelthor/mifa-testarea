@@ -35,6 +35,19 @@
 	background-color:#d3d3d3;
 }
 
+.blau{
+	background-color:#337ab7;
+	color:#fff;
+}
+
+ul.a{
+	list-style-type: none;
+}
+
+li.ortListElem:hover{
+	 background-color: #d3d3d3;
+}
+
 .col-sm-3.gruen{
 	background-color:green;
 }
@@ -44,4 +57,8 @@
     background-image: url('img/2.png');
     height: 61px;
     width: 61px;
+}
+
+.list-group-item:hover{
+	background-color: #f5f5f5;
 }

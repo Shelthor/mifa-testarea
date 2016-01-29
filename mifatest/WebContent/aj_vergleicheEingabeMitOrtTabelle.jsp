@@ -16,7 +16,7 @@
 	  		
 	  		duschen = h.getListLike(s);
 	  		for(int z = 0; z < duschen.size(); z++)
-	  		out.print(duschen.get(z).getOrtBezeichnung() + "<br/>");
+	  		out.print("<li onclick='changeFormValue(this)' class='list-group-item'>" + duschen.get(z).getOrtBezeichnung() + "</li>");
 	    }  
 	     
 	    catch(Exception e) {
