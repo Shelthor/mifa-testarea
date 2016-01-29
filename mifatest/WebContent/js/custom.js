@@ -1,7 +1,7 @@
 /*
 
 	AJAX
-
+	FahrtAnbieten.jsp , 
 */
 
 var request;  
@@ -48,7 +48,7 @@ function changeFormValue(elem){
 /*
 
 	SUCCESS / FAIL
-
+	FahrtAnbieten.jsp , 
 */
 
 function sendSQL(){
@@ -66,7 +66,7 @@ function fail(){
 /*
 
 	DATE
-
+	FahrtAnbieten.jsp , 
 */
 
 $(function() {
@@ -94,7 +94,7 @@ function ueberfuehreDatum(){
 /*
 
 	duschen
-
+	FahrtAnbieten.jsp , 
 */
 	
 function checkKap(){
