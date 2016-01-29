@@ -17,6 +17,8 @@
 
 <script src="js/npm.js"></script>
 <script src="js/bootstrap.js"></script>
+
+<script src="js/custom.js"></script>
 <style>
 td.star {
             background-repeat: no-repeat;
@@ -125,7 +127,7 @@ if(kontrolle == 0){
   </div>
   <div class="row">
 
-    <div class="col-md-12">
+    <div id="whole" class="col-md-12">
 		<div id="sqlForm" class="grau">
 			<p>Bitte bewerte die Pünktlichkeit (nicht erschienen = 1 Stern)</p>
 			<table class="text-center" id="sterne1">
@@ -179,12 +181,12 @@ if(kontrolle == 0){
 				</form>
 		</div>
 		<br/>
-		<div id="sendSuccess" style="display:none">
-			<p>SUCCESS</p>
-		</div>
-		<div id="sendFail" style="display:none">
-			<p>FAIL</p>
-		</div>
+	</div>
+	<div id="sendSuccess" style="display:none">
+		<p>SUCCESS</p>
+	</div>
+	<div id="sendFail" style="display:none">
+		<p>FAIL</p>
 	</div>
   </div>
 </div>
@@ -205,20 +207,6 @@ if(kontrolle == 0){
 	String status;
 %>
 
-<script>
-function sendSQL(){
-	  $( "#sqlForm" ).slideUp();
-	}
-
-function suc(){
-	$( "#sendSuccess" ).show();
-}
-
-function fail(){
-	$( "#sendFail" ).show();
-}
-		
-</script>
 <% 
 	Facade f = new Facade();
 	
