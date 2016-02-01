@@ -7,71 +7,27 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>INTERN - Bewerten</title>
-
-<link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
-<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
-<link rel="stylesheet" href="css/custom.css" type="text/css" />
-
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-
-<script src="js/npm.js"></script>
-<script src="js/bootstrap.js"></script>
+<title>INTERN</title>
+	<link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="css/custom.css" type="text/css" />
+	
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="js/npm.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/custom.js"></script>
 <style>
-td.star {
-            background-repeat: no-repeat;
-            background-image: url('img/2.png');
-            height: 61px;
-            width: 61px;
-        }
+
+td.star{
+	background-repeat: no-repeat;
+	background-image: url('img/2.png');
+	height: 61px;
+	width: 61px;
+ }
 
 </style>
 </head>
 <body>
-
-<script type="text/javascript">
-
-        checked = new Array(false,false,false);
-        
-        var wert;
-
-        //Sterne
-
-        function leuchten(a, tabelleX) {
-        	var posi = "sterne"+tabelleX;
-        	var table = document.getElementById(posi);
-        	var tds = table.getElementsByTagName("td");
-        	
-        	
-        	if(checked[tabelleX-1]==false)
-        	{
-        		for (var i = 0; i < tds.length; i++) {
-    	            if(i < a)
-    		           	{
-    		     	     	  tds[i].style.backgroundImage = "url('img/1.png')";
-    		            }
-    	            else
-    		            {
-    		                 tds[i].style.backgroundImage = "url('img/2.png')";
-    		            }
-    	            } 
-        	}
-	        	
-        }
-
-        function setzen(a, tabelleY) {
-        	
-        checked[tabelleY-1] = false;
-
-		leuchten(a, tabelleY);
-		checked[tabelleY-1] = true;
-
-		var hFeld = "hiddenField" + tabelleY;
-        
-        document.getElementById(hFeld).value=a;       
-        }
-</script>
-
 <%
 
 if(kontrolle == 0){
@@ -125,7 +81,7 @@ if(kontrolle == 0){
   </div>
   <div class="row">
 
-    <div class="col-md-12">
+    <div id="whole" class="col-md-12">
 		<div id="sqlForm" class="grau">
 			<p>Bitte bewerte die Pünktlichkeit (nicht erschienen = 1 Stern)</p>
 			<table class="text-center" id="sterne1">
@@ -179,12 +135,12 @@ if(kontrolle == 0){
 				</form>
 		</div>
 		<br/>
-		<div id="sendSuccess" style="display:none">
-			<p>SUCCESS</p>
-		</div>
-		<div id="sendFail" style="display:none">
-			<p>FAIL</p>
-		</div>
+	</div>
+	<div id="sendSuccess" style="display:none">
+		<p>SUCCESS</p>
+	</div>
+	<div id="sendFail" style="display:none">
+		<p>FAIL</p>
 	</div>
   </div>
 </div>
@@ -205,20 +161,6 @@ if(kontrolle == 0){
 	String status;
 %>
 
-<script>
-function sendSQL(){
-	  $( "#sqlForm" ).slideUp();
-	}
-
-function suc(){
-	$( "#sendSuccess" ).show();
-}
-
-function fail(){
-	$( "#sendFail" ).show();
-}
-		
-</script>
 <% 
 	Facade f = new Facade();
 	

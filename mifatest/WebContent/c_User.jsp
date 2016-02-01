@@ -5,16 +5,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>INTERN</title>
-<link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
-<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
-<link rel="stylesheet" href="css/custom.css" type="text/css" />
-
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-
-<script src="js/npm.js"></script>
-<script src="js/bootstrap.js"></script>
-
-
+	<link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="css/custom.css" type="text/css" />
+	
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="js/npm.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/custom.js"></script>
 </head>
 <body>
 

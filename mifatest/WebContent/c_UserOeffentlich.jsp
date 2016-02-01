@@ -7,18 +7,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>UserOeffentlich</title>
-
-<link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
-<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
-<link rel="stylesheet" href="css/custom.css" type="text/css" />
-
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-
-<script src="js/npm.js"></script>
-<script src="js/bootstrap.js"></script>
-
-
+<title>PUBLIC</title>
+	<link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="css/custom.css" type="text/css" />
+	
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="js/npm.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/custom.js"></script>
 </head>
 <body>
 
@@ -87,40 +84,6 @@
 	
 	%>
 
-<script>
-	function Age()
-	{
-		var datee = "<%=geburtsDatum %>";
-		
-		/*
-		var byr = datee.substr(0, 3);
-		var bmo = datee.substr(5, 6);
-		var bday = datee.substr(8, 9);
-		*/
-		parseInt(datee.substr(0, 4));
-		
-		var byr = parseInt(datee.substr(0, 4));
-		var bmo = parseInt(datee.substr(5, 2));
-		var bday = parseInt(datee.substr(8, 2));
-		
-		//
-		var age;
-		var now = new Date();
-		tday=parseInt(now.getDate());
-		tmo=parseInt(now.getMonth());
-		tyr=parseInt(now.getFullYear());
-			
-			if((tmo > bmo)||(tmo==bmo & tday>=bday))
-				{age=byr}
-			else
-				{age=byr+1}
-			
-			var result = (tyr-age) + " Jahre alt";
-			return result;		
-	}
-
-</script>
-
 <div class="container">
 	
 		<nav class="navbar navbar-default navbar-fixed-top">
@@ -168,7 +131,7 @@
 			<div class="row hellgrau">
 	    		<div class="col-sm-3">	
 			    	<script>
-						document.write(Age());
+						document.write(giveAge('<%=geburtsDatum %>'));
 					</script>
 			    </div>
 			    <div class="col-sm-3">

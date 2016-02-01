@@ -8,8 +8,8 @@
 </head>
 <body>
 	<%!
-		int iDempf=11;
-		int iDsend=2;
+		int iDempf=3;
+		int iDsend=1;
 		int iDfahrt=2;
 	%>
 

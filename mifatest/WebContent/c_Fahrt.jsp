@@ -8,211 +8,156 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-
-<link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
-<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
-<link rel="stylesheet" href="css/custom.css" type="text/css" />
-
-
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-
-<script src="js/npm.js"></script>
-<script src="js/bootstrap.js"></script>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3f0-lP6PquSnOUBu8j85B5MGM3pDLFx4&signed_in=true&callback=initMap"
-        async defer></script>
-
-<script>
-
-
-
-<%! 
-	Facade f;
-	Fahrt fa;
+	<link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="css/custom.css" type="text/css" />
 	
-	int id, userId;
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="js/npm.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/custom.js"></script>
 	
-	String  kommentar;
-	
-	String 	s1,s2,s3,s4,s5,s6;
-	int 	p1,p2,p3,p4,p5,p6;
-	
-	String 	fahrtDatum;
-	String 	gepaeck;
-	String	startZeit;
-	String 	fahrer;
-	
-	int kap;
-%>
-<%
-		
-	try{
-		id = 1; //kommt aus cookie ODER link (mal sehen)
-		
-		f = new Facade();	
-		
-		fa = f.getFahrtById(id);
-		
-		kommentar = fa.getKommentar();
-		
-		fahrtDatum = fa.getFahrtDatum().toString();
-		gepaeck = fa.getGepaeck();
-		startZeit = fa.getFahrtStartZeit().toString();
-		
-		fahrer = f.getFahrerByFahrtId(id).getvName() + " " + f.getFahrerByFahrtId(id).getnName() ;
-		
-		kap = fa.getKapazitaet();
-	
-		s1 = fa.getS1();
-		s2 = fa.getS2();
-		s3 = fa.getS3();
-		s4 = fa.getS4();
-		s5 = fa.getS5();
-		s6 = fa.getS6();
-		
-		p1 = fa.getP1();
-		p2 = fa.getP2();
-		p3 = fa.getP3();
-		p4 = fa.getP4();
-		p5 = fa.getP5();
-		p6 = fa.getP6();
-		
-		//
-		
-		List<Bewertung> bList = f.getListWithAllBewertungenToUserByUserId(id);
-		
-		List<Integer> fahrstilRating = new ArrayList<Integer>();
-		List<Integer> puenktlichkeitRating = new ArrayList<Integer>();
-		List<Integer> freundlichkeitRating = new ArrayList<Integer>();
-		
-		for(int i = 0; i < bList.size(); i++){
-			fahrstilRating.add(bList.get(i).getFahrstilRating());
-			puenktlichkeitRating.add(bList.get(i).getPuenktlichkeitRating());
-			freundlichkeitRating.add(bList.get(i).getFreundlichkeitRating());
-		}			
-	}
-	catch (Exception e){
-		out.print(e);
-	}
-%>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3f0-lP6PquSnOUBu8j85B5MGM3pDLFx4&signed_in=true&callback=initMap"
+	        async defer></script>
 
-
-function initMap() {
-	  var directionsService = new google.maps.DirectionsService;
-	  var directionsDisplay = new google.maps.DirectionsRenderer;
-	  var map = new google.maps.Map(document.getElementById('map'), {
-	    zoom: 7,
-	    center: {lat: 51.00, lng: 9.00}
-	  });
-	  directionsDisplay.setMap(map);
-
-	  calculateAndDisplayRoute(directionsService, directionsDisplay);
-	}
-
-	function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-	  var waypts = [];
-	  var stationsAusDB = new Array("<%= s2%>", "<%= s3%>", "<%= s4%>", "<%= s5%>");
-	  ///
-	  
-			// Define the callback function.
-			function setzePoints(value, index, ar) {
-			    if(value != "null"){
-			    	waypts.push({
-				        location: value + ", Deutschland",
-				        stopover: true
-				      });
-			    }
-			    
-			}
+	<script>
+	<%! 
+		Facade f;
+		Fahrt fa;
+		
+		int id, userId;
+		
+		String  kommentar;
+		
+		String 	s1,s2,s3,s4,s5,s6;
+		int 	p1,p2,p3,p4,p5,p6;
+		
+		String 	fahrtDatum;
+		String 	gepaeck;
+		String	startZeit;
+		String 	fahrer;
+		
+		int kap;
+	%>
+	<%
 			
-			stationsAusDB.forEach(setzePoints);
- 	  
-	  ////
-	  directionsService.route({
-	    origin: "<%=s1%>" + ", Deutschland",
-	    destination: "<%=s6%>" + ", Deutschland",
-	    waypoints: waypts,
-	    optimizeWaypoints: true,
-	    travelMode: google.maps.TravelMode.DRIVING
-	  }, function(response, status) {
-	    if (status === google.maps.DirectionsStatus.OK) {
-	      directionsDisplay.setDirections(response);
-	      var route = response.routes[0];
-	      var summaryPanel = document.getElementById('directions-panel');
-	      summaryPanel.innerHTML = '';
-	      // For each route, display summary information.
-	      for (var i = 0; i < route.legs.length; i++) {
-	        var routeSegment = i + 1;
-	        summaryPanel.innerHTML += '<b>Streckenabschnitt: ' + routeSegment +
-	            '</b><br>';
-	        summaryPanel.innerHTML += route.legs[i].start_address + ' nach ';
-	        summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
-	        summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
-	      }
-	    } else {
-	      window.alert('Directions request failed due to ' + status);
-	    }
-	  });
-	}
-
+		try{
+			id = 3; //kommt aus cookie ODER link (mal sehen)
+			
+			f = new Facade();	
+			
+			fa = f.getFahrtById(id);
+			
+			kommentar = fa.getKommentar();
+			
+			fahrtDatum = fa.getFahrtDatum().toString();
+			gepaeck = fa.getGepaeck();
+			startZeit = fa.getFahrtStartZeit().toString();
+			
+			fahrer = f.getFahrerByFahrtId(id).getvName() + " " + f.getFahrerByFahrtId(id).getnName() ;
+			
+			kap = fa.getKapazitaet();
+		
+			s1 = fa.getS1();
+			s2 = fa.getS2();
+			s3 = fa.getS3();
+			s4 = fa.getS4();
+			s5 = fa.getS5();
+			s6 = fa.getS6();
+			
+			p1 = fa.getP1();
+			p2 = fa.getP2();
+			p3 = fa.getP3();
+			p4 = fa.getP4();
+			p5 = fa.getP5();
+			p6 = fa.getP6();
+			
+			//
+			
+			List<Bewertung> bList = f.getListWithAllBewertungenToUserByUserId(id);
+			
+			List<Integer> fahrstilRating = new ArrayList<Integer>();
+			List<Integer> puenktlichkeitRating = new ArrayList<Integer>();
+			List<Integer> freundlichkeitRating = new ArrayList<Integer>();
+			
+			for(int i = 0; i < bList.size(); i++){
+				fahrstilRating.add(bList.get(i).getFahrstilRating());
+				puenktlichkeitRating.add(bList.get(i).getPuenktlichkeitRating());
+				freundlichkeitRating.add(bList.get(i).getFreundlichkeitRating());
+			}			
+		}
+		catch (Exception e){
+			out.print(e);
+		}
+	%>
 	
-	function zeigen(x){
-		document.getElementById("buchenKnopf").style.display = "none";
-		document.getElementById(x).style.display = "block";
-	}
-
-</script>
-
-<link rel="stylesheet" href="css/style.css" type="text/css" />
-
+	
+	function initMap() {
+		  var directionsService = new google.maps.DirectionsService;
+		  var directionsDisplay = new google.maps.DirectionsRenderer;
+		  var map = new google.maps.Map(document.getElementById('map'), {
+		    zoom: 7,
+		    center: {lat: 51.00, lng: 9.00}
+		  });
+		  directionsDisplay.setMap(map);
+	
+		  calculateAndDisplayRoute(directionsService, directionsDisplay);
+		}
+	
+		function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+		  var waypts = [];
+		  var stationsAusDB = new Array("<%= s2%>", "<%= s3%>", "<%= s4%>", "<%= s5%>");
+		  ///
+		  
+				// Define the callback function.
+				function setzePoints(value, index, ar) {
+				    if(value != "null"){
+				    	waypts.push({
+					        location: value + ", Deutschland",
+					        stopover: true
+					      });
+				    }
+				    
+				}
+				
+				stationsAusDB.forEach(setzePoints);
+	 	  
+		  ////
+		  directionsService.route({
+		    origin: "<%=s1%>" + ", Deutschland",
+		    destination: "<%=s6%>" + ", Deutschland",
+		    waypoints: waypts,
+		    optimizeWaypoints: true,
+		    travelMode: google.maps.TravelMode.DRIVING
+		  }, function(response, status) {
+		    if (status === google.maps.DirectionsStatus.OK) {
+		      directionsDisplay.setDirections(response);
+		      var route = response.routes[0];
+		      var summaryPanel = document.getElementById('directions-panel');
+		      summaryPanel.innerHTML = '';
+		      // For each route, display summary information.
+		      for (var i = 0; i < route.legs.length; i++) {
+		        var routeSegment = i + 1;
+		        summaryPanel.innerHTML += '<b>Streckenabschnitt: ' + routeSegment +
+		            '</b><br>';
+		        summaryPanel.innerHTML += route.legs[i].start_address + ' nach ';
+		        summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+		        summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+		      }
+		    } else {
+		      window.alert('Directions request failed due to ' + status);
+		    }
+		  });
+		}
+	
+		
+		function zeigen(x){
+			document.getElementById("buchenKnopf").style.display = "none";
+			document.getElementById(x).style.display = "block";
+		}
+	</script>
 </head>
 <body>
-
- <script>  
-    var request;  
-    function sendInfo(x)  
-    {  
-	    var v=x.value;  
-	    var url="aj_vergleicheEingabeMitOrtTabelle.jsp?val="+v;  
-	      
-	    if(window.XMLHttpRequest){  
-	    request=new XMLHttpRequest();  
-	    }  
-	    else if(window.ActiveXObject){  
-	    request=new ActiveXObject("Microsoft.XMLHTTP");  
-	    }  
-	      
-	    try{  
-	    request.onreadystatechange= function() {
-	    	getInfo(x);	  
-	    };
-	    
-	    
-	    request.open("GET",url,true);  
-	    request.send();  
-	    }catch(e){alert("Unable to connect to server");}  
-    }  
-      
-    function getInfo(x){  
-	    if(request.readyState==4){  
-	    var val=request.responseText;  
-	    //document.getElementById('amit').innerHTML=val;  
-	    
-	    // x.nextElementSibling.innerHTML +='<div style="width:200px;height:20px;background-color:#d3d3d3"></div>';
-	    x.nextElementSibling.style.display = "block";
-	    x.nextElementSibling.innerHTML = val;
-	    }  
-    }
-    
-    function changeFormValue(elem){
-    	var par = elem.parentElement;
-    	var input = elem.parentElement.previousSibling;
-    	
-    	par.style.display = "none";
-    	input.value = elem.innerHTML;
-    }
-      
-    </script>
 
 	<div class="container">
 		<div class="row">
