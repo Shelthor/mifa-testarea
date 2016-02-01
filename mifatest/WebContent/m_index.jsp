@@ -61,36 +61,40 @@
 
 <%
 
-if(request.getParameter("register")!= null)
+if(request.getParameter("submit")!= null)
 {
 	String email=request.getParameter("email");
 	String passwd=request.getParameter("password");
 	String passwdDB;
-	Boolean formLogin=true;
-	
+
 	Facade fUserLogin = new Facade();
-	
+	try{
 	//Auf Klick Login überprüfen, ob User bereits in DB vorhanden.
 	//über E-Mail und Passwort authentifizieren
 	//Über UserID Session managen --> an Cookie übergeben
 	//false: --> Ausgabe mit Link zum registrieren
 	//true: --> Profilseite des Users öffnen und UserId in Cookie übergeben
+	User uLog = fUserLogin.getUserByEmail(email);
+	int uLogId = uLog.getUserID();
+	Passwort uPasswort = fUserLogin.getPasswortByUserId(uLogId);
 	
-	
-	
-	
-	if (formLogin==false)
+	System.out.println("BIS HIER" + uPasswort.getPasswortValue());
+	if (uPasswort.getPasswortValue().equals(passwd))
 	{
-		out.println("Login fehlgeschlagen");
+		out.print("Passwort stimmt");
+		
+	}else{
+		out.println("login NICHT");
 	}
 	
-	if (email != null & formLogin != false)
-	{
-		out.print("Der Benutzer mit der E-Mail "+email+" wird angemeldet");
-	}
+	
 	//wenn formlogin==true dann check mit registrierten eingaben der DB ob user angemeldet werden kann
 	//danach öffnen der Profilseite, andernfalls LoginScreen wieder aufrufen!
-	
+	}
+	catch(Exception e) 
+	{
+		out.print(e);
+	}
 }
 	
 
@@ -99,7 +103,7 @@ if(request.getParameter("register")!= null)
 <script>
 function setCookie(CookieName,CookieValue,exdays)
 {
-	var LoginUser = document.getElementById("emailID").value;
+	var CookieName = document.getElementById("emailID").value;
 	var exdate = new Date();
 	exdate.setTime(exdate.getTime()+(exdays*24*60));
 	var expires = "expires="+exdate.toUTCString();
@@ -108,6 +112,12 @@ function setCookie(CookieName,CookieValue,exdays)
 
 function getCookie(CookieName)
 {
+	//nimm den cookiename als Parameter(CookieName)
+	//erstelle Variable mit zu suchendem Text
+	//erstelle Array ca
+	//gehe durch das Array und lies die Werte aus (ca[i])
+	//wurde cookie gefunden --> gib den Wert zurück
+	//wurde cookie nicht gefunden --> ""
 	var name = CookieName+"=";
 	var ca = document.cookie.split(';');
 	for (var i=0;i<ca.length;i++)
@@ -124,6 +134,8 @@ function getCookie(CookieName)
 
 function checkCookie()
 {
+	//falls cookie gesetzt --> alert Willkommen
+	//nicht gesetzt --> setze ihn mittels setcookie Methode
 	var userMail=getCookie(email);
 	if (userMail != "")
 		{

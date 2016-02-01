@@ -41,9 +41,22 @@ public class EinzeilerTestklasse {
 		 System.out.println(b);
 		 */
 		
+		/*
 		List<User> l = f.getAllPassagiereOfFahrtByFahrtId(2);
 		System.out.println(l.get(0).geteMail());
-		System.out.println(l.get(1));
+		System.out.println(l.get(1)); */
+		User u;
+		
+		u = f.getUserByEmail("hallo@tschüss.de");
+		System.out.println(u.getnName());
+		System.out.println(u.getUserID());
+		
+		Passwort p;
+		p = f.getPasswortByUserId(u.getUserID());
+		System.out.println(p.getPasswortValue());
+		
+		
+		
 	}
 
 }

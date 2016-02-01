@@ -188,7 +188,14 @@ public class Facade {
  	public User getUserById(int id){ 
 		return (User) session.load(User.class, id);
 	}
- 	
+ 	public User getUserByEmail(String eMail)
+ 	{
+ 	//from mifatest.user where eMail = 'hallo@tschüss.de';
+ 	org.hibernate.Query q= session.createQuery("from User as u where u.eMail =" + " '" + eMail + "'");
+	
+	List<User> result = q.list();   //nur noch anpassen
+ 	return result.get(0);
+ 	}
  	public void updateUser(User f){
 		session.update(f); 
 		t.commit();
@@ -273,6 +280,15 @@ public class Facade {
 	public void updatePasswort(Passwort f){
 		session.update(f); 
 		t.commit();
+	}
+	
+	public Passwort getPasswortByUserId(int userid)
+	{
+		org.hibernate.Query q= session.createQuery("from Passwort as u where u.userID =" + " " + userid + "");
+		List<Passwort> result = q.list();
+		
+		return result.get(0);
+		
 	}
 	
 //Fahrzeuge//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
