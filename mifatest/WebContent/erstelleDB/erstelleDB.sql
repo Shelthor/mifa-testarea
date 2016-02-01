@@ -27,7 +27,7 @@ CREATE TABLE `user` (
 CREATE TABLE `ort` (
   `ortID` int NOT NULL AUTO_INCREMENT,
   `PLZ` varchar(10) NOT NULL,
-  `ortBezeichnung` varchar(50) NOT NULL,
+  `ortBezeichnung` varchar(50) NOT NULL UNIQUE,
   PRIMARY KEY (`ortID`)
   );
   
@@ -186,6 +186,22 @@ INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('39104', 'Magdebu
 INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('60311', 'Frankfurt am Main');
 INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('02625', 'Bautzen');
 INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('01917', 'Kamenz');
+INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('95030', 'Hof');
+INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('24114', 'Kiel');
+INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('23795', 'Bad Segeberg');
+INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('04651', 'Bad Lausick');
+INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('79098', 'Freiburg im Breisgau');
+INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('19055', 'Schwerin');
+INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('19205', 'Gadebusch'); 
+INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('06116', 'Halle (Saale)');
+INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('68309', 'Mannheim');
+INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('64283', 'Darmstadt');
+INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('04680', 'Colditz');
+INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('90402', 'Nürnberg');
+INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('83022', 'Rosenheim');
+INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('18057', 'Rostock');
+
+
 
 
 
