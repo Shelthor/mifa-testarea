@@ -140,7 +140,9 @@
  </tr>
  <tr>
   <td align="center">Telefonnummer</td>
-  <td><input type="text" name="telefon" size="33"/><p id="test"></p></td>
+  <td><input type="text" name="telefon" size="33"/><p id="telNr"></p>
+  	<p id="anzeige"></p>
+  </td>
  <!-- <script>
   var telefonNumber=isNaN("telefon");
   if (telefonNumber==false)
@@ -159,10 +161,34 @@
  </tr>
  <tr>
  
- <td><input type="submit" name="register" value="registrieren"/></td>
+ <td><input type="submit" name="register" value="registrieren"/>
+ 
+ </td>
+ 
  </form>
  </tr>
 </table>
+
+<!--  <script>
+
+	function checkTelephoneNumber()
+	{
+		var eingabe,fehlercode;
+		eingabe = document.getElementById("telNr").value;
+		
+		if (isNaN(eingabe))
+			{
+			fehlercode = "Telefonnummer eingabe ist nicht korrekt!";
+			
+			}
+		else
+			{
+			fehlercode="Alles OK";		
+			}
+		window.alert(fehlercode);
+	}
+
+</script> -->
 
 
 </body>

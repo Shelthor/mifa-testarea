@@ -214,7 +214,9 @@ if(request.getParameter("register")!= null)
 	
 					if (password.equals(passwordB))
 					{
-		
+						//Passwort für Benutzer anlegen
+						//aktuelle UserID eintragen
+						//fUser.newPasswort(userid, password);
 					}
 					else
 					{
