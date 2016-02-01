@@ -217,6 +217,9 @@ if(request.getParameter("register")!= null)
 						//Passwort für Benutzer anlegen
 						//aktuelle UserID eintragen
 						//fUser.newPasswort(userid, password);
+						
+					 //fUser.newUser(emailR, d, nachname, vorname, telefon, "false", "true");
+					 
 					}
 					else
 					{
@@ -242,7 +245,19 @@ if(request.getParameter("register")!= null)
 	
 	try
 		{
-			fUser.newUser(emailR, d, nachname, vorname, telefon, "false", "true");
+		/*
+		String vorname = request.getParameter("vorname");
+		String nachname = request.getParameter("nachname");
+		String day = request.getParameter("Tag");
+		String month = request.getParameter("Monat");
+		String year = request.getParameter("Jahr");
+		String emailR = request.getParameter("email");
+		String telefon = request.getParameter("telefon");
+		String password =request.getParameter("password1");
+		String passwordB =request.getParameter("password2");
+		*/
+		
+			fUser.newUser(emailR, d, nachname, vorname, telefon, "false", "true",password);
 	
 			//fUser.newPasswort(fUser.getUserById(5), password);
 		}
