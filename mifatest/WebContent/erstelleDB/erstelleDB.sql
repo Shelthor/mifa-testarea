@@ -180,7 +180,7 @@ INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('01067 ', 'Dresde
 INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('28195', 'Bremen');
 INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('20355', 'Hamburg');
 INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('10117', 'Berlin');
-INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('80331', 'MÃ¼nchen');
+INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('80331', 'München');
 INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('30159', 'Hannover');
 INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('39104', 'Magdeburg');
 INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('60311', 'Frankfurt am Main');
@@ -197,7 +197,7 @@ INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('06116', 'Halle (
 INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('68309', 'Mannheim');
 INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('64283', 'Darmstadt');
 INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('04680', 'Colditz');
-INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('90402', 'NÃ¼rnberg');
+INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('90402', 'Nürnberg');
 INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('83022', 'Rosenheim');
 INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('18057', 'Rostock');
 
