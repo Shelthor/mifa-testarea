@@ -201,27 +201,56 @@
 		<div class="row">
 			<div class="abstandNachOben" id="anzeige">
 				<div class="col-xs-12 col-md-6">
-					<p>	<b><%= fahrer %></b> fährt von <b><%= s1 %></b> nach <b><%= s6 %></b></p>
+				
+					<div class="panel panel-default">
+					  <div class="panel-body">
+					    <p>	<b><%= fahrer %></b> fährt von <b><%= s1 %></b> nach <b><%= s6 %></b></p>
 		
-					<p>	Angaben zum Gepäck: <b><%= gepaeck %></b></p>
+						<p>	Angaben zum Gepäck: <b><%= gepaeck %></b></p>
+					  </div>
+					</div>
+				
+					
 				</div>
 				<div class="col-xs-12 col-md-6">
-					<p>Startzeit: <b><%= startZeit %></b></p>
-					<p>Datum: <b><%= fahrtDatum %></b></p>
+				
+					<div class="panel panel-default">
+					  <div class="panel-body">
+						<p>Startzeit: <b><%= startZeit %></b></p>
+						<p>Datum: <b><%= fahrtDatum %></b></p>
+					  </div>
+					</div>
+				
+					
 				</div>
-				<div class="col-xs-12 col-md-12 abstandNachOben">
-					Bemerkungen vom Fahrer:
-					<div class="col-xs-12 well well-sm"><%= kommentar %></div>
+				<div class="col-xs-12 col-md-12 abstandNachOben">					
+					<div class="panel panel-default">
+					  <div class="panel-heading">
+					    <h3 class="panel-title">Bemerkungen vom Fahrer</h3>
+					  </div>
+					  <div class="panel-body">
+						<%= kommentar %>
+					  </div>
+					</div>
 				</div>
 			</div>
 
-
-
 			<div class="col-sm-12" id="buchenFeld" style="display:none">
-			<button id="buchenKnopf" onclick="zeigen('buchenForm')">BUCHEN</button><br/><br/>
+				<button id="buchenKnopf" onclick="zeigen('buchenForm')">BUCHEN</button><br/><br/>
+				
+				<div class="panel panel-default">
+				  <div class="panel-heading">
+				    <h3 class="panel-title">Panel title</h3>
+				  </div>
+				  <div class="panel-body">
+				    Panel content
+				  </div>
+				</div>
+				
+				
 				<form id="buchenForm" action="c_Fahrt.jsp" style="display:none">
-					 Von: <input type="text" name="buchenStart" onkeyup="sendInfo(this)" autocomplete="off"/><ul class="list-group a"></ul>
-					 Nach: <input type="text" name="buchenZiel" onkeyup="sendInfo(this)" autocomplete="off"/><ul class="list-group a"></ul><br/>
+					 Von: <input type="text" name="buchenStart" onkeyup="sendInfo(this)" autocomplete="off" required/><ul class="list-group a"></ul>
+					 Nach:<input type="text" name="buchenZiel" onkeyup="sendInfo(this)" autocomplete="off" required/><ul class="list-group a"></ul><br/>
 					<input type="submit" name="buchen" value="Senden">
 				</form>
 			</div>
