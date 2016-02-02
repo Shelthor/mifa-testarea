@@ -235,24 +235,26 @@
 				</div>
 			</div>
 
-			<div class="col-sm-12" id="buchenFeld" style="display:none">
-				<button id="buchenKnopf" onclick="zeigen('buchenForm')">BUCHEN</button><br/><br/>
+			<div class="col-sm-12" id="buchenFeld">
+				<button id="buchenKnopf" style="width:100%" onclick="zeigen('buchenForm')">BUCHEN</button><br/><br/>
 				
-				<div class="panel panel-default">
+				<div class="panel panel-default" style="display:none" id="buchenForm">
 				  <div class="panel-heading">
-				    <h3 class="panel-title">Panel title</h3>
+				    <h3 class="panel-title">Buchen</h3>
 				  </div>
 				  <div class="panel-body">
-				    Panel content
+				    
+				    <form action="c_Fahrt.jsp">
+					 Von:<br/> 
+					 <input type="text" name="buchenStart" onkeyup="sendInfo(this)" autocomplete="off" required/><ul class="list-group a"></ul><br/>
+					 Nach:<br/>
+					 <input type="text" name="buchenZiel" onkeyup="sendInfo(this)" autocomplete="off" required/><ul class="list-group a"></ul><br/>
+					<input type="submit" name="buchen" value="Senden">
+					</form>
+				    
+				    
 				  </div>
 				</div>
-				
-				
-				<form id="buchenForm" action="c_Fahrt.jsp" style="display:none">
-					 Von: <input type="text" name="buchenStart" onkeyup="sendInfo(this)" autocomplete="off" required/><ul class="list-group a"></ul>
-					 Nach:<input type="text" name="buchenZiel" onkeyup="sendInfo(this)" autocomplete="off" required/><ul class="list-group a"></ul><br/>
-					<input type="submit" name="buchen" value="Senden">
-				</form>
 			</div>
 		</div>
 	</div>
@@ -277,8 +279,8 @@
 			
 			f2.newPassagierFahrt(userId, id, uStart, uZiel);
 			out.print("<script>document.getElementById('anzeige').style.display = 'none'</script>");
-			out.print("<script>document.getElementById('buchenFeld').style.display = 'none'</script>");
-			out.print("gebucht");
+			out.print("<script>document.getElementById('buchenKnopf').style.display = 'none'</script>");
+			out.print("<div class='alert alert-success text-center' role='alert'><h1>Fahrt erfolgreich gebucht!</h1></div>");
 			
 			//VERFEINERN: Je nach Einstiegs- und Ausstiegs-Station müssen die P's (Und damit freie Plätze) angepasst werden
 			//			  Möglicherweise lassen wir die Anzeige der freien plätze auf der Fahrt.jsp auch komplett weg, da
