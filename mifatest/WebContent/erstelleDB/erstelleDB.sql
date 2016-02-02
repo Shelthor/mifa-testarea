@@ -17,7 +17,7 @@ CREATE TABLE `user` (
   `isAdmin` ENUM('false', 'true') NOT NULL DEFAULT 'false',
   `isActivated` ENUM('false', 'true') NOT NULL DEFAULT 'false',
   `telNummer` varchar(20) NOT NULL,
-  `eMail` varchar(45) NOT NULL,
+  `eMail` varchar(45) NOT NULL UNIQUE,
   `vName` varchar(20) NOT NULL,
   `nName` varchar(20) NOT NULL,
   `geburtsDatum` DATE,
@@ -43,7 +43,7 @@ CREATE TABLE `fahrzeug` (
   
 CREATE TABLE `passwort` (
   `passwortID` INT NOT NULL AUTO_INCREMENT,
-  `userID` INT NOT NULL,
+  `userID` INT NOT NULL UNIQUE,
   `passwortValue` varchar(15) NOT NULL,
   
   PRIMARY KEY (`passwortID`),
@@ -146,13 +146,13 @@ CREATE TABLE `nachricht` (
   CONSTRAINT `nachricht_empfaenger_fk` FOREIGN KEY (`nachrichtEmpfaengerID`) REFERENCES `user` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE
   );
   
-INSERT INTO `mifatest`.`user` (`userBildURL`, `isAdmin`, `isActivated`, `telNummer`, `eMail`, `vName`, `nName`, `geburtsDatum`) VALUES ('img/1.png', 'false', 'false', '0123 456 789', 'fake@mail.de', 'Clemens', 'Kruse', '1990-10-16');
-INSERT INTO `mifatest`.`user` (`userBildURL`, `isAdmin`, `isActivated`, `telNummer`, `eMail`, `vName`, `nName`, `geburtsDatum`) VALUES ('img/1.png', 'false', 'false', '0123 456 789', 'fake@mail.de', 'Martin', 'Handrick', '1989-10-16');
-INSERT INTO `mifatest`.`user` (`userBildURL`, `isAdmin`, `isActivated`, `telNummer`, `eMail`, `vName`, `nName`, `geburtsDatum`) VALUES ('img/1.png', 'false', 'false', '0123 456 789', 'fake@mail.de', 'Steffen', 'Rogge', '1987-10-16');
-INSERT INTO `mifatest`.`user` (`userBildURL`, `isAdmin`, `isActivated`, `telNummer`, `eMail`, `vName`, `nName`, `geburtsDatum`) VALUES ('img/1.png', 'false', 'false', '0123 456 789', 'fake@mail.de', 'Fabian', 'Richter', '1992-10-16');
-INSERT INTO `mifatest`.`user` (`userBildURL`, `isAdmin`, `isActivated`, `telNummer`, `eMail`, `vName`, `nName`, `geburtsDatum`) VALUES ('img/1.png', 'false', 'false', '0123 456 789', 'fake@mail.de', 'Thomas', 'Zinn', '1992-10-16');
-INSERT INTO `mifatest`.`user` (`userBildURL`, `isAdmin`, `isActivated`, `telNummer`, `eMail`, `vName`, `nName`, `geburtsDatum`) VALUES ('img/1.png', 'false', 'false', '0123 456 789', 'fake@mail.de', 'Frank', 'Schumann', '1992-10-16');
-INSERT INTO `mifatest`.`user` (`userBildURL`, `isAdmin`, `isActivated`, `telNummer`, `eMail`, `vName`, `nName`, `geburtsDatum`) VALUES ('img/1.png', 'false', 'false', '0123 456 789', 'fake@mail.de', 'Captain', 'Hero', '2014-10-16');
+INSERT INTO `mifatest`.`user` (`userBildURL`, `isAdmin`, `isActivated`, `telNummer`, `eMail`, `vName`, `nName`, `geburtsDatum`) VALUES ('img/1.png', 'false', 'false', '0123 456 789', 'fake1@mail.de', 'Clemens', 'Kruse', '1990-10-16');
+INSERT INTO `mifatest`.`user` (`userBildURL`, `isAdmin`, `isActivated`, `telNummer`, `eMail`, `vName`, `nName`, `geburtsDatum`) VALUES ('img/1.png', 'false', 'false', '0123 456 789', 'fake2@mail.de', 'Martin', 'Handrick', '1989-10-16');
+INSERT INTO `mifatest`.`user` (`userBildURL`, `isAdmin`, `isActivated`, `telNummer`, `eMail`, `vName`, `nName`, `geburtsDatum`) VALUES ('img/1.png', 'false', 'false', '0123 456 789', 'fake3@mail.de', 'Steffen', 'Rogge', '1987-10-16');
+INSERT INTO `mifatest`.`user` (`userBildURL`, `isAdmin`, `isActivated`, `telNummer`, `eMail`, `vName`, `nName`, `geburtsDatum`) VALUES ('img/1.png', 'false', 'false', '0123 456 789', 'fake4@mail.de', 'Fabian', 'Richter', '1992-10-16');
+INSERT INTO `mifatest`.`user` (`userBildURL`, `isAdmin`, `isActivated`, `telNummer`, `eMail`, `vName`, `nName`, `geburtsDatum`) VALUES ('img/1.png', 'false', 'false', '0123 456 789', 'fake5@mail.de', 'Thomas', 'Zinn', '1992-10-16');
+INSERT INTO `mifatest`.`user` (`userBildURL`, `isAdmin`, `isActivated`, `telNummer`, `eMail`, `vName`, `nName`, `geburtsDatum`) VALUES ('img/1.png', 'false', 'false', '0123 456 789', 'fake6@mail.de', 'Frank', 'Schumann', '1992-10-16');
+INSERT INTO `mifatest`.`user` (`userBildURL`, `isAdmin`, `isActivated`, `telNummer`, `eMail`, `vName`, `nName`, `geburtsDatum`) VALUES ('img/1.png', 'false', 'false', '0123 456 789', 'fake7@mail.de', 'Captain', 'Hero', '2014-10-16');
 
 INSERT INTO `mifatest`.`fahrt` (`fahrerID`, `fahrtDatum`, `fahrtStartZeit`, `gepaeck`, `kommentar`, `kapazitaet`, `s1`, `s2`, `s6`, `p1`, `p2`, `p3`, `p4`, `p5`, `p6`) VALUES ('1', '2016-01-14', '09:00:00', 'ausreichend Platz', 'Hallo :) freue mich auf nette Mitfahrer', '3', 'Dresden', 'Grimma', 'Leipzig', '2', '2', '2', '2', '2', '2');
 INSERT INTO `mifatest`.`fahrt` (`fahrerID`, `fahrtDatum`, `fahrtStartZeit`, `gepaeck`, `kommentar`, `kapazitaet`, `s1`, `s2`, `s6`, `p1`, `p2`, `p3`, `p4`, `p5`, `p6`) VALUES ('1', '2016-01-15', '10:00:00', 'ausreichend Platz', 'Hallo :) freue mich auf nette Mitfahrer', '3', 'Leipzig', 'Grimma', 'Dresden', '2', '2', '2', '2', '2', '2');
@@ -180,7 +180,7 @@ INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('01067 ', 'Dresde
 INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('28195', 'Bremen');
 INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('20355', 'Hamburg');
 INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('10117', 'Berlin');
-INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('80331', 'München');
+INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('80331', 'MÃ¼nchen');
 INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('30159', 'Hannover');
 INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('39104', 'Magdeburg');
 INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('60311', 'Frankfurt am Main');
@@ -197,7 +197,7 @@ INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('06116', 'Halle (
 INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('68309', 'Mannheim');
 INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('64283', 'Darmstadt');
 INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('04680', 'Colditz');
-INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('90402', 'Nürnberg');
+INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('90402', 'NÃ¼rnberg');
 INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('83022', 'Rosenheim');
 INSERT INTO `mifatest`.`ort` (`PLZ`, `ortBezeichnung`) VALUES ('18057', 'Rostock');
 
