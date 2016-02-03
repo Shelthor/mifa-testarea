@@ -302,7 +302,10 @@
 			//		      Meist nicht eindeutig sobald mehrere Stationen
 		}
 		catch (Exception ex){
-			out.print("FAIL");
+
+			out.print("<script>document.getElementById('anzeige').style.display = 'none'</script>");
+			out.print("<script>document.getElementById('buchenKnopf').style.display = 'none'</script>");
+			out.print("<div class='alert alert-danger text-center' role='alert'><h1>Fehler! Die Fahrt wurde bereits von dir gebucht</h1></div>");
 		}
 	}
 	

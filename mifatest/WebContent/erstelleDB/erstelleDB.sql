@@ -90,7 +90,9 @@ CREATE TABLE `passagier_fahrt` (
   CONSTRAINT `passag_fahrt_fk` FOREIGN KEY (`fahrtID`) REFERENCES `fahrt` (`fahrtID`) ON DELETE CASCADE ON UPDATE CASCADE,
   
   KEY `passag_user_fk` (`userID`),
-  CONSTRAINT `passag_user_fk` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `passag_user_fk` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  
+  CONSTRAINT `uc_avoidDoubles` UNIQUE (fahrtID,userID)
   );
  
 CREATE TABLE `user_fahrzeug` (
