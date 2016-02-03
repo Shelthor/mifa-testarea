@@ -145,20 +145,20 @@
 						<div class="col-xs-12 col-md-4 abstandNachOben">
 							Von?: 
 							<br/>
-							<input type="text" name="formStart" id="inS1" style="width:100%" onkeyup="sendInfo(this)" required autocomplete="off"/><ul class="list-group a"></ul><br/>     
+							<input type="text" name="formStart" id="inS1" style="width:100%" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp')" required autocomplete="off"/><ul class="list-group a"></ul><br/>     
 							Nach?: 
 							<br/>
-							<input type="text" name="formZiel"  id="inS6" onkeyup="sendInfo(this)" style="width:100%" required autocomplete="off"/><ul class="list-group a"></ul><br/>
+							<input type="text" name="formZiel"  id="inS6" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp')" style="width:100%" required autocomplete="off"/><ul class="list-group a"></ul><br/>
 						</div>
 						<div class="col-xs-12 col-md-4 abstandNachOben">  
 							Über?:
 							<br/>
 							<input type="button" style="width: 100%;" onclick="zeigen()" value="füge Zwischenstation hinzu"/>
 							<div id="s2-s5" style="display:none;">
-								<input type="text" name="formS2" onkeyup="sendInfo(this)" id="inS2" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul><br/><br/>
-								<input type="text" name="formS3" onkeyup="sendInfo(this)" id="inS3" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul><br/><br/>
-								<input type="text" name="formS4" onkeyup="sendInfo(this)" id="inS4" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul><br/><br/>
-								<input type="text" name="formS5" onkeyup="sendInfo(this)" id="inS5" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul><br/>				
+								<input type="text" name="formS2" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp')" id="inS2" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul><br/><br/>
+								<input type="text" name="formS3" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp')" id="inS3" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul><br/><br/>
+								<input type="text" name="formS4" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp')" id="inS4" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul><br/><br/>
+								<input type="text" name="formS5" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp')" id="inS5" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul><br/>				
 							</div>
 							</div>
 							<div class="col-xs-12 col-md-12 abstandNachOben">

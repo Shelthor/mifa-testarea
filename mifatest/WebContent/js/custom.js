@@ -87,10 +87,18 @@
 	FahrtAnbieten.jsp , 
 */
 
-		function sendInfo(x)  
+		function sendInfo(x, y, z)  
 		{  
-			var v=x.value;  
-			var url="aj_vergleicheEingabeMitOrtTabelle.jsp?val="+v;  
+			var v;
+
+			if(z == "")
+			{
+				v=x.value;
+			}
+			else{
+				v=z;
+			}
+			var url= y +"?val="+v;  
 			  
 			if(window.XMLHttpRequest){  
 			request=new XMLHttpRequest();  

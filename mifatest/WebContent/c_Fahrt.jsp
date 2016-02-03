@@ -42,7 +42,7 @@
 	<%
 			
 		try{
-			id = 3; //kommt aus cookie ODER link (mal sehen)
+			id = 1; //kommt aus cookie ODER link (mal sehen)
 			
 			f = new Facade();	
 			
@@ -223,7 +223,7 @@
 				
 					
 				</div>
-				<div class="col-xs-12 col-md-12 abstandNachOben">					
+				<div class="col-xs-12 col-md-12">					
 					<div class="panel panel-default">
 					  <div class="panel-heading">
 					    <h3 class="panel-title">Bemerkungen vom Fahrer</h3>
@@ -246,9 +246,9 @@
 				    
 				    <form action="c_Fahrt.jsp">
 					 Von:<br/> 
-					 <input type="text" name="buchenStart" onkeyup="sendInfo(this)" autocomplete="off" required/><ul class="list-group a"></ul><br/>
+					 <input type="text" name="buchenStart" onclick="sendInfo(this, 'aj_vergleicheEingabeMitStrecke.jsp', <%= id %>)" autocomplete="off" required/><ul class="list-group a"></ul><br/>
 					 Nach:<br/>
-					 <input type="text" name="buchenZiel" onkeyup="sendInfo(this)" autocomplete="off" required/><ul class="list-group a"></ul><br/>
+					 <input type="text" name="buchenZiel" onclick="sendInfo(this, 'aj_vergleicheEingabeMitStrecke.jsp', <%= id %>)" autocomplete="off" required/><ul class="list-group a"></ul><br/>
 					<input type="submit" name="buchen" value="Senden">
 					</form>
 				    
@@ -260,7 +260,7 @@
 	</div>
 
 <%
-	userId = 1; //VERFEINERN: kommt von cookie
+	userId = 2; //VERFEINERN: kommt von cookie
 
 	//VERFEINERN: wenn user WEDER fahrer NOCH in passagier_fahrt Tabelle, Dann zeige Buchen-Feld an
 	if(userId != f.getFahrerByFahrtId(id).getUserID()){

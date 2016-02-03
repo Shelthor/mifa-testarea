@@ -345,8 +345,16 @@ public class Facade {
  		t.commit();
  	}
  	
- 	public List<Ort> getListLike(String searchKeyword){
+ 	public List<Ort> getListWithAllOrteLike(String searchKeyword){
 	    org.hibernate.Query q= session.createQuery("from Ort as u where u.ortBezeichnung like '"+ searchKeyword + "%'");
+		
+		List result = q.list();
+		
+		return result;
+	}
+ 	
+ 	public List<Ort> getListWithAllOrteAusStrecke(String searchKeyword, int tour){
+	    org.hibernate.Query q= session.createQuery("from Fahrt as u where u.ortBezeichnung like '"+ searchKeyword + "%'");
 		
 		List result = q.list();
 		
