@@ -129,7 +129,9 @@ CREATE TABLE `bewertung` (
   CONSTRAINT `bewertung_sender_fk` FOREIGN KEY (`bewertungSenderID`) REFERENCES `user` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE,
   
   KEY `bewertung_empfaenger_fk` (`bewertungEmpfaengerID`),
-  CONSTRAINT `bewertung_empfaenger_fk` FOREIGN KEY (`bewertungEmpfaengerID`) REFERENCES `user` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `bewertung_empfaenger_fk` FOREIGN KEY (`bewertungEmpfaengerID`) REFERENCES `user` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  
+  CONSTRAINT `uc_avoidDoublesB` UNIQUE (fahrtID,bewertungSenderID,bewertungEmpfaengerID)
   );
   
 CREATE TABLE `nachricht` (

@@ -10,7 +10,7 @@
 	<%!
 		int iDempf=3;
 		int iDsend=1;
-		int iDfahrt=2;
+		int iDfahrt=1;
 	%>
 
 	<a href="http://localhost:8080/mifatest/c_Bewerten.jsp?empfid=<%= iDempf %>&senderid=<%= iDsend %>&fahrtid=<%= iDfahrt %>">Gib Bewertung ab [SenderID = <%= iDsend %>], [EmpfaengerID = <%= iDempf %>], [FahrtID = <%= iDfahrt %>]</a>

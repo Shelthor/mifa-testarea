@@ -29,6 +29,22 @@ td.star{
 </style>
 </head>
 <body>
+<%! 
+	Fahrt fahrtid;
+	String text;
+	int fahrs, freundli, punkt;
+	User empf, send;
+	Date heute;
+
+	int empfurl;
+	int sendurl;
+	int fahrturl;
+	
+	int kontrolle = 0;
+	
+	String status;
+%>
+
 <%
 
 if(kontrolle == 0){
@@ -40,9 +56,16 @@ if(kontrolle == 0){
 	}
 
 	catch (Exception ex) {
-		
 	}
 }
+
+Facade f = new Facade();
+empf = f.getUserById(empfurl);
+send = f.getUserById(sendurl);
+fahrtid = f.getFahrtById(fahrturl);
+
+out.print(send.getnName());
+
 %>
 
 <div class="container">
@@ -64,10 +87,10 @@ if(kontrolle == 0){
 		    
 		    <ul class="nav navbar-nav navbar-right">
 		        <li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hallo [USERNAME / BILD]!<span class="caret"></span></a>
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hallo <%= send.getvName() %>!<span class="caret"></span></a>
 		          <ul class="dropdown-menu">
-		            <li><a href="#">Mein öffentliches Profil</a></li>
-		            <li><a href="#">Terminal</a></li>
+		            <li><a href="c_UserOeffentlich.jsp">Mein öffentliches Profil</a></li>
+		            <li><a href="c_User.jsp">Terminal</a></li>
 		          </ul>
 		        </li>
 	      	</ul>
@@ -84,92 +107,91 @@ if(kontrolle == 0){
 
     <div id="whole" class="col-md-12">
 		<div id="sqlForm" class="grau">
-			<p>Bitte bewerte die Pünktlichkeit (nicht erschienen = 1 Stern)</p>
-			<table class="text-center" id="sterne1">
-	    		<tr>
-					<td class="star" id="1" onclick="setzen('1', '1'); return false;" onmouseover="leuchten('1', '1'); return false;"></td>
-	                <td class="star" id="2" onclick="setzen('2', '1'); return false;" onmouseover="leuchten('2', '1'); return false;"></td>
-	                <td class="star" id="3" onclick="setzen('3', '1'); return false;" onmouseover="leuchten('3', '1'); return false;"></td>
-	                <td class="star" id="4" onclick="setzen('4', '1'); return false;" onmouseover="leuchten('4', '1'); return false;"></td>
-	                <td class="star" id="5" onclick="setzen('5', '1'); return false;" onmouseover="leuchten('5', '1'); return false;"></td>
-	            </tr>
-	    	</table>
-	    	<div id="fahrstil">
-	    		<p>Bitte bewerte den Fahrstil</p>
-		    	<table class="text-center" id="sterne2">
-		    		<tr>
-						<td class="star" id="1" onclick="setzen('1', '2'); return false;" onmouseover="leuchten('1', '2'); return false;"></td>
-		                <td class="star" id="2" onclick="setzen('2', '2'); return false;" onmouseover="leuchten('2', '2'); return false;"></td>
-		                <td class="star" id="3" onclick="setzen('3', '2'); return false;" onmouseover="leuchten('3', '2'); return false;"></td>
-		                <td class="star" id="4" onclick="setzen('4', '2'); return false;" onmouseover="leuchten('4', '2'); return false;"></td>
-		                <td class="star" id="5" onclick="setzen('5', '2'); return false;" onmouseover="leuchten('5', '2'); return false;"></td>
-		            </tr>
-		    	</table>
-	    	</div>
-	    	<p>Bitte bewerte die Freundlichkeit</p>
-	    	<table class="text-center" id="sterne3">
-	    		<tr>
-					<td class="star" id="1" onclick="setzen('1', '3'); return false;" onmouseover="leuchten('1', '3'); return false;"></td>
-	                <td class="star" id="2" onclick="setzen('2', '3'); return false;" onmouseover="leuchten('2', '3'); return false;"></td>
-	                <td class="star" id="3" onclick="setzen('3', '3'); return false;" onmouseover="leuchten('3', '3'); return false;"></td>
-	                <td class="star" id="4" onclick="setzen('4', '3'); return false;" onmouseover="leuchten('4', '3'); return false;"></td>
-	                <td class="star" id="5" onclick="setzen('5', '3'); return false;" onmouseover="leuchten('5', '3'); return false;"></td>
-	            </tr>
-	    	</table>
-			<br />
-				<form class="row" action="c_Bewerten.jsp" method="post">
-					<br/>
-					<br/>
-					<div class="col-sm-12">
-						Kommentar?: 
+		
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">Bitte bewerte <%= empf.getvName() %></h3>
+			  </div>
+			  <div class="panel-body">
+				<div class="col-md-12">
+					<h3>Pünktlichkeit (nicht erschienen = 1 Stern)</h3>
+					<table class="text-center" id="sterne1">
+			    		<tr>
+							<td class="star" id="1" onclick="setzen('1', '1'); return false;" onmouseover="leuchten('1', '1'); return false;"></td>
+			                <td class="star" id="2" onclick="setzen('2', '1'); return false;" onmouseover="leuchten('2', '1'); return false;"></td>
+			                <td class="star" id="3" onclick="setzen('3', '1'); return false;" onmouseover="leuchten('3', '1'); return false;"></td>
+			                <td class="star" id="4" onclick="setzen('4', '1'); return false;" onmouseover="leuchten('4', '1'); return false;"></td>
+			                <td class="star" id="5" onclick="setzen('5', '1'); return false;" onmouseover="leuchten('5', '1'); return false;"></td>
+			            </tr>
+			    	</table>
+		    	</div>
+		    	<div id="fahrstil" class="col-md-12">
+		    		<h3>Fahrstil</h3>
+			    	<table class="text-center" id="sterne2">
+			    		<tr>
+							<td class="star" id="1" onclick="setzen('1', '2'); return false;" onmouseover="leuchten('1', '2'); return false;"></td>
+			                <td class="star" id="2" onclick="setzen('2', '2'); return false;" onmouseover="leuchten('2', '2'); return false;"></td>
+			                <td class="star" id="3" onclick="setzen('3', '2'); return false;" onmouseover="leuchten('3', '2'); return false;"></td>
+			                <td class="star" id="4" onclick="setzen('4', '2'); return false;" onmouseover="leuchten('4', '2'); return false;"></td>
+			                <td class="star" id="5" onclick="setzen('5', '2'); return false;" onmouseover="leuchten('5', '2'); return false;"></td>
+			            </tr>
+			    	</table>
+		    	</div>
+		    	<div  class="col-md-12">
+		  		  	<h3>Freundlichkeit</h3>
+			    	<table class="text-center" id="sterne3">
+			    		<tr>
+							<td class="star" id="1" onclick="setzen('1', '3'); return false;" onmouseover="leuchten('1', '3'); return false;"></td>
+			                <td class="star" id="2" onclick="setzen('2', '3'); return false;" onmouseover="leuchten('2', '3'); return false;"></td>
+			                <td class="star" id="3" onclick="setzen('3', '3'); return false;" onmouseover="leuchten('3', '3'); return false;"></td>
+			                <td class="star" id="4" onclick="setzen('4', '3'); return false;" onmouseover="leuchten('4', '3'); return false;"></td>
+			                <td class="star" id="5" onclick="setzen('5', '3'); return false;" onmouseover="leuchten('5', '3'); return false;"></td>
+			            </tr>
+			    	</table>
+		    	</div>
+				<div  class="col-md-12">
+					<form class="row" action="c_Bewerten.jsp" method="post">
 						<br/>
 						<br/>
-						<input type="text" name="formKommentar" style="width: 100%; height: 75px;" autocomplete="off"/>
-						<br/>
-						<br/>
-						<input id="knopf" style="width: 100%;" type="submit" name="ok" value="OK"/>
-					</div>
-					
-					<input type="hidden" id="hiddenField1" name="hi1" />
-					<input type="hidden" id="hiddenField2" name="hi2" />
-					<input type="hidden" id="hiddenField3" name="hi3" />
-				</form>
+						<div class="col-sm-12">
+							Kommentar?: 
+							<br/>
+							<br/>
+							<input type="text" name="formKommentar" style="width: 100%; height: 75px;" autocomplete="off"/>
+							<br/>
+							<br/>
+							<input id="knopf" style="width: 100%;" type="submit" name="ok" value="OK"/>
+						</div>
+						
+						<input type="hidden" id="hiddenField1" name="hi1" />
+						<input type="hidden" id="hiddenField2" name="hi2" />
+						<input type="hidden" id="hiddenField3" name="hi3" />
+					</form>
+				</div>  
+			  </div>
+			</div>
+		
+		
+			
 		</div>
 		<br/>
 	</div>
 	<div id="sendSuccess" style="display:none">
-		<p>SUCCESS</p>
+		<div class='alert alert-success text-center' role='alert'>
+			<h1>Bewertung erfolgreich!</h1>
+		</div>
 	</div>
 	<div id="sendFail" style="display:none">
-		<p>FAIL</p>
+		<div class='alert alert-danger text-center' role='alert'>
+			<h1>Fehler! Inserat wurde nicht erstellt!</h1>
+		</div>
 	</div>
   </div>
 </div>
-
-<%! 
-	Fahrt fahrtid;
-	String text;
-	int fahrs, freundli, punkt;
-	User empf, send;
-	Date heute;
-
-	int empfurl;
-	int sendurl;
-	int fahrturl;
-	
-	int kontrolle = 0;
-	
-	String status;
-%>
-
 <% 
-	Facade f = new Facade();
 	
-	empf = f.getUserById(empfurl);
-	send = f.getUserById(sendurl);
-	fahrtid = f.getFahrtById(fahrturl);
 	
-	out.print(f.getFahrerByFahrtId(fahrturl).getUserID());
+	//out.print(f.getFahrerByFahrtId(fahrturl).getUserID());
 	
 	//prüfen ob bewertung an Fahrer oder Passagier geht
 			if(f.getFahrerByFahrtId(fahrturl).getUserID() == empfurl)
@@ -205,8 +227,7 @@ if(kontrolle == 0){
 			}
 			catch (Exception ex)
 			{
-				out.print("<script>fail();</script>" + "Fehler: " + ex.toString());
-				out.print("möglicherweise keine IDs übergeben?");
+				out.print("<script>fail();</script>");
 			}
 		}
 %>
