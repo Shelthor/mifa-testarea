@@ -100,8 +100,8 @@ out.print(send.getnName());
 
 
   <div class="jumbotron">
-    <h1>Hi</h1>
-    <p>Gib eine Bewertung ab!</p> 
+    <h1><%= fahrtid.getS1() %> nach <%= fahrtid.getS6() %></h1>
+    <p>Fahrer: <%= fahrtid.getFahrerID().getvName() %> <%= fahrtid.getFahrerID().getnName() %></p> 
   </div>
   <div class="row">
 
@@ -183,7 +183,7 @@ out.print(send.getnName());
 	</div>
 	<div id="sendFail" style="display:none">
 		<div class='alert alert-danger text-center' role='alert'>
-			<h1>Fehler! Inserat wurde nicht erstellt!</h1>
+			<h1>Bewertung fehlgeschlagen!</h1>
 		</div>
 	</div>
   </div>
