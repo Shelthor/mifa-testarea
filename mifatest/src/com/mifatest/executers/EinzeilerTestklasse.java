@@ -47,13 +47,19 @@ public class EinzeilerTestklasse {
 		System.out.println(l.get(1)); */
 		User u;
 		
-		u = f.getUserByEmail("hallo@tschüss.de");
+		u = f.getUserByEmail("fake1@mail.de");
 		System.out.println(u.getnName());
 		System.out.println(u.getUserID());
 		
 		Passwort p;
 		p = f.getPasswortByUserId(u.getUserID());
 		System.out.println(p.getPasswortValue());
+		
+		try{
+			f.newUser("12@lol.de", new Date(), "12", "HORST", "01230213021", "false", "true", "12");
+		}catch(Exception e){
+			System.out.println(e);
+		}
 		
 		
 		

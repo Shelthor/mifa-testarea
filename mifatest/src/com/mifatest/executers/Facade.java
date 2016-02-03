@@ -167,9 +167,7 @@ public class Facade {
 //Users//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
  	public void newUser(String mail, Date bDate, String nachn, String vorn, String tel, String admin, String act, String pw ){
- 		
-	    //bDate = new Date(90, 9, 16);// hilfsobjekt für Datum 
-	    
+ 			    
 	    user.seteMail(mail);
 	    user.setGeburtsDatum(bDate);
 	    user.setnName(nachn);
@@ -178,11 +176,13 @@ public class Facade {
 	    user.setIsAdmin(admin);
 	    user.setIsActivated(act);
 	    
+	    //session.merge(user); 	//diese Zeile hat bei mir Probleme gemacht, scheint als würde er
+	    						//den user automatisch mit "mergen", weil user=fremdschlüssel in passwort
+	    
 	    Passwort pass = new Passwort();
 	    pass.setPasswortValue(pw);
 	    pass.setUserID(user);
 	    
-	    session.merge(user);
 	    session.merge(pass);
 	    
 	    t.commit();

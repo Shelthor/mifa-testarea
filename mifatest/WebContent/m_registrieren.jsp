@@ -240,9 +240,6 @@ if(request.getParameter("register")!= null)
 	//Wenn keine Fehler auftreten, Daten in DB
 	if (formRegister==true)
 	{
-		out.print("Registrierung erfolgt");
-	
-	
 	try
 		{
 		/*
@@ -258,12 +255,12 @@ if(request.getParameter("register")!= null)
 		*/
 		
 			fUser.newUser(emailR, d, nachname, vorname, telefon, "false", "true",password);
-	
+			out.print("Registrierung erfolgt");
 			//fUser.newPasswort(fUser.getUserById(5), password);
 		}
 	catch(Exception e)
 		{
-	
+			out.print(e);
 		}
 	}
 }
