@@ -25,8 +25,8 @@
 
    <div class="panel panel-default col-md-6 col-xs-12">
 	  <div class="panel-body">
-	    <p>Login</p>
-		<p>Regster</p>
+	    <p><a href=#>Login</a></p>
+		 <p><a href=#>Register</a></p>
 	  </div>
 	</div>
 	
