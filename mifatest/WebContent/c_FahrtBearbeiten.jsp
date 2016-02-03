@@ -32,7 +32,9 @@
 	Facade f;
 	Fahrt fa;
 	
-	int id;
+	User user;
+	
+	int id, userId;
 	
 	int tag, monat, jahr;
 	int stunde, minute;
@@ -51,6 +53,11 @@
 <%
 	f = new Facade();
 	id = 1; //id von Fahrt die zu bearbeiten ist, VERFEINERN: soll aus Parameter kommen (AJAX Möglich)
+	userId = 7; //Aktuell noch hart, soll aus cookie kommen
+	
+	user = new User();
+	user = f.getUserById(userId);
+	
 	fa = f.getFahrtById(id);
 		try{		
 			fahrtDatum = fa.getFahrtDatum();
@@ -89,10 +96,10 @@
 		    
 		    <ul class="nav navbar-nav navbar-right">
 		        <li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hallo [USERNAME / BILD]!<span class="caret"></span></a>
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hallo <%= user.getvName() %>!<span class="caret"></span></a>
 		          <ul class="dropdown-menu">
-		            <li><a href="#">Mein öffentliches Profil</a></li>
-		            <li><a href="#">Terminal</a></li>
+		            <li><a href="c_UserOeffentlich.jsp">Mein öffentliches Profil</a></li>
+		            <li><a href="c_User.jsp">Terminal</a></li>
 		          </ul>
 		        </li>
 	      	</ul>

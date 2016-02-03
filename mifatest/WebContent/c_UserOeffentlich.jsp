@@ -21,7 +21,7 @@
 
 	<%! 
 		Facade f;
-		User u;
+		User user;
 		
 		int id;
 		
@@ -33,20 +33,21 @@
 		String 	bildUrl;
 		String	telefon;
 		String 	mail;
+
 	%>
 	<%
 		f = new Facade();
 		id = 7; //kommt aus cookie
 					
 		try{
-			u = f.getUserById(id);
+			user = f.getUserById(id);
 			
-			vorName = u.getvName();
-			nachName = u.getnName();
-			geburtsDatum = u.getGeburtsDatum().toString();
-			bildUrl = u.getUserBildURL();
-			telefon = u.getTelNummer();
-			mail = u.geteMail();
+			vorName = user.getvName();
+			nachName = user.getnName();
+			geburtsDatum = user.getGeburtsDatum().toString();
+			bildUrl = user.getUserBildURL();
+			telefon = user.getTelNummer();
+			mail = user.geteMail();
 			
 			List<Bewertung> bList = f.getListWithAllBewertungenToUserByUserId(id);
 			
@@ -103,10 +104,10 @@
 		    
 		    <ul class="nav navbar-nav navbar-right">
 		        <li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hallo [USERNAME / BILD]!<span class="caret"></span></a>
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hallo <%= user.getvName() %>!<span class="caret"></span></a>
 		          <ul class="dropdown-menu">
-		            <li><a href="#">Mein öffentliches Profil</a></li>
-		            <li><a href="#">Terminal</a></li>
+		            <li><a href="c_UserOeffentlich.jsp">Mein öffentliches Profil</a></li>
+		            <li><a href="c_User.jsp">Terminal</a></li>
 		          </ul>
 		        </li>
 	      	</ul>

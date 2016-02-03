@@ -27,35 +27,64 @@
         async defer></script>
 </head>
 <body>
+
+<%! 
+	Facade f;
+	Fahrt fa;
+	User user;
+	int userId;
+	
+	int tag, monat, jahr;
+	int stunde, minute;
+	
+	String  kommentar;
+	
+	String 	s1,s2,s3,s4,s5,s6;
+	
+	Date 	fahrtDatum;
+	String 	gepaeck;
+	Time	startZeit;
+	String 	fahrer;
+		
+	int kap;
+%>
+
+<%
+	//FAHRER
+	userId = 7; //VERFEINERN: soll aus coockie kommen
+	f = new Facade();
+	user = f.getUserById(userId);
+%>
+
 	<div class="container">
 		<div class="row">
 			<nav class="navbar navbar-default navbar-fixed-top">
-			  <div class="container-fluid">
-			    <!-- Brand and toggle get grouped for better mobile display -->
-			    <div class="navbar-header">
-			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-			        <span class="sr-only">Toggle navigation</span>
-			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span>
-			      </button>
-			      <a class="navbar-brand" href="c_index.jsp"><img src="img/logo_ba_dresden.png" style="height:100%;"/></a>
-			    </div>
-				    <!-- Collect the nav links, forms, and other content for toggling -->
-			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			    
-			    <ul class="nav navbar-nav navbar-right">
-			        <li class="dropdown">
-			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hallo [USERNAME / BILD]!<span class="caret"></span></a>
-			          <ul class="dropdown-menu">
-			            <li><a href="#">Mein öffentliches Profil</a></li>
-			            <li><a href="#">Terminal</a></li>
-			          </ul>
-			        </li>
-		      	</ul>
-			    </div><!-- /.navbar-collapse -->
-			  </div><!-- /.container-fluid -->
-			</nav>
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="c_index.jsp"><img src="img/logo_ba_dresden.png" style="height:100%;"/></a>
+		    </div>
+			    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		    
+		    <ul class="nav navbar-nav navbar-right">
+		        <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hallo <%= user.getvName() %>!<span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="c_UserOeffentlich.jsp">Mein öffentliches Profil</a></li>
+		            <li><a href="c_User.jsp">Terminal</a></li>
+		          </ul>
+		        </li>
+	      	</ul>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
 		
 			<div class="jumbotron">
 			    <h1>Terminal</h1>
@@ -145,20 +174,20 @@
 						<div class="col-xs-12 col-md-4 abstandNachOben">
 							Von?: 
 							<br/>
-							<input type="text" name="formStart" id="inS1" style="width:100%" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp')" required autocomplete="off"/><ul class="list-group a"></ul><br/>     
+							<input type="text" name="formStart" id="inS1" style="width:100%" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" required autocomplete="off"/><ul class="list-group a"></ul><br/>     
 							Nach?: 
 							<br/>
-							<input type="text" name="formZiel"  id="inS6" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp')" style="width:100%" required autocomplete="off"/><ul class="list-group a"></ul><br/>
+							<input type="text" name="formZiel"  id="inS6" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" style="width:100%" required autocomplete="off"/><ul class="list-group a"></ul><br/>
 						</div>
 						<div class="col-xs-12 col-md-4 abstandNachOben">  
 							Über?:
 							<br/>
 							<input type="button" style="width: 100%;" onclick="zeigen()" value="füge Zwischenstation hinzu"/>
 							<div id="s2-s5" style="display:none;">
-								<input type="text" name="formS2" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp')" id="inS2" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul><br/><br/>
-								<input type="text" name="formS3" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp')" id="inS3" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul><br/><br/>
-								<input type="text" name="formS4" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp')" id="inS4" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul><br/><br/>
-								<input type="text" name="formS5" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp')" id="inS5" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul><br/>				
+								<input type="text" name="formS2" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" id="inS2" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul><br/><br/>
+								<input type="text" name="formS3" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" id="inS3" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul><br/><br/>
+								<input type="text" name="formS4" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" id="inS4" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul><br/><br/>
+								<input type="text" name="formS5" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" id="inS5" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul><br/>				
 							</div>
 							</div>
 							<div class="col-xs-12 col-md-12 abstandNachOben">
@@ -174,42 +203,23 @@
 				<br/>	
 			</div>
 			<div id="sendSuccess" style="display:none">
-					<p>SUCCESS</p>
+				<div class='alert alert-success text-center' role='alert'>
+					<h1>Inserat erfolgreich erstellt!</h1>
+				</div>
 			</div>
 			<div id="sendFail" style="display:none">
-					<p>FAIL</p>
+				<div class='alert alert-danger text-center' role='alert'>
+					<h1>Fehler! Inserat wurde nicht erstellt!</h1>
+				</div>
 			</div>
 		</div>
 	</div>
 </body>
 
-<%! 
-	Facade f;
-	Fahrt fa;
-	
-	int id;
-	
-	int tag, monat, jahr;
-	int stunde, minute;
-	
-	String  kommentar;
-	
-	String 	s1,s2,s3,s4,s5,s6;
-	
-	Date 	fahrtDatum;
-	String 	gepaeck;
-	Time	startZeit;
-	String 	fahrer;
-		
-	int kap;
-%>
 <%
 	f = new Facade();
 	if (request.getParameter("ok") != null){
-		try{
-			//FAHRER
-			id = 7; //VERFEINERN: soll aus coockie kommen
-			
+		try{			
 			//DATUM
 			tag = Integer.parseInt(request.getParameter("hTag"));
 			monat = Integer.parseInt(request.getParameter("hMonat"));
@@ -241,7 +251,7 @@
 
 			kommentar = request.getParameter("formKommentar");
 			
-			f.newFahrt(fahrtDatum, id, startZeit, gepaeck, kap, kommentar, s1, sList.get(0),sList.get(1), sList.get(2), sList.get(3), s6, kap, kap, kap, kap, kap, kap);
+			f.newFahrt(fahrtDatum, userId, startZeit, gepaeck, kap, kommentar, s1, sList.get(0),sList.get(1), sList.get(2), sList.get(3), s6, kap, kap, kap, kap, kap, kap);
 			
 			 out.print("<script>sendSQL();</script>");
 			 out.print("<script>suc();</script>");

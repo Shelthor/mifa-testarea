@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="com.mifatest.entities.*" %>
+<%@ page import="com.mifatest.executers.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,6 +17,18 @@
 	<script src="js/custom.js"></script>
 </head>
 <body>
+
+<%! 
+	Facade f;
+	int userId;
+	User user;
+%>
+
+<%
+	userId = 7;//VERFERINERN -> muss aus cookie kommen
+	f = new Facade();
+	user = f.getUserById(userId);
+%>
 
 <div class="container">
 
@@ -35,9 +49,9 @@
 		    
 		    <ul class="nav navbar-nav navbar-right">
 		        <li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hallo [USERNAME / BILD]!<span class="caret"></span></a>
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hallo <%= user.getvName() %>!<span class="caret"></span></a>
 		          <ul class="dropdown-menu">
-		            <li><a href="#">Mein öffentliches Profil</a></li>
+		            <li><a href="c_UserOeffentlich.jsp">Mein öffentliches Profil</a></li>
 		            <li><a href="#">Terminal</a></li>
 		          </ul>
 		        </li>
@@ -48,7 +62,7 @@
 
   <div class="jumbotron">
     <h1>Terminal</h1>
-    <p>Hallo [USER]!</p>
+    <p>Hallo <%= user.getvName() %>!</p>
     <p>Willkommen in deinem Persönlichen Bereich! von hier aus kannst du alles regeln, was deine Fahrten betrifft :)</p> 
   </div>
   <div class="row">

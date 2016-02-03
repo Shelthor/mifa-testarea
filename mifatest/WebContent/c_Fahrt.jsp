@@ -38,13 +38,19 @@
 		String 	fahrer;
 		
 		int kap;
+		
+		User user;
 	%>
 	<%
 			
 		try{
-			id = 1; //kommt aus cookie ODER link (mal sehen)
+			id = 1; //VERFEINERN: kommt aus cookie ODER link (mal sehen)
+			userId = 7; //VERFEINERN: kommt von cookie
+
 			
 			f = new Facade();	
+			
+			user = f.getUserById(userId);
 			
 			fa = f.getFahrtById(id);
 			
@@ -193,10 +199,10 @@
 			    
 			    <ul class="nav navbar-nav navbar-right">
 			        <li class="dropdown">
-			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hallo [USERNAME / BILD]!<span class="caret"></span></a>
+			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hallo <%=user.getvName() %>!<span class="caret"></span></a>
 			          <ul class="dropdown-menu">
-			            <li><a href="#">Mein öffentliches Profil</a></li>
-			            <li><a href="#">Terminal</a></li>
+			            <li><a href="c_UserOeffentlich.jsp">Mein öffentliches Profil</a></li>
+			            <li><a href="c_User.jsp">Terminal</a></li>
 			          </ul>
 			        </li>
 		      	</ul>
@@ -275,8 +281,6 @@
 	</div>
 
 <%
-	userId = 2; //VERFEINERN: kommt von cookie
-
 	//VERFEINERN: wenn user WEDER fahrer NOCH in passagier_fahrt Tabelle, Dann zeige Buchen-Feld an
 	if(userId != f.getFahrerByFahrtId(id).getUserID()){
 		out.print("<script>document.getElementById('buchenFeld').style.display = 'block'</script>");

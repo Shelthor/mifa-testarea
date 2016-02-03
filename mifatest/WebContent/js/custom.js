@@ -98,7 +98,7 @@
 			else{
 				v=z;
 			}
-			var url= y +"?val="+v;  
+			var url= y + "?val=" +v;  
 			  
 			if(window.XMLHttpRequest){  
 			request=new XMLHttpRequest();  
