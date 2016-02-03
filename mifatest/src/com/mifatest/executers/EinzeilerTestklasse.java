@@ -56,13 +56,11 @@ public class EinzeilerTestklasse {
 		System.out.println(p.getPasswortValue());
 		
 		try{
-			f.newUser("12@lol.de", new Date(), "12", "HORST", "01230213021", "false", "true", "12");
+			f.newUser("schwulette@dsd.de", new Date(), "Griffin", "Peter", "123 4 44 ", "christ11");
 		}catch(Exception e){
 			System.out.println(e);
 		}
-		
-		
-		
+
 	}
 
 }

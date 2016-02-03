@@ -14,8 +14,8 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `userID` int NOT NULL AUTO_INCREMENT,
   `userBildURL` varchar(128),
-  `isAdmin` ENUM('false', 'true') NOT NULL DEFAULT 'false',
-  `isActivated` ENUM('false', 'true') NOT NULL DEFAULT 'false',
+  `isAdmin` ENUM('false', 'true'),
+  `isActivated` ENUM('false', 'true'),
   `telNummer` varchar(20) NOT NULL,
   `eMail` varchar(45) NOT NULL UNIQUE,
   `vName` varchar(20) NOT NULL,

@@ -166,8 +166,10 @@ public class Facade {
 
 //Users//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
- 	public void newUser(String mail, Date bDate, String nachn, String vorn, String tel, String admin, String act, String pw ){
- 			    
+ 	public void newUser(String mail, Date bDate, String nachn, String vorn, String tel, String pw){
+ 		
+ 		String admin = "false", act = "false", bild = "img/1.png";
+ 		
 	    user.seteMail(mail);
 	    user.setGeburtsDatum(bDate);
 	    user.setnName(nachn);
@@ -175,6 +177,7 @@ public class Facade {
 	    user.setvName(vorn);
 	    user.setIsAdmin(admin);
 	    user.setIsActivated(act);
+	    user.setUserBildURL(bild);
 	    
 	    //session.merge(user); 	//diese Zeile hat bei mir Probleme gemacht, scheint als würde er
 	    						//den user automatisch mit "mergen", weil user=fremdschlüssel in passwort

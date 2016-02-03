@@ -254,7 +254,7 @@ if(request.getParameter("register")!= null)
 		String passwordB =request.getParameter("password2");
 		*/
 		
-			fUser.newUser(emailR, d, nachname, vorname, telefon, "false", "true",password);
+			fUser.newUser(emailR, d, nachname, vorname, telefon,password);
 			out.print("Registrierung erfolgt");
 			//fUser.newPasswort(fUser.getUserById(5), password);
 		}
