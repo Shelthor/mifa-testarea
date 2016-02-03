@@ -97,17 +97,17 @@
 		  var directionsDisplay = new google.maps.DirectionsRenderer;
 		  var map = new google.maps.Map(document.getElementById('map'), {
 		    zoom: 7,
-		    center: {lat: 51.00, lng: 9.00}
+		    center: {lat: 51.00, lng: 9.00} //Deutschland
 		  });
 		  directionsDisplay.setMap(map);
 	
 		  calculateAndDisplayRoute(directionsService, directionsDisplay);
 		}
 	
-		function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+	function calculateAndDisplayRoute(directionsService, directionsDisplay) {
 		  var waypts = [];
 		  var stationsAusDB = new Array("<%= s2%>", "<%= s3%>", "<%= s4%>", "<%= s5%>");
-		  ///
+		  ////Strecke mit Waypoints / Zwischenstationen füttern
 		  
 				// Define the callback function.
 				function setzePoints(value, index, ar) {
@@ -116,51 +116,53 @@
 					        location: value + ", Deutschland",
 					        stopover: true
 					      });
-				    }
-				    
+				    }			    
 				}
 				
 				stationsAusDB.forEach(setzePoints);
 	 	  
 		  ////
-		  directionsService.route({
-		    origin: "<%=s1%>" + ", Deutschland",
-		    destination: "<%=s6%>" + ", Deutschland",
-		    waypoints: waypts,
-		    optimizeWaypoints: true,
-		    travelMode: google.maps.TravelMode.DRIVING
-		  }, function(response, status) {
-		    if (status === google.maps.DirectionsStatus.OK) {
-		      directionsDisplay.setDirections(response);
-		      var route = response.routes[0];
-		      var summaryPanel = document.getElementById('directions-panel');
-		      summaryPanel.innerHTML = '';
-		      
-		      //gesamtpreis
-		      var gesPreis = 0;
-		      
-		      // For each route, display summary information.
-		      for (var i = 0; i < route.legs.length; i++) {
-		        var routeSegment = i + 1;
-		        summaryPanel.innerHTML += '<b>Streckenabschnitt: ' + routeSegment +
-		            '</b><br>';
-		        summaryPanel.innerHTML += route.legs[i].start_address + ' nach ';
-		        summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
-		       
-		        //berechne Preis
-		        var preis = 1.3 * 8 * (route.legs[i].distance.value / 1000) / 200;
-		        preis = Math.ceil(preis);
-		        gesPreis += preis;
-		        
-		        summaryPanel.innerHTML += route.legs[i].distance.text + '<br>Preis: <b>' + preis + '</b> Euro<br><br>';  
-		      }
-		      //gib Gesamtpreis aus
-		      summaryPanel.innerHTML += '<br><h3>Gesamtpreis: <b>' + gesPreis + '</b> Euro</h3><br>';
-		      
-		    } else {
-		      window.alert('Directions request failed due to ' + status);
-		    }
-		  });
+			  directionsService.route(
+					 	{
+						    origin: "<%=s1%>" + ", Deutschland",
+						    destination: "<%=s6%>" + ", Deutschland",
+						    waypoints: waypts,
+						    optimizeWaypoints: true,
+						    travelMode: google.maps.TravelMode.DRIVING
+						}, 
+						function(response, status) {
+						  	  if (status === google.maps.DirectionsStatus.OK) {
+						      directionsDisplay.setDirections(response);
+						      var route = response.routes[0];
+						      var summaryPanel = document.getElementById('directions-panel');
+						      summaryPanel.innerHTML = '';
+						      
+						      //gesamtpreis
+						      var gesPreis = 0;
+						      
+						      // For each route, display summary information.
+						      for (var i = 0; i < route.legs.length; i++) {
+						        var routeSegment = i + 1;
+						        summaryPanel.innerHTML += '<b>Streckenabschnitt: ' + routeSegment +
+						            '</b><br>';
+						        summaryPanel.innerHTML += route.legs[i].start_address + ' nach ';
+						        summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+						       
+						        //berechne Preis
+						        var preis = 1.3 * 8 * (route.legs[i].distance.value / 1000) / 200;
+						        preis = Math.ceil(preis);
+						        gesPreis += preis;
+						        
+						        summaryPanel.innerHTML += route.legs[i].distance.text + '<br>Preis: <b>' + preis + '</b> Euro<br><br>';  
+						      }
+						      //gib Gesamtpreis aus
+						      summaryPanel.innerHTML += '<br><h3>Gesamtpreis: <b>' + gesPreis + '</b> Euro</h3><br>';
+						      
+						    } else {
+						      window.alert('Directions request failed due to ' + status);
+						    }
+				  		}
+			);
 		}
 	
 		
