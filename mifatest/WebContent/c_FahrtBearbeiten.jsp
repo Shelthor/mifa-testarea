@@ -8,6 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>INTERN</title>
 	<link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
 	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
@@ -115,71 +116,90 @@
 
     <div class="col-md-12" id="whole">
 		<form action="c_FahrtBearbeiten.jsp" method="post">
-				<div class="row hellgrau">
-					<div class="col-sm-8">
-						<p>Datum: <%= fahrtDatum %></p>
-					</div>
-					<div class="col-sm-4">
-						<div class="bearbeitenPNG" onclick="zeigeBearbeitungsFeld('1')" onmouseover="glow(this)" onmouseout="blass(this)"></div>
-					</div>
-					<div class="col-sm-12" id="b1" style="display:none;">
-						<input type="text" id="datepicker" name="formDatum" size="30" autocomplete="off"><br/>
-							 
-							    <input type="hidden" id="hiddenJahr" name="hJahr" />
-						    	<input type="hidden" id="hiddenMonat" name="hMonat" />
-						        <input type="hidden" id="hiddenTag" name="hTag" />
-					</div>
+		
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">Datum</h3>
+			  </div>
+			  <div class="panel-body">
+			    <div class="col-sm-8">
+						<p><%= fahrtDatum %></p>
 				</div>
-				<div class="row grau">
-					<div class="col-sm-8">
-						<p>Startzeit: <%= startZeit %></p>
+				<div class="col-sm-4">
+						<div class="bearbeitenPNG" onclick="zeigeBearbeitungsFeld('1')" onmouseover="glow(this)" onmouseout="blass(this)"></div>
+				</div>
+				<div class="col-sm-12" id="b1" style="display:none;">
+					<input type="text" id="datepicker" name="formDatum" size="30" autocomplete="off"><br/>
+						 
+						    <input type="hidden" id="hiddenJahr" name="hJahr" />
+					    	<input type="hidden" id="hiddenMonat" name="hMonat" />
+					        <input type="hidden" id="hiddenTag" name="hTag" />
+				</div>
+			  </div>
+			</div>
+			
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">Uhrzeit</h3>
+			  </div>
+			  <div class="panel-body">
+			   <div class="col-sm-8">
+						<p><%= startZeit %></p>
 					</div>
 					<div class="col-sm-4">
 						<div class="bearbeitenPNG" onclick="zeigeBearbeitungsFeld('2')" onmouseover="glow(this)" onmouseout="blass(this)"></div>
 					</div>
 					<div class="col-sm-12" id="b2" style="display:none;">
-							<br/>
-								<select name="formStunden">
-									<option value="Z">h</option>
-									<option value="0">0</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
-									<option value="10">10</option>
-									<option value="11">11</option>
-									<option value="12">12</option>
-									<option value="13">3</option>
-									<option value="14">14</option>
-									<option value="15">15</option>
-									<option value="16">16</option>
-									<option value="17">17</option>
-									<option value="18">18</option>
-									<option value="19">19</option>
-									<option value="20">20</option>
-									<option value="21">21</option>
-									<option value="22">22</option>
-									<option value="23">23</option>
-								</select>
-								:
-								<select name="formMinuten">
-									<option value="Z">min</option>
-									<option value="0">00</option>
-									<option value="15">15</option>
-									<option value="30">30</option>
-									<option value="45">45</option>
-								</select>
-								<br/>
+						<br/>
+						<select name="formStunden">
+							<option value="Z">h</option>
+							<option value="0">0</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+						</select>
+						:
+						<select name="formMinuten">
+							<option value="Z">min</option>
+							<option value="0">00</option>
+							<option value="15">15</option>
+							<option value="30">30</option>
+							<option value="45">45</option>
+						</select>
+						<br/>
 					</div>
-				</div>
-				<div class="row hellgrau">
+			  </div>
+			</div>
+			
+			
+			
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">Gepäck</h3>
+			  </div>
+			  <div class="panel-body">
 					<div class="col-sm-8">
-						<p>Gepäck: <%= gepaeck %></p>
+						<p><%= gepaeck %></p>
 					</div>
 					<div class="col-sm-4">
 						<div class="bearbeitenPNG" onclick="zeigeBearbeitungsFeld('3')" onmouseover="glow(this)" onmouseout="blass(this)"></div>
@@ -195,10 +215,17 @@
 							  </select>
 							<br/>
 					</div>
-				</div>
-				<div class="row grau">
+			  </div>
+			</div>
+			
+			
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">Plätze frei</h3>
+			  </div>
+			  <div class="panel-body">
 					<div class="col-sm-8">
-						<p>Plätze Frei: <%= kap %></p>
+						<p><%= kap %></p>
 					</div>
 					<div class="col-sm-4">
 						<div class="bearbeitenPNG" onclick="zeigeBearbeitungsFeld('4')" onmouseover="glow(this)" onmouseout="blass(this)"></div>
@@ -206,32 +233,16 @@
 					<div class="col-sm-12" id="b4" style="display:none;">
 						<input type=text" name="formKapazitaet" autocomplete="off"/>
 					</div>
-				</div>
-				<div class="row hellgrau">
+			  </div>
+			</div>
+			
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">Kommentar</h3>
+			  </div>
+			  <div class="panel-body">
 					<div class="col-sm-8">
-						<p>Start: <%= s1 %></p>
-					</div>
-					<div class="col-sm-4">
-						<div class="bearbeitenPNG" onclick="zeigeBearbeitungsFeld('5')" onmouseover="glow(this)" onmouseout="blass(this)"></div>
-					</div>
-					<div class="col-sm-12" id="b5" style="display:none;">
-						<input type=text" name="formS1" autocomplete="off"/>
-					</div>
-				</div>
-				<div class="row grau">
-					<div class="col-sm-8">
-						<p>Ziel: <%= s6 %></p>
-					</div>
-					<div class="col-sm-4">
-						<div class="bearbeitenPNG" onclick="zeigeBearbeitungsFeld('6')" onmouseover="glow(this)" onmouseout="blass(this)"></div>
-					</div>
-					<div class="col-sm-12" id="b6" style="display:none;">
-						<input type=text" name="formS6" autocomplete="off"/>
-					</div>
-				</div>
-				<div class="row hellgrau">
-					<div class="col-sm-8">
-						<p>Kommentar: <%= kommentar %></p>
+						<p><%= kommentar %></p>
 					</div>
 					<div class="col-sm-4">
 						<div class="bearbeitenPNG" onclick="zeigeBearbeitungsFeld('7')" onmouseover="glow(this)" onmouseout="blass(this)"></div>
@@ -239,8 +250,10 @@
 					<div class="col-sm-12" id="b7" style="display:none;">
 						<input type=text" name="formKommentar" style="width: 100%; height: 75px;"autocomplete="off"/>
 					</div>
-				</div>
-				<input type="submit" name="ok" value="senden" style="width:100%">
+			  </div>
+			</div>		
+			<br/>
+			<input type="submit" name="ok" value="senden" style="width:100%">
 		</form>
 		</div>
 		<div id="sendSuccess" style="display:none">
@@ -318,23 +331,26 @@ if (request.getParameter("ok") != null){
 			
 			//Stationen
 			
-			if(request.getParameter("formS1").equals("") != true){
-				s1 = request.getParameter("formS1");
-				fa.setS1(s1);
+			/*
+				if(request.getParameter("formS1").equals("") != true){
+					s1 = request.getParameter("formS1");
+					fa.setS1(s1);
+					
+					zaehlen++;
+					
+					alertList.add("Start: " + s1);
+				}
 				
-				zaehlen++;
-				
-				alertList.add("Start: " + s1);
-			}
+				if(request.getParameter("formS6").equals("") != true){
+					s6 = request.getParameter("formS6");
+					fa.setS6(s6);
+					
+					zaehlen++;
+					
+					alertList.add("Ziel: " + s6);
+				}
 			
-			if(request.getParameter("formS6").equals("") != true){
-				s6 = request.getParameter("formS6");
-				fa.setS6(s6);
-				
-				zaehlen++;
-				
-				alertList.add("Ziel: " + s6);
-			}
+			*/
 			
 			if(request.getParameter("formKommentar").equals("") != true){
 				kommentar = request.getParameter("formKommentar");
