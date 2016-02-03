@@ -135,6 +135,10 @@
 		      var route = response.routes[0];
 		      var summaryPanel = document.getElementById('directions-panel');
 		      summaryPanel.innerHTML = '';
+		      
+		      //gesamtpreis
+		      var gesPreis = 0;
+		      
 		      // For each route, display summary information.
 		      for (var i = 0; i < route.legs.length; i++) {
 		        var routeSegment = i + 1;
@@ -142,8 +146,17 @@
 		            '</b><br>';
 		        summaryPanel.innerHTML += route.legs[i].start_address + ' nach ';
 		        summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
-		        summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+		       
+		        //berechne Preis
+		        var preis = 1.3 * 8 * (route.legs[i].distance.value / 1000) / 200;
+		        preis = Math.ceil(preis);
+		        gesPreis += preis;
+		        
+		        summaryPanel.innerHTML += route.legs[i].distance.text + '<br>Preis: <b>' + preis + '</b> Euro<br><br>';  
 		      }
+		      //gib Gesamtpreis aus
+		      summaryPanel.innerHTML += '<br><h3>Gesamtpreis: <b>' + gesPreis + '</b> Euro</h3><br>';
+		      
 		    } else {
 		      window.alert('Directions request failed due to ' + status);
 		    }
