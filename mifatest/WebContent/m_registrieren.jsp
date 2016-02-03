@@ -34,111 +34,103 @@
  
  <tr>
   <td align="center">Geburtsdatum</td>
-  <td>
-  <label align="top">Tag</label>
-            <select name="Tag">
-                 <option>01</option>
-                 <option>02</option>
-                 <option>03</option>
-                 <option>04</option>
-                 <option>05</option>
-                 <option>06</option>
-                 <option>07</option>
-                 <option>08</option>
-                 <option>09</option>
-                 <option>10</option>
-                 <option>11</option>
-                 <option>12</option>
-                 <option>13</option>
-                 <option>14</option>
-                 <option>15</option>
-                 <option>16</option>
-                 <option>17</option>
-                 <option>18</option>
-                 <option>19</option>
-                 <option>20</option>
-                 <option>21</option>
-                 <option>22</option>
-                 <option>23</option>
-                 <option>24</option>
-                 <option>25</option>
-                 <option>26</option>
-                 <option>27</option>
-                 <option>28</option>
-                 <option>29</option>
-                 <option>30</option>
-                 <option>31</option>
-            </select>
-
-
-  
-  <label align="top">Monat</label>
-            <select name="Monat">
-                 <option>01</option>
-                 <option>02</option>
-                 <option>03</option>
-                 <option>04</option>
-                 <option>05</option>
-                 <option>06</option>
-                 <option>07</option>
-                 <option>08</option>
-                 <option>09</option>
-                 <option>10</option>
-                 <option>11</option>
-                 <option>12</option>
-            </select>
-
-  
-  <label align="top">Jahr</label>
-            <select name="Jahr">
-                 <option>1960</option>
-<option>1961</option>
-<option>1962</option>
-<option>1963</option>
-<option>1964</option>
-<option>1965</option>
-<option>1966</option>
-<option>1967</option>
-<option>1968</option>
-<option>1969</option>
-<option>1970</option>
-<option>1971</option>
-<option>1972</option>
-<option>1973</option>
-<option>1974</option>
-<option>1975</option>
-<option>1976</option>
-<option>1977</option>
-<option>1978</option>
-<option>1979</option>
-<option>1980</option>
-<option>1981</option>
-<option>1982</option>
-<option>1983</option>
-<option>1984</option>
-<option>1985</option>
-<option>1986</option>
-<option>1987</option>
-<option>1988</option>
-<option>1989</option>
-<option>1990</option>
-<option>1991</option>
-<option>1992</option>
-<option>1993</option>
-<option>1994</option>
-<option>1995</option>
-<option>1996</option>
-<option>1997</option>
-<option>1998</option>
-<option>1999</option>
-<option>2000</option>
-            </select>
-
-
-  
-
-
-  </td>
+	<td>
+	  <label align="top">Tag</label>
+		<select name="Tag">
+		     <option>01</option>
+		     <option>02</option>
+		     <option>03</option>
+		     <option>04</option>
+		     <option>05</option>
+		     <option>06</option>
+		     <option>07</option>
+		     <option>08</option>
+		     <option>09</option>
+		     <option>10</option>
+		     <option>11</option>
+		     <option>12</option>
+		     <option>13</option>
+		     <option>14</option>
+		     <option>15</option>
+		     <option>16</option>
+		     <option>17</option>
+		     <option>18</option>
+		     <option>19</option>
+		     <option>20</option>
+		     <option>21</option>
+		     <option>22</option>
+		     <option>23</option>
+		     <option>24</option>
+		     <option>25</option>
+		     <option>26</option>
+		     <option>27</option>
+		     <option>28</option>
+		     <option>29</option>
+		     <option>30</option>
+		     <option>31</option>
+		</select>
+	            
+	  <label align="top">Monat</label>
+			<select name="Monat">
+			     <option>01</option>
+			     <option>02</option>
+			     <option>03</option>
+			     <option>04</option>
+			     <option>05</option>
+			     <option>06</option>
+			     <option>07</option>
+			     <option>08</option>
+			     <option>09</option>
+			     <option>10</option>
+			     <option>11</option>
+			     <option>12</option>
+			</select>
+	
+	  <label align="top">Jahr</label>
+			<select name="Jahr">
+				<option>1960</option>
+				<option>1961</option>
+				<option>1962</option>
+				<option>1963</option>
+				<option>1964</option>
+				<option>1965</option>
+				<option>1966</option>
+				<option>1967</option>
+				<option>1968</option>
+				<option>1969</option>
+				<option>1970</option>
+				<option>1971</option>
+				<option>1972</option>
+				<option>1973</option>
+				<option>1974</option>
+				<option>1975</option>
+				<option>1976</option>
+				<option>1977</option>
+				<option>1978</option>
+				<option>1979</option>
+				<option>1980</option>
+				<option>1981</option>
+				<option>1982</option>
+				<option>1983</option>
+				<option>1984</option>
+				<option>1985</option>
+				<option>1986</option>
+				<option>1987</option>
+				<option>1988</option>
+				<option>1989</option>
+				<option>1990</option>
+				<option>1991</option>
+				<option>1992</option>
+				<option>1993</option>
+				<option>1994</option>
+				<option>1995</option>
+				<option>1996</option>
+				<option>1997</option>
+				<option>1998</option>
+				<option>1999</option>
+				<option>2000</option>
+			</select>
+	</td>
  </tr>
  <tr>
   <td align="center">E-Mail</td>
@@ -179,7 +171,7 @@ if(request.getParameter("register")!= null)
 	String password =request.getParameter("password1");
 	String passwordB =request.getParameter("password2");
 	
-	Boolean formRegister=true;
+	Boolean formRegister=false;
 	//Date d = new Date(YearInt-1900,DayInt-1,month); 
 	int YearInt = Integer.parseInt(year);
 	int DayInt = Integer.parseInt(day);
@@ -193,70 +185,41 @@ if(request.getParameter("register")!= null)
 	*/
 	
 /////////////////////////////////////////////////////////////////////////////////////////					
-				if(telefon.matches("[0-9]+"))
-				{
-		
-				}
-				else
-				{
-					out.print("Bitte Telefonnummer korrekt eingeben!");
-					formRegister=false;	
-				}
+	if(telefon.matches("[0-9]+"))
+	{
+		//lieber über javaScript lösen (siehe c_FahrtAnbieten.jsp)
+	}
+	else
+	{
+		out.print("Bitte Telefonnummer korrekt eingeben!");
+		formRegister=false;	
+	}
 				
-				
-	//Überprüfung, ob Kennwort == bestätigtes Kennwort
-	//+Überprüfung auf != leer
-					if(password==""|passwordB=="")
-					{
-						out.print("Kennwort darf nicht leer sein!");	
-					}
+	if (password.equals(passwordB))
+	{
+		formRegister=true; //lieber über javaScript lösen (siehe c_FahrtAnbieten.jsp)
+	}
+	else
+	{
+		out.print("Die Kennwörter stimmen nicht überein!");
+		formRegister=false;
+	}
 	
+	if(formRegister==false)
+	{
+		out.print("Registrierung fehlgeschlagen.");
+	}
 	
-					if (password.equals(passwordB))
-					{
-						//Passwort für Benutzer anlegen
-						//aktuelle UserID eintragen
-						//fUser.newPasswort(userid, password);
-						
-					 //fUser.newUser(emailR, d, nachname, vorname, telefon, "false", "true");
-					 
-					}
-					else
-					{
-						out.print("Die Kennwörter stimmen nicht überein!");
-						formRegister=false;
-					}
-					
-					
-						if(formRegister==false)
-						{
-							out.print("Registrierung fehlgeschlagen.");
-						}
-			
-		//}
-	//}
 	//Fehler bis hier her abfangen
 	//////////////////////////////////////////////////////////////
 	//Wenn keine Fehler auftreten, Daten in DB
-	if (formRegister==true)
+	
+	else
 	{
 	try
 		{
-		/*
-		String vorname = request.getParameter("vorname");
-		String nachname = request.getParameter("nachname");
-		String day = request.getParameter("Tag");
-		String month = request.getParameter("Monat");
-		String year = request.getParameter("Jahr");
-		String emailR = request.getParameter("email");
-		String telefon = request.getParameter("telefon");
-		String password =request.getParameter("password1");
-		String passwordB =request.getParameter("password2");
-		*/
-		
-			fUser.newUser(emailR, d, nachname, vorname, telefon,password);
+			fUser.newUser(emailR, d, nachname, vorname, telefon, password);
 			out.print("Registrierung erfolgt");
-			//fUser.newPasswort(fUser.getUserById(5), password);
 		}
 	catch(Exception e)
 		{
