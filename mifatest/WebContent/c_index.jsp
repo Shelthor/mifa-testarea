@@ -4,38 +4,46 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Welcome</title>
-<link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
-<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
-<script src="js/npm.js"></script>
-<script src="js/bootstrap.js"></script>
+	<link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="css/custom.css" type="text/css" />
+	
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="js/npm.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/custom.js"></script>
 </head>
 <body>
 
 <div class="container">
   <div class="jumbotron">
-    <h1>Mitfahrzentrale</h1>
-    <p>Resize this responsive page to see the effect!</p> 
+    <h1>LANDINGPAGE</h1>
   </div>
   <div class="row">
-    <div class="col-sm-4">
 
-    </div>
-    <div class="col-sm-4">
-		<p>Loginfeld</p>
-		<p>registrieren</p>
-    </div>
-    <div class="col-sm-4">
-
-    </div>
+   <div class="panel panel-default col-md-6 col-xs-12">
+	  <div class="panel-body">
+	    <p>Login</p>
+		<p>Regster</p>
+	  </div>
+	</div>
+	
+	<div class="panel panel-default col-md-6 col-xs-12">
+	  <div class="panel-body">
+	    <p>Werbung</p>
+	  </div>
+	</div>
+	
   </div>
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-xs-12 col-md-6">
       <h3>Column 1</h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
       <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
     </div>
-    <div class="col-sm-6">
+    <div class="col-xs-12 col-md-6">
       <h3>Column 2</h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
       <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
