@@ -76,7 +76,7 @@ if(request.getParameter("submit")!= null)
 	System.out.println("BIS HIER" + uPasswort.getPasswortValue());
 	if (uPasswort.getPasswortValue().equals(passwd))
 	{
-		//Cookie Handling
+		//Cookie Handling [huhu]
 		Cookie testMailCookie = new Cookie("eMail",theCookieValue);
 
 		testMailCookie.setMaxAge(60*60*24);
