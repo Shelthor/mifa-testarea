@@ -51,14 +51,7 @@
 
 <p>Neu bei uns?
 <a href="m_registrieren.html">Jetz registrieren!</a>
-<!--<a href="registrieren.jsp">Jetz registrieren!</a>-->
 </p>
-
-
-
-
-
-
 <%
 
 if(request.getParameter("submit")!= null)
@@ -113,73 +106,10 @@ if(request.getParameter("submit")!= null)
 	}
 }
 
-	
+//Methode noch festlegen, wann Cookie ausgeführt wird --> nach erfolgreichem Login
+//wenn LoginForm==true dann UserId in Cookie übergeben	
 
 %>
-
-
-
-<script>
-
-
-
-/*
-function setCookie(CookieName,CookieValue,exdays)
-{
-	var CookieName = document.getElementById("emailID").value;
-	var exdate = new Date();
-	exdate.setTime(exdate.getTime()+(exdays*24*60));
-	var expires = "expires="+exdate.toUTCString();
-	document.cookie= CookieName+"="+CookieValue+";"+expires;
-}
-
-function getCookie(CookieName)
-{
-	//nimm den cookiename als Parameter(CookieName)
-	//erstelle Variable mit zu suchendem Text
-	//erstelle Array ca
-	//gehe durch das Array und lies die Werte aus (ca[i])
-	//wurde cookie gefunden --> gib den Wert zurück
-	//wurde cookie nicht gefunden --> ""
-	var name = CookieName+"=";
-	var ca = document.cookie.split(';');
-	for (var i=0;i<ca.length;i++)
-		{
-			var c = ca[i];
-			while (c.charAt(0)=='') c=c.substring(1);
-				if (c.indexOf(name)==0)
-					{
-						return c.substring(name.length, c.length);
-					}
-		}
-	return "";
-}
-
-function checkCookie()
-{
-	//falls cookie gesetzt --> alert Willkommen
-	//nicht gesetzt --> setze ihn mittels setcookie Methode
-	var userMail=getCookie(email);
-	if (userMail != "")
-		{
-			alert("Willkommen zurück");
-		}
-	else
-	{
-		userMail = document.getElementById("emailID");
-		if (userMail != "" && userMail != null )
-			{
-				setCookie(CookieName, CookieValue, exdays);
-			}
-	}
-}
-
-var x = document.cookie;
-document.writeln(x);
-*/
-//Methode noch festlegen, wann Cookie ausgeführt wird --> nach erfolgreichem Login
-//wenn LoginForm==true dann UserId in Cookie übergeben
-</script>
 
 </body>
 </html>
