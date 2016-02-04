@@ -20,10 +20,8 @@
 	
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3f0-lP6PquSnOUBu8j85B5MGM3pDLFx4&signed_in=true&callback=initMap"
 	        async defer></script>
-
-	<script>
-	
-<%
+	        
+	   <%
 	/*
 		Hole userId aus Cookie heraus
 	*/
@@ -118,9 +116,10 @@
 	catch (Exception e){
 		out.print(e);
 	}
-%>
-	
-	
+%>     
+	        
+	        
+<script>
 	function initMap() {
 		  var directionsService = new google.maps.DirectionsService;
 		  var directionsDisplay = new google.maps.DirectionsRenderer;
