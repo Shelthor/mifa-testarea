@@ -34,8 +34,8 @@
  <table width="50%" border="1" cellpadding="0" cellspacing="2">
   <tr>
    <tr>
-   <form action="m_index.jsp" method="post" onsubmit="m_login.html">
-  		<td align="center"><input type="submit" name="submit" value="Login" />
+   <form action="c_User.jsp" method="post">
+  		<td align="center"><input type="submit" name="submit" value="Login" onclick="setCookie()" />
   		<!-- <input type="submit" name="cancel" value="Abbrechen"/> -->
   		<script>
   			
@@ -66,6 +66,8 @@ if(request.getParameter("submit")!= null)
 	String email=request.getParameter("email");
 	String passwd=request.getParameter("password");
 	String passwdDB;
+	String loginPage="http://localhost:8080/mifatest/c_User.jsp";
+	String theCookieValue = request.getParameter("email");
 
 	Facade fUserLogin = new Facade();
 	try{
@@ -81,10 +83,24 @@ if(request.getParameter("submit")!= null)
 	System.out.println("BIS HIER" + uPasswort.getPasswortValue());
 	if (uPasswort.getPasswortValue().equals(passwd))
 	{
+		//Cookie Handling
+		Cookie testMailCookie = new Cookie("eMail",theCookieValue);
+
+		testMailCookie.setMaxAge(60*60*24);
+
+		response.addCookie(testMailCookie);
+		
+		
+		//cookie-action
+		//u  = getuserbyemail -> u.getUserId(); -> das in cookie mit übergeben
+		
 		out.print("Passwort stimmt");
+		//Seiten redirect auf Profil
+		response.setStatus(response.SC_MOVED_TEMPORARILY);
+		response.setHeader("Location", loginPage);
 		
 	}else{
-		out.println("login NICHT");
+		out.println("Login nicht möglich!");
 	}
 	
 	
@@ -93,14 +109,21 @@ if(request.getParameter("submit")!= null)
 	}
 	catch(Exception e) 
 	{
-		out.print(e);
+		out.print("Login nicht möglich!");
 	}
 }
+
 	
 
 %>
 
+
+
 <script>
+
+
+
+/*
 function setCookie(CookieName,CookieValue,exdays)
 {
 	var CookieName = document.getElementById("emailID").value;
@@ -153,7 +176,7 @@ function checkCookie()
 
 var x = document.cookie;
 document.writeln(x);
-
+*/
 //Methode noch festlegen, wann Cookie ausgeführt wird --> nach erfolgreichem Login
 //wenn LoginForm==true dann UserId in Cookie übergeben
 </script>
