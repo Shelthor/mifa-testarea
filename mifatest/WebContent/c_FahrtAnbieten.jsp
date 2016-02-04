@@ -29,6 +29,27 @@
 </head>
 <body>
 
+<%
+	/*
+		Hole userId aus Cookie heraus
+	*/
+
+	Cookie[] cookies = request.getCookies();
+
+	int userIdAusCookie = 0;
+	
+	if( cookies != null)
+	{
+		 for (int i = 0; i < cookies.length; i++){
+			 if(cookies[i].getName().equals("c_userId")){
+				 userIdAusCookie = Integer.parseInt(cookies[i].getValue());
+			 }
+		 }
+		 
+		 out.print("UserID: " + userIdAusCookie + "<br/>");
+	}
+%>
+
 <%! 
 	Facade f;
 	Fahrt fa;
@@ -52,7 +73,8 @@
 
 <%
 	//FAHRER
-	userId = 7; //VERFEINERN: soll aus coockie kommen
+	userId = 7; //VERFERINERN -> Aus Cookie -> siehe unten
+	//userId = userIdAusCookie;
 	
 	f = new Facade();
 	user = f.getUserById(userId);

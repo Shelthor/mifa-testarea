@@ -20,71 +20,92 @@
 </head>
 <body>
 
-	<%! 
-		Facade f;
-		User user;
-		
-		int id;
-		
-		double drPuenktlich, drFahrstil, drFreundlich;
+<%
+	/*
+		Hole userId aus Cookie heraus
+	*/
 
-		String  vorName;
-		String 	nachName;
-		String 	geburtsDatum;
-		String 	bildUrl;
-		String	telefon;
-		String 	mail;
+	Cookie[] cookies = request.getCookies();
 
-	%>
-	<%
-		f = new Facade();
-		id = 7; //kommt aus cookie
-					
-		try{
-			user = f.getUserById(id);
-			
-			vorName = user.getvName();
-			nachName = user.getnName();
-			geburtsDatum = user.getGeburtsDatum().toString();
-			bildUrl = user.getUserBildURL();
-			telefon = user.getTelNummer();
-			mail = user.geteMail();
-			
-			List<Bewertung> bList = f.getListWithAllBewertungenToUserByUserId(id);
-			
-			List<Integer> fahrstilRating = new ArrayList<Integer>();
-			List<Integer> puenktlichkeitRating = new ArrayList<Integer>();
-			List<Integer> freundlichkeitRating = new ArrayList<Integer>();
-			
-			for(int i = 0; i < bList.size(); i++){
-				
-				/*
-				
-				Sämtliche Ratings reichen von 1 - 5 (Sterne).
-				Eine 0 Beim Fahrstil bedeutet, dass derjenige Passagier war und kein Fahrer,
-				daher ignoriere bei der Bildung des Durchschnitts aller Fahrstil-Bewertungen
-				alle Einträge mit 0
-				
-				*/
-				
-				if(bList.get(i).getFahrstilRating() != 0)
-					fahrstilRating.add(bList.get(i).getFahrstilRating());
-				
-				// Rest normal
-				puenktlichkeitRating.add(bList.get(i).getPuenktlichkeitRating());
-				freundlichkeitRating.add(bList.get(i).getFreundlichkeitRating());
-			}
-/////////////////////////////////////////////////////////////////////////////////	  
-			drFahrstil = f.durchschnitt(fahrstilRating);
-			drPuenktlich = f.durchschnitt(puenktlichkeitRating);
-			drFreundlich = f.durchschnitt(freundlichkeitRating);
-////////////////////////////////////////////////////////////////////////////////////////////////////////////			
-		}
-		catch (Exception e){
-			out.print(e);
-		}
+	int userIdAusCookie = 0;
 	
-	%>
+	if( cookies != null)
+	{
+		 for (int i = 0; i < cookies.length; i++){
+			 if(cookies[i].getName().equals("c_userId")){
+				 userIdAusCookie = Integer.parseInt(cookies[i].getValue());
+			 }
+		 }
+		 
+		 out.print("UserID: " + userIdAusCookie + "<br/>");
+	}
+%>
+
+<%! 
+	Facade f;
+	User user;
+	
+	int userId;
+	
+	double drPuenktlich, drFahrstil, drFreundlich;
+
+	String  vorName;
+	String 	nachName;
+	String 	geburtsDatum;
+	String 	bildUrl;
+	String	telefon;
+	String 	mail;
+
+%>
+<%
+	f = new Facade();
+	userId = 7; //VERFERINERN -> siehe unten
+	//userId = userIdAusCookie;
+				
+	try{
+		user = f.getUserById(userId);
+		
+		vorName = user.getvName();
+		nachName = user.getnName();
+		geburtsDatum = user.getGeburtsDatum().toString();
+		bildUrl = user.getUserBildURL();
+		telefon = user.getTelNummer();
+		mail = user.geteMail();
+		
+		List<Bewertung> bList = f.getListWithAllBewertungenToUserByUserId(userId);
+		
+		List<Integer> fahrstilRating = new ArrayList<Integer>();
+		List<Integer> puenktlichkeitRating = new ArrayList<Integer>();
+		List<Integer> freundlichkeitRating = new ArrayList<Integer>();
+		
+		for(int i = 0; i < bList.size(); i++){
+			
+			/*
+			
+			Sämtliche Ratings reichen von 1 - 5 (Sterne).
+			Eine 0 Beim Fahrstil bedeutet, dass derjenige Passagier war und kein Fahrer,
+			daher ignoriere bei der Bildung des Durchschnitts aller Fahrstil-Bewertungen
+			alle Einträge mit 0
+			
+			*/
+			
+			if(bList.get(i).getFahrstilRating() != 0)
+				fahrstilRating.add(bList.get(i).getFahrstilRating());
+			
+			// Rest normal
+			puenktlichkeitRating.add(bList.get(i).getPuenktlichkeitRating());
+			freundlichkeitRating.add(bList.get(i).getFreundlichkeitRating());
+		}
+/////////////////////////////////////////////////////////////////////////////////	  
+		drFahrstil = f.durchschnitt(fahrstilRating);
+		drPuenktlich = f.durchschnitt(puenktlichkeitRating);
+		drFreundlich = f.durchschnitt(freundlichkeitRating);
+////////////////////////////////////////////////////////////////////////////////////////////////////////////			
+	}
+	catch (Exception e){
+		out.print(e);
+	}
+%>
 
 <div class="container">
 	

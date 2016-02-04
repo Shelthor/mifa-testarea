@@ -29,6 +29,28 @@ td.star{
 </style>
 </head>
 <body>
+
+<%
+	/*
+		Hole userId aus Cookie heraus
+	*/
+
+	Cookie[] cookies = request.getCookies();
+
+	int userIdAusCookie = 0;
+	
+	if( cookies != null)
+	{
+		 for (int i = 0; i < cookies.length; i++){
+			 if(cookies[i].getName().equals("c_userId")){
+				 userIdAusCookie = Integer.parseInt(cookies[i].getValue());
+			 }
+		 }
+		 
+		 out.print("UserID: " + userIdAusCookie + "<br/>");
+	}
+%>
+
 <%! 
 	Fahrt fahrtid;
 	String text;
@@ -50,7 +72,7 @@ td.star{
 if(kontrolle == 0){
 	try{
 		empfurl = Integer.parseInt(request.getParameter("empfid"));
-		sendurl = Integer.parseInt(request.getParameter("senderid"));
+		sendurl = Integer.parseInt(request.getParameter("senderid")); //VERFERINERN -> siehe unten
 		fahrturl = Integer.parseInt(request.getParameter("fahrtid"));
 		
 	}
@@ -61,7 +83,8 @@ if(kontrolle == 0){
 
 Facade f = new Facade();
 empf = f.getUserById(empfurl);
-send = f.getUserById(sendurl);
+send = f.getUserById(sendurl);//VERFERINERN -> Aus Cookie -> siehe unten
+//send = userIdAusCookie;
 fahrtid = f.getFahrtById(fahrturl);
 
 out.print(send.getnName());
