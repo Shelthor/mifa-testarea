@@ -184,12 +184,12 @@
 						<div class="col-xs-12 col-md-4 abstandNachOben">  
 							Über?:
 							<br/>
-							<input type="button" style="width: 100%;" onclick="zeigen()" value="füge Zwischenstation hinzu"/>
+							<input id="zeigeZwischenSt"type="button" style="width: 100%;" onclick="zeigen()" value="füge Zwischenstation hinzu"/>
 							<div id="s2-s5" style="display:none;">
-								<input type="text" name="formS2" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" id="inS2" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul><br/><br/>
-								<input type="text" name="formS3" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" id="inS3" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul><br/><br/>
-								<input type="text" name="formS4" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" id="inS4" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul><br/><br/>
-								<input type="text" name="formS5" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" id="inS5" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul><br/>				
+								<input type="text" name="formS2" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" id="inS2" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul>
+								<input type="text" name="formS3" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" id="inS3" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul>
+								<input type="text" name="formS4" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" id="inS4" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul>
+								<input type="text" name="formS5" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" id="inS5" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul>			
 							</div>
 							</div>
 							<div class="col-xs-12 col-md-12 abstandNachOben">
@@ -341,9 +341,13 @@ function initMap() {
 			
 		if(zwischenStZaehler < 6){
 			$("#inS"+zwischenStZaehler).slideDown();
+			
+			if(zwischenStZaehler == 5){
+				$('#zeigeZwischenSt').slideUp();
+			}
+			
 			zwischenStZaehler++;
 		}
-
 	}
 	
 	function aktualisiereMap(){

@@ -257,9 +257,13 @@
 		</form>
 		</div>
 		<div id="sendSuccess" style="display:none">
-			<p>SUCCESS</p><br/><br/>
-			<h1>Änderungen: </h1><br/>
-			<p id="Absatz"></p>
+			<div class='alert alert-success text-center' role='alert'>
+				<h1>Fahrt erfolgreich geändert!</h1>
+			</div>
+			<div class="col-md-12">
+				<h1>Änderungen: </h1><br/>
+				<p id="Absatz"></p>
+			</div>		
 		</div>
 		<div id="sendFail" style="display:none">
 			<p>FAIL</p>
