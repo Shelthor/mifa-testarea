@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
+<title>Oeffentlich - Fahrt</title>
 	<link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
 	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
 	<link rel="stylesheet" href="css/custom.css" type="text/css" />
@@ -21,7 +21,7 @@
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3f0-lP6PquSnOUBu8j85B5MGM3pDLFx4&signed_in=true&callback=initMap"
 	        async defer></script>
 	        
-	   <%
+<%
 	/*
 		Hole userId aus Cookie heraus
 	*/
@@ -60,62 +60,63 @@
 	int kap;
 	
 	User user;
+	int kontrolle = 0;
 %>
 <%
-		
-	try{
-		id = 1; //VERFEINERN: soll aus Parameter kommen
-		//userId = 7; //VERFERINERN -> Aus Cookie -> siehe unten
-		userId = userIdAusCookie;
-
-		
-		f = new Facade();	
-		
-		user = f.getUserById(userId);
-		
-		fa = f.getFahrtById(id);
-		
-		kommentar = fa.getKommentar();
-		
-		fahrtDatum = fa.getFahrtDatum().toString();
-		gepaeck = fa.getGepaeck();
-		startZeit = fa.getFahrtStartZeit().toString();
-		
-		fahrer = f.getFahrerByFahrtId(id).getvName() + " " + f.getFahrerByFahrtId(id).getnName() ;
-		
-		kap = fa.getKapazitaet();
+	if(kontrolle == 0){
+		try{
+			id = Integer.parseInt(request.getParameter("fahrtid"));
+			userId = userIdAusCookie;
 	
-		s1 = fa.getS1();
-		s2 = fa.getS2();
-		s3 = fa.getS3();
-		s4 = fa.getS4();
-		s5 = fa.getS5();
-		s6 = fa.getS6();
+			
+			f = new Facade();	
+			
+			user = f.getUserById(userId);
+			
+			fa = f.getFahrtById(id);
+			
+			kommentar = fa.getKommentar();
+			
+			fahrtDatum = fa.getFahrtDatum().toString();
+			gepaeck = fa.getGepaeck();
+			startZeit = fa.getFahrtStartZeit().toString();
+			
+			fahrer = f.getFahrerByFahrtId(id).getvName() + " " + f.getFahrerByFahrtId(id).getnName() ;
+			
+			kap = fa.getKapazitaet();
 		
-		p1 = fa.getP1();
-		p2 = fa.getP2();
-		p3 = fa.getP3();
-		p4 = fa.getP4();
-		p5 = fa.getP5();
-		p6 = fa.getP6();
-		
-		//
-		
-		List<Bewertung> bList = f.getListWithAllBewertungenToUserByUserId(id);
-		
-		List<Integer> fahrstilRating = new ArrayList<Integer>();
-		List<Integer> puenktlichkeitRating = new ArrayList<Integer>();
-		List<Integer> freundlichkeitRating = new ArrayList<Integer>();
-		
-		for(int i = 0; i < bList.size(); i++){
-			fahrstilRating.add(bList.get(i).getFahrstilRating());
-			puenktlichkeitRating.add(bList.get(i).getPuenktlichkeitRating());
-			freundlichkeitRating.add(bList.get(i).getFreundlichkeitRating());
-		}			
-	}
-	catch (Exception e){
-		out.print(e);
-	}
+			s1 = fa.getS1();
+			s2 = fa.getS2();
+			s3 = fa.getS3();
+			s4 = fa.getS4();
+			s5 = fa.getS5();
+			s6 = fa.getS6();
+			
+			p1 = fa.getP1();
+			p2 = fa.getP2();
+			p3 = fa.getP3();
+			p4 = fa.getP4();
+			p5 = fa.getP5();
+			p6 = fa.getP6();
+			
+			//
+			
+			List<Bewertung> bList = f.getListWithAllBewertungenToUserByUserId(id);
+			
+			List<Integer> fahrstilRating = new ArrayList<Integer>();
+			List<Integer> puenktlichkeitRating = new ArrayList<Integer>();
+			List<Integer> freundlichkeitRating = new ArrayList<Integer>();
+			
+			for(int i = 0; i < bList.size(); i++){
+				fahrstilRating.add(bList.get(i).getFahrstilRating());
+				puenktlichkeitRating.add(bList.get(i).getPuenktlichkeitRating());
+				freundlichkeitRating.add(bList.get(i).getFreundlichkeitRating());
+			}			
+		}
+		catch (Exception e){
+			out.print(e);
+		}
+	}	
 %>     
 	        
 	        

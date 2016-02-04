@@ -25,8 +25,8 @@
 
    <div class="panel panel-default col-md-6 col-xs-12">
 	  <div class="panel-body">
-	    <p><a href=#>Login</a></p>
-		 <p><a href=#>Register</a></p>
+	    <p><a href=m_index.jsp>Login</a></p>
+		 <p><a href=m_registrieren.jsp>Register</a></p>
 	  </div>
 	</div>
 	
