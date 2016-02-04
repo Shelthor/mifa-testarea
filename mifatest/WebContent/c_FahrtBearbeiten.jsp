@@ -29,6 +29,27 @@
 </head>
 <body>
 
+<%
+	/*
+		Hole userId aus Cookie heraus
+	*/
+
+	Cookie[] cookies = request.getCookies();
+
+	int userIdAusCookie = 0;
+	
+	if( cookies != null)
+	{
+		 for (int i = 0; i < cookies.length; i++){
+			 if(cookies[i].getName().equals("c_userId")){
+				 userIdAusCookie = Integer.parseInt(cookies[i].getValue());
+			 }
+		 }
+		 
+		 out.print("UserID: " + userIdAusCookie + "<br/>");
+	}
+%>
+
 <%! 
 	Facade f;
 	Fahrt fa;
@@ -54,7 +75,8 @@
 <%
 	f = new Facade();
 	id = 1; //id von Fahrt die zu bearbeiten ist, VERFEINERN: soll aus Parameter kommen (AJAX Möglich)
-	userId = 7; //Aktuell noch hart, soll aus cookie kommen
+	userId = 7; //VERFERINERN -> Aus Cookie -> siehe unten
+	//userId = userIdAusCookie;
 	
 	user = new User();
 	user = f.getUserById(userId);
@@ -257,9 +279,13 @@
 		</form>
 		</div>
 		<div id="sendSuccess" style="display:none">
-			<p>SUCCESS</p><br/><br/>
-			<h1>Änderungen: </h1><br/>
-			<p id="Absatz"></p>
+			<div class='alert alert-success text-center' role='alert'>
+				<h1>Fahrt erfolgreich geändert!</h1>
+			</div>
+			<div class="col-md-12">
+				<h1>Änderungen: </h1><br/>
+				<p id="Absatz"></p>
+			</div>		
 		</div>
 		<div id="sendFail" style="display:none">
 			<p>FAIL</p>

@@ -22,81 +22,103 @@
 	        async defer></script>
 
 	<script>
-	<%! 
-		Facade f;
-		Fahrt fa;
-		
-		int id, userId;
-		
-		String  kommentar;
-		
-		String 	s1,s2,s3,s4,s5,s6;
-		int 	p1,p2,p3,p4,p5,p6;
-		
-		String 	fahrtDatum;
-		String 	gepaeck;
-		String	startZeit;
-		String 	fahrer;
-		
-		int kap;
-		
-		User user;
-	%>
-	<%
-			
-		try{
-			id = 1; //VERFEINERN: kommt aus cookie ODER link (mal sehen)
-			userId = 7; //VERFEINERN: kommt von cookie
+	
+<%
+	/*
+		Hole userId aus Cookie heraus
+	*/
 
-			
-			f = new Facade();	
-			
-			user = f.getUserById(userId);
-			
-			fa = f.getFahrtById(id);
-			
-			kommentar = fa.getKommentar();
-			
-			fahrtDatum = fa.getFahrtDatum().toString();
-			gepaeck = fa.getGepaeck();
-			startZeit = fa.getFahrtStartZeit().toString();
-			
-			fahrer = f.getFahrerByFahrtId(id).getvName() + " " + f.getFahrerByFahrtId(id).getnName() ;
-			
-			kap = fa.getKapazitaet();
+	Cookie[] cookies = request.getCookies();
+
+	int userIdAusCookie = 0;
+	
+	if( cookies != null)
+	{
+		 for (int i = 0; i < cookies.length; i++){
+			 if(cookies[i].getName().equals("c_userId")){
+				 userIdAusCookie = Integer.parseInt(cookies[i].getValue());
+			 }
+		 }
+		 
+		 out.print("UserID: " + userIdAusCookie + "<br/>");
+	}
+%>
+<%! 
+	Facade f;
+	Fahrt fa;
+	
+	int id, userId;
+	
+	String  kommentar;
+	
+	String 	s1,s2,s3,s4,s5,s6;
+	int 	p1,p2,p3,p4,p5,p6;
+	
+	String 	fahrtDatum;
+	String 	gepaeck;
+	String	startZeit;
+	String 	fahrer;
+	
+	int kap;
+	
+	User user;
+%>
+<%
 		
-			s1 = fa.getS1();
-			s2 = fa.getS2();
-			s3 = fa.getS3();
-			s4 = fa.getS4();
-			s5 = fa.getS5();
-			s6 = fa.getS6();
-			
-			p1 = fa.getP1();
-			p2 = fa.getP2();
-			p3 = fa.getP3();
-			p4 = fa.getP4();
-			p5 = fa.getP5();
-			p6 = fa.getP6();
-			
-			//
-			
-			List<Bewertung> bList = f.getListWithAllBewertungenToUserByUserId(id);
-			
-			List<Integer> fahrstilRating = new ArrayList<Integer>();
-			List<Integer> puenktlichkeitRating = new ArrayList<Integer>();
-			List<Integer> freundlichkeitRating = new ArrayList<Integer>();
-			
-			for(int i = 0; i < bList.size(); i++){
-				fahrstilRating.add(bList.get(i).getFahrstilRating());
-				puenktlichkeitRating.add(bList.get(i).getPuenktlichkeitRating());
-				freundlichkeitRating.add(bList.get(i).getFreundlichkeitRating());
-			}			
-		}
-		catch (Exception e){
-			out.print(e);
-		}
-	%>
+	try{
+		id = 1; //VERFEINERN: soll aus Parameter kommen
+		userId = 7; //VERFERINERN -> Aus Cookie -> siehe unten
+		//userId = userIdAusCookie;
+
+		
+		f = new Facade();	
+		
+		user = f.getUserById(userId);
+		
+		fa = f.getFahrtById(id);
+		
+		kommentar = fa.getKommentar();
+		
+		fahrtDatum = fa.getFahrtDatum().toString();
+		gepaeck = fa.getGepaeck();
+		startZeit = fa.getFahrtStartZeit().toString();
+		
+		fahrer = f.getFahrerByFahrtId(id).getvName() + " " + f.getFahrerByFahrtId(id).getnName() ;
+		
+		kap = fa.getKapazitaet();
+	
+		s1 = fa.getS1();
+		s2 = fa.getS2();
+		s3 = fa.getS3();
+		s4 = fa.getS4();
+		s5 = fa.getS5();
+		s6 = fa.getS6();
+		
+		p1 = fa.getP1();
+		p2 = fa.getP2();
+		p3 = fa.getP3();
+		p4 = fa.getP4();
+		p5 = fa.getP5();
+		p6 = fa.getP6();
+		
+		//
+		
+		List<Bewertung> bList = f.getListWithAllBewertungenToUserByUserId(id);
+		
+		List<Integer> fahrstilRating = new ArrayList<Integer>();
+		List<Integer> puenktlichkeitRating = new ArrayList<Integer>();
+		List<Integer> freundlichkeitRating = new ArrayList<Integer>();
+		
+		for(int i = 0; i < bList.size(); i++){
+			fahrstilRating.add(bList.get(i).getFahrstilRating());
+			puenktlichkeitRating.add(bList.get(i).getPuenktlichkeitRating());
+			freundlichkeitRating.add(bList.get(i).getFreundlichkeitRating());
+		}			
+	}
+	catch (Exception e){
+		out.print(e);
+	}
+%>
 	
 	
 	function initMap() {
