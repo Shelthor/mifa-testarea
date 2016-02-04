@@ -59,8 +59,8 @@
 %>
 <%
 	f = new Facade();
-	userId = 7; //VERFERINERN -> siehe unten
-	//userId = userIdAusCookie;
+	//userId = 7; //VERFERINERN -> siehe unten
+	userId = userIdAusCookie;
 				
 	try{
 		user = f.getUserById(userId);

@@ -75,8 +75,8 @@
 <%
 	f = new Facade();
 	id = 1; //id von Fahrt die zu bearbeiten ist, VERFEINERN: soll aus Parameter kommen (AJAX Möglich)
-	userId = 7; //VERFERINERN -> Aus Cookie -> siehe unten
-	//userId = userIdAusCookie;
+	//userId = 7; //VERFERINERN -> Aus Cookie -> siehe unten
+	userId = userIdAusCookie;
 	
 	user = new User();
 	user = f.getUserById(userId);

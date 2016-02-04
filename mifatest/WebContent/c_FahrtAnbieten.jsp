@@ -73,8 +73,8 @@
 
 <%
 	//FAHRER
-	userId = 7; //VERFERINERN -> Aus Cookie -> siehe unten
-	//userId = userIdAusCookie;
+	//userId = 7; //VERFERINERN -> Aus Cookie -> siehe unten
+	userId = userIdAusCookie;
 	
 	f = new Facade();
 	user = f.getUserById(userId);

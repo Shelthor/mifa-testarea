@@ -47,8 +47,8 @@
 %>
 
 <%
-	userId = 7;//VERFERINERN -> siehe unten
-	//userId = userIdAusCookie;
+	//userId = 7;//VERFERINERN -> siehe unten
+	userId = userIdAusCookie;
 	
 	f = new Facade();
 	user = f.getUserById(userId);

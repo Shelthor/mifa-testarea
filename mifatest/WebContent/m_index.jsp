@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
+<%@page import="com.mysql.jdbc.PreparedStatement.ParseInfo"%>
 <%@page import="com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="javax.persistence.criteria.CriteriaBuilder.In"%>
@@ -77,11 +78,17 @@ if(request.getParameter("submit")!= null)
 	if (uPasswort.getPasswortValue().equals(passwd))
 	{
 		//Cookie Handling
-		Cookie testMailCookie = new Cookie("eMail",theCookieValue);
+		
 
-		testMailCookie.setMaxAge(60*60*24);
+		
+		Cookie userIdCookie = new Cookie("c_userId",Integer.toString(uLogId));
 
-		response.addCookie(testMailCookie);
+		userIdCookie.setMaxAge(60*60*24);
+
+		response.addCookie(userIdCookie);
+		
+		//db abfrage
+		
 		
 		
 		//cookie-action

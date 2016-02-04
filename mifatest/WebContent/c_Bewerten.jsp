@@ -83,8 +83,7 @@ if(kontrolle == 0){
 
 Facade f = new Facade();
 empf = f.getUserById(empfurl);
-send = f.getUserById(sendurl);//VERFERINERN -> Aus Cookie -> siehe unten
-//send = userIdAusCookie;
+send = f.getUserById(userIdAusCookie);
 fahrtid = f.getFahrtById(fahrturl);
 
 out.print(send.getnName());

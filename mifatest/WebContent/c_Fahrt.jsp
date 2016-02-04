@@ -67,8 +67,8 @@
 		
 	try{
 		id = 1; //VERFEINERN: soll aus Parameter kommen
-		userId = 7; //VERFERINERN -> Aus Cookie -> siehe unten
-		//userId = userIdAusCookie;
+		//userId = 7; //VERFERINERN -> Aus Cookie -> siehe unten
+		userId = userIdAusCookie;
 
 		
 		f = new Facade();	
