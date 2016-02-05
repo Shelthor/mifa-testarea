@@ -1,6 +1,11 @@
 
 body{
-background-image: url('../img/muster8.png');
+	background-image: url('../img/muster8.png');
+	
+	font-family: 'Abel', sans-serif;
+
+	color: #333;
+	background-color: #fff;
 }
 
 .hellgrau{

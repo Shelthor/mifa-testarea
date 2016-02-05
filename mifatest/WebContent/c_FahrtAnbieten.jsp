@@ -13,6 +13,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>INTERN</title>
+	<link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
 	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
 	<link rel="stylesheet" href="css/custom.css" type="text/css" />
@@ -136,16 +137,41 @@
 		<div class="row">								
 				<div id="sqlForm" class="abstandNachOben col-md-12">
 					<form action="c_FahrtAnbieten.jsp" method="post">
-						<div class="panel panel-default col-xs-12 col-md-4"> 
+						<div class="panel panel-default col-xs-12 col-md-6"> 
+							<div class="panel-body ">
+								<div class=" abstandNachOben">
+									<h4>Von?</h4> 
+									<input type="text" name="formStart" id="inS1" style="width:100%" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" required autocomplete="off"/><ul class="list-group a"></ul><br/>     
+									<h4>Nach?</h4> 
+									<input type="text" name="formZiel"  id="inS6" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" style="width:100%" required autocomplete="off"/><ul class="list-group a"></ul><br/>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default col-xs-12 col-md-6"> 
+							<div class="panel-body ">
+								<div class=" abstandNachOben"> 
+									<h4>Über?</h4>
+									<input id="zeigeZwischenSt"type="button" style="width: 100%;" onclick="zeigen()" value="füge Zwischenstation hinzu"/>
+									<div id="s2-s5" style="display:none;">
+										<input type="text" name="formS2" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" id="inS2" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul>
+										<input type="text" name="formS3" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" id="inS3" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul>
+										<input type="text" name="formS4" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" id="inS4" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul>
+										<input type="text" name="formS5" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" id="inS5" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul>			
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default col-xs-12 col-md-12"> 
 							<div class="panel-body">
-								<div class="abstandNachOben">
+								<div class="col-xs-12 col-md-6">
 									<h4>Datum?</h4> 
 									<input type="text" id="datepicker" style="width:100%" autocomplete="off" required><br/>
 									 
 									    <input type="hidden" id="hiddenJahr" name="hJahr" />
 								    	<input type="hidden" id="hiddenMonat" name="hMonat" />
 								        <input type="hidden" id="hiddenTag" name="hTag" />
-									 
+								</div>
+								<div class="col-xs-12 col-md-6">
 									<h4>Uhrzeit?</h4>
 										<select name="formStunden" style="width:49%" required>
 											<option value="">h</option>
@@ -182,43 +208,25 @@
 											<option value="45">45</option>
 										</select>
 										<br/>
+							</div>
+							</div>
+						</div>
+						<div class="panel panel-default col-xs-12 col-md-12"> 
+							<div class="panel-body">
+								<div class="col-xs-12 col-md-6">
 									<h4>Wieviele Mitfahrer möchtest du mitnehmen?</h4>
-									<input type="text" name="formKapazitaet" id="formkap" onblur="checkKap()" required autocomplete="off"/><br/>
-									<h4>Angaben zum Gepäck?</h4>
+									<input type="text" style="width:100%" name="formKapazitaet" id="formkap" onblur="checkKap()" required autocomplete="off"/><br/>									
+								</div>
+								<div class="col-xs-12 col-md-6">
+									<h4>Angaben zum Gepäck</h4>
 									 <select name="formGepaeck" style="width:100%">
 									    <option value="ausreichend Platz vorhanden">ausreichend Platz vorhanden</option>
 									    <option value="mittleres Gepäck">mittleres Gepäck</option>
 									    <option value="nur Handgepäck">nur Handgepäck</option>
 									  </select>
-									<br/>
 								</div>
 							</div>
-						</div>
-						
-						<div class="panel panel-default col-xs-12 col-md-4"> 
-							<div class="panel-body ">
-								<div class=" abstandNachOben">
-									<h4>Von?</h4> 
-									<input type="text" name="formStart" id="inS1" style="width:100%" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" required autocomplete="off"/><ul class="list-group a"></ul><br/>     
-									<h4>Nach?</h4> 
-									<input type="text" name="formZiel"  id="inS6" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" style="width:100%" required autocomplete="off"/><ul class="list-group a"></ul><br/>
-								</div>
 							</div>
-						</div>
-						<div class="panel panel-default col-xs-12 col-md-4"> 
-							<div class="panel-body ">
-								<div class=" abstandNachOben"> 
-									<h4>Über?</h4>
-									<input id="zeigeZwischenSt"type="button" style="width: 100%;" onclick="zeigen()" value="füge Zwischenstation hinzu"/>
-									<div id="s2-s5" style="display:none;">
-										<input type="text" name="formS2" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" id="inS2" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul>
-										<input type="text" name="formS3" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" id="inS3" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul>
-										<input type="text" name="formS4" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" id="inS4" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul>
-										<input type="text" name="formS5" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" id="inS5" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul>			
-									</div>
-								</div>
-							</div>
-						</div>
 						<div class="col-xs-12 col-md-12 abstandNachOben">
 							<h4>Kommentar?</h4> 
 							<input type="text" name="formKommentar" style="width: 100%; height: 75px;" autocomplete="off"/><br/>

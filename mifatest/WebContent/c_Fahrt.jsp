@@ -6,9 +6,10 @@
 <%@ page import="java.util.*" %>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Oeffentlich - Fahrt</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Oeffentlich - Fahrt</title>
+	<link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
 	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
 	<link rel="stylesheet" href="css/custom.css" type="text/css" />
@@ -21,7 +22,10 @@
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3f0-lP6PquSnOUBu8j85B5MGM3pDLFx4&signed_in=true&callback=initMap"
 	        async defer></script>
 	        
-<%
+
+</head>
+<body>
+	<%
 	/*
 		Hole userId aus Cookie heraus
 	*/
@@ -200,8 +204,9 @@
 			document.getElementById(x).style.display = "block";
 		}
 	</script>
-</head>
-<body>
+
+
+
 
 	<div class="container">
 		<div class="row">
