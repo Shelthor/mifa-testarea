@@ -45,21 +45,20 @@ public class EinzeilerTestklasse {
 		List<User> l = f.getAllPassagiereOfFahrtByFahrtId(2);
 		System.out.println(l.get(0).geteMail());
 		System.out.println(l.get(1)); */
-		User u;
+
+		Encryptor en = new Encryptor();
+		String userPw = "duschen2";
 		
-		u = f.getUserByEmail("fake1@mail.de");
-		System.out.println(u.getnName());
-		System.out.println(u.getUserID());
+		String hash = en.inc(userPw);
 		
-		Passwort p;
-		p = f.getPasswortByUserId(u.getUserID());
-		System.out.println(p.getPasswortValue());
+		System.out.println(hash);
 		
 		try{
-			f.newUser("schwulette@dsd.de", new Date(), "Griffin", "Peter", "123 4 44 ", "christ11");
+			f.newUser("hash3@dsd.de", new Date(), "Hash", "Peter", "123 4 44 ", hash);
 		}catch(Exception e){
 			System.out.println(e);
 		}
+		
 
 	}
 
