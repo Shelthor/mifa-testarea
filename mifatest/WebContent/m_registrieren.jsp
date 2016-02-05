@@ -218,7 +218,12 @@ if(request.getParameter("register")!= null)
 	{
 	try
 		{
-			fUser.newUser(emailR, d, nachname, vorname, telefon, password);
+			//HASH
+			Encryptor en = new Encryptor();
+			String hash = en.inc(password);
+			//
+		
+			fUser.newUser(emailR, d, nachname, vorname, telefon, hash);
 			out.print("Registrierung erfolgt");
 		}
 	catch(Exception e)

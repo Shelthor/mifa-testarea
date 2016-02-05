@@ -74,13 +74,17 @@ if(request.getParameter("submit")!= null)
 	int uLogId = uLog.getUserID();
 	Passwort uPasswort = fUserLogin.getPasswortByUserId(uLogId);
 	
-	System.out.println("BIS HIER" + uPasswort.getPasswortValue());
-	if (uPasswort.getPasswortValue().equals(passwd))
+	
+	//HASH
+		Encryptor en = new Encryptor();
+		String hash = en.inc(passwd);
+	//
+	
+	
+	if (uPasswort.getPasswortValue().equals(hash))
 	{
 		//Cookie Handling
-		
 
-		
 		Cookie userIdCookie = new Cookie("c_userId",Integer.toString(uLogId));
 
 		userIdCookie.setMaxAge(60*60*24);
@@ -88,9 +92,7 @@ if(request.getParameter("submit")!= null)
 		response.addCookie(userIdCookie);
 		
 		//db abfrage
-		
-		
-		
+
 		//cookie-action
 		//u  = getuserbyemail -> u.getUserId(); -> das in cookie mit übergeben
 		
