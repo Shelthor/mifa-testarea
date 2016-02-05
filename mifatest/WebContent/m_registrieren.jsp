@@ -22,7 +22,31 @@
 	<script src="js/bootstrap.js"></script>
 	<script src="js/custom.js"></script>
 </head>
-<body text="#000000" bgcolor="#FFFFFF" link="#FF0000" alink="#FF0000" vlink="#FF0000">
+<body>
+
+<%
+
+/// hier noch nachbessern
+
+	/*
+		Hole userId aus Cookie heraus
+	*/
+
+	Cookie[] cookies = request.getCookies();
+
+	int userIdAusCookie = 0;
+	
+	if( cookies != null)
+	{
+		 for (int i = 0; i < cookies.length; i++){
+			 if(cookies[i].getName().equals("c_userId")){
+				 userIdAusCookie = Integer.parseInt(cookies[i].getValue());
+			 }
+		 }
+		 
+		 out.print("UserID: " + userIdAusCookie + "<br/>");
+	}
+%>
 
 <div class="container">
 	<div class="jumbotron">
