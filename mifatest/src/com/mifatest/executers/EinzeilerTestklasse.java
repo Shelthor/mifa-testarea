@@ -47,14 +47,14 @@ public class EinzeilerTestklasse {
 		System.out.println(l.get(1)); */
 
 		Encryptor en = new Encryptor();
-		String userPw = "duschen2";
+		String userPw = "root";
 		
 		String hash = en.inc(userPw);
 		
 		System.out.println(hash);
 		
 		try{
-			f.newUser("hash3@dsd.de", new Date(), "Hash", "Peter", "123 4 44 ", hash);
+			f.newUser("hash4@dsd.de", new Date(), "Hash", "Peter", "123 4 44 ", hash);
 		}catch(Exception e){
 			System.out.println(e);
 		}

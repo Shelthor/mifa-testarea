@@ -8,10 +8,14 @@ import javax.management.Query;
 
 import java.sql.Time;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;  
 import org.hibernate.SessionFactory;  
 import org.hibernate.Transaction;  
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.*;
+import org.hibernate.transform.Transformers;
+
 
 public class Facade {
 	Bewertung bewertung;
@@ -351,9 +355,23 @@ public class Facade {
  	public List<Ort> getListWithAllOrteLike(String searchKeyword){
 	    org.hibernate.Query q= session.createQuery("from Ort as u where u.ortBezeichnung like '"+ searchKeyword + "%'");
 		
-		List result = q.list();
+	    List result = q.list();
+	    return result;
+
+	    /*				
 		
-		return result;
+		
+	    Criteria c = session.createCriteria(Ort.class);
+	    
+	    ProjectionList proList = Projections.projectionList();
+        proList.add(Projections.property("ortBezeichnung"));
+
+        c.setProjection(Projections.distinct(proList));
+        
+        List<String> fooList = c.list();
+		
+		return fooList;
+		*/
 	}
  	
  	public List<Ort> getListWithAllOrteAusStrecke(String searchKeyword, int tour){
