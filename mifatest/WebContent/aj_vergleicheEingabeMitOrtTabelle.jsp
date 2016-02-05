@@ -12,11 +12,11 @@
     
 	    try{  
 	  		Facade h = new Facade();
-	  		List<Ort> duschen = new ArrayList();
+	  		List<String> duschen = new ArrayList();
 	  		
 	  		duschen = h.getListWithAllOrteLike(s);
 	  		for(int z = 0; z < duschen.size(); z++)
-	  		out.print("<li onclick='changeFormValue(this);aktualisiereMap()' class='list-group-item'>" + duschen.get(z).getOrtBezeichnung() + "</li>");
+	  		out.print("<li onclick='changeFormValue(this);aktualisiereMap()' class='list-group-item'>" + duschen.get(z) + "</li>");
 	    }  
 	     
 	    catch(Exception e) {
