@@ -127,26 +127,25 @@
 		</div>
 		
 		<br/>
-		
+		<div id="whole">
 		<div class="row">
-			<div id="whole">
-				<div class="col-md-12">
-			   		 <div id="map"></div>
-			   		 <div id="directions-panel" class="blau randUntenRund"></div>
-				</div>
-				<div id="sqlForm">
+			<div id="map"></div>
+			<div id="directions-panel" class="blau randUntenRund"></div>
+		</div>
+			
+		<div class="row">								
+				<div id="sqlForm" class="abstandNachOben col-md-12 panel panel-default"> 
+					<div class="panel-body">
 					<form action="c_FahrtAnbieten.jsp" method="post">
 						<div class="col-xs-12 col-md-4 abstandNachOben">
-							Datum?: 
-							<br/>
+							<h4>Datum?</h4> 
 							<input type="text" id="datepicker" style="width:100%" autocomplete="off" required><br/>
 							 
 							    <input type="hidden" id="hiddenJahr" name="hJahr" />
 						    	<input type="hidden" id="hiddenMonat" name="hMonat" />
 						        <input type="hidden" id="hiddenTag" name="hTag" />
 							 
-							Uhrzeit?: 
-							<br/>
+							<h4>Uhrzeit?</h4>
 								<select name="formStunden" style="width:49%" required>
 									<option value="">h</option>
 									<option value="0">0</option>
@@ -182,12 +181,9 @@
 									<option value="45">45</option>
 								</select>
 								<br/>
-							Wieviele Mitfahrer möchtest du mitnehmen?: 
-							<br/>
+							<h4>Wieviele Mitfahrer möchtest du mitnehmen?</h4>
 							<input type="text" name="formKapazitaet" id="formkap" onblur="checkKap()" required autocomplete="off"/><br/>
-							Angaben zum Gepäck?: 
-							<br/>
-							
+							<h4>Angaben zum Gepäck?</h4>
 							 <select name="formGepaeck" style="width:100%">
 							    <option value="ausreichend Platz vorhanden">ausreichend Platz vorhanden</option>
 							    <option value="mittleres Gepäck">mittleres Gepäck</option>
@@ -196,16 +192,13 @@
 							<br/>
 						</div>
 						<div class="col-xs-12 col-md-4 abstandNachOben">
-							Von?: 
-							<br/>
+							<h4>Von?</h4> 
 							<input type="text" name="formStart" id="inS1" style="width:100%" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" required autocomplete="off"/><ul class="list-group a"></ul><br/>     
-							Nach?: 
-							<br/>
+							<h4>Nach?</h4> 
 							<input type="text" name="formZiel"  id="inS6" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" style="width:100%" required autocomplete="off"/><ul class="list-group a"></ul><br/>
 						</div>
 						<div class="col-xs-12 col-md-4 abstandNachOben">  
-							Über?:
-							<br/>
+							<h4>Über?</h4>
 							<input id="zeigeZwischenSt"type="button" style="width: 100%;" onclick="zeigen()" value="füge Zwischenstation hinzu"/>
 							<div id="s2-s5" style="display:none;">
 								<input type="text" name="formS2" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" id="inS2" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul>
@@ -213,20 +206,22 @@
 								<input type="text" name="formS4" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" id="inS4" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul>
 								<input type="text" name="formS5" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" id="inS5" style="width:100%; display:none;" autocomplete="off"/><ul class="list-group a"></ul>			
 							</div>
-							</div>
-							<div class="col-xs-12 col-md-12 abstandNachOben">
-								Kommentar?: 
-								<br/>
-								<input type="text" name="formKommentar" style="width: 100%; height: 75px;" autocomplete="off"/><br/>
-								<br/>
-								<br/>
-								<input id="knopf" style="width: 100%;" type="submit" name="ok" value="OK"/>
-							</div>
+						</div>
+						<div class="col-xs-12 col-md-12 abstandNachOben">
+							<h4>Kommentar?</h4> 
+							<input type="text" name="formKommentar" style="width: 100%; height: 75px;" autocomplete="off"/><br/>
+							<br/>
+							<br/>
+							<input id="knopf" style="width: 100%;" type="submit" name="ok" value="OK"/>
+						</div>
 					</form>
+					</div>
 				</div>
 				<br/>	
+			
 			</div>
-			<div id="sendSuccess" style="display:none">
+		</div>
+		<div id="sendSuccess" style="display:none">
 				<div class='alert alert-success text-center' role='alert'>
 					<h1>Inserat erfolgreich erstellt!</h1>
 				</div>
@@ -236,7 +231,6 @@
 					<h1>Fehler! Inserat wurde nicht erstellt!</h1>
 				</div>
 			</div>
-		</div>
 	</div>
 </body>
 
