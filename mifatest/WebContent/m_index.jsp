@@ -12,55 +12,67 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>MifaTest</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Welcome</title>
+	<link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="css/custom.css" type="text/css" />
+	
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="js/npm.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/custom.js"></script>
 </head>
 
 <body text="#000000" bgcolor="#FFFFFF" link="#FF0000" alink="#FF0000" vlink="#FF0000">
 
-<table width="50%" border="1" cellpadding="0" cellspacing="2">
- <caption>Login</caption>
- <tr>
- 	<form action="m_index.jsp" method="post">
- 	 	<td align="right" font-family="verdana">E-Mail</td>
-  		<td><input type="text" name="email" required id="emailID"/></td>
- 	
- </tr>
- <tr>
- 	
-  		<td align="right">Kennwort</td>
-  		<td><input type="password" name="password" required id="pwdID"/></td>
- 	
- </tr>
- <table width="50%" border="1" cellpadding="0" cellspacing="2">
-  <tr>
-   <tr>
-   <form action="c_User.jsp" method="post">
-  		<td align="center"><input type="submit" name="submit" value="Login" onclick="setCookie()" />
-  		<!-- <input type="submit" name="cancel" value="Abbrechen"/> -->
-  		<script>
-  			
-  		</script>
-  		</td>
-	</form>
-	
-	</form>
- </tr>
-  </tr>
- </table>
-</table>
+<div class="container">
+	<div class="jumbotron">
+		<h1>Einloggen</h1>
+ 	</div>
+ 	<div class="row">
+	 	<div class="col-md-4 col-xs-12">
 
-<p>Neu bei uns?
-<a href="m_registrieren.html">Jetz registrieren!</a>
-</p>
+	 	</div>
+	 	<div class="panel panel-default col-md-4 col-xs-12">
+				<div class="panel-body">
+				    <form action="m_index.jsp" method="post">
+				  		<h4>Login</h4>
+						<p>eMail</p>
+					  	<input type="text" name="email" required id="emailID"/><br/>
+						<p>Passwort</p>
+					  	<input type="password" name="password" required id="pwdID"/><br/><br/>
+					  	<input type="submit" name="submit"/>
+					 </form>
+				 </div>
+		</div>
+		<div class="col-md-4 col-xs-12">
+
+	 	</div>
+ 	</div>
+	    
+	 	<p>Neu bei uns?
+			<a href="m_registrieren.jsp">Jetz registrieren!</a>
+		</p>
+	</div>
 <%
 
 if(request.getParameter("submit")!= null)
 {
 	String email=request.getParameter("email");
 	String passwd=request.getParameter("password");
-	String passwdDB;
-	String loginPage="http://localhost:8080/mifatest/c_User.jsp";
+	
+	//SeitenPfad
+	String domain = "http" + "://" +   
+   		request.getServerName() +       // "myhost"
+  		":" + request.getServerPort() + // ":" + "8080"
+    	"/mifatest";
+	
+	
+	//String url = ((HttpServletRequest)request).getRequestURL().toString();
+	String loginPage= domain + "/c_User.jsp";
 	String theCookieValue = request.getParameter("email");
 
 	Facade fUserLogin = new Facade();
@@ -70,9 +82,9 @@ if(request.getParameter("submit")!= null)
 	//Über UserID Session managen --> an Cookie übergeben
 	//false: --> Ausgabe mit Link zum registrieren
 	//true: --> Profilseite des Users öffnen und UserId in Cookie übergeben
-	User uLog = fUserLogin.getUserByEmail(email);
-	int uLogId = uLog.getUserID();
-	Passwort uPasswort = fUserLogin.getPasswortByUserId(uLogId);
+		User uLog = fUserLogin.getUserByEmail(email);
+		int uLogId = uLog.getUserID();
+		Passwort uPasswort = fUserLogin.getPasswortByUserId(uLogId);
 	
 	
 	//HASH
@@ -92,9 +104,6 @@ if(request.getParameter("submit")!= null)
 		response.addCookie(userIdCookie);
 		
 		//db abfrage
-
-		//cookie-action
-		//u  = getuserbyemail -> u.getUserId(); -> das in cookie mit übergeben
 		
 		out.print("Passwort stimmt");
 		//Seiten redirect auf Profil
