@@ -56,7 +56,8 @@
 	 	<p>Neu bei uns?
 			<a href="m_registrieren.jsp">Jetz registrieren!</a>
 		</p>
-	</div>
+</div>
+
 <%
 
 if(request.getParameter("submit")!= null)
