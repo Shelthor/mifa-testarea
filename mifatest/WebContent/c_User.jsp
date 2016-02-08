@@ -97,7 +97,7 @@
 		  <li role="presentation"><a href="#">Fahrt suchen</a></li>
 		  <li role="presentation"><a href="c_FahrtAnbieten.jsp">Fahrt anbieten</a></li>
 		  <li role="presentation"><a href="#">Historie</a></li>
-		  <li role="presentation"><a href="#">Settings</a></li>
+		  <li role="presentation"><a href="m_profil_bearbeiten.jsp">Settings</a></li>
 		  <li role="presentation"><a href="#">Mailbox</a></li>
 		</ul>
 		
