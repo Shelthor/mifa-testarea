@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<%@page import="com.mysql.jdbc.PreparedStatement.ParseInfo"%>
+<%@page import="com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="javax.persistence.criteria.CriteriaBuilder.In"%>
+<%@page import="java.awt.Button"%>
+<%@ page import="com.mifatest.entities.*" %>
+<%@ page import="com.mifatest.executers.*" %>
+<%@ page import="java.util.*" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -101,11 +109,30 @@
 
 </head>
 <body>
+<%
+	Cookie[] cookies = request.getCookies();
+
+		int userIdAusCookie = 0;
+
+		if( cookies != null)
+			{
+	 			for (int i = 0; i < cookies.length; i++)
+	 			{
+		 		if(cookies[i].getName().equals("c_userId"))
+		 		{
+			 	userIdAusCookie = Integer.parseInt(cookies[i].getValue());
+		 		}
+	 		}
+	 	//Kontrolle
+	 	//out.print("UserID: " + userIdAusCookie + "<br/>");
+}
+
+%>
 
 <div id="head">
 	<h1>Dein Kennwort</h1>
 </div>
-
+<form action="m_passwort_aendern.jsp" method="post"></form>
 <div id="form">
 	<div id="form2">
 		<table align="center">
@@ -122,18 +149,58 @@
 				<td><input type="text" id="pwdNeuBest" name="pwdNeuBest"/></td>
 			</tr>
 			<tr>
-				<td><input type="submit" id="submit" name="submit" value="Änderungen speichern" /></td>
+				<td><input type="submit" name="change" value="Änderungen speichern" /></td>
 				<td><input type="submit" id="cancel" name="cancel" value="Änderungen verwerfen"/></td>
 			</tr>	
 		</table>
 	</div>
 </div>
-
+</form>
 <div id="footer">
 	<a href="m_profil_bearbeiten.jsp">zurück</a>
 	<a href="c_User.jsp">Startseite</a>
 	<a href="#">Hilfe</a>
 </div>
+<%
+if(request.getParameter("change")!= null)
+{
+	Boolean passwordValid = false;
+	//wenn aktuelles passwort == in DB hinterlegtes PW
+			//-> überprüfe, ob neues PW und PW bestätigen == true bzw. gleich
+			//-> änderungen in DB übernehmen
+	Facade fCurrentUserChangePW = new Facade();
+			try
+			{
+				//eingegebenes PW
+				User currentUser = fCurrentUserChangePW.getUserById(userIdAusCookie);
+				String enteredPassword = request.getParameter("pwdAkt");
+				int currentUserID = currentUser.getUserID();
+				//gespeichertes PW in DB
+				Passwort currentUserPassword = fCurrentUserChangePW.getPasswortByUserId(currentUserID);
+				String currentUserPWValue = currentUserPassword.getPasswortValue();
+				
+				
+				
+				
+				Encryptor en = new Encryptor();
+				String hash = currentUserPassword.toString();
+				
+				if(enteredPassword == currentUserPWValue)
+				{
+					out.print("Passwörter Passen");
+					passwordValid = true;
+				}
+				
+			
+			}
+			catch(Exception e) 
+			{
+				out.print("Änderung nicht möglich");
+			}
+
+}
+%>
+
 
 </body>
 </html>

@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<%@page import="com.mysql.jdbc.PreparedStatement.ParseInfo"%>
+<%@page import="com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="javax.persistence.criteria.CriteriaBuilder.In"%>
+<%@page import="java.awt.Button"%>
+<%@ page import="com.mifatest.entities.*" %>
+<%@ page import="com.mifatest.executers.*" %>
+<%@ page import="java.util.*" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -128,6 +136,47 @@
 		</table>
 	</div>
 </div>
+<%	//Cookie USer auslesen
+		Cookie[] cookies = request.getCookies();
+
+		int userIdAusCookie = 0;
+
+		if( cookies != null)
+			{
+				for (int i = 0; i < cookies.length; i++)
+					{
+ 						if(cookies[i].getName().equals("c_userId"))
+ 								{
+	 								userIdAusCookie = Integer.parseInt(cookies[i].getValue());
+	 								out.print("UserID: " + userIdAusCookie + "<br/>");
+ 								}
+					}
+
+			}
+	//Fahrzeughandling
+	//aktuelle Fahrzeuginformationen anzeigen
+	try
+	{
+	Facade UserVehicle = new Facade();
+	Fahrzeug currentVehicle = UserVehicle.getFahrzeugByUserId(userIdAusCookie);
+	
+	String currentUserCarBezeichnung = currentVehicle.getFahrzeugBezeichnung();
+	String currentUserCarTyp = currentVehicle.getFahrzeugTyp();
+	String currentUserCarPlate = currentVehicle.getNummernschild();
+	String currentUserCarColor = currentVehicle.getFarzeugFarbe();
+	
+	out.print(currentUserCarBezeichnung);
+	}
+	catch(Exception e)
+	{
+		out.print("Auslesen nicht möglich");
+	}
+	//neue Fahrzeugdaten erfassen und an DB übermitteln
+		
+%>
+
+
+
 
 <p align="center">Was möchtest du ändern?</p>
 <div id="form">
