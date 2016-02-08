@@ -71,20 +71,20 @@
      <div id="tools" align="center">
         <table align="center" bgcolor="#CDDC39" border="2px">
             <tr>
-                <td><section><a href="#" >Profil</a></section></td>
+                <td><section><a href="m_profil_bearbeiten_profil.jsp" >Profil</a></section></td>
             </tr>
             <tr>
-                <td><section><a href="#" >Fahrzeug</a></section></td>
+                <td><section><a href="m_fahrzeug_landingpage.jsp" >Fahrzeug</a></section></td>
             </tr>
             <tr>
-                <td><section><a href="#" >Passwort</a></section></td>
+                <td><section><a href="m_passwort_aendern.jsp" >Passwort</a></section></td>
             </tr>
         </table>
     </div>
 
 <div id="footer">
-    <a href="#">zurück</a>
-    <a href="#">Startseite</a>
+    <a href="c_User.jsp">zurück</a>
+    <a href="c_User.jsp">Startseite</a>
     <a href="#">Hilfe</a>
 </div>
 

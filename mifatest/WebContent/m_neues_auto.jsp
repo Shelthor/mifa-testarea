@@ -79,8 +79,8 @@
 </div>
 
 <div id="footer">
-	<a href="#">zurück</a>
-	<a href="#">Startseite</a>
+	<a href="m_fahrzeug_landingpage.jsp">zurück</a>
+	<a href="c_User.jsp">Startseite</a>
 	<a href="#">Hilfe</a>
 </div>
 

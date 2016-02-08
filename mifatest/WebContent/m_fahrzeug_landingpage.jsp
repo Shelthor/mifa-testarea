@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 	<title>Wohin als nächstes?</title>
 <style>
-         a:link {color:white}
-         a:visited{color:white}
-         a:hover{color:white}
-         a:active{color:white}
+         a:link {color:black}
+         a:visited{color:black}
+         a:hover{color:black}
+         a:active{color:black}
 
          p
          {
@@ -114,8 +114,8 @@
 				<td align="center">Mein Auto bearbeiten</td>
 			</tr>
 			<tr>
-				<td align="center"><input type="submit" id="submit" name="submit" value="Neues Auto erstellen"/></td>
-				<td align="center"><input type="submit" id="submit2" name="submit2" value="Auto bearbeiten"/></td>
+				<td align="center" ><a href="m_neues_auto.jsp">Neues Fahrzeug erstellen</a></td>
+				<td align="center" ><a href="m_fahrzeug_bearbeiten.jsp">Fahrzeug bearbeiten</a></td>
 			</tr>
 			<tr>
 				<td align="center"><img src="#"></td>
@@ -126,8 +126,8 @@
 </div>
 
 <div id="footer">
-	<a href="#">zurück</a>
-	<a href="#">Startseite</a>
+	<a href="m_profil_bearbeiten.jsp">zurück</a>
+	<a href="c_User.jsp">Startseite</a>
 	<a href="#">Hilfe</a>
 </div>
 
