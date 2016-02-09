@@ -128,6 +128,7 @@
 			</tr>
 			<tr>
 				<td><p id="myKennz">Kennzeichen</p></td>
+				<!-- Format: AA-BB_xxxx -->
 			</tr>
 			<tr>
 				<td><p id="myCarColor">Farbe</p></td>
@@ -193,6 +194,7 @@
 			<tr>
 				<td>Kennzeichen:</td>
 				<td><input type="text" id="kennz" name="kennz"></td>
+				<!-- Format: AA-BB_xxxx -->
 			</tr>
 			<tr>
 				<td>Farbe:</td>

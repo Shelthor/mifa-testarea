@@ -118,7 +118,7 @@
 				<td align="center" ><a href="m_fahrzeug_bearbeiten.jsp">Fahrzeug bearbeiten</a></td>
 			</tr>
 			<tr>
-				<td align="center"><img src="#"></td> <!-- Über Cookie aktuelles Fahrzeugbild des Users auslesen und anzeigen -->
+				<td align="center"><img src="#"></td> <!-- Über Cookie aktuelles Fahrzeugbild des Users auslesen und anzeigen (optional)-->
 				<td align="center"><img src="#"></td>
 			</tr>
 		</table>
