@@ -109,34 +109,6 @@
 
 </head>
 <body>
-
-<div id="head">
-	<h1>Mein Fahrzeug</h1>
-</div>
-
-<div id="old" align="center">
-	<p id=>Mein aktuelles Auto</p>
-	<hr>
-	<div>
-		<table>
-			<tr>
-				<td><p id="myCar">Bezeichnung</p></td>
-				<td><p id="myCar"></p></td>
-			</tr>
-			<tr>
-				<td><p id="myCarTyp">Typ</p></td>
-			</tr>
-			<tr>
-				<td><p id="myKennz">Kennzeichen</p></td>
-				<!-- Format: AA-BB_xxxx -->
-			</tr>
-			<tr>
-				<td><p id="myCarColor">Farbe</p></td>
-			</tr>
-			
-		</table>
-	</div>
-</div>
 <%	//Cookie USer auslesen
 		Cookie[] cookies = request.getCookies();
 
@@ -159,14 +131,20 @@
 	try
 	{
 	Facade UserVehicle = new Facade();
-	Fahrzeug currentVehicle = UserVehicle.getFahrzeugByUserId(userIdAusCookie);
+	//Fahrzeug currentVehicle = UserVehicle.getFahrzeugByUserId(userIdAusCookie);
+	//feste Zahl durch cookieValue ersetzen, damit aktueller user sein Auto sieht
+	Fahrzeug currentVehicle = UserVehicle.getFahrzeugByUserId(1);
 	
 	String currentUserCarBezeichnung = currentVehicle.getFahrzeugBezeichnung();
 	String currentUserCarTyp = currentVehicle.getFahrzeugTyp();
 	String currentUserCarPlate = currentVehicle.getNummernschild();
 	String currentUserCarColor = currentVehicle.getFarzeugFarbe();
 	
+	//nur zum Test
 	out.print(currentUserCarBezeichnung);
+	out.print(currentUserCarTyp);
+	out.print(currentUserCarPlate);
+	out.print(currentUserCarColor);
 	}
 	catch(Exception e)
 	{
@@ -175,6 +153,35 @@
 	//neue Fahrzeugdaten erfassen und an DB übermitteln
 		
 %>
+
+
+<div id="head">
+	<h1>Mein Fahrzeug</h1>
+</div>
+
+<div id="old" align="center">
+	<p id=>Mein aktuelles Auto</p>
+	<hr>
+	<div>
+		<table>
+			<tr>
+				<td><p id="myCar"><%=currentUserCarBezeichnung %></p></td>
+				<td><p id="myCar"></p></td>
+			</tr>
+			<tr>
+				<td><p id="myCarTyp"><%=currentUserCarTyp %></p></td>
+			</tr>
+			<tr>
+				<td><p id="myKennz"><%=currentUserCarPlate %></p></td>
+				<!-- Format: AA-BB_xxxx -->
+			</tr>
+			<tr>
+				<td><p id="myCarColor"><%=currentUserCarColor %></p></td>
+			</tr>
+			
+		</table>
+	</div>
+</div>
 
 
 
