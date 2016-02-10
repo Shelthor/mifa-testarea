@@ -306,7 +306,7 @@ public class Facade {
 //Fahrzeuge//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
  	public void newFahrzeug(String ftyp, String fBez, String nschild, String fFarbe, String url){
- 		
+ 		//public void newFahrzeug(String ftyp, String fBez, String nschild, String fFarbe, String url,int besitzer)
  		
  		fahrzeug = new Fahrzeug();
  		
@@ -315,7 +315,7 @@ public class Facade {
  		fahrzeug.setNummernschild(nschild);
  		fahrzeug.setFarzeugFarbe(fFarbe);
  		fahrzeug.setFahrzeugBildURL(url);
- 		
+ 		//fahrzeug.setBesitzer(besitzerID);
  		session.merge(fahrzeug);
  		
  		t.commit();

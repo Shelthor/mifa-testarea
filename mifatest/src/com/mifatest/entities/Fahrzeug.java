@@ -8,6 +8,7 @@ public class Fahrzeug {
 	private String fahrzeugBezeichnung;
 	private String nummernschild;
 	private String fahrzeugBildURL;
+	//private int besitzerID;
 	
 	public int getFahrzeugID() {
 		return fahrzeugID;
@@ -45,5 +46,13 @@ public class Fahrzeug {
 	public void setFahrzeugBildURL(String fahrzeugBildURL) {
 		this.fahrzeugBildURL = fahrzeugBildURL;
 	}
+	/*
+	public void setBesitzerID(int besitzerID) {
+		this.besitzerID = besitzerID;
+	}
+	public String getBesitzerID() {
+		return besitzerID;
+	}
+	*/
 
 }

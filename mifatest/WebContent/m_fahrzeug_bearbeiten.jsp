@@ -126,32 +126,54 @@
 					}
 
 			}
+%>
+<%	
 	//Fahrzeughandling
 	//aktuelle Fahrzeuginformationen anzeigen
-	try
-	{
 	Facade UserVehicle = new Facade();
+	
 	//Fahrzeug currentVehicle = UserVehicle.getFahrzeugByUserId(userIdAusCookie);
 	//feste Zahl durch cookieValue ersetzen, damit aktueller user sein Auto sieht
 	Fahrzeug currentVehicle = UserVehicle.getFahrzeugByUserId(1);
-	
 	String currentUserCarBezeichnung = currentVehicle.getFahrzeugBezeichnung();
 	String currentUserCarTyp = currentVehicle.getFahrzeugTyp();
 	String currentUserCarPlate = currentVehicle.getNummernschild();
 	String currentUserCarColor = currentVehicle.getFarzeugFarbe();
 	
-	//nur zum Test
-	out.print(currentUserCarBezeichnung);
-	out.print(currentUserCarTyp);
-	out.print(currentUserCarPlate);
-	out.print(currentUserCarColor);
-	}
-	catch(Exception e)
+	
+	if(currentUserCarColor==null)
 	{
-		out.print("Auslesen nicht möglich");
+		currentUserCarColor="Farbe nicht angegeben";
 	}
-	//neue Fahrzeugdaten erfassen und an DB übermitteln
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	if(request.getParameter("submit")!= null)
+	{
+		String newCarBezeichnung = request.getParameter("bez");
+		String newCarTyp = request.getParameter("typ");
+		String newCarPlate = request.getParameter("kennz");
+		String newCarColor = request.getParameter("color");
+		String newCarPicture = "EMPTY";
 		
+		Facade fNewUserCar = new Facade();
+		
+		try
+		{
+			//neue Fahrzeugdaten erfassen und an DB übermitteln
+			//fNewUserCar.newFahrzeug(ftyp, fBez, nschild, fFarbe, url)
+			//Erzeugt neues Fahrzeug
+			//fNewUserCar.newFahrzeug(newCarTyp, newCarBezeichnung, newCarPlate, newCarColor, newCarColor);
+			
+			//Änderung der Attribute zur zugehörigen FahrzeugID
+			
+			out.print("Übermittlung läuft");
+		}
+		catch(Exception e)
+		{
+			out.print("Änderungen nicht möglich");
+		}
+		
+	}	
 %>
 
 
