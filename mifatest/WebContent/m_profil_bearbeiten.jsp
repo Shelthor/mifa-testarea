@@ -85,7 +85,7 @@
 <div id="footer">
     <a href="c_User.jsp">zurück</a>
     <a href="c_User.jsp">Startseite</a>
-    <a href="#">Hilfe</a>
+    <a href="m_hilfe.html">Hilfe</a>
 </div>
 
 

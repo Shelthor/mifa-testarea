@@ -130,7 +130,7 @@
 <div id="footer">
     <a href="m_profil_bearbeiten.jsp">zurück</a>
     <a href="c_User.jsp">Startseite</a>
-    <a href="#">Hilfe</a>
+    <a href="m_hilfe.html">Hilfe</a>
 </div>
 <%
 	

@@ -147,13 +147,14 @@
 	}
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	if(request.getParameter("submit")!= null)
+	if(request.getParameter("send")!= null)
 	{
 		String newCarBezeichnung = request.getParameter("bez");
 		String newCarTyp = request.getParameter("typ");
 		String newCarPlate = request.getParameter("kennz");
 		String newCarColor = request.getParameter("color");
 		String newCarPicture = "EMPTY";
+		String carOwner = "CurrentUser";
 		
 		Facade fNewUserCar = new Facade();
 		
@@ -211,33 +212,35 @@
 <p align="center">Was möchtest du ändern?</p>
 <div id="form">
 	<div id="form2">
-		<table align="center">
-			<tr>
-				<td>Fahrzeugtyp:</td>
-				<td><input type="text" id="typ" name="typ"></td>	
-			</tr>
-			<tr>
-				<td>Bezeichnung:</td>
-				<td><input type="text" id="bez" name="bez"></td>	
-			</tr>
-			<tr>
-				<td>Kennzeichen:</td>
-				<td><input type="text" id="kennz" name="kennz"></td>
-				<!-- Format: AA-BB_xxxx -->
-			</tr>
-			<tr>
-				<td>Farbe:</td>
-				<td><input type="text" id="color" name="color"></td>
-			</tr>
-			<tr>
-				<td>Bild:</td>
-				<td><input type="file" id="picture" name="picture"></td>
-			</tr>
-			<tr>
-			<td><input type="submit" id="submit" name="submit" value="Änderungen speichern" /></td>
-			<td><input type="submit" id="cancel" name="cancel" value="Änderungen verwerfen"/></td>
-			</tr>
-		</table>
+		<form action="m_fahrzeug_bearbeiten.jsp" method="post">
+			<table align="center">
+				<tr>
+					<td>Fahrzeugtyp:</td>
+					<td><input type="text" id="typ" name="typ"></td>	
+				</tr>
+				<tr>
+					<td>Bezeichnung:</td>
+					<td><input type="text" id="bez" name="bez"></td>	
+				</tr>
+				<tr>
+					<td>Kennzeichen:</td>
+					<td><input type="text" id="kennz" name="kennz"></td>
+					<!-- Format: AA-BB_xxxx -->
+				</tr>
+				<tr>
+					<td>Farbe:</td>
+					<td><input type="text" id="color" name="color"></td>
+				</tr>
+				<tr>
+					<td>Bild:</td>
+					<td><input type="file" id="picture" name="picture"></td>
+				</tr>
+				<tr>
+					<td><input type="submit" id="submit" name="send" value="Änderungen speichern" /></td>
+					<td><input type="submit" id="cancel" name="cancel" value="Änderungen verwerfen"/></td>
+				</tr>
+			</table>
+		</form>		
 	</div>	
 </div>
 

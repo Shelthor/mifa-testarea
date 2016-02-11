@@ -94,11 +94,11 @@
     <div class="col-xs-12 col-md-12">
 		
 		<ul class="nav nav-pills nav-justified">
-		  <li role="presentation"><a href="#">Fahrt suchen</a></li>
+		  <li role="presentation"><a href="m_fahrtsuchen.jsp">Fahrt suchen</a></li>
 		  <li role="presentation"><a href="c_FahrtAnbieten.jsp">Fahrt anbieten</a></li>
-		  <li role="presentation"><a href="#">Historie</a></li>
+		  <li role="presentation"><a href="m_meineFahrten.jsp">Historie</a></li>
 		  <li role="presentation"><a href="m_profil_bearbeiten.jsp">Settings</a></li>
-		  <li role="presentation"><a href="#">Mailbox</a></li>
+		  <li role="presentation"><a href="m_mailbox.jsp">Mailbox</a></li>
 		</ul>
 		
 		<div class="col-xs-12 col-md-6" style="background-color:#ee82ee;">
