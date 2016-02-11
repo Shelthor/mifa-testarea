@@ -47,6 +47,25 @@
         {
         	font-family: verdana;
         }
+        #myProgress 
+        {
+  			width: 50%;
+  			height: 20px;
+  			position: relative;
+  			background-color: #ddd;
+  			align: center;
+		}
+
+		#myBar 
+		{
+  			background-color: #CDDC39;
+  			width: 10px;
+  			height: 30px;
+  			position: absolute;
+		}
+        
+        
+        
 </style>
 </head>
 <body>
@@ -68,7 +87,9 @@
 				</tr>
 				<tr>
 					<td>Kennzeichen:</td>
-					<td><input type="text" id="kennz" name="kennz"/></td>
+					<td><input type="text" id="kennz" name="kennz" style="text-transform:uppercase" size="1" maxlength="2"/>-</td>
+					<td><input type="text" id="kennz2" name="kennz2" style="text-transform:uppercase" size="1" maxlength="2"/>-</td>
+					<td><input type="text" id="kennz3" name="kennz3" style="text-transform:uppercase" size="4" maxlength="4" min="1" max="9999"/></td>
 				</tr>
 				<tr>
 					<td>Farbe:</td>
@@ -78,12 +99,16 @@
 					<td>Bild:</td>
 					<td><input type="file" id="picture" name="picture"></td>
 				</tr>
-					<td><input type="submit" id="submit" name="submit" value="Änderungen speichern" /></td>
-					<td><input type="submit" id="cancel" name="cancel" value="Änderungen verwerfen"/></td>
+					<td><input type="submit" id="submit" name="submit" value="Änderungen speichern" onclick="move()"/></td>
+					<!--<td><input type="submit" id="cancel" name="cancel" value="Änderungen verwerfen"/></td>-->
 
 			</table>
 		</form>
 	</div>
+</div>
+
+<div id="myProgress" style="display: none;">
+  <div id="myBar"></div>
 </div>
 
 <div id="footer">
@@ -100,35 +125,71 @@
 		String myNewCarTyp = request.getParameter("typ");
 		String myNewCarBez = request.getParameter("bez");
 		String myNewCarPlate = request.getParameter("kennz");
+		String myNewCarPlate2 = request.getParameter("kennz2");
+		String myNewCarPlate3 = request.getParameter("kennz3");
+		String myCarPlateNew = myNewCarPlate+"-"+myNewCarPlate2+"-"+myNewCarPlate3;
 		String myNewCarColor = request.getParameter("color");
 		//Wie Bild erfassen?
 		String myNewCarPicture = "Picture";
 		String carOwner = "CurrentUser";
-		
-		
+		Boolean changeValid=false;
 		
 		Facade fcreateNewCar = new Facade();
 		
-		try
+		if(myNewCarTyp=="" | myNewCarBez=="" | myNewCarPlate=="" | myNewCarPlate2=="" | myNewCarPlate3=="")
 		{
-			//fNewUserCar.newFahrzeug(ftyp, fBez, nschild, fFarbe, url)
-			//Erzeugt neues Fahrzeug
-			fcreateNewCar.newFahrzeug(myNewCarTyp, myNewCarBez, myNewCarPlate, myNewCarColor, myNewCarPicture);
-			out.print("Fahrzeug anlegen erfolgreich.");
+			changeValid=false;
+			out.print("Bitte Daten eingeben!");
+		}
+		else
+		{
+			changeValid=true;
+		}
+		
+		if(changeValid==true)
+		{
+			try
+			{
+				//fNewUserCar.newFahrzeug(ftyp, fBez, nschild, fFarbe, url)
+				//Erzeugt neues Fahrzeug
+				fcreateNewCar.newFahrzeug(myNewCarTyp, myNewCarBez, myCarPlateNew, myNewCarColor, myNewCarPicture);
+				out.print("Fahrzeug anlegen erfolgreich.");
 			
-			String backToMain = "http://localhost:8080/mifatest/m_profil_bearbeiten.jsp";
-			response.setStatus(response.SC_MOVED_TEMPORARILY);
-			response.setHeader("Location", backToMain);
-		}
-		catch(Exception e)
-		{
-			e.toString();
-			out.print("Fahrzeug anlegen fehlgeschlagen!");
-		}
-				
+				String backToMain = "http://localhost:8080/mifatest/m_profil_bearbeiten.jsp";
+				response.setStatus(response.SC_MOVED_TEMPORARILY);
+				response.setHeader("Location", backToMain);
+			}
+			catch(Exception e)
+			{
+				e.toString();
+				out.print("Fahrzeug anlegen fehlgeschlagen!");
+			}
+		}		
 	}
 
 %>
+
+<script>
+function move() {
+  var elem = document.getElementById("myBar");   
+  var width = 0;
+  var id = setInterval(frame, 10);
+  function frame() {
+    if (width == 100) {
+      clearInterval(id);
+    } else {
+      width++; 
+      elem.style.width = width + '%'; 
+    }
+  }
+}
+
+function showProgress()
+{
+	document.getElementById("myProgress").style.display="show";
+	}
+</script>
+
 
 </body>
 </html>
