@@ -3,7 +3,7 @@ package com.mifatest.entities;
 public class Fahrzeug {
 	
 	private int fahrzeugID;
-	private String farzeugFarbe;
+	private String fahrzeugFarbe;
 	private String fahrzeugTyp;
 	private String fahrzeugBezeichnung;
 	private String nummernschild;
@@ -17,10 +17,10 @@ public class Fahrzeug {
 		this.fahrzeugID = fahrzeugID;
 	}
 	public String getFarzeugFarbe() {
-		return farzeugFarbe;
+		return fahrzeugFarbe;
 	}
 	public void setFarzeugFarbe(String farzeugFarbe) {
-		this.farzeugFarbe = farzeugFarbe;
+		this.fahrzeugFarbe = farzeugFarbe;
 	}
 	public String getFahrzeugTyp() {
 		return fahrzeugTyp;

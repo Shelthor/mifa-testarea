@@ -11,7 +11,8 @@
         <property name="fahrzeugTyp"></property>         
         <property name="fahrzeugBezeichnung"></property>
         <property name="nummernschild"></property>
-        <property name="fahrzeugBildURL"></property>  
+        <property name="fahrzeugFarbe"></property>  
+        <property name="fahrzeugBildURL"></property> 
              
       </class>  
                 
