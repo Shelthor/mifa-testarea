@@ -106,7 +106,7 @@
 		</form>
 	</div>
 </div>
-
+<!-- Progressbar einblenden ggf -->
 <div id="myProgress" style="display: none;">
   <div id="myBar"></div>
 </div>
@@ -127,7 +127,7 @@
 		String myNewCarPlate = request.getParameter("kennz");
 		String myNewCarPlate2 = request.getParameter("kennz2");
 		String myNewCarPlate3 = request.getParameter("kennz3");
-		String myCarPlateNew = myNewCarPlate+"-"+myNewCarPlate2+"-"+myNewCarPlate3;
+		String myCarPlateNew = myNewCarPlate.toUpperCase()+"-"+myNewCarPlate2.toUpperCase()+"-"+myNewCarPlate3.toUpperCase();
 		String myNewCarColor = request.getParameter("color");
 		//Wie Bild erfassen?
 		String myNewCarPicture = "Picture";
