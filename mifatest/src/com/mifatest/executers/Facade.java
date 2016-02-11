@@ -313,7 +313,7 @@ public class Facade {
  		fahrzeug.setFahrzeugTyp(ftyp);
  		fahrzeug.setFahrzeugBezeichnung(fBez);
  		fahrzeug.setNummernschild(nschild);
- 		fahrzeug.setFarzeugFarbe(fFarbe);
+ 		fahrzeug.setFahrzeugFarbe(fFarbe);
  		fahrzeug.setFahrzeugBildURL(url);
  		//fahrzeug.setBesitzer(besitzerID);
  		session.merge(fahrzeug);

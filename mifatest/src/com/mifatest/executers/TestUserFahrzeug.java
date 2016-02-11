@@ -47,7 +47,7 @@ public class TestUserFahrzeug {
 	    f.setFahrzeugBezeichnung("VW Golf");
 	    f.setFahrzeugBildURL("dd");
 	    f.setFahrzeugTyp("kombi");
-	    f.setFarzeugFarbe("blau");
+	    f.setFahrzeugFarbe("blau");
 	    f.setNummernschild("XFDD162");
 	    
 	    session.persist(f);

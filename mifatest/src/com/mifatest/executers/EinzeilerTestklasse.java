@@ -46,6 +46,8 @@ public class EinzeilerTestklasse {
 		System.out.println(l.get(0).geteMail());
 		System.out.println(l.get(1)); */
 
+		/*
+		
 		Encryptor en = new Encryptor();
 		String userPw = "root";
 		
@@ -59,7 +61,31 @@ public class EinzeilerTestklasse {
 			System.out.println(e);
 		}
 		
-
+*/
+		
+		String myNewCarTyp = "duschen";
+		String myNewCarBez = "duschen";
+		String myNewCarPlate = "duschen";
+		String myNewCarColor = "duschen";
+		//Wie Bild erfassen?
+		String myNewCarPicture = "Picture";
+		String carOwner = "CurrentUser";
+		
+		Facade fcreateNewCar = new Facade();
+		
+		try
+		{
+			//fNewUserCar.newFahrzeug(ftyp, fBez, nschild, fFarbe, url)
+			//Erzeugt neues Fahrzeug
+			fcreateNewCar.newFahrzeug(myNewCarTyp, myNewCarBez, myNewCarPlate, myNewCarColor, myNewCarPicture);
+			System.out.print("Fahrzeug anlegen erfolgreich.");
+		}
+		catch(Exception e)
+		{
+			e.toString();
+			System.out.print("Fahrzeug anlegen fehlgeschlagen!");
+		}
+		
 	}
 
 }

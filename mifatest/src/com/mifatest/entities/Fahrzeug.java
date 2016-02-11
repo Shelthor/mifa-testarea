@@ -16,10 +16,10 @@ public class Fahrzeug {
 	public void setFahrzeugID(int fahrzeugID) {
 		this.fahrzeugID = fahrzeugID;
 	}
-	public String getFarzeugFarbe() {
+	public String getFahrzeugFarbe() {
 		return fahrzeugFarbe;
 	}
-	public void setFarzeugFarbe(String farzeugFarbe) {
+	public void setFahrzeugFarbe(String farzeugFarbe) {
 		this.fahrzeugFarbe = farzeugFarbe;
 	}
 	public String getFahrzeugTyp() {
