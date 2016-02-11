@@ -92,7 +92,7 @@
 	<a href="m_hilfe.html">Hilfe</a>
 </div>
 
-<%
+<%	//Besitzer des jeweiligen Fahrzeugs aus Cookie ID auslesen und zuordnen
 	if(request.getParameter("submit")!=null)
 	{
 		//out.print("Button geht");

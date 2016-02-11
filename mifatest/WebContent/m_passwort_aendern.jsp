@@ -110,6 +110,7 @@
 </head>
 <body>
 <%
+	/*
 	Cookie[] cookies = request.getCookies();
 
 		int userIdAusCookie = 0;
@@ -125,8 +126,9 @@
 	 		}
 	 	//Kontrolle
 	 	//out.print("UserID: " + userIdAusCookie + "<br/>");
+	 	
 }
-
+		*/
 %>
 
 <div id="head">
@@ -135,6 +137,7 @@
 <form action="m_passwort_aendern.jsp" method="post"></form>
 <div id="form">
 	<div id="form2">
+	<form action="m_passwort_aendern.jsp" method="post">
 		<table align="center">
 			<tr>
 				<td>aktuelles Kennwort:</td>
@@ -153,6 +156,7 @@
 				<td><input type="submit" id="cancel" name="cancel" value="Änderungen verwerfen"/></td>
 			</tr>	
 		</table>
+		</form>
 	</div>
 </div>
 </form>
@@ -168,28 +172,47 @@ if(request.getParameter("change")!= null)
 	//wenn aktuelles passwort == in DB hinterlegtes PW
 			//-> überprüfe, ob neues PW und PW bestätigen == true bzw. gleich
 			//-> änderungen in DB übernehmen
-	Facade fCurrentUserChangePW = new Facade();
+			//eingegebenes PW
+	Facade fCurrentUserChangePW = new Facade();		
+	//temp CookieID später wieder ersetzen durch userIDAusCookie
+	int tempCookieID = 1;
+			//current Passwort
+			String currentUserPW = request.getParameter("pwdAkt");
+			Passwort currentPW = fCurrentUserChangePW.getPasswortByUserId(tempCookieID);
+			String passwortFromDB = currentPW.getPasswortValue();
+	
 			try
 			{
-				//eingegebenes PW
-				User currentUser = fCurrentUserChangePW.getUserById(userIdAusCookie);
-				String enteredPassword = request.getParameter("pwdAkt");
-				int currentUserID = currentUser.getUserID();
-				//gespeichertes PW in DB
-				Passwort currentUserPassword = fCurrentUserChangePW.getPasswortByUserId(currentUserID);
-				String currentUserPWValue = currentUserPassword.getPasswortValue();
-				
-				
-				
-				
+				//HASH
 				Encryptor en = new Encryptor();
-				String hash = currentUserPassword.toString();
+				String hash = en.inc(currentUserPW);
+				//
 				
-				if(enteredPassword == currentUserPWValue)
+				
+				out.println(currentUserPW);
+				out.println(currentPW);
+				
+				if(currentUserPW == passwortFromDB)
 				{
-					out.print("Passwörter Passen");
-					passwordValid = true;
+					out.print("Passwörter passen");
+					passwordValid=true;
 				}
+				else
+				{
+					passwordValid=false;
+					out.print("Passwörter passen nicht");
+				}
+				
+				if(passwordValid==true)
+				{
+					out.print("Neues Kennwort kann eingegeben werden");
+				}
+				else
+				{
+					out.print("Neues Kennwort kann noch nicht eingegeben werden");
+				}
+					
+			
 				
 			
 			}
