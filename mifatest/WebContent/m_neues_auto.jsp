@@ -105,6 +105,8 @@
 		String myNewCarPicture = "Picture";
 		String carOwner = "CurrentUser";
 		
+		
+		
 		Facade fcreateNewCar = new Facade();
 		
 		try
@@ -113,6 +115,10 @@
 			//Erzeugt neues Fahrzeug
 			fcreateNewCar.newFahrzeug(myNewCarTyp, myNewCarBez, myNewCarPlate, myNewCarColor, myNewCarPicture);
 			out.print("Fahrzeug anlegen erfolgreich.");
+			
+			String backToMain = "http://localhost:8080/mifatest/m_profil_bearbeiten.jsp";
+			response.setStatus(response.SC_MOVED_TEMPORARILY);
+			response.setHeader("Location", backToMain);
 		}
 		catch(Exception e)
 		{
