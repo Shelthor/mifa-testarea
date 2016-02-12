@@ -114,7 +114,7 @@
 <div id="footer">
 	<a href="m_fahrzeug_landingpage.jsp">zurück</a>
 	<a href="c_User.jsp">Startseite</a>
-	<a href="m_hilfe.html">Hilfe</a>
+	<a href="m_hilfe.html#thema5">Hilfe</a>	 <!-- So wird auf Anker in anderen Seiten verwiesen -->
 </div>
 
 <%	//Besitzer des jeweiligen Fahrzeugs aus Cookie ID auslesen und zuordnen
