@@ -112,7 +112,7 @@ out.print(send.getnName());
 		        <li class="dropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hallo <%= send.getvName() %>!<span class="caret"></span></a>
 		          <ul class="dropdown-menu">
-		            <li><a href="c_UserOeffentlich.jsp">Mein öffentliches Profil</a></li>
+		            <li><a href="c_UserOeffentlich.jsp?userid=<%=userIdAusCookie%>">Mein öffentliches Profil</a></li>
 		            <li><a href="c_User.jsp">Terminal</a></li>
 		          </ul>
 		        </li>

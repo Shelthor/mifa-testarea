@@ -138,7 +138,7 @@
 	String currentUserCarBezeichnung = currentVehicle.getFahrzeugBezeichnung();
 	String currentUserCarTyp = currentVehicle.getFahrzeugTyp();
 	String currentUserCarPlate = currentVehicle.getNummernschild();
-	String currentUserCarColor = currentVehicle.getFarzeugFarbe();
+	String currentUserCarColor = currentVehicle.getFahrzeugFarbe();
 	
 	
 	if(currentUserCarColor==null)
