@@ -40,8 +40,6 @@ if( cookies != null)
 
 
 	Facade fShowBewertung = new Facade();
-	String aktueller_Benutzer="[aktueller Benutzer]"; //später ersetzen durch Cookie UserID Name
-	
 	//Datum aus DB holen
 	//Mit FahrtID Fahrt von wo nach wo
 	//Bewerter -> ableiten aus Bewerter ID

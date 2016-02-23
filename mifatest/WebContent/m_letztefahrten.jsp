@@ -15,31 +15,59 @@
 <title>Meine letzten Fahrten</title>
 </head>
 <body>
-<%
-	int id = 1;
-	Facade fFahrten = new Facade();
-	//Fahrt gefahren = fFahrten.getListWithAllAngeboteneFahrtenOfUserByUserId(id);
-	
-	//Zeigt an, wohin der USer zuletzt gefahren ist (als Mitfahrer)
 
+<div class="container"><h1>Deine letzten Fahrten</h1></div>
+
+<%
+	Cookie[] cookies = request.getCookies();
+	int userIdAusCookie = 0;
+	if( cookies != null)
+	{
+		for (int i = 0; i < cookies.length; i++)
+		{
+			if(cookies[i].getName().equals("c_userId"))
+			{
+				userIdAusCookie = Integer.parseInt(cookies[i].getValue());
+		 	}
+	 	}
+	 
+	 out.print("UserID: " + userIdAusCookie + "<br/>");
+	}
+	
+	Facade fFahrten = new Facade();
+	
+	Fahrt fahrt;
+	Fahrt fahrtElem;
+	
+	
+
+	//int letzteFahrt = fahrt.getFahrtID();
+	//String letzteFahrtID = Integer.toString(letzteFahrt);
+	//Date letzteFahrtDate = fahrt.getFahrtDatum();
+	String letzteFahrtDatum = fahrt.getFahrtDatum().toString();
+	
+	//for(int i = 0; i < letzteFahrt; i++)
+	//{
+		//fahrtElem = letzteFahrt.get(i);
+	//Zeigt an, wohin der USer zuletzt gefahren ist (als Mitfahrer)
+	out.print("<div class='container-fluid' align='center'>");
+	out.print("<div class='row'>");
+	out.print("<div class='col-sm-1' style='background-color:#CDDC39'>");
+	out.print("<p>Datum</p>");
+	out.print("<p>"+letzteFahrtDatum+"</p>");
+	out.print("</div>");
+	
+	out.print("<div class='container-fluid' align='center'>");
+	out.print("<div class='row'>");
+	out.print("<div class='col-sm-1' style='background-color:#C0CA33'>");
+	out.print("<p>Fahrtdetails</p>");
+	out.print("<a href='c_Fahrt.jsp?fahrtid="+ fahrt.getFahrtID()+"'>zur Fahrt</a>");
+	out.print("</div>");
+	
+	//}
+	
 %>
-<div class="container-fluid">
-  <h1>Deine letzten Fahrten <%//= %></h1>
-  <div class="row">
-    <div class="col-sm-4" style="background-color:#CDDC39">
-      <p>Datum</p>
-      <p><%//=bewDate %></p>
-    </div>
-    <div class="col-sm-4" style="background-color:#C0CA33">
-      <p>Fahrt</p>
-      <p><%//= %></p>
-    </div>
-    <div class="col-sm-4" style="background-color:#CDDC39">
-      <p>Uhrzeit</p>
-      <p><%//= %></p>
-    </div>
-  </div>
-</div>
+
 
 
 </body>
