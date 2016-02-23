@@ -56,7 +56,6 @@
 	out.print("<p>Datum</p>");
 	out.print("<p>"+letzteFahrtDatum+"</p>");
 	out.print("</div>");
-	
 	out.print("<div class='container-fluid' align='center'>");
 	out.print("<div class='row'>");
 	out.print("<div class='col-sm-1' style='background-color:#C0CA33'>");
