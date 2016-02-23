@@ -46,12 +46,12 @@
 				 userIdAusCookie = Integer.parseInt(cookies[i].getValue());
 			 }
 		 }
-		 
-		 out.print("UserID: " + userIdAusCookie + "<br/>");
 	}
 %>
 
 <%! 
+	int kontrolle = 0;
+	
 	Facade f;
 	Fahrt fa;
 	
@@ -74,34 +74,43 @@
 	int kap;
 %>
 <%
+	if(kontrolle == 0){
+		try{
+			id = Integer.parseInt(request.getParameter("fahrtid")); 	
+		}
+	
+		catch (Exception ex) {
+		}
+	}
+
+
 	f = new Facade();
-	id = 1; //id von Fahrt die zu bearbeiten ist, VERFEINERN: soll aus Parameter kommen (AJAX Möglich)
-	//userId = 7; //VERFERINERN -> Aus Cookie -> siehe unten
+	
 	userId = userIdAusCookie;
 	
 	user = new User();
 	user = f.getUserById(userId);
 	
 	fa = f.getFahrtById(id);
-		try{		
-			fahrtDatum = fa.getFahrtDatum();
-			startZeit = fa.getFahrtStartZeit();
-			gepaeck = fa.getGepaeck();
-			kap = fa.getKapazitaet();
-			
-			kommentar = fa.getKommentar();
-			
-			s1 = fa.getS1();
-			s6 = fa.getS6();			
-		}
-		catch (Exception ex){
-			
-		}
+	try{
+		fahrtDatum = fa.getFahrtDatum();
+		startZeit = fa.getFahrtStartZeit();
+		gepaeck = fa.getGepaeck();
+		kap = fa.getKapazitaet();
+		
+		kommentar = fa.getKommentar();
+		
+		s1 = fa.getS1();
+		s6 = fa.getS6();			
+	}
+	catch (Exception ex){
+		
+	}
 
 %>
 
 
-<div class="container">
+<div class="container" id="container-1">
 
 	<nav class="navbar navbar-default navbar-fixed-top">
 		  <div class="container-fluid">
@@ -294,9 +303,34 @@
 	</div>
 	
 	</div>
-  </div>
-</div>
+	
+	<div id="container-2" style="display:none;">
+	<p>noch nicht Mitglied?</p>
+	<a href=m_index.jsp>jetzt einloggen</a> oder <a href=m_registrieren.jsp>registrieren</a>
+	</div>
+	
+	<div id="container-3" style="display:none;">
+		<div class='alert alert-danger text-center' role='alert'>
+					<h1>Du bist nicht der Fahrer dieser Fahrt!</h1>
+		</div>
+	</div>
+	
 
+<%
+	if(userIdAusCookie==0)
+	{
+		out.print("<script>document.getElementById('container-1').style.display = 'none';</script>");
+		out.print("<script>document.getElementById('container-2').style.display = 'block';</script>");
+	}
+
+	if(fa.getFahrerID().equals(user) != true)
+	{
+		out.print("<script>document.getElementById('container-1').style.display = 'none';</script>");
+		out.print("<script>document.getElementById('container-3').style.display = 'block';</script>");
+	}
+
+%>
+	
 <%
 
 if (request.getParameter("ok") != null){
@@ -404,7 +438,7 @@ if (request.getParameter("ok") != null){
 						out.print("document.getElementById('Absatz').appendChild(text);");
 						out.print("document.getElementById('Absatz').appendChild(linebreak);</script>");
 					}
-					
+					kontrolle = 1;
 				}
 				catch (Exception e){
 					out.print("<script>fail();</script>" + "Fehler während des Updates: " + e);	

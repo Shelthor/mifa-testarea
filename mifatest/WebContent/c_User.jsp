@@ -55,7 +55,7 @@
 	user = f.getUserById(userId);
 %>
 
-<div class="container">
+<div class="container" id="container-1">
 
 	<nav class="navbar navbar-default navbar-fixed-top">
 		  <div class="container-fluid">
@@ -119,8 +119,19 @@
 	</div>
   </div>
 </div>
+<div id="container-2" style="display:none;">
+	<p>noch nicht Mitglied?</p>
+	<a href=m_index.jsp>jetzt einloggen</a> oder <a href=m_registrieren.jsp>registrieren</a>
+</div>
 
+<%
+	if(userIdAusCookie==0)
+	{
+		out.print("<script>document.getElementById('container-1').style.display = 'none';</script>");
+		out.print("<script>document.getElementById('container-2').style.display = 'block';</script>");
+	}
 
+%>
 
 </body>
 </html>

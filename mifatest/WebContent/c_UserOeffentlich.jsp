@@ -21,11 +21,33 @@
 </head>
 <body>
 
+<%
+	/*
+		Hole userId aus Cookie heraus
+	*/
+
+	Cookie[] cookies = request.getCookies();
+
+	int userIdAusCookie = 0;
+	
+	if( cookies != null)
+	{
+		 for (int i = 0; i < cookies.length; i++){
+			 if(cookies[i].getName().equals("c_userId")){
+				 userIdAusCookie = Integer.parseInt(cookies[i].getValue());
+			 }
+		 }
+		 
+		 out.print("UserID: " + userIdAusCookie + "<br/>");
+	}
+%>
+
 <%! 
 	Facade f;
+	User uIntern;
 	User user;
 	
-	int userId;
+	int userId,userIdPublic;
 	
 	double drPuenktlich, drFahrstil, drFreundlich;
 
@@ -40,10 +62,12 @@
 <%
 	f = new Facade();
 
-	userId = Integer.parseInt(request.getParameter("userid"));
+	userId = userIdAusCookie;
+	userIdPublic = Integer.parseInt(request.getParameter("userid"));
 				
 	try{
-		user = f.getUserById(userId);
+		user = f.getUserById(userIdPublic);
+		uIntern = f.getUserById(userId);
 		
 		vorName = user.getvName();
 		nachName = user.getnName();
@@ -106,7 +130,7 @@
 		    
 		    <ul class="nav navbar-nav navbar-right">
 		        <li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hallo <%= user.getvName() %>!<span class="caret"></span></a>
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hallo <%= uIntern.getvName() %>!<span class="caret"></span></a>
 		          <ul class="dropdown-menu">
 		            <li><a href="c_UserOeffentlich.jsp?userid=<%=userId%>">Mein öffentliches Profil</a></li>
 		            <li><a href="c_User.jsp">Terminal</a></li>
