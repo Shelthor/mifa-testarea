@@ -18,6 +18,9 @@
 
 </head>
 <body>
+
+<div class='container' align="center"><h1>Deine Bewertungen</h1></div>  
+
 <%
 Cookie[] cookies = request.getCookies();
 
@@ -65,8 +68,7 @@ if( cookies != null)
 		puenktlichkeit = fahrtBewertungElem.getPuenktlichkeitRating();
 		fahrt = fahrtBewertungElem.getFahrtID();
 		
-		out.print("<div class='container-fluid'>");
-		out.print("<h1>Deine Bewertungen</h1>");
+		out.print("<div class='container-fluid' align='center'>");
 		out.print("<div class='row'>");
 		out.print("<div class='col-sm-1' style='background-color:#CDDC39'>");
 		out.print("<p>Datum</p>");
@@ -98,48 +100,11 @@ if( cookies != null)
 		out.print("</div>");
 		out.print("</div>");
 		out.print("</div>");
-		
-		
-		
-		
+		out.print("<br>");
 		//link
-		
 		//out.print("<a href='c_Fahrt.jsp?fahrtid="+ fahrt.getFahrtID()+"'>zur Fahrt</a>");
 	}
-
-	//out.print(bewDate);
-	try
-	{
-		 
-	
-	
-
-		
-	}
-	catch(Exception e)
-	{
-		out.print("Beim Abrufen der Daten ist ein Fehler aufgetreten.");
-	}
-	
-
-
 %>
-
-    
-      
-    
-    
-      
-    
-    
-      
-    
-    
-      
-    
-  </div>
-</div>
-
 
 
 <div id="footer" align="center">
