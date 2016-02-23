@@ -8,10 +8,10 @@
 </head>
 <body>
 
-
+<% //Mailbox API von Google einbinden %>
 
 <div id="footer">
-	<a href="m_fahrzeug_landingpage.jsp">zurück</a>
+	<a href="c_User.jsp">zurück</a>
 	<a href="c_User.jsp">Startseite</a>
 	<a href="m_hilfe.html">Hilfe</a>
 </div>

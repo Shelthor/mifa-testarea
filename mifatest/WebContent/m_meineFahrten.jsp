@@ -8,6 +8,8 @@
 <title>Meine Fahrten</title>
 </head>
 <body>
+<!-- Seite zeigt die letzten angebotenen Fahrten des Users an -->
+
 <div align="center"><h1>Meine Fahrten</h1></div>
 
 <div id="list" align="center">
