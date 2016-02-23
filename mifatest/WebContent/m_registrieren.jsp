@@ -52,9 +52,10 @@
 		<h3>Um unsere Plattform zu nutzen</h3>
  	</div>
  	<div class="row">
-	 	<div class="col-md-4 col-xs-12">
-
-	 	</div>
+	 	<div id="whole">
+			<div class="col-md-4 col-xs-12">
+	
+		 	</div>
 	 	<div class="panel panel-default col-md-4 col-xs-12">
 				<div class="panel-body">
 				    <form action="m_registrieren.jsp" method="post">
@@ -179,9 +180,19 @@
 		</form>
 				 </div>
 		</div>
+		
 		<div class="col-md-4 col-xs-12">
 
 	 	</div>
+	 	</div>
+	 	<div id="sendSuccess" style="display:none">
+			<div class='alert alert-success text-center' role='alert'>
+				<h1>erfolgreich registriert!</h1>
+			</div>
+			<div class="col-md-12">
+				<p>Bitte aktiviere nun dein Benutzerkonto um dich einzuloggen. Wir haben dir dazu eine Mail geschickt</p>
+			</div>		
+		</div>
  	</div>
 
 </div>
@@ -261,7 +272,9 @@ if(request.getParameter("register")!= null)
 			//
 		
 			fUser.newUser(emailR, d, nachname, vorname, telefon, hash);
-			out.print("Registrierung erfolgt");
+			
+			out.print("<script>sendSQL();</script>");
+			out.print("<script>suc();</script>");
 		}
 	catch(Exception e)
 		{

@@ -323,7 +323,7 @@
 		out.print("<script>document.getElementById('container-2').style.display = 'block';</script>");
 	}
 
-	if(fa.getFahrerID().equals(user) != true)
+	if(fa.getFahrerID().getUserID() != userIdAusCookie)
 	{
 		out.print("<script>document.getElementById('container-1').style.display = 'none';</script>");
 		out.print("<script>document.getElementById('container-3').style.display = 'block';</script>");
@@ -332,7 +332,7 @@
 %>
 	
 <%
-
+kontrolle = 0;
 if (request.getParameter("ok") != null){
 		try{
 			//DATUM
