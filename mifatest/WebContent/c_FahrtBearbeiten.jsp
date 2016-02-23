@@ -325,7 +325,7 @@
 
 	if(fa.getFahrerID().getUserID() != userIdAusCookie)
 	{
-		out.print("<script>document.getElementById('container-1').style.display = 'none';</script>");
+		out.print("<script>document.getElementById('whole').style.display = 'none';</script>");
 		out.print("<script>document.getElementById('container-3').style.display = 'block';</script>");
 	}
 
