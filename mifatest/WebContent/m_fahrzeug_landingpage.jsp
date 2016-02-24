@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html>
+<%@ page import="com.mifatest.entities.*" %>
+<%@ page import="com.mifatest.executers.*" %>
+<%@ page import="java.util.*" %>
+<%@ page import="java.sql.Time" %>
 <head>
 <meta charset="UTF-8">
 	<title>Wohin als nächstes?</title>
@@ -105,7 +109,7 @@
 <div id="head">
 	<h1>Wohin als nächstes?</h1>
 </div>
-
+<!--  
 <div id="form">
 	<div id="form2">
 		<table align="center">
@@ -118,12 +122,99 @@
 				<td align="center" ><a href="m_fahrzeug_bearbeiten.jsp">Fahrzeug bearbeiten</a></td>
 			</tr>
 			<tr>
-				<td align="center"><img src="#"></td> <!-- Über Cookie aktuelles Fahrzeugbild des Users auslesen und anzeigen (optional)-->
+				<td align="center"><img src="#"></td> 
 				<td align="center"><img src="#"></td>
 			</tr>
 		</table>
 	</div>
 </div>
+-->
+
+<%
+//ID aus Cookie holen
+Cookie[] cookies = request.getCookies();
+
+int userIdAusCookie = 0;
+
+if( cookies != null)
+{
+	 for (int i = 0; i < cookies.length; i++){
+		 if(cookies[i].getName().equals("c_userId")){
+			 userIdAusCookie = Integer.parseInt(cookies[i].getValue());
+		 }
+	 }
+}
+//Prüfe, ob Fahrzeug zur zugehörigen UserID existiert
+//wenn nein --> nur "neues Fahrzeug erstellen" möglich
+//wenn ja   --> nur Fahrzeug bearbeiten möglich (1:1-Beziehung in DB)
+
+ int kontrolle = 1;
+ String link = "http://localhost:8080/mifatest/";
+
+ int fahrzeugid,fahrzeuguserid;
+ Facade fahrzeugOwnerDB = new Facade();
+ Boolean fahrzeugvorhanden=false;
+ 
+ Fahrzeug fahrzeug,kfz;
+ 
+ fahrzeugid = fahrzeugOwnerDB.getFahrzeugByUserId(userIdAusCookie).getFahrzeugID(); 
+ 
+try
+{
+ 
+ if (fahrzeugid == userIdAusCookie)
+ {
+	 //out.print("true");
+	 fahrzeugvorhanden=true;
+ }
+ else
+ {
+	 fahrzeugvorhanden=false;
+ }
+ 
+ if (fahrzeugvorhanden==true)
+ {
+	 out.print("<div class='container' align='center'>");
+	 out.print("Dein Fahrzeug existiert bereits. Für Änderungen ");
+	 String linkToUpdateCar = ("m_fahrzeug_bearbeiten.jsp");
+	 out.print("<a href='http://localhost:8080/mifatest/"+linkToUpdateCar+"'>bitte hier entlang.</a>");
+	 out.print("</div>");
+ }
+ else
+ {
+	 out.print("<div class='container' align='center'>");
+	 out.print("Du hast noch kein Fahrzeug hinterlegt. ");
+	 String linkToNewCar = ("m_neues_auto.jsp");
+	 out.print("<a href='http://localhost:8080/mifatest/"+linkToNewCar+"'>Das kannst du aber hier.</a>");
+	 out.print("</div>");
+ }
+}
+catch (Exception e)
+{
+	//fahrzeugid=0;
+}
+ 
+ 
+ 
+
+
+ if(kontrolle == 0)
+ {
+		try
+		{
+			fahrzeuguserid = userIdAusCookie;
+			
+		}
+	
+		catch (Exception ex) 
+		{
+			
+		}
+	}
+
+
+
+%>
 
 <div id="footer">
 	<a href="m_profil_bearbeiten.jsp">zurück</a>
