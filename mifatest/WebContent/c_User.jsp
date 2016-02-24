@@ -133,5 +133,8 @@
 
 %>
 
+<div id="pageFooter" align="center">
+<a href="m_hilfe.html">Hilfe</a>
+</div>
 </body>
 </html>

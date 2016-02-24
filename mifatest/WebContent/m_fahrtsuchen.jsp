@@ -8,5 +8,10 @@
 </head>
 <body>
 
+
+<div id="footer">
+<a href="m_hilfe.html#thema_fahrtsuchen">Hilfe</a>	 <!-- So wird auf Anker in anderen Seiten verwiesen -->
+</div>
+
 </body>
 </html>

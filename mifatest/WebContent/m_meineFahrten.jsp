@@ -22,8 +22,9 @@
 
 
 </div>
-
-
+<div id="footer">
+<a href="m_hilfe.html#thema_letzteFahrt">Hilfe</a>	 <!-- So wird auf Anker in anderen Seiten verwiesen -->
+</div>
 
 </body>
 </html>

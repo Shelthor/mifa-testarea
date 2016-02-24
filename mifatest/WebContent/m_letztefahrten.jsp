@@ -66,7 +66,11 @@
 	//}
 	
 %>
-
+<div id="footer" align="center">
+	<a href="m_fahrzeug_landingpage.jsp">zurück</a>
+	<a href="c_User.jsp">Startseite</a>
+	<a href="m_hilfe.html#thema_letzteFahrt">Hilfe</a>
+</div>
 
 
 </body>
