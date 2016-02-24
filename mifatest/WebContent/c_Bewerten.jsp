@@ -47,8 +47,6 @@ td.star{
 				 userIdAusCookie = Integer.parseInt(cookies[i].getValue());
 			 }
 		 }
-		 
-		 out.print("UserID: " + userIdAusCookie + "<br/>");
 	}
 %>
 
@@ -75,7 +73,6 @@ if(kontrolle == 0){
 		empfurl = Integer.parseInt(request.getParameter("empfid"));
 		sendurl = Integer.parseInt(request.getParameter("senderid")); //VERFERINERN -> siehe unten
 		fahrturl = Integer.parseInt(request.getParameter("fahrtid"));
-		
 	}
 
 	catch (Exception ex) {
