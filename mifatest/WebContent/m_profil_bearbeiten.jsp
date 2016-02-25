@@ -66,21 +66,20 @@
 
 </head>
 <body text="#FFFFFF" bgcolor="FFFFFF" link="#FF0000" alink="#FF0000" vlink="#FF0000">
-     <div id="header"><h1 align="center">Bearbeite dein Profil</h1></div>
-
-     <div id="tools" align="center">
-        <table align="center" bgcolor="#CDDC39" border="2px">
-            <tr>
-                <td><section><a href="m_profil_bearbeiten_profil.jsp" >Profil</a></section></td>
-            </tr>
-            <tr>
-                <td><section><a href="m_fahrzeug_landingpage.jsp" >Fahrzeug</a></section></td>
-            </tr>
-            <tr>
-                <td><section><a href="m_passwort_aendern.jsp" >Passwort</a></section></td>
-            </tr>
-        </table>
-    </div>
+     <div id="header"><h1 align="center">Was möchtest du bearbeiten?</h1></div>
+		<div id="tools" align="center" class="container-fluid">
+     		<div class="row">
+    			<div class="col-md-4" style="background-color:#CDDC39">
+      				<a href="m_profil_bearbeiten_profil.jsp" >Profil</a>
+    			</div>
+    			<div class="col-md-4" style="background-color:#C0CA33">
+      				<a href="m_fahrzeug_landingpage.jsp" >Fahrzeug</a>
+    			</div>
+    			<div class="col-md-4" style="background-color:#CDDC39">
+      				<a href="m_passwort_aendern.jsp" >Passwort</a>	
+    			</div>
+  			</div>
+		</div>  
 
 <div id="footer">
     <a href="c_User.jsp">zurück</a>

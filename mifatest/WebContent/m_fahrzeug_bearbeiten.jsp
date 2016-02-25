@@ -272,7 +272,7 @@ if(userIdAusCookie==0)
 			</div>	
 			<div class="col-sm-2">	
 				<p id="myCarPicture"><%=kfzBild %></p>
-				<p>Hier wird Bild von deinem Fahrzeug erscheinen</p>
+				<p>Hier wird das Bild von deinem Fahrzeug erscheinen</p>
 			</div>
 				
 		</div>		
