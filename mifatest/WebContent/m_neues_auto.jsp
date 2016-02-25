@@ -87,7 +87,7 @@
 				</tr>
 				<tr>
 					<td>Kennzeichen:</td>
-					<td><input type="text" id="kennz" name="kennz" style="text-transform:uppercase" size="1" maxlength="2"/>-</td>
+					<td><input type="text" id="kennz" name="kennz" style="text-transform:uppercase" size="1" maxlength="3"/>-</td>
 					<td><input type="text" id="kennz2" name="kennz2" style="text-transform:uppercase" size="1" maxlength="2"/>-</td>
 					<td><input type="text" id="kennz3" name="kennz3" style="text-transform:uppercase" size="4" maxlength="4" min="1" max="9999"/></td>
 				</tr>

@@ -9,6 +9,8 @@
 <%@ page import="java.util.*" %>
 <html>
 <head>
+<script type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <meta charset="UTF-8">
 
 	<title>Fahrzeug bearbeiten</title>
@@ -134,7 +136,7 @@
 	
 	//Fahrzeug currentVehicle = UserVehicle.getFahrzeugByUserId(userIdAusCookie);
 	//feste Zahl durch cookieValue ersetzen, damit aktueller user sein Auto sieht
-	Fahrzeug currentVehicle = UserVehicle.getFahrzeugByUserId(1);
+	Fahrzeug currentVehicle = UserVehicle.getFahrzeugByUserId(userIdAusCookie);
 	String currentUserCarBezeichnung = currentVehicle.getFahrzeugBezeichnung();
 	String currentUserCarTyp = currentVehicle.getFahrzeugTyp();
 	String currentUserCarPlate = currentVehicle.getNummernschild();
@@ -151,7 +153,7 @@
 	{
 		String newCarBezeichnung = request.getParameter("bez");
 		String newCarTyp = request.getParameter("typ");
-		String newCarPlate = request.getParameter("kennz");
+		String carPlate = request.getParameter("kennz_vorn").toUpperCase()+"-"+request.getParameter("kennz_mitte").toUpperCase()+"-"+request.getParameter("kennz_hinten");
 		String newCarColor = request.getParameter("color");
 		String newCarPicture = "EMPTY";
 		String carOwner = "CurrentUser";
@@ -160,14 +162,21 @@
 		
 		try
 		{
-			//neue Fahrzeugdaten erfassen und an DB übermitteln
-			//fNewUserCar.newFahrzeug(ftyp, fBez, nschild, fFarbe, url)
-			//Erzeugt neues Fahrzeug
-			//fNewUserCar.newFahrzeug(newCarTyp, newCarBezeichnung, newCarPlate, newCarColor, newCarColor);
+			//Ändern Fahrzeug Bezeichnung
+			fNewUserCar.getFahrzeugByUserId(userIdAusCookie).setFahrzeugBezeichnung(newCarBezeichnung);
+			out.print(newCarBezeichnung);
 			
-			//Änderung der Attribute zur zugehörigen FahrzeugID
+			//Ändern Fahrzeug Typ
+			fNewUserCar.getFahrzeugByUserId(userIdAusCookie).setFahrzeugTyp(newCarTyp);
 			
-			out.print("Übermittlung läuft");
+			//Ändern Kennzeichen
+			fNewUserCar.getFahrzeugByUserId(userIdAusCookie).setNummernschild(carPlate);
+			
+			//Farbe ändern
+			fNewUserCar.getFahrzeugByUserId(userIdAusCookie).setFahrzeugFarbe(newCarColor);
+			
+			//Bild ändern
+			fNewUserCar.getFahrzeugByUserId(userIdAusCookie).setFahrzeugBildURL(newCarPicture);
 		}
 		catch(Exception e)
 		{
@@ -175,71 +184,119 @@
 		}
 		
 	}	
-%>
+	
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+//Felderhandling
 
+if(userIdAusCookie==0)
+	{
+		out.print("<script>document.getElementById('old').style.display = 'none';</script>");
+		out.print("<script>document.getElementById('form').style.display = 'block';</script>");
+	}
+
+
+	
+%>
 
 <div id="head">
 	<h1>Mein Fahrzeug</h1>
 </div>
 
-<div id="old" align="center">
+<div id="old" align="center" class="container-fluid">
 	<p id=>Mein aktuelles Auto</p>
 	<hr>
-	<div>
-		<table>
-			<tr>
-				<td><p id="myCar"><%=currentUserCarBezeichnung %></p></td>
-				<td><p id="myCar"></p></td>
-			</tr>
-			<tr>
-				<td><p id="myCarTyp"><%=currentUserCarTyp %></p></td>
-			</tr>
-			<tr>
-				<td><p id="myKennz"><%=currentUserCarPlate %></p></td>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-2" style="background-color:#C0CA33">
+				<p id="myCar"><%=currentUserCarBezeichnung %></p>
+			</div>
+			<div class="col-sm-2">	
+				<p id="myCar">Text</p>
+			</div>	
+			<div class="col-sm-2" style="background-color:#C0CA33">
+				<p id="myCarTyp"><%=currentUserCarTyp %></p>
+			</div>
+			<div class="col-sm-2">	
+				<p id="myKennz"><%=currentUserCarPlate %></p>
+			</div>	
 				<!-- Format: AA-BB_xxxx -->
-			</tr>
-			<tr>
-				<td><p id="myCarColor"><%=currentUserCarColor %></p></td>
-			</tr>
-			
-		</table>
+			<div class="col-sm-2" style="background-color:#C0CA33">	
+				<p id="myCarColor"><%=currentUserCarColor %></p>
+			</div>	
+				
+		</div>		
 	</div>
 </div>
 
-
-
-
 <p align="center">Was möchtest du ändern?</p>
-<div id="form">
+<div id="form" align="center">
 	<div id="form2">
 		<form action="m_fahrzeug_bearbeiten.jsp" method="post">
-			<table align="center">
-				<tr>
-					<td>Fahrzeugtyp:</td>
-					<td><input type="text" id="typ" name="typ"></td>	
-				</tr>
-				<tr>
-					<td>Bezeichnung:</td>
-					<td><input type="text" id="bez" name="bez"></td>	
-				</tr>
-				<tr>
-					<td>Kennzeichen:</td>
-					<td><input type="text" id="kennz" name="kennz"></td>
-					<!-- Format: AA-BB_xxxx -->
-				</tr>
-				<tr>
-					<td>Farbe:</td>
-					<td><input type="text" id="color" name="color"></td>
-				</tr>
-				<tr>
-					<td>Bild:</td>
-					<td><input type="file" id="picture" name="picture"></td>
-				</tr>
-				<tr>
-					<td><input type="submit" id="submit" name="send" value="Änderungen speichern" /></td>
-					<td><input type="submit" id="cancel" name="cancel" value="Änderungen verwerfen"/></td>
-				</tr>
-			</table>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-sm-2">
+						Fahrzeugtyp:
+							<div class="container-fluid">
+								<div class="col-sm-4" id="newTyp">
+									<input type="text" id="typ" name="typ">	
+								</div>
+							</div>	
+					</div>
+				</div>	
+			<div class="container-fluid">
+				
+					<div class="col-sm-2">
+						Bezeichnung:
+							<div class="container-fluid">
+								<div class="col-sm-4" id="newBez">
+									<input type="text" id="bez" name="bez">	
+								</div>
+							</div>	
+					</div>
+				
+			</div>
+			<div class="container-fluid">
+				
+					<div class="col-sm-2">
+						Kennzeichen:
+							<div class="container-fluid">
+								<div class="col-sm-4" id="newPlate">
+									<input type="text" id="kennz_vorn" name="kennz_vorn" style="text-transform:uppercase" size="1" maxlength="3">-
+									<input type="text" id="kennz_mitte" name="kennz_mitte" style="text-transform:uppercase" size="1" maxlength="2">
+									<input type="text" id="kennz_hinten" name="kennz_hinten" style="text-transform:uppercase" size="4" maxlength="4" min="1" max="9999">
+								</div>
+							</div>
+					</div>
+				
+			</div>
+			<div class="container-fluid">
+				
+					<div class="col-sm-2">
+						Farbe:
+							<div class="container-fluid">
+								<div class="col-sm-4" id="newColor">
+									<input type="text" id="color" name="color">
+								</div>
+							</div>
+					</div>
+				
+			</div>
+			<div class="container-fluid">
+				
+					<div class="col-sm-2">
+						Bild:
+							<div class="container-fluid">
+								<div class="col-sm-4">
+									<input type="file" id="picture" name="picture">
+								<div class="col-sm-4">
+							</div>
+					</div>
+				
+			</div>
+			<div class="container-fluid">
+				<input type="submit" id="submit" name="send" value="Änderungen speichern" />
+				<input type="submit" id="cancel" name="cancel" value="Änderungen verwerfen"/>
+			</div>	
 		</form>		
 	</div>	
 </div>

@@ -148,7 +148,7 @@ if( cookies != null)
 //wenn nein --> nur "neues Fahrzeug erstellen" möglich
 //wenn ja   --> nur Fahrzeug bearbeiten möglich (1:1-Beziehung in DB)
 
- int kontrolle = 1;
+ int kontrolle = 0;
  String link = "http://localhost:8080/mifatest/";
 
  int fahrzeugid,fahrzeuguserid;
@@ -182,16 +182,22 @@ try
  }
  else
  {
+	 if (fahrzeugvorhanden==false)
+	 {
+	 fahrzeugid=0;
+	 
 	 out.print("<div class='container' align='center'>");
 	 out.print("Du hast noch kein Fahrzeug hinterlegt. ");
 	 String linkToNewCar = ("m_neues_auto.jsp");
 	 out.print("<a href='http://localhost:8080/mifatest/"+linkToNewCar+"'>Das kannst du aber hier.</a>");
 	 out.print("</div>");
+	 }
  }
 }
 catch (Exception e)
 {
-	//fahrzeugid=0;
+	e.toString();
+	
 }
  
  
