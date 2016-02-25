@@ -130,26 +130,11 @@
 			}
 %>
 <%	
-	//Fahrzeughandling
-	//aktuelle Fahrzeuginformationen anzeigen
-	Facade UserVehicle = new Facade();
-	
-	//Fahrzeug currentVehicle = UserVehicle.getFahrzeugByUserId(userIdAusCookie);
-	//feste Zahl durch cookieValue ersetzen, damit aktueller user sein Auto sieht
-	Fahrzeug currentVehicle = UserVehicle.getFahrzeugByUserId(userIdAusCookie);
-	String currentUserCarBezeichnung = currentVehicle.getFahrzeugBezeichnung();
-	String currentUserCarTyp = currentVehicle.getFahrzeugTyp();
-	String currentUserCarPlate = currentVehicle.getNummernschild();
-	String currentUserCarColor = currentVehicle.getFahrzeugFarbe();
-	
-	
-	if(currentUserCarColor==null)
-	{
-		currentUserCarColor="Farbe nicht angegeben";
-	}
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	Facade fNewUserCar = new Facade();
 	
+	int zaehlen=0;
+	int flag=0;
 	Fahrzeug kfz;
 	String kfzTyp;
 	String kfzBez;
@@ -190,23 +175,55 @@
 		try
 		{
 			//Ändern Fahrzeug Bezeichnung
-			fNewUserCar.getFahrzeugByUserId(userIdAusCookie).setFahrzeugBezeichnung(newCarBezeichnung);
-			out.print(newCarBezeichnung);
+			if (request.getParameter("bez")!="")
+			{
+				flag++;	
+				fNewUserCar.getFahrzeugByUserId(userIdAusCookie).setFahrzeugBezeichnung(newCarBezeichnung);
+			}
+			
 			
 			//Ändern Fahrzeug Typ
-			fNewUserCar.getFahrzeugByUserId(userIdAusCookie).setFahrzeugTyp(newCarTyp);
+			if (request.getParameter("typ")!="")
+			{
+				flag++;
+				fNewUserCar.getFahrzeugByUserId(userIdAusCookie).setFahrzeugTyp(newCarTyp);
+			}
 			
 			//Ändern Kennzeichen
-			fNewUserCar.getFahrzeugByUserId(userIdAusCookie).setNummernschild(carPlate);
-			
+			if (request.getParameter("kennz_vorn")!="" | request.getParameter("kennz_mitte")!="" | request.getParameter("kennz_hinten")!="")
+			{
+				flag++;
+				fNewUserCar.getFahrzeugByUserId(userIdAusCookie).setNummernschild(carPlate);
+			}
 			//Farbe ändern
-			fNewUserCar.getFahrzeugByUserId(userIdAusCookie).setFahrzeugFarbe(newCarColor);
-			
+			if (request.getParameter("color")!="")
+			{
+				flag++;
+				fNewUserCar.getFahrzeugByUserId(userIdAusCookie).setFahrzeugFarbe(newCarColor);
+			}
 			//Bild ändern
-			fNewUserCar.getFahrzeugByUserId(userIdAusCookie).setFahrzeugBildURL(newCarPicture);
+			if (request.getParameter("picture")!="")
+			{
+				flag++;
+				fNewUserCar.getFahrzeugByUserId(userIdAusCookie).setFahrzeugBildURL(newCarPicture);
+			}
 			
+			//out.print(flag+" Änderungen vorgenommen");
 			//Update DB
-			fNewUserCar.updateFahrzeug(kfz);
+			if (flag > 0)
+			{
+				fNewUserCar.updateFahrzeug(kfz);
+				//Optional Ausgabefenster erstellen mit Gegenüberstellung der Werte
+				out.print("<div class='container'>");
+				out.print("<p>"+flag+" Änderungen vorgenommen</p>");
+				out.print("</div>");
+				
+			}
+			else
+			{
+				out.print("keine Datensätze werden geändert");
+			}
+			
 		}
 		catch(Exception e)
 		{
@@ -255,7 +272,7 @@ if(userIdAusCookie==0)
 			</div>	
 			<div class="col-sm-2">	
 				<p id="myCarPicture"><%=kfzBild %></p>
-				<p>Hier wird dein Bild von deinem Fahrzeug erscheinen</p>
+				<p>Hier wird Bild von deinem Fahrzeug erscheinen</p>
 			</div>
 				
 		</div>		
