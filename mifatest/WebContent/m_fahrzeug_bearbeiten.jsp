@@ -148,6 +148,24 @@
 		currentUserCarColor="Farbe nicht angegeben";
 	}
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	Facade fNewUserCar = new Facade();
+	
+	Fahrzeug kfz;
+	String kfzTyp;
+	String kfzBez;
+	String kfzPlate;
+	String kfzFarbe;
+	String kfzBild;
+	
+	kfz = fNewUserCar.getFahrzeugByUserId(userIdAusCookie);
+	
+	kfzTyp = kfz.getFahrzeugTyp();
+	kfzBez = kfz.getFahrzeugBezeichnung();
+	kfzPlate = kfz.getNummernschild();
+	kfzFarbe = kfz.getFahrzeugFarbe();
+	kfzBild = kfz.getFahrzeugBildURL();
+	
+	
 	
 	if(request.getParameter("send")!= null)
 	{
@@ -155,10 +173,19 @@
 		String newCarTyp = request.getParameter("typ");
 		String carPlate = request.getParameter("kennz_vorn").toUpperCase()+"-"+request.getParameter("kennz_mitte").toUpperCase()+"-"+request.getParameter("kennz_hinten");
 		String newCarColor = request.getParameter("color");
-		String newCarPicture = "EMPTY";
+		String newCarPicture = "img/1.png";
 		String carOwner = "CurrentUser";
 		
-		Facade fNewUserCar = new Facade();
+		try
+		{
+			
+						
+		}
+		catch (Exception ex)
+		{
+			out.print("Fahrzeug nicht gefunden");
+		}
+		
 		
 		try
 		{
@@ -177,6 +204,9 @@
 			
 			//Bild ändern
 			fNewUserCar.getFahrzeugByUserId(userIdAusCookie).setFahrzeugBildURL(newCarPicture);
+			
+			//Update DB
+			fNewUserCar.updateFahrzeug(kfz);
 		}
 		catch(Exception e)
 		{
@@ -208,21 +238,25 @@ if(userIdAusCookie==0)
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-2" style="background-color:#C0CA33">
-				<p id="myCar"><%=currentUserCarBezeichnung %></p>
+				<p id="myCar"><%=kfzBez %></p>
 			</div>
 			<div class="col-sm-2">	
 				<p id="myCar">Text</p>
 			</div>	
 			<div class="col-sm-2" style="background-color:#C0CA33">
-				<p id="myCarTyp"><%=currentUserCarTyp %></p>
+				<p id="myCarTyp"><%=kfzTyp %></p>
 			</div>
 			<div class="col-sm-2">	
-				<p id="myKennz"><%=currentUserCarPlate %></p>
+				<p id="myKennz"><%=kfzPlate %></p>
 			</div>	
 				<!-- Format: AA-BB_xxxx -->
 			<div class="col-sm-2" style="background-color:#C0CA33">	
-				<p id="myCarColor"><%=currentUserCarColor %></p>
+				<p id="myCarColor"><%=kfzFarbe %></p>
 			</div>	
+			<div class="col-sm-2">	
+				<p id="myCarPicture"><%=kfzBild %></p>
+				<p>Hier wird dein Bild von deinem Fahrzeug erscheinen</p>
+			</div>
 				
 		</div>		
 	</div>
