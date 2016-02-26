@@ -109,26 +109,6 @@
 <div id="head">
 	<h1>Wohin als nächstes?</h1>
 </div>
-<!--  
-<div id="form">
-	<div id="form2">
-		<table align="center">
-			<tr>
-				<td align="center">Mein neues Auto</td>
-				<td align="center">Mein Auto bearbeiten</td>
-			</tr>
-			<tr>
-				<td align="center" ><a href="m_neues_auto.jsp">Neues Fahrzeug erstellen</a></td>
-				<td align="center" ><a href="m_fahrzeug_bearbeiten.jsp">Fahrzeug bearbeiten</a></td>
-			</tr>
-			<tr>
-				<td align="center"><img src="#"></td> 
-				<td align="center"><img src="#"></td>
-			</tr>
-		</table>
-	</div>
-</div>
--->
 
 <%
 //ID aus Cookie holen
@@ -138,8 +118,10 @@ int userIdAusCookie = 0;
 
 if( cookies != null)
 {
-	 for (int i = 0; i < cookies.length; i++){
-		 if(cookies[i].getName().equals("c_userId")){
+	 for (int i = 0; i < cookies.length; i++)
+	 {
+		 if(cookies[i].getName().equals("c_userId"))
+		 {
 			 userIdAusCookie = Integer.parseInt(cookies[i].getValue());
 		 }
 	 }
@@ -163,7 +145,7 @@ if( cookies != null)
  
 try
 {
-	fahrzeugid = fahrzeugOwnerDB.getFahrzeugByUserId(userIdAusCookie).getFahrzeugID(); 
+		fahrzeugid = fahrzeugOwnerDB.getFahrzeugByUserId(userIdAusCookie).getFahrzeugID(); 
 	
  
  		if (fahrzeugid == userIdAusCookie)
@@ -176,11 +158,7 @@ try
  		{
  			fahrzeugvorhanden=false;
  		}
- 		
- 		
- 		
- 			
- 
+
  			if (fahrzeugvorhanden==true)
  			{
 				out.print("<div class='container' align='center'>");
@@ -189,33 +167,26 @@ try
 	 			out.print("<a href='http://localhost:8080/mifatest/"+linkToUpdateCar+"'>bitte hier entlang.</a>");
 				out.print("</div>");
  			}
- 			
- 			
- 
-	
+
 }
 catch (Exception e)
 {
-	e.toString();
-	if (fahrzeugvorhanden==false)
+		e.toString();
+		if (fahrzeugvorhanden==false)
 		{
-			 	//fahrzeugid=0;
-			 	fahrzeugNeu=1;
+			 //fahrzeugid=0;
+			 fahrzeugNeu=1;
 			 
-				 if(fahrzeugNeu==1)
-			 		{
-			 			out.print("<div class='container' align='center'>");
-						out.print("Du hast noch kein Fahrzeug hinterlegt. ");
-			 			String linkToNewCar = ("m_neues_auto.jsp");
-			 			out.print("<a href='http://localhost:8080/mifatest/"+linkToNewCar+"'>Das kannst du aber hier.</a>");
-			 			out.print("</div>");
-			 		}
+			 if(fahrzeugNeu==1)
+			 {
+			 	out.print("<div class='container' align='center'>");
+				out.print("Du hast noch kein Fahrzeug hinterlegt. ");
+				String linkToNewCar = ("m_neues_auto.jsp");
+				out.print("<a href='http://localhost:8080/mifatest/"+linkToNewCar+"'>Das kannst du aber hier.</a>");
+				out.print("</div>");
+			 }
 		}
 }
- 
- 
- 
-
 
  if(kontrolle == 0)
  {
@@ -230,8 +201,6 @@ catch (Exception e)
 			
 		}
 	}
-
-
 
 %>
 

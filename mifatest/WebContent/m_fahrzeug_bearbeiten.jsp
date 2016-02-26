@@ -242,10 +242,7 @@ if(userIdAusCookie==0)
 	{
 		out.print("<script>document.getElementById('old').style.display = 'none';</script>");
 		out.print("<script>document.getElementById('form').style.display = 'block';</script>");
-	}
-
-
-	
+	}	
 %>
 
 <div id="head">
@@ -341,16 +338,17 @@ if(userIdAusCookie==0)
 				
 			</div>
 			<div class="container-fluid">
-				
 					<div class="col-sm-2">
 						Bild:
 							<div class="container-fluid">
-								<div class="col-sm-4">
-									<input type="file" id="picture" name="picture">
-								<div class="col-sm-4">
+								
+									<div class="col-sm-4">
+										<input type="file" id="picture" name="picture">
+										<p>Test</p>
+									</div>
+								
 							</div>
 					</div>
-				
 			</div>
 			<div class="container-fluid">
 				<input type="submit" id="submit" name="send" value="Änderungen speichern" />
