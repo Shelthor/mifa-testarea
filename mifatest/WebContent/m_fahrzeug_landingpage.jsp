@@ -177,22 +177,8 @@ try
  			fahrzeugvorhanden=false;
  		}
  		
- 		if (fahrzeugvorhanden==false)
- 		{
- 			 	//fahrzeugid=0;
- 			 	fahrzeugNeu=1;
- 			 
- 				 if(fahrzeugNeu==1)
- 			 		{
- 			 			out.print("<div class='container' align='center'>");
- 						out.print("Du hast noch kein Fahrzeug hinterlegt. ");
- 			 			String linkToNewCar = ("m_neues_auto.jsp");
- 			 			out.print("<a href='http://localhost:8080/mifatest/"+linkToNewCar+"'>Das kannst du aber hier.</a>");
- 			 			out.print("</div>");
- 			 		}
- 		}
- 		else
- 		{
+ 		
+ 		
  			
  
  			if (fahrzeugvorhanden==true)
@@ -204,16 +190,27 @@ try
 				out.print("</div>");
  			}
  			
- 		}	
+ 			
  
 	
 }
 catch (Exception e)
 {
 	e.toString();
-	
-	
-	
+	if (fahrzeugvorhanden==false)
+		{
+			 	//fahrzeugid=0;
+			 	fahrzeugNeu=1;
+			 
+				 if(fahrzeugNeu==1)
+			 		{
+			 			out.print("<div class='container' align='center'>");
+						out.print("Du hast noch kein Fahrzeug hinterlegt. ");
+			 			String linkToNewCar = ("m_neues_auto.jsp");
+			 			out.print("<a href='http://localhost:8080/mifatest/"+linkToNewCar+"'>Das kannst du aber hier.</a>");
+			 			out.print("</div>");
+			 		}
+		}
 }
  
  
