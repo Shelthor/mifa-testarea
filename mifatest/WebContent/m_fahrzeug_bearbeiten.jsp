@@ -109,6 +109,7 @@
 
 </style>
 
+
 </head>
 <body>
 <%	//Cookie USer auslesen
@@ -126,7 +127,6 @@
 	 								out.print("UserID: " + userIdAusCookie + "<br/>");
  								}
 					}
-
 			}
 %>
 <%	
@@ -142,6 +142,7 @@
 	String kfzFarbe;
 	String kfzBild;
 	
+	
 	kfz = fNewUserCar.getFahrzeugByUserId(userIdAusCookie);
 	
 	kfzTyp = kfz.getFahrzeugTyp();
@@ -149,6 +150,8 @@
 	kfzPlate = kfz.getNummernschild();
 	kfzFarbe = kfz.getFahrzeugFarbe();
 	kfzBild = kfz.getFahrzeugBildURL();
+	
+	
 	
 	
 	
@@ -273,6 +276,11 @@ if(userIdAusCookie==0)
 			<div class="col-sm-2">	
 				<p id="myCarPicture"><%=kfzBild %></p>
 				<p>Hier wird das Bild von deinem Fahrzeug erscheinen</p>
+					<!--  <form action="m_fileUpload.jsp" enctype="multipart/form-data" method="post"> -->
+					<div id="carImage">
+						<img src="#" width="10%" height="10%"/>
+					</div>
+					</form>
 			</div>
 				
 		</div>		
@@ -282,7 +290,7 @@ if(userIdAusCookie==0)
 <p align="center">Was möchtest du ändern?</p>
 <div id="form" align="center">
 	<div id="form2">
-		<form action="m_fahrzeug_bearbeiten.jsp" method="post">
+		<form action="m_fahrzeug_bearbeiten.jsp" method="post" enctype="multipart/form-data">
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-sm-2">

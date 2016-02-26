@@ -66,6 +66,7 @@
 
 </head>
 <body text="#FFFFFF" bgcolor="FFFFFF" link="#FF0000" alink="#FF0000" vlink="#FF0000">
+     
      <div id="header"><h1 align="center">Was möchtest du bearbeiten?</h1></div>
 		<div id="tools" align="center" class="container-fluid">
      		<div class="row">

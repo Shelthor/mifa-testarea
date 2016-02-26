@@ -154,49 +154,56 @@ if( cookies != null)
  int fahrzeugid,fahrzeuguserid;
  Facade fahrzeugOwnerDB = new Facade();
  Boolean fahrzeugvorhanden=false;
+ int fahrzeugNeu = 0;
  
  Fahrzeug fahrzeug,kfz;
  
- fahrzeugid = fahrzeugOwnerDB.getFahrzeugByUserId(userIdAusCookie).getFahrzeugID(); 
+ //fahrzeugid = fahrzeugOwnerDB.getFahrzeugByUserId(userIdAusCookie).getFahrzeugID(); 
+  
  
 try
 {
+	fahrzeugid = fahrzeugOwnerDB.getFahrzeugByUserId(userIdAusCookie).getFahrzeugID(); 
+	
  
- if (fahrzeugid == userIdAusCookie)
- {
-	 //out.print("true");
-	 fahrzeugvorhanden=true;
- }
- else
- {
-	 fahrzeugvorhanden=false;
- }
+ 		if (fahrzeugid == userIdAusCookie)
+ 		{
+	 		//out.print("true");
+	 		fahrzeugvorhanden=true;
+ 		}
+ 			
  
- if (fahrzeugvorhanden==true)
- {
-	 out.print("<div class='container' align='center'>");
-	 out.print("Dein Fahrzeug existiert bereits. Für Änderungen ");
-	 String linkToUpdateCar = ("m_fahrzeug_bearbeiten.jsp");
-	 out.print("<a href='http://localhost:8080/mifatest/"+linkToUpdateCar+"'>bitte hier entlang.</a>");
-	 out.print("</div>");
- }
- else
- {
-	 if (fahrzeugvorhanden==false)
-	 {
-	 fahrzeugid=0;
-	 
-	 out.print("<div class='container' align='center'>");
-	 out.print("Du hast noch kein Fahrzeug hinterlegt. ");
-	 String linkToNewCar = ("m_neues_auto.jsp");
-	 out.print("<a href='http://localhost:8080/mifatest/"+linkToNewCar+"'>Das kannst du aber hier.</a>");
-	 out.print("</div>");
-	 }
- }
+ 			if (fahrzeugvorhanden==true)
+ 			{
+				out.print("<div class='container' align='center'>");
+	 			out.print("Dein Fahrzeug existiert bereits. Für Änderungen ");
+	 			String linkToUpdateCar = ("m_fahrzeug_bearbeiten.jsp");
+	 			out.print("<a href='http://localhost:8080/mifatest/"+linkToUpdateCar+"'>bitte hier entlang.</a>");
+				out.print("</div>");
+ 			}
+ 			
+ 		if (fahrzeugvorhanden==false)
+ 		{
+ 			 	//fahrzeugid=0;
+ 			 	fahrzeugNeu=1;
+ 			 
+ 				 if(fahrzeugNeu==1)
+ 			 		{
+ 			 			out.print("<div class='container' align='center'>");
+ 						out.print("Du hast noch kein Fahrzeug hinterlegt. ");
+ 			 			String linkToNewCar = ("m_neues_auto.jsp");
+ 			 			out.print("<a href='http://localhost:8080/mifatest/"+linkToNewCar+"'>Das kannst du aber hier.</a>");
+ 			 			out.print("</div>");
+ 			 		}
+ 		}		
+ 
+	
 }
 catch (Exception e)
 {
 	e.toString();
+	
+	
 	
 }
  
