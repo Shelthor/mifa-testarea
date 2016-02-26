@@ -73,36 +73,34 @@
 	<h1>Mein neues Auto</h1>
 </div>
 
-<div id="form">
+<div id="form" align="center" class="container-fluid">
 	<div id="form2">
 		<form action="m_neues_auto.jsp" method="post">
-			<table align="center">
-				<tr>
-					<td>Fahrzeugtyp:</td>
-					<td><input type="text" id="typ" name="typ"/><td>
-				</tr>
-				<tr>
-					<td>Bezeichnung:</td>
-					<td><input type="text" id="bez" name="bez"/></td>	
-				</tr>
-				<tr>
-					<td>Kennzeichen:</td>
-					<td><input type="text" id="kennz" name="kennz" style="text-transform:uppercase" size="1" maxlength="3"/>-</td>
-					<td><input type="text" id="kennz2" name="kennz2" style="text-transform:uppercase" size="1" maxlength="2"/>-</td>
-					<td><input type="text" id="kennz3" name="kennz3" style="text-transform:uppercase" size="4" maxlength="4" min="1" max="9999"/></td>
-				</tr>
-				<tr>
-					<td>Farbe:</td>
-					<td><input type="text" id="color" name="color"></td>
-				</tr>
-				<tr>
-					<td>Bild:</td>
-					<td><input type="file" id="picture" name="picture"></td>
-				</tr>
-					<td><input type="submit" id="submit" name="submit" value="Änderungen speichern" onclick="move()"/></td>
-					<!--<td><input type="submit" id="cancel" name="cancel" value="Änderungen verwerfen"/></td>-->
+			<div>
+			Fahrzeugtyp:
+			<input type="text" id="typ" name="typ"/>
+			</div>
+			<div>
+				Bezeichnung:
+					<input type="text" id="bez" name="bez"/>	
+			</div>
+			<div>
+				Kennzeichen:
+					<input type="text" id="kennz" name="kennz" style="text-transform:uppercase" size="1" maxlength="3"/>-
+					<input type="text" id="kennz2" name="kennz2" style="text-transform:uppercase" size="1" maxlength="2"/>-
+					<input type="text" id="kennz3" name="kennz3" style="text-transform:uppercase" size="4" maxlength="4" min="1" max="9999"/>
+			</div>
+			<div>
+				Farbe:
+					<input type="text" id="color" name="color">
+			</div>
+			<div>
+				Bild:
+					<input type="file" id="picture" name="picture">
+				<input type="submit" id="submit" name="submit" value="Änderungen speichern" onclick="move()"/>
+			</div>		<!--<td><input type="submit" id="cancel" name="cancel" value="Änderungen verwerfen"/></td>-->
 
-			</table>
+			
 		</form>
 	</div>
 </div>
