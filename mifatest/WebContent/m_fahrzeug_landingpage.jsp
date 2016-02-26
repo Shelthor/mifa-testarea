@@ -171,17 +171,12 @@ try
 	 		//out.print("true");
 	 		fahrzeugvorhanden=true;
  		}
- 			
- 
- 			if (fahrzeugvorhanden==true)
- 			{
-				out.print("<div class='container' align='center'>");
-	 			out.print("Dein Fahrzeug existiert bereits. Für Änderungen ");
-	 			String linkToUpdateCar = ("m_fahrzeug_bearbeiten.jsp");
-	 			out.print("<a href='http://localhost:8080/mifatest/"+linkToUpdateCar+"'>bitte hier entlang.</a>");
-				out.print("</div>");
- 			}
- 			
+ 		
+ 		if (fahrzeugid != userIdAusCookie)
+ 		{
+ 			fahrzeugvorhanden=false;
+ 		}
+ 		
  		if (fahrzeugvorhanden==false)
  		{
  			 	//fahrzeugid=0;
@@ -195,7 +190,21 @@ try
  			 			out.print("<a href='http://localhost:8080/mifatest/"+linkToNewCar+"'>Das kannst du aber hier.</a>");
  			 			out.print("</div>");
  			 		}
- 		}		
+ 		}
+ 		else
+ 		{
+ 			
+ 
+ 			if (fahrzeugvorhanden==true)
+ 			{
+				out.print("<div class='container' align='center'>");
+	 			out.print("Dein Fahrzeug existiert bereits. Für Änderungen ");
+	 			String linkToUpdateCar = ("m_fahrzeug_bearbeiten.jsp");
+	 			out.print("<a href='http://localhost:8080/mifatest/"+linkToUpdateCar+"'>bitte hier entlang.</a>");
+				out.print("</div>");
+ 			}
+ 			
+ 		}	
  
 	
 }
