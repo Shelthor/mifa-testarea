@@ -28,7 +28,8 @@ public class Facade {
 	User user = new User();
 	UserFahrzeug userFahrzeug;
 	
-	Parameter parameter;
+	int aktuelleFunktionsID;
+
 	Funktion funktion;
 
 // - - - Hibernate - - - //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -179,11 +180,13 @@ public class Facade {
 		funktion.setFunktionBezeichnung(bez);
 		funktion.setFunktionTyp(typ);
 
- 		session.merge(funktion);
+ 		session.persist(funktion);
  		
  		t.commit();
  		
- 		System.out.println("success");
+ 		aktuelleFunktionsID = funktion.getFunktionID();
+ 		
+ 		System.out.println("new Funktion success");
  	}
 	
 	public Funktion getFunktionById(int id){
