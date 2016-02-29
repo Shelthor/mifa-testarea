@@ -201,7 +201,7 @@ public class Facade {
 		par.setParameterTyp(typ);
 		par.setFunktionID(getFunktionById(fId));
 
- 		session.merge(par);
+ 		session.persist(par);
  		
  		t.commit();
  		

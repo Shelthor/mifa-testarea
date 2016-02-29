@@ -87,20 +87,45 @@ public class EinzeilerTestklasse {
 		}
 		*/
 		
-		String fBez = "4duschen";
-		String fTyp = "4Ente";
-		String fBesch = "4duscht regelm‰ﬂig";
+		String fBez = "16duschen";
+		String fTyp = "16Ente";
+		String fBesch = "16duscht regelm‰ﬂig";
 		
 		f.newFunktion(fBez, fTyp, fBesch);
 		
-		String pBez = "4duschen";
-		String pTyp = "4Ente";
-		String pBesch = "4duscht regelm‰ﬂig";
+		String pBez = "16duschen - 1";
+		String pTyp = "16Ente - 1";
+		String pBesch = "16duscht regelm‰ﬂig - 1";
 		int fuId = f.aktuelleFunktionsID;
 				
 		Facade f2 = new Facade();
+				
+		f2.newParameter(pBez, pTyp, pBesch, fuId);
+		
+		f2 = new Facade();
+		
+		pBez = "16duschen - 2";
+		pTyp = "16Ente - 2";
+		pBesch = "16duscht regelm‰ﬂig - 2";
 		
 		f2.newParameter(pBez, pTyp, pBesch, fuId);
+		
+		f2 = new Facade();
+		
+		pBez = "16duschen - 3";
+		pTyp = "16Ente - 3";
+		pBesch = "16duscht regelm‰ﬂig - 3";
+		
+		f2.newParameter(pBez, pTyp, pBesch, fuId);
+		
+		f2 = new Facade();
+		
+		pBez = "16duschen - 4";
+		pTyp = "16Ente - 4";
+		pBesch = "16duscht regelm‰ﬂig - 4";
+		
+		f2.newParameter(pBez, pTyp, pBesch, fuId);
+		
 		
 		
 	}
