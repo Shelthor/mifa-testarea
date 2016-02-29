@@ -11,6 +11,10 @@
         <property name="parameterBezeichnung"></property>       
         <property name="parameterTyp"></property>   
         <property name="parameterBeschreibung"></property>  
+        
+        <many-to-one name="funktionID" class="com.mifatest.entities.Funktion"
+            column="funktionID" unique="false" not-null="true"
+            cascade="all" />   
                 
       </class>  
                 

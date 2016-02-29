@@ -10,6 +10,7 @@
         
         <property name="funktionBezeichnung"></property>       
         <property name="funktionBeschreibung"></property>   
+        <property name="funktionTyp"></property> 
                 
       </class>  
                 

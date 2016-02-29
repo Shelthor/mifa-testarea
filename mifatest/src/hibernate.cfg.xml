@@ -22,7 +22,6 @@
         <mapping resource="passwort.hbm.xml"/>
         <mapping resource="funktion.hbm.xml"/>
         <mapping resource="parameter.hbm.xml"/>
-        <mapping resource="funktion_parameter.hbm.xml"/>
     </session-factory>  
   
 </hibernate-configuration> 

@@ -7,6 +7,14 @@ public class Parameter {
 	private String parameterBeschreibung;
 	private String parameterTyp;
 	
+	private Funktion funktionID;
+	
+	public Funktion getFunktionID() {
+		return funktionID;
+	}
+	public void setFunktionID(Funktion funktionID) {
+		this.funktionID = funktionID;
+	}
 	public int getParameterID() {
 		return parameterID;
 	}

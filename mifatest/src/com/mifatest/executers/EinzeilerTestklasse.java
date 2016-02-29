@@ -62,7 +62,7 @@ public class EinzeilerTestklasse {
 		}
 		
 */
-		
+		/*
 		String myNewCarTyp = "duschen";
 		String myNewCarBez = "duschen";
 		String myNewCarPlate = "duschen";
@@ -85,6 +85,15 @@ public class EinzeilerTestklasse {
 			e.toString();
 			System.out.print("Fahrzeug anlegen fehlgeschlagen!");
 		}
+		*/
+		
+		String fBez = "duschen";
+		String fTyp = "Ente";
+		String fBesch = "duscht regelm‰ﬂig";
+		
+		f.newFunktion(fBez, fTyp, fBesch);
+		
+		
 		
 	}
 

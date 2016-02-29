@@ -70,25 +70,17 @@ CREATE TABLE `passwort` (
   
   CREATE TABLE `parameter` (
   `parameterID` INT NOT NULL AUTO_INCREMENT,
+  `funktionID` INT NOT NULL,
+  
   `parameterBezeichnung` varchar(200) NOT NULL,
   `parameterTyp` varchar(15) NOT NULL,
   `parameterBeschreibung` varchar(2000) NOT NULL,
   
-  PRIMARY KEY (`parameterID`)
-  );
-  
-  CREATE TABLE `funktion_parameter` (
-  `funktion_parameterID` INT NOT NULL AUTO_INCREMENT,
-  `parameterID` INT NOT NULL,
-  `funktionID` INT NOT NULL,
-
-  PRIMARY KEY (`funktion_parameterID`),
+  PRIMARY KEY (`parameterID`),
   
   KEY `funktion_parameter_fk` (`funktionID`),
-  CONSTRAINT `funktion_parameter_fk` FOREIGN KEY (`funktionID`) REFERENCES `funktion` (`funktionID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `funktion_parameter_fk` FOREIGN KEY (`funktionID`) REFERENCES `funktion` (`funktionID`) ON DELETE CASCADE ON UPDATE CASCADE
   
-  KEY `parameter_funktion_fk` (`parameterID`),
-  CONSTRAINT `parameter_funktion_fk` FOREIGN KEY (`parameterID`) REFERENCES `parameter` (`parameterID`) ON DELETE CASCADE ON UPDATE CASCADE
   );
 
 CREATE TABLE `fahrt` (

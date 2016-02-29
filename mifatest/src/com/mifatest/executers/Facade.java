@@ -30,7 +30,6 @@ public class Facade {
 	
 	Parameter parameter;
 	Funktion funktion;
-	FunktionParameter funktionParameter;
 
 // - - - Hibernate - - - //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/* Konstruktor öffnet Session und beginnt Transaktion*/
@@ -174,6 +173,8 @@ public class Facade {
 //DOKU//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	public void newFunktion(String bez, String typ, String besch){
+		funktion = new Funktion();
+		
 		funktion.setFunktionBeschreibung(besch);
 		funktion.setFunktionBezeichnung(bez);
 		funktion.setFunktionTyp(typ);
@@ -189,12 +190,13 @@ public class Facade {
 		return (Funktion) session.load(Funktion.class, id);
 	}
 	
-	public void newParameter(String bez, String typ, String besch){
+	public void newParameter(String bez, String typ, String besch,int fId){
 		Parameter par = new Parameter();
 		
 		par.setParameterBeschreibung(besch);
 		par.setParameterBezeichnung(bez);
 		par.setParameterTyp(typ);
+		par.setFunktionID(getFunktionById(fId));
 
  		session.merge(par);
  		
@@ -202,9 +204,6 @@ public class Facade {
  		
  		System.out.println("success");
  	}
-	
-	
-	
 	
 //Users//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
