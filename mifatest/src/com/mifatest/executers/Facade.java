@@ -27,6 +27,10 @@ public class Facade {
 	Passwort passwort;
 	User user = new User();
 	UserFahrzeug userFahrzeug;
+	
+	Parameter parameter;
+	Funktion funktion;
+	FunktionParameter funktionParameter;
 
 // - - - Hibernate - - - //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/* Konstruktor öffnet Session und beginnt Transaktion*/
@@ -167,7 +171,41 @@ public class Facade {
 		
 		return result;
 	}
+//DOKU//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	public void newFunktion(String bez, String typ, String besch){
+		funktion.setFunktionBeschreibung(besch);
+		funktion.setFunktionBezeichnung(bez);
+		funktion.setFunktionTyp(typ);
 
+ 		session.merge(funktion);
+ 		
+ 		t.commit();
+ 		
+ 		System.out.println("success");
+ 	}
+	
+	public Funktion getFunktionById(int id){
+		return (Funktion) session.load(Funktion.class, id);
+	}
+	
+	public void newParameter(String bez, String typ, String besch){
+		Parameter par = new Parameter();
+		
+		par.setParameterBeschreibung(besch);
+		par.setParameterBezeichnung(bez);
+		par.setParameterTyp(typ);
+
+ 		session.merge(par);
+ 		
+ 		t.commit();
+ 		
+ 		System.out.println("success");
+ 	}
+	
+	
+	
+	
 //Users//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
  	public void newUser(String mail, Date bDate, String nachn, String vorn, String tel, String pw){

@@ -8,7 +8,7 @@ DROP TABLE IF EXISTS `passagier_fahrt`;
 DROP TABLE IF EXISTS `fahrt`;
 
 DROP TABLE IF EXISTS `funktion_parameter`;
-DROP TABLE IF EXISTS `funtkion`;
+DROP TABLE IF EXISTS `funktion`;
 DROP TABLE IF EXISTS `parameter`;
 
 DROP TABLE IF EXISTS `fahrzeug`;
@@ -63,6 +63,7 @@ CREATE TABLE `passwort` (
   `funktionID` INT NOT NULL AUTO_INCREMENT,
   `funktionBezeichnung` varchar(200) NOT NULL,
   `funktionBeschreibung` varchar(10000) NOT NULL,
+  `funktionTyp` varchar(15) NOT NULL,
 
   PRIMARY KEY (`funktionID`)
   );

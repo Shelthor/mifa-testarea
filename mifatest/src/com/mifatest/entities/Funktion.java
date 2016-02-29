@@ -5,7 +5,14 @@ public class Funktion {
 	private int funktionID;
 	private String funktionBezeichnung;
 	private String funktionBeschreibung;
+	private String funktionTyp;
 	
+	public String getFunktionTyp() {
+		return funktionTyp;
+	}
+	public void setFunktionTyp(String funktionTyp) {
+		this.funktionTyp = funktionTyp;
+	}
 	public int getFunktionID() {
 		return funktionID;
 	}
