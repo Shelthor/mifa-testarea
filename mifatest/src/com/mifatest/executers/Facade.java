@@ -28,7 +28,15 @@ public class Facade {
 	User user = new User();
 	UserFahrzeug userFahrzeug;
 	
-	int aktuelleFunktionsID;
+	private int aktuelleFunktionsID;
+
+	public int getAktuelleFunktionsID() {
+		return aktuelleFunktionsID;
+	}
+
+	public void setAktuelleFunktionsID(int aktuelleFunktionsID) {
+		this.aktuelleFunktionsID = aktuelleFunktionsID;
+	}
 
 	Funktion funktion;
 

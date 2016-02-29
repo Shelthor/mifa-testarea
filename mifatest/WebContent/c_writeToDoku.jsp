@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<%@ page import="com.mifatest.entities.*" %>
+<%@ page import="com.mifatest.executers.*" %>
+<%@ page import="java.util.*" %>
+<%@ page import="java.sql.Time" %>
+
+<%@ page import="java.text.*"%>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -46,7 +54,7 @@
 							<h3>Funktionsbezeichnung - <b>ohne ()!</b></h3>
 							</div>
 						    <div class="col-md-12 col-sm-12">
-								<input type=text" name="formKommentar" style="width: 100%;" autocomplete="off"/>
+								<input type=text" name="formFunktionBezeichnung" style="width: 100%;" autocomplete="off"/>
 							</div>
 				    	</div>
 				    
@@ -59,7 +67,7 @@
 										<p>ParameterBezeichnung</p>
 									</div>
 								    <div class="col-md-6 col-sm-12">
-										<input type=text" name="formKommentar" style="width: 100%;" autocomplete="off"/>
+										<input type=text" name="formParameterBezeichnung" style="width: 100%;" autocomplete="off"/>
 									</div>
 				    			</div>
 				    			<div class="col-md-6 col-sm-12">
@@ -67,7 +75,7 @@
 										<p>ParameterTyp</p>
 									</div>
 								    <div class="col-md-6 col-sm-12">
-										<input type=text" name="formKommentar" style="width: 100%;" autocomplete="off"/>
+										<input type=text" name="formParameterTyp" style="width: 100%;" autocomplete="off"/>
 									</div>
 				    			</div>
 				    			<div class="col-md-12 col-sm-12">
@@ -75,7 +83,7 @@
 										<p>ParameterBeschreibung</p>
 									</div>
 								    <div class="col-md-12 col-sm-12">
-										<input type=text" name="formKommentar" style="width: 100%;" autocomplete="off"/>
+										<input type=text" name="formParameterBeschreibung" style="width: 100%;" autocomplete="off"/>
 									</div>
 				    			</div>
 				    	</div>
@@ -85,7 +93,7 @@
 							<h3>Funktionsbeschreibung</h3>
 							</div>
 						    <div class="col-md-12 col-sm-12">
-								<input type=text" name="formKommentar" style="width: 100%; height:75px;" autocomplete="off"/>
+								<input type=text" name="formFunktionBeschreibung" style="width: 100%; height:75px;" autocomplete="off"/>
 							</div>
 				    	</div>
 				    	<br/>
@@ -101,6 +109,45 @@
 		</div>
 	</div>
 </div>
+<%!
+	String fBez;
+	String fTyp;
+	String fBesch;
+	
+	String pBez;
+	String pTyp;
+	String pBesch;
+	
+	int fuId;
+%>
+
+
+<%
+	Facade f = new Facade();
+	if (request.getParameter("ok") != null){
+		try{
+			String fBez = request.getParameter("formGepaeck");;
+			String fTyp = "16Ente";
+			String fBesch = "16duscht regelmäßig";
+			
+			f.newFunktion(fBez, fTyp, fBesch);
+			// for schleife ab hier - für jeden Parameter
+			pBez = "16duschen - 1";
+			pTyp = "16Ente - 1";
+			pBesch = "16duscht regelmäßig - 1";
+			fuId = f.getAktuelleFunktionsID();
+					
+			Facade f2 = new Facade();
+					
+			f2.newParameter(pBez, pTyp, pBesch, fuId);
+			
+		}
+		catch (Exception ex){
+			out.print("<script>fail();</script>" + "Fehler: " + ex.toString());
+			out.print("möglicherweise keine IDs übergeben?");
+		}
+	}
+%>
 
 </body>
 </html>
