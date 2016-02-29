@@ -96,7 +96,7 @@ public class EinzeilerTestklasse {
 		String pBez = "16duschen - 1";
 		String pTyp = "16Ente - 1";
 		String pBesch = "16duscht regelm‰ﬂig - 1";
-		int fuId = f.aktuelleFunktionsID;
+		int fuId = f.getAktuelleFunktionsID();
 				
 		Facade f2 = new Facade();
 				
