@@ -6,6 +6,11 @@ DROP TABLE IF EXISTS `bewertung`;
 DROP TABLE IF EXISTS `user_fahrzeug`;
 DROP TABLE IF EXISTS `passagier_fahrt`;
 DROP TABLE IF EXISTS `fahrt`;
+
+DROP TABLE IF EXISTS `funktion_parameter`;
+DROP TABLE IF EXISTS `funtkion`;
+DROP TABLE IF EXISTS `parameter`;
+
 DROP TABLE IF EXISTS `fahrzeug`;
 DROP TABLE IF EXISTS `ort`;
 DROP TABLE IF EXISTS `passwort`;
@@ -52,6 +57,37 @@ CREATE TABLE `passwort` (
 
   KEY `pwuser_fk` (`userID`),
   CONSTRAINT `pwuser_fk` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE
+  );
+  
+  CREATE TABLE `funktion` (
+  `funktionID` INT NOT NULL AUTO_INCREMENT,
+  `funktionBezeichnung` varchar(200) NOT NULL,
+  `funktionBeschreibung` varchar(10000) NOT NULL,
+
+  PRIMARY KEY (`funktionID`)
+  );
+  
+  CREATE TABLE `parameter` (
+  `parameterID` INT NOT NULL AUTO_INCREMENT,
+  `parameterBezeichnung` varchar(200) NOT NULL,
+  `parameterTyp` varchar(15) NOT NULL,
+  `parameterBeschreibung` varchar(2000) NOT NULL,
+  
+  PRIMARY KEY (`parameterID`)
+  );
+  
+  CREATE TABLE `funktion_parameter` (
+  `funktion_parameterID` INT NOT NULL AUTO_INCREMENT,
+  `parameterID` INT NOT NULL,
+  `funktionID` INT NOT NULL,
+
+  PRIMARY KEY (`funktion_parameterID`),
+  
+  KEY `funktion_parameter_fk` (`funktionID`),
+  CONSTRAINT `funktion_parameter_fk` FOREIGN KEY (`funktionID`) REFERENCES `funktion` (`funktionID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  
+  KEY `parameter_funktion_fk` (`parameterID`),
+  CONSTRAINT `parameter_funktion_fk` FOREIGN KEY (`parameterID`) REFERENCES `parameter` (`parameterID`) ON DELETE CASCADE ON UPDATE CASCADE
   );
 
 CREATE TABLE `fahrt` (

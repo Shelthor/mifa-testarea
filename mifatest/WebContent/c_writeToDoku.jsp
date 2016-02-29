@@ -29,6 +29,10 @@
 <div class=container>
 	<div class="row">
 		<div class="col-md-12">
+			<div class="jumbotron">
+				<h1>INTERN</h1>
+	    		<p>Erweitere unsere Doku!</p>
+			</div>
 		
 			<div class="panel panel-default">
 			  <div class="panel-heading">
@@ -84,7 +88,10 @@
 								<input type=text" name="formKommentar" style="width: 100%; height:75px;" autocomplete="off"/>
 							</div>
 				    	</div>
+				    	<br/>
+				    	<input type="submit" name="ok" value="senden" style="width:100%">
 				    </div>
+				    
 			
 			    </form>
 			  </div>

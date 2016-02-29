@@ -1,0 +1,17 @@
+<!DOCTYPE hibernate-mapping PUBLIC  
+     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">  
+      
+     <hibernate-mapping>  
+      <class name="com.mifatest.entities.Parameter" table="parameter">  
+        <id name="parameterID">  
+         <generator class="increment"></generator>  
+        </id>        
+        
+        <property name="parameterBezeichnung"></property>       
+        <property name="parameterTyp"></property>   
+        <property name="parameterBeschreibung"></property>  
+                
+      </class>  
+                
+     </hibernate-mapping>  
