@@ -467,28 +467,29 @@
 			// for schleife ab hier - für jeden Parameter
 			
 			Facade f2 = new Facade();
-			
-			pBez = "hi"; //pBezList.get(i);
-			pTyp = "hi"; //pTypList.get(i);
-			pBesch = "hi"; //pBeschList.get(i);
-			fuId = 2;//f.getAktuelleFunktionsID();
+			/*
+			pBez = pBezList.get(3);
+			pTyp = pTypList.get(3);
+			pBesch = pBeschList.get(3);
+			fuId = f.getAktuelleFunktionsID();
 					
 			f2 = new Facade();
 					
 			f2.newParameter(pBez, pTyp, pBesch, fuId);
-					/*
-			for(int i = 0; i < pBez.length();i++){
+			*/
+					
+			for(int i = 0; i < pBezList.size();i++){
 			
-			pBez = "hi"; //pBezList.get(i);
-			pTyp = "hi"; //pTypList.get(i);
-			pBesch = "hi"; //pBeschList.get(i);
-			fuId = 2;//f.getAktuelleFunktionsID();
+			pBez = pBezList.get(i);
+			pTyp = pTypList.get(i);
+			pBesch = pBeschList.get(i);
+			fuId = f.getAktuelleFunktionsID();
 					
 			f2 = new Facade();
 					
 			f2.newParameter(pBez, pTyp, pBesch, fuId);
 			}
-					*/
+					
 			
 		}
 		catch (Exception ex){
