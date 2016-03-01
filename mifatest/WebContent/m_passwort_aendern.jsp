@@ -110,7 +110,7 @@
 </head>
 <body>
 <%
-	/*
+	
 	Cookie[] cookies = request.getCookies();
 
 		int userIdAusCookie = 0;
@@ -128,7 +128,7 @@
 	 	//out.print("UserID: " + userIdAusCookie + "<br/>");
 	 	
 }
-		*/
+		
 %>
 
 <div id="head">
@@ -177,26 +177,31 @@ if(request.getParameter("change")!= null)
 	//temp CookieID später wieder ersetzen durch userIDAusCookie
 	int tempCookieID = 1;
 			//current Passwort
-			String currentUserPW = request.getParameter("pwdAkt");
-			Passwort currentPW = fCurrentUserChangePW.getPasswortByUserId(tempCookieID);
+			String currentUserPWFromInput = request.getParameter("pwdAkt");
+			String newUserPQFromInput = request.getParameter("pwdNeu");
+			
+			
+			Passwort currentPW = fCurrentUserChangePW.getPasswortByUserId(userIdAusCookie);
 			String passwortFromDB = currentPW.getPasswortValue();
 	
 			try
 			{
 				//HASH
 				Encryptor en = new Encryptor();
-				String hash = en.inc(currentUserPW);
+				String currentHash = en.inc(currentUserPWFromInput);
+				String newHash = en.inc(newUserPQFromInput);
 				//
 				
 				
 				
-				out.println(currentUserPW);
-				out.println(currentPW);
+				out.println(currentUserPWFromInput);
+				out.println(newUserPQFromInput);
 				
-				if(currentUserPW == passwortFromDB)
+				if(currentHash.equals(passwortFromDB))
 				{
-					out.print("Passwörter passen");
+					//out.print("Passwörter passen");
 					passwordValid=true;
+					
 				}
 				else
 				{
@@ -206,11 +211,14 @@ if(request.getParameter("change")!= null)
 				
 				if(passwordValid==true)
 				{
-					out.print("Neues Kennwort kann eingegeben werden");
+					//out.print("Neues Kennwort kann eingegeben werden");
+					
+					currentPW.setPasswortValue(newHash);
+					fCurrentUserChangePW.updatePasswort(currentPW);
 				}
 				else
 				{
-					out.print("Neues Kennwort kann noch nicht eingegeben werden");
+					//out.print("Neues Kennwort kann noch nicht eingegeben werden");
 				}
 					
 			
