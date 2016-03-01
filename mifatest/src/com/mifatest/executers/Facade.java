@@ -225,6 +225,15 @@ public class Facade {
 		return result;
 	}
 	
+	public List<Parameter> getListWithAllParameterByFunktionsId(int fId){
+
+		org.hibernate.Query q= session.createQuery("from Parameter as u where u.funktionID = " + fId);
+	
+		List result = q.list();
+		
+		return result;
+	}
+	
 //Users//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
  	public void newUser(String mail, Date bDate, String nachn, String vorn, String tel, String pw){

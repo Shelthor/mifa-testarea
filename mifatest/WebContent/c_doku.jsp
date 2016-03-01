@@ -59,24 +59,49 @@
 					
 					for(int i = 0; i < fuList.size(); i++){
 						
+						parList = f.getListWithAllParameterByFunktionsId(fuList.get(i).getFunktionID());
+						
 						fuBez = fuList.get(i).getFunktionBezeichnung();
 						fuBesch = fuList.get(i).getFunktionBeschreibung();
 						
 						out.print("<div class='panel panel-default'>");
 						out.print("<div class='panel-heading'>");
-							out.print("<h3 class='panel-title'>");
-							out.println(fuBez + "()");
-							out.print("</h3>");
+							out.print("<h1 class='panel-title'><b>");
+							out.print(fuList.get(i).getFunktionBezeichnung() + "(");
+							
+							for(int j = 0; j < parList.size(); j++){
+										out.print(parList.get(j).getParameterBezeichnung() + ",");
+									}
+							
+							out.print(")");
+									
+							out.print("</b></h1>");
 						out.print("</div>");
 						out.print("<div class='panel-body'>");
+						
+							for(int j = 0; j < parList.size(); j++){
+								out.print("<div class='panel panel-default'>");
+								out.print("<div class='panel-heading'>");
+									out.print("<h3 class='panel-title'>");
+									out.print(parList.get(j).getParameterBezeichnung());
+									out.print("</h3>");
+								out.print("</div>");
+								out.print("<div class='panel-body'>");
+									out.print("Parametertyp: " + parList.get(j).getParameterTyp() + "<br>");
+									out.print("Parameterbeschreibung: " + parList.get(j).getParameterBeschreibung());
+								out.print("</div>");
+								out.print("</div>");
+							}
+						
 							out.println(fuBesch);
 						out.print("</div>");
 						out.print("</div>");
 						
+						/*
 						for(int j = 0; j < parList.size(); j++){
-							
+							out.print(parList.get(j).getParameterBezeichnung());
 						}
-						
+						*/
 						
 						
 						
