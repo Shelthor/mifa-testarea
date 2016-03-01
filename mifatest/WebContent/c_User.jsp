@@ -98,6 +98,7 @@
 		  <li role="presentation"><a href="c_FahrtAnbieten.jsp">Fahrt anbieten</a></li>
 		  <li role="presentation"><a href="m_meineFahrten.jsp">Historie</a></li>
 		  <li role="presentation"><a href="m_profil_bearbeiten.jsp">Settings</a></li>
+		  <li role="presentation"><a href="c_showMitfahrer.jsp">Angebotene Fahrten</a></li>
 		  <li role="presentation"><a href="m_mailbox.jsp">Mailbox</a></li>
 		</ul>
 		
