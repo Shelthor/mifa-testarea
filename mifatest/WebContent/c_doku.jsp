@@ -64,9 +64,9 @@
 						fuBez = fuList.get(i).getFunktionBezeichnung();
 						fuBesch = fuList.get(i).getFunktionBeschreibung();
 						
-						out.print("<div class='panel panel-default'>");
+						out.print("<div class='panel panel-primary'>");
 						out.print("<div class='panel-heading'>");
-							out.print("<h1 class='panel-title'><b>");
+							out.print("<h1 class='panel-title'>");
 							out.print(fuList.get(i).getFunktionBezeichnung() + "(");
 							
 							for(int j = 0; j < parList.size(); j++){
@@ -74,8 +74,10 @@
 									}
 							
 							out.print(")");
+							out.print(" - Rückgabetyp: ");
+							out.print("<b>" + fuList.get(i).getFunktionTyp() + "</b>");
 									
-							out.print("</b></h1>");
+							out.print("</h1>");
 						out.print("</div>");
 						out.print("<div class='panel-body'>");
 						
@@ -87,13 +89,14 @@
 									out.print("</h3>");
 								out.print("</div>");
 								out.print("<div class='panel-body'>");
-									out.print("Parametertyp: " + parList.get(j).getParameterTyp() + "<br>");
-									out.print("Parameterbeschreibung: " + parList.get(j).getParameterBeschreibung());
+									out.print("<b>Parametertyp:</b> " + parList.get(j).getParameterTyp() + "<br>");
+									out.print("<b>Parameterbeschreibung:</b> " + parList.get(j).getParameterBeschreibung());
 								out.print("</div>");
 								out.print("</div>");
 							}
-						
+							out.println("<h3>Funktionsbeschreibung</h3>");
 							out.println(fuBesch);
+							
 						out.print("</div>");
 						out.print("</div>");
 						
