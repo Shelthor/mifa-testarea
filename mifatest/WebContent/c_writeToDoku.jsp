@@ -63,7 +63,7 @@
 	    		<p>Erweitere unsere Doku!</p>
 			</div>
 		
-			<div class="panel panel-default">
+			<div class="panel panel-default" id="whole">
 			  <div class="panel-heading">
 			    <h3 class="panel-title">Doku!</h3>
 			  </div>
@@ -400,12 +400,15 @@
 				    	<br/>
 				    	<input type="submit" name="ok" value="senden" style="width:100%">
 				    </div>
-				    
-			
 			    </form>
+			    
 			  </div>
 			</div>
-		
+			<div id="sendSuccess" style="display:none">
+				<div class='alert alert-success text-center' role='alert'>
+					<h1>Funktion erfolgreich angelegt!</h1>
+				</div>
+			</div>
 		
 		</div>
 	</div>
@@ -490,7 +493,8 @@
 			f2.newParameter(pBez, pTyp, pBesch, fuId);
 			}
 					
-			
+			out.print("<script>sendSQL();</script>");
+			out.print("<script>suc();</script>");
 		}
 		catch (Exception ex){
 			out.print("<script>fail();</script>" + "Fehler: " + ex.toString());

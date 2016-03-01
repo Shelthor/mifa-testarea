@@ -216,6 +216,15 @@ public class Facade {
  		System.out.println("success");
  	}
 	
+	public List<Funktion> getListWithAllFunktionen(){
+
+		org.hibernate.Query q= session.createQuery("from Funktion");
+	
+		List result = q.list();
+		
+		return result;
+	}
+	
 //Users//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
  	public void newUser(String mail, Date bDate, String nachn, String vorn, String tel, String pw){
