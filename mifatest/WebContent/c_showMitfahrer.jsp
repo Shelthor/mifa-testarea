@@ -58,19 +58,25 @@
 				for(int i = 0 ; i < faList.size(); i++){
 					fahrt = faList.get(i);
 					mitfahrerList = f.getAllPassagiereOfFahrtByFahrtId(fahrt.getFahrtID());
+					out.print("<div class='panel panel-default'>");
+					out.print("<div class='panel-heading'>");
+						out.print("<h3 class='panel-title'>");
+							out.print("<a href='c_Fahrt.jsp?fahrtid=" + fahrt.getFahrtID() + "'>");
+							out.print("von " + fahrt.getS1() + " ");
+							out.print("nach " + fahrt.getS6() + "<br>");
+							out.print("</a><br>" + "</h3>");
+						out.print("</div>");
+						out.print("<div class='panel-body'>");	
 					
-					out.print("von " + fahrt.getS1() + " ");
-					out.print("nach " + fahrt.getS6() + "<br>");
-					
-					for(int j = 0; j < mitfahrerList.size();j++){
-						mitfahrer = mitfahrerList.get(j);
-						mifaName = mitfahrer.getvName() + " " + mitfahrer.getnName();
-						out.print("<a href='c_UserOeffentlich.jsp?userid=" + mitfahrer.getUserID() + "'>" + mifaName + "</a>");
-					}
+							for(int j = 0; j < mitfahrerList.size();j++){
+								mitfahrer = mitfahrerList.get(j);
+								mifaName = mitfahrer.getvName() + " " + mitfahrer.getnName();
+								out.print("<a href='c_UserOeffentlich.jsp?userid=" + mitfahrer.getUserID() + "'>" + mifaName + "</a><br>");
+							}
+						out.print("</div>");
+						out.print("</div>");	
+						
 				}
-				
-			
-				
 			
 			%>
 			</div>
