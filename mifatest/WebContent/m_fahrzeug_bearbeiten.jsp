@@ -287,11 +287,11 @@ if(userIdAusCookie==0)
 <p align="center">Was möchtest du ändern?</p>
 <div id="form" align="center">
 	<div id="form2">
-		<form action="m_fahrzeug_bearbeiten.jsp" method="post" enctype="multipart/form-data">
+		<form action="m_fahrzeug_bearbeiten.jsp" method="post">
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-sm-2">
-						Fahrzeugtyp:
+						Hersteller:
 							<div class="container-fluid">
 								<div class="col-sm-4" id="newTyp">
 									<input type="text" id="typ" name="typ">	
@@ -341,12 +341,12 @@ if(userIdAusCookie==0)
 					<div class="col-sm-2">
 						Bild:
 							<div class="container-fluid">
-								
+								  <form action="m_uploadResult.jsp" method="post" enctype="multipart/form-data">-->
 									<div class="col-sm-4">
-										<input type="file" id="picture" name="picture">
-										<p>Test</p>
+										<input type="file" id="picture" name="picture"/>
+										<input type="submit" name="picture_upload" value="hochladen"/>
 									</div>
-								
+								 </form>-->
 							</div>
 					</div>
 			</div>

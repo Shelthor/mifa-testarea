@@ -77,18 +77,18 @@
 	<div id="form2">
 		<form action="m_neues_auto.jsp" method="post">
 			<div>
-			Fahrzeugtyp:
-			<input type="text" id="typ" name="typ"/>
+			Hersteller:
+			<input type="text" id="typ" name="typ" required/>
 			</div>
 			<div>
 				Bezeichnung:
-					<input type="text" id="bez" name="bez"/>	
+					<input type="text" id="bez" name="bez" required/>	
 			</div>
 			<div>
 				Kennzeichen:
-					<input type="text" id="kennz" name="kennz" style="text-transform:uppercase" size="1" maxlength="3"/>-
-					<input type="text" id="kennz2" name="kennz2" style="text-transform:uppercase" size="1" maxlength="2"/>-
-					<input type="text" id="kennz3" name="kennz3" style="text-transform:uppercase" size="4" maxlength="4" min="1" max="9999"/>
+					<input type="text" id="kennz" name="kennz" style="text-transform:uppercase" size="1" maxlength="3" required/>-
+					<input type="text" id="kennz2" name="kennz2" style="text-transform:uppercase" size="1" maxlength="2" required/>-
+					<input type="text" id="kennz3" name="kennz3" style="text-transform:uppercase" size="4" maxlength="4" min="1" max="9999" required/>
 			</div>
 			<div>
 				Farbe:
@@ -116,10 +116,32 @@
 </div>
 
 <%	//Besitzer des jeweiligen Fahrzeugs aus Cookie ID auslesen und zuordnen
+//Cookie USer auslesen
+		Cookie[] cookies = request.getCookies();
+
+		int userIdAusCookie = 0;
+
+		if( cookies != null)
+			{
+				for (int i = 0; i < cookies.length; i++)
+					{
+						if(cookies[i].getName().equals("c_userId"))
+								{
+	 								userIdAusCookie = Integer.parseInt(cookies[i].getValue());
+	 								out.print("UserID: " + userIdAusCookie + "<br/>");
+								}
+					}
+			}
+
+
+
+
 	if(request.getParameter("submit")!=null)
 	{
 		//out.print("Button geht");
 		//Variablen
+		Facade fcreateNewCar = new Facade();
+		Facade fcreateNewUserKfz = new Facade();
 		String myNewCarTyp = request.getParameter("typ");
 		String myNewCarBez = request.getParameter("bez");
 		String myNewCarPlate = request.getParameter("kennz");
@@ -129,10 +151,19 @@
 		String myNewCarColor = request.getParameter("color");
 		//Wie Bild erfassen?
 		String myNewCarPicture = "Picture";
-		String carOwner = "CurrentUser";
-		Boolean changeValid=false;
 		
-		Facade fcreateNewCar = new Facade();
+		User currentUser;
+		currentUser = fcreateNewCar.getUserById(userIdAusCookie);
+		Fahrzeug car;
+		
+		Boolean changeValid=false;
+		currentUser.setUserID(userIdAusCookie);
+		UserFahrzeug owner;
+		
+	
+		
+		
+		
 		
 		if(myNewCarTyp=="" | myNewCarBez=="" | myNewCarPlate=="" | myNewCarPlate2=="" | myNewCarPlate3=="")
 		{
@@ -152,10 +183,17 @@
 				//Erzeugt neues Fahrzeug
 				fcreateNewCar.newFahrzeug(myNewCarTyp, myNewCarBez, myCarPlateNew, myNewCarColor, myNewCarPicture);
 				out.print("Fahrzeug anlegen erfolgreich.");
-			
+				
+				//fcreateNewUserKfz.
 				String backToMain = "http://localhost:8080/mifatest/m_profil_bearbeiten.jsp";
 				response.setStatus(response.SC_MOVED_TEMPORARILY);
 				response.setHeader("Location", backToMain);
+				
+				//UseridausCookie -> owner of created car
+				//car ID auf UserID setzen damit die zusammengehören
+				//car.setFahrzeugID(userIdAusCookie);
+				//owner.setUser_fahrzeugID(userIdAusCookie);
+				
 			}
 			catch(Exception e)
 			{

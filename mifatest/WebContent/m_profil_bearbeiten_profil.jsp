@@ -2,6 +2,15 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<%@page import="com.mysql.jdbc.PreparedStatement.ParseInfo"%>
+<%@page import="com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="javax.persistence.criteria.CriteriaBuilder.In"%>
+<%@page import="java.awt.Button"%>
+<%@ page import="com.mifatest.entities.*" %>
+<%@ page import="com.mifatest.executers.*" %>
+<%@ page import="java.util.*" %>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta charset="UTF-8">
@@ -95,44 +104,29 @@
 }
 
 %>
-<div id="head">
-	<h1>Mein Profil</h1>
-</div>
-
-<div id="form">
-    <div id="formnames">
-
-        <table align="center">
-            <tr>
-                <td >Name ändern:</td>
-                <td ><input type="text" id="name" name="nameField"/></td>
-                <td><input type="checkbox" name="checkBoxName"></td>
-            </tr>
-            <tr>
-                <td>Profilbild ändern: </td>
-                <td><input type="file" id="profilbildupload" name="picture"/></td>
-                <td><input type="checkbox" name="checkBoxBild" ></td>
-            </tr>
-            <tr>
-                <td>Wohnort ändern: </td>
-                <td><input type="text" id="wohnort" name="wohnField"/></td>
-                <td><input type="checkbox" name="checkBoxOrt" ></td>
-            </tr>
-            <tr>
-                <td><input type="submit" id="submit" name="submit" value="Änderungen speichern" /></td>
-                <td><input type="submit" id="cancel" name="cancel" value="Änderungen verwerfen"/></td>
-            </tr>
-        </table>
-
-    </div>
-</div>
-
-<div id="footer">
-    <a href="m_profil_bearbeiten.jsp">zurück</a>
-    <a href="c_User.jsp">Startseite</a>
-    <a href="m_hilfe.html">Hilfe</a>
-</div>
 <%
+	Facade fUpdateUser = new Facade();
+	User user;
+	
+	user = fUpdateUser.getUserById(userIdAusCookie);
+	
+	String username = user.getvName();
+	
+	int userID = user.getUserID();
+	
+	int flag=0;
+	
+	String usernName;
+	String userBildURL;
+	String userTelNr;
+	String userEMail;
+	
+	String usernNameEingabe = request.getParameter("nameField");
+	String userTelNrEingabe = request.getParameter("telNr");
+	//+BildUrl
+	String usereMailEingabe = request.getParameter("emailAdr");
+	
+	
 	
 	
 	if(request.getParameter("submit")!= null)
@@ -141,26 +135,88 @@
 		//wenn Felder leer -> alte Eintragungen lassen
 		//wenn Felder befüllt -> entsprechende Werte ändern
 		//danach in DB
-		if (request.getParameter("nameField") != null & request.getParameter("checkBoxName") != null)
-		{
+		
+		try
+		{	
+			//Name ändern
+			if (request.getParameter("nameField") !="")
+			{
+				flag++;
+				user.setnName(usernNameEingabe);
+			}
+			//Bild ändern
+			/*
+			if (request.getParameter("picture") != null)
+			{
+				flag++;
+				user.setBildURL();
+			}*/
 			
-			out.print("Name wird geändert");
-		}
-		
-		
-		if (request.getParameter("wohnField") != null & request.getParameter("checkBoxOrt") != null)
-		{
+			//Telefonnummer ändern
+			if (request.getParameter("telNr") !="")
+			{
+				flag++;
+				user.setTelNummer(userTelNrEingabe);
+			}
 			
-			out.print("Ort wird geändert");
+			//EMail ändern
+			if (request.getParameter("emailAdr") !="")
+			{
+				flag++;
+				user.setTelNummer(usereMailEingabe);
+			}
+			if (flag > 0)
+			{
+				fUpdateUser.updateUser(user);
+				//Optional Ausgabefenster erstellen mit Gegenüberstellung der Werte
+				out.print("<div class='container'>");
+				out.print("<p>"+flag+" Änderungen vorgenommen</p>");
+				out.print("</div>");
+				
+			}
+			else
+			{
+				out.print("keine Datensätze wurden geändert");
+			}
+			
+		
+		
 		}
-		
-		
-		
+		catch(Exception e)
+		{
+			out.print("Änderungen nicht möglich");
+		}
 	}
 
-
-
 %>
+
+<div id="head">
+	<h1>Dein Profil,<%=username %></h1>
+</div>
+
+<div id="form">
+    <div id="formnames">
+    		<form action="m_profil_bearbeiten_profil.jsp" method="post">
+        		Name ändern:<input type="text" id="name" name="nameField"/>
+                
+        		Profilbild ändern:<input type="file" id="profilbildupload" name="picture"/>
+                
+       			Telefonnummer ändern:<input type="text"  name="telNr"/>
+                
+        		E-Mail Adresse ändern:<input type="text" name="emailAdr"/>
+                
+        		<input type="submit" id="submit" name="submit" value="Änderungen speichern" />
+        		<input type="submit" id="cancel" name="cancel" value="Änderungen verwerfen"/>
+        </form>    
+    </div>
+</div>
+
+<div id="footer">
+    <a href="m_profil_bearbeiten.jsp">zurück</a>
+    <a href="c_User.jsp">Startseite</a>
+    <a href="m_hilfe.html">Hilfe</a>
+</div>
+
 
 
 </body>
