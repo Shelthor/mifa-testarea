@@ -184,6 +184,11 @@
 				fcreateNewCar.newFahrzeug(myNewCarTyp, myNewCarBez, myCarPlateNew, myNewCarColor, myNewCarPicture);
 				out.print("Fahrzeug anlegen erfolgreich.");
 				
+				out.print(fcreateNewCar.getAktuellesFahrzeugID());
+				
+				fcreateNewUserKfz.newUserFahrzeug(fcreateNewCar.getAktuellesFahrzeugID(), userIdAusCookie);
+				
+				
 				//fcreateNewUserKfz.
 				String backToMain = "http://localhost:8080/mifatest/m_profil_bearbeiten.jsp";
 				response.setStatus(response.SC_MOVED_TEMPORARILY);

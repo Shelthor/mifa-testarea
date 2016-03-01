@@ -29,6 +29,7 @@ public class Facade {
 	UserFahrzeug userFahrzeug;
 	
 	private int aktuelleFunktionsID;
+	private int aktuellesFahrzeugID;
 
 	public int getAktuelleFunktionsID() {
 		return aktuelleFunktionsID;
@@ -36,6 +37,14 @@ public class Facade {
 
 	public void setAktuelleFunktionsID(int aktuelleFunktionsID) {
 		this.aktuelleFunktionsID = aktuelleFunktionsID;
+	}
+	
+	public int getAktuellesFahrzeugID() {
+		return aktuellesFahrzeugID;
+	}
+
+	public void setAktuellesFahrzeugID(int aktuellesFahrzeugID) {
+		this.aktuellesFahrzeugID = aktuellesFahrzeugID;
 	}
 
 	Funktion funktion;
@@ -374,14 +383,23 @@ public class Facade {
  		fahrzeug.setFahrzeugFarbe(fFarbe);
  		fahrzeug.setFahrzeugBildURL(url);
  		//fahrzeug.setBesitzer(besitzerID);
- 		session.merge(fahrzeug);
+ 		session.persist(fahrzeug);
  		
  		t.commit();
+ 		
+ 		aktuellesFahrzeugID = fahrzeug.getFahrzeugID();
  		
  		System.out.println("fahrzeug success");
  	}
  	
- 	public Fahrzeug getFahrzeugByUserId(int userid){
+ 	public Fahrzeug getFahrzeugById(int fId){
+ 		org.hibernate.Query q= session.createQuery("from Fahrzeug as u where u.fahrzeugID =" + " " + fId + "");
+		List<Fahrzeug> result = q.list();
+		
+		return result.get(0);
+ 	}
+
+	public Fahrzeug getFahrzeugByUserId(int userid){
 		
 		
 		org.hibernate.Query q= session.createQuery("from UserFahrzeug as u where u.userID =" + " " + userid + "");
@@ -486,16 +504,16 @@ public class Facade {
  	
 //User-Fahrzeug-Relations//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
- 	public void newUserFahrzeug(Fahrzeug fahrzid, User userid){
+ 	public void newUserFahrzeug(int fahrzid, int userid){
 
  		userFahrzeug = new UserFahrzeug();
- 		userFahrzeug.setFahrzeugID(fahrzid);
- 		userFahrzeug.setUserID(userid);
+ 		userFahrzeug.setFahrzeugID(getFahrzeugById(fahrzid));
+ 		userFahrzeug.setUserID(getUserById(userid));
  		
  		session.merge(userFahrzeug);
  		
  		t.commit();
  		
- 		System.out.println("success");
+ 		System.out.println("user_fahrzeug success");
  	}
 }
