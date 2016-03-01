@@ -33,29 +33,49 @@
 </head>
 <body>
 
-<%
-	Facade f = new Facade();
-	List<Fahrt> faList = new ArrayList();
-	List<User> mitfahrerList = new ArrayList();
-	
-	int fahrtId;
-	int userId = 1;
-	
-	String fahrtDatum;
-	
-	faList = f.getListWithAllAngeboteneFahrtenOfUserByUserId(userId);
-	
-	
-	for(int i = 0 ; i < faList.size(); i++){
-		mitfahrerList = f.getAllPassagiereOfFahrtByFahrtId(i);
-		
-		fahrtDatum = faList.get(i).getFahrtDatum().toString();
-	}
-	
 
-	
 
-%>
+	<div class="container">
+		<div class="jumbotron"><h1>Meine Angebotenen Fahrten</h1></div>
+		<div class="panel panel-default">
+			<div class="panel-body">
+
+			<%
+				Facade f = new Facade();
+				List<Fahrt> faList = new ArrayList();
+				List<User> mitfahrerList = new ArrayList();
+				
+				int userId = 1;//kommt künftig aus cookie
+				
+				User mitfahrer;
+				Fahrt fahrt;
+				
+				String mifaName;
+					
+				faList = f.getListWithAllAngeboteneFahrtenOfUserByUserId(userId);
+				
+				
+				for(int i = 0 ; i < faList.size(); i++){
+					fahrt = faList.get(i);
+					mitfahrerList = f.getAllPassagiereOfFahrtByFahrtId(fahrt.getFahrtID());
+					
+					out.print("von " + fahrt.getS1() + " ");
+					out.print("nach " + fahrt.getS6() + "<br>");
+					
+					for(int j = 0; j < mitfahrerList.size();j++){
+						mitfahrer = mitfahrerList.get(j);
+						mifaName = mitfahrer.getvName() + " " + mitfahrer.getnName();
+						out.print("<a href='c_UserOeffentlich.jsp?userid=" + mitfahrer.getUserID() + "'>" + mifaName + "</a>");
+					}
+				}
+				
+			
+				
+			
+			%>
+			</div>
+		</div>
+	</div>
 
 </body>
 </html>
