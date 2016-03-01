@@ -132,14 +132,6 @@ public class Facade {
 		return result;
 	}
 	
-	public List<User> getPassengersOfFahrtByFahrt(int fahrtID){
-		//gib Liste mit Bewerteten Usern zurück, zugehörig zur Fahrt *fahrtID 
-		org.hibernate.Query q= session.createQuery("select userID from PassagierFahrt as u where u.fahrtID =" + fahrtID);
-		
-		List result = q.list();
-		return result;
-	}
-	
 //Nachrichten//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	public void newNachricht(User senderid, User empfid, String text, Time zeit){
@@ -451,7 +443,7 @@ public class Facade {
  		System.out.println("success");
  	}
  	
- 	public List<User> getAllPassagiereOfFahrtByFahrtId(int fId){
+ 	public List<User> getListWithAllPassagiereOfFahrtByFahrtId(int fId){
  		org.hibernate.Query q= session.createQuery("select userID from PassagierFahrt as u where u.fahrtID =" + " " + fId + "");
 
 		List<User> luf;
@@ -459,6 +451,37 @@ public class Facade {
 		luf=q.list();
 		
 		return  luf;
+ 	}
+ 	
+ 	public List<PassagierFahrt> getListWithAllPassagierFahrtRelationsByFahrtId(int fId){
+ 		org.hibernate.Query q= session.createQuery("from PassagierFahrt as u where u.fahrtID =" + " " + fId + "");
+
+		List<PassagierFahrt> luf;
+		
+		luf=q.list();
+		
+		return  luf;
+ 	}
+ 	
+ 	public PassagierFahrt getPassagierFahrtByFahrtAndMitfahrerId(int fahrtId, int mitfahrerId){
+ 		/*
+ 		org.hibernate.Query q= session.createQuery("from PassagierFahrt as u where u.userID =" + " " + mitfahrerId + " and fahrtID = " + fahrtId + "");
+
+		List<PassagierFahrt> luf;
+		
+		luf=q.list();
+		
+		return  (PassagierFahrt) session.load(PassagierFahrt.class, luf.get(0));
+		
+		
+		/*
+		 * 
+		 */
+		
+		org.hibernate.Query q= session.createQuery("from PassagierFahrt as u where u.userID =" + " " + mitfahrerId + " and fahrtID = " + fahrtId + "");
+		List<PassagierFahrt> result = q.list();
+		
+		return result.get(0);
  	}
  	
 //User-Fahrzeug-Relations//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -44,7 +44,7 @@ public class TestCheckOrLock {
 				
 			//Für jedes Element in der Liste mit den Fahrten, erstelle eine liste mit Usern, die bei der Fahrt X Passagier waren
 			//und gib den Namen jedes Passagiers aus 
-			uListB = f.getPassengersOfFahrtByFahrt(fListA.get(i).getFahrtID());
+			uListB = f.getListWithAllPassagiereOfFahrtByFahrtId(fListA.get(i).getFahrtID());
 			System.out.println("LISTE B:   Passagiere, zur Fahrt " + fListA.get(i).getFahrtID() + ": ");
 				for( int h = 0; h < uListB.size() ; h++)
 					System.out.println(uListB.get(h).getnName());

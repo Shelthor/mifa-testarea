@@ -42,6 +42,7 @@
 
 			<%
 				Facade f = new Facade();
+			
 				List<Fahrt> faList = new ArrayList();
 				List<User> mitfahrerList = new ArrayList();
 				
@@ -50,6 +51,8 @@
 				User mitfahrer;
 				Fahrt fahrt;
 				
+				PassagierFahrt dusche;
+				
 				String mifaName;
 					
 				faList = f.getListWithAllAngeboteneFahrtenOfUserByUserId(userId);
@@ -57,21 +60,33 @@
 				
 				for(int i = 0 ; i < faList.size(); i++){
 					fahrt = faList.get(i);
-					mitfahrerList = f.getAllPassagiereOfFahrtByFahrtId(fahrt.getFahrtID());
+					mitfahrerList = f.getListWithAllPassagiereOfFahrtByFahrtId(fahrt.getFahrtID());
+
 					out.print("<div class='panel panel-default'>");
-					out.print("<div class='panel-heading'>");
-						out.print("<h3 class='panel-title'>");
+					out.print("<div class='panel-heading' style='min-height:40px'>");
+						out.print("<h3 class='panel-title col-xs-6'>");
 							out.print("<a href='c_Fahrt.jsp?fahrtid=" + fahrt.getFahrtID() + "'>");
 							out.print("von " + fahrt.getS1() + " ");
 							out.print("nach " + fahrt.getS6() + "<br>");
-							out.print("</a><br>" + "</h3>");
+							out.print("</a></h3>");
+						out.print("<div class='col-xs-6'>");
+							out.print("am " + fahrt.getFahrtDatum().toString() + " um " + fahrt.getFahrtStartZeit() + " Uhr");
+						out.print("</div>");
 						out.print("</div>");
 						out.print("<div class='panel-body'>");	
 					
 							for(int j = 0; j < mitfahrerList.size();j++){
 								mitfahrer = mitfahrerList.get(j);
 								mifaName = mitfahrer.getvName() + " " + mitfahrer.getnName();
-								out.print("<a href='c_UserOeffentlich.jsp?userid=" + mitfahrer.getUserID() + "'>" + mifaName + "</a><br>");
+								
+								dusche = f.getPassagierFahrtByFahrtAndMitfahrerId(fahrt.getFahrtID(), mitfahrer.getUserID());
+								out.print("<div class='col-md-6'>");
+									out.print("<a href='c_UserOeffentlich.jsp?userid=" + mitfahrer.getUserID() + "'>" + mifaName + "</a>");
+								out.print("</div>");
+								out.print("<div class='col-md-6'>");
+									out.print("von <b>" + dusche.getUserStart() +  "</b> ");
+									out.print("nach <b>" + dusche.getUserZiel() +  "</b>");
+								out.print("</div>");
 							}
 						out.print("</div>");
 						out.print("</div>");	
