@@ -36,21 +36,53 @@
 <body>
 
 	<div class="container">
-		<div class="jumbotron">DOKU</div>
+		<div class="jumbotron"><h1>DOKU</h1></div>
 		<div class="panel panel-default">
 			<div class="panel-body">
-				<%
+				<%				
 					Facade f = new Facade();
 					
 					List<Funktion> fuList = new ArrayList();
 					List<Parameter> parList = new ArrayList();
 					
+					String fuBez;
+					String fuBesch;
+					String fuTyp;
+					
+					String parBez;
+					String parBesch;
+					String parTyp;
+					
+					
 					fuList = f.getListWithAllFunktionen();
 					
 					
-					
 					for(int i = 0; i < fuList.size(); i++){
-						out.println(fuList.get(i).getFunktionBezeichnung() + "<br>");
+						
+						fuBez = fuList.get(i).getFunktionBezeichnung();
+						fuBesch = fuList.get(i).getFunktionBeschreibung();
+						
+						out.print("<div class='panel panel-default'>");
+						out.print("<div class='panel-heading'>");
+							out.print("<h3 class='panel-title'>");
+							out.println(fuBez + "()");
+							out.print("</h3>");
+						out.print("</div>");
+						out.print("<div class='panel-body'>");
+							out.println(fuBesch);
+						out.print("</div>");
+						out.print("</div>");
+						
+						for(int j = 0; j < parList.size(); j++){
+							
+						}
+						
+						
+						
+						
+						
+						
+						
 					}
 				%>
 			</div>
