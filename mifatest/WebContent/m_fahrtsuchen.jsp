@@ -56,10 +56,16 @@ if( cookies != null)
 var jahr = new Date();
 var monat = new Date();
 var tag = new Date();
-document.getElementById("jahr").innerHTML = jahr.getFullYear();
-document.getElementById("monat").innerHTML = monat.getMonth()+1; //getMonth() liefert Wert zwischen 0-11 zurück
-document.getElementById("tag").innerHTML = tag.getDate();
+
+function getHeute()
+{
+	document.getElementById("jahr").innerHTML = jahr.getFullYear();
+	document.getElementById("monat").innerHTML = monat.getMonth()+1; //getMonth() liefert Wert zwischen 0-11 zurück
+	document.getElementById("tag").innerHTML = tag.getDate();
+}
 </script>
+
+
 
 <div class="container-fluid">
 
@@ -147,7 +153,7 @@ document.getElementById("tag").innerHTML = tag.getDate();
 							<input type="text" name="formKommentar" style="width: 100%; height: 75px;" autocomplete="off"/><br/>
 							<br/>
 							<br/>
-							<input id="knopf" style="width: 100%;" type="submit" name="ok" value="OK" onclick="move()"/>
+							<input id="knopf" style="width: 100%;" type="submit" name="ok" value="OK" onclick="getHeute()"/>
 						</div>
 					</form>
 					</div>
