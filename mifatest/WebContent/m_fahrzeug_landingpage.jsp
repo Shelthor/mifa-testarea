@@ -140,9 +140,6 @@ if( cookies != null)
  
  Fahrzeug fahrzeug,kfz;
  
- //fahrzeugid = fahrzeugOwnerDB.getFahrzeugByUserId(userIdAusCookie).getFahrzeugID(); 
-  
- 
 try
 {
 		fahrzeugid = fahrzeugOwnerDB.getFahrzeugByUserId(userIdAusCookie).getFahrzeugID(); 
@@ -150,7 +147,7 @@ try
  
  		if (fahrzeugid > 0)
  		{
-	 		//out.print("true");
+	 		
 	 		fahrzeugvorhanden=true;
  		}
  		
@@ -174,10 +171,8 @@ catch (Exception e)
 		e.toString();
 		if (fahrzeugvorhanden==false)
 		{
-			 //fahrzeugid=0;
-			 fahrzeugNeu=1;
-			 
-			 if(fahrzeugNeu==1)
+			fahrzeugNeu=1;
+			if(fahrzeugNeu==1)
 			 {
 			 	out.print("<div class='container' align='center'>");
 				out.print("Du hast noch kein Fahrzeug hinterlegt. ");
@@ -188,8 +183,8 @@ catch (Exception e)
 		}
 }
 
- if(kontrolle == 0)
- {
+if(kontrolle == 0)
+{
 		try
 		{
 			fahrzeuguserid = userIdAusCookie;
@@ -201,7 +196,6 @@ catch (Exception e)
 			
 		}
 	}
-
 %>
 
 <div id="footer">
