@@ -2,6 +2,10 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<%@ page import="java.io.*,java.util.*,javax.mail.*"%>
+<%@ page import="javax.mail.internet.*,javax.activation.*"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*" %>
+
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -26,8 +30,8 @@
 	<h3>Neue E-Mail schreiben</h3>
 	<form action="#">
 	<div class="col-sm-2 col-md-2 col-lg-2" align="right"><input type="submit" name="senden" value="senden"/></div>
-	<div class="col-sm-2 col-md-2 col-lg-2" align="right">Empfänger:</div><div class="col-sm-10 col-md-10 col-lg-10" align="left"><input type="text"/></div>
-	<div class="col-sm-2 col-md-2 col-lg-2" align="right">Betreff:</div><div class="col-sm-10 col-md-10 col-lg-10" align="left"><input type="text"/></div>
+	<div class="col-sm-2 col-md-2 col-lg-2" align="right">Empfänger:</div><div class="col-sm-10 col-md-10 col-lg-10" align="left"><input type="text" name="empf" required/></div>
+	<div class="col-sm-2 col-md-2 col-lg-2" align="right">Betreff:</div><div class="col-sm-10 col-md-10 col-lg-10" align="left"><input type="text" name="betreff"/></div>
 	<div class="col-sm-2 col-md-2 col-lg-2" align="right"><textarea rows="15" cols="100" ></textarea></div>
 	</form>
 	</div>
@@ -48,6 +52,8 @@
 	<div class="col-sm-4 col-md-4 col-lg-4" style="background-color:#CDDC39" align="center"><a href="m_hilfe.html">Hilfe</a></div>
 	</div>
 </div>
+
+<%%>
 
 </body>
 </html>
