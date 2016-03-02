@@ -82,8 +82,38 @@
 				    	    <div class="col-md-12 col-sm-12">
 							<h3>Funktionstyp</b></h3>
 							</div>
-						    <div class="col-md-12 col-sm-12">
-								<input type=text" name="formFunktionTyp" style="width: 100%;" autocomplete="off"/>
+						    <div class="col-md-6 col-sm-12">
+						    	<h4>Primitiv + String</h4>
+								<select name="formFunktionTypJava" style="width:100%">
+										<option value="">bitte wählen Sie..</option>
+									    <option value="boolean">boolean</option>
+									    <option value="double">double</option>								    
+									    <option value="float">float</option>
+									    <option value="int">int</option>
+									    <option value="String">String</option>
+								</select>
+							</div>
+							<div class="col-md-6 col-sm-12">
+								<h4>Entitäten</h4>
+								<select name="formFunktionTypEntity" style="width:100%">
+										<option value="">bitte wählen Sie..</option>
+									    <option value="Bewertung">Bewertung</option>
+									    <option value="Fahrt">Fahrt</option>
+									    <option value="Fahrzeug">Fahrzeug</option>
+									    <option value="Funktion">Funktion</option>
+									    <option value="Nachricht">Nachricht</option>
+									    <option value="Ort">Ort</option>
+									    <option value="Parameter">Parameter</option>
+									    <option value="PassagierFahrt">PassagierFahrt</option>
+									    <option value="Passwort">Passwort</option>
+									    <option value="User">User</option>
+									    <option value="UserFahrzeug">UserFahrzeug</option>
+								</select>
+							</div>
+							<div class="col-sm-12">
+								<h4>
+									<input type="checkbox" name="formFunktionTypListe"/> Liste?
+								</h4>
 							</div>
 				    	</div>
 				    	
@@ -463,7 +493,28 @@
 			
 			////////////
 			String fBez = request.getParameter("formFunktionBezeichnung");
-			String fTyp = request.getParameter("formFunktionTyp");
+			String fTyp;
+			
+			String tJava = request.getParameter("formFunktionTypJava");
+			String tEntity = request.getParameter("formFunktionTypEntity");
+							
+			
+			if(tJava.equals("")){
+				fTyp = request.getParameter("formFunktionTypEntity");
+			}
+			else{
+				fTyp = request.getParameter("formFunktionTypJava");
+			}
+			
+			if(request.getParameter("formFunktionTypListe")==null){
+				out.print("leer");
+			}
+			else{
+				out.print("checked");
+				fTyp = "List<" + fTyp + ">";
+			}	
+
+			
 			String fBesch = request.getParameter("formFunktionBeschreibung");
 			
 			f.newFunktion(fBez, fTyp, fBesch);
