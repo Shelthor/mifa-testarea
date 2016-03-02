@@ -49,9 +49,11 @@ if( cookies != null)
 
 %>
 <!-- Hier aktuelles Datum anzeigen (versteckt) -->
-<p id="jahr" name="jahr" hidden></p>
-<p id="monat" name="monat" hidden></p>
-<p id="tag" name="tag" hidden></p>
+
+<input type="hidden" id="hiddenJahr" name="hJahr"/>
+<input type="hidden" id="hiddenMonat" name="hMonat" />
+<input type="hidden" id="hiddenTag" name="hTag" />
+
 <script>
 var jahr = new Date();
 var monat = new Date();
@@ -59,15 +61,17 @@ var tag = new Date();
 
 function getHeute()
 {
-	document.getElementById("jahr").innerHTML = jahr.getFullYear();
-	document.getElementById("monat").innerHTML = monat.getMonth()+1; //getMonth() liefert Wert zwischen 0-11 zurück
-	document.getElementById("tag").innerHTML = tag.getDate();
+	document.getElementById("hiddenjahr").innerHTML = jahr.getFullYear();
+	document.getElementById("hiddenmonat").innerHTML = monat.getMonth()+1; //getMonth() liefert Wert zwischen 0-11 zurück
+	document.getElementById("hiddentag").innerHTML = tag.getDate();
 }
 </script>
 
+<div class="container-fluid" id="footer" align="center">
+	<div style="background-color:#CDDC39" align="center"><h1>Wohin möchtest du reisen?</h1></div>
+</div>
 
-
-<div class="container-fluid">
+<div class="container-fluid" align="center">
 
 <div class="row">								
 				<div id="sqlForm" class="abstandNachOben col-md-12">
@@ -192,9 +196,12 @@ out.print("</div>");
 
 %>
 
-<div id="footer" align="center">
-<a href="c_User.jsp">zurück</a>
-<a href="m_hilfe.html#thema_fahrtsuchen">Hilfe</a>	 <!-- Link zu Anker -->
+<div class="container-fluid" id="footer" align="center">
+	<div class="row">
+	<div class="col-sm-4 col-md-4 col-lg-4" style="background-color:#CDDC39" align="center"><a href="c_User.jsp">zurück</a></div>
+	<div class="col-sm-4 col-md-4 col-lg-4" style="background-color:#9CCC65" align="center"><a href="c_User.jsp">Startseite</a></div>
+	<div class="col-sm-4 col-md-4 col-lg-4" style="background-color:#CDDC39" align="center"><a href="m_hilfe.html">Hilfe</a></div>
+	</div>
 </div>
 
 </body>
