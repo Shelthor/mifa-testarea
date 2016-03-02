@@ -129,7 +129,6 @@ if( cookies != null)
 //Prüfe, ob Fahrzeug zur zugehörigen UserID existiert
 //wenn nein --> nur "neues Fahrzeug erstellen" möglich
 //wenn ja   --> nur Fahrzeug bearbeiten möglich (1:1-Beziehung in DB)
-
  int kontrolle = 0;
  String link = "http://localhost:8080/mifatest/";
 

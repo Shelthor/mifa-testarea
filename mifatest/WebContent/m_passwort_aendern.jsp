@@ -110,25 +110,20 @@
 </head>
 <body>
 <%
-	
-	Cookie[] cookies = request.getCookies();
+Cookie[] cookies = request.getCookies();
 
-		int userIdAusCookie = 0;
+int userIdAusCookie = 0;
 
-		if( cookies != null)
-			{
-	 			for (int i = 0; i < cookies.length; i++)
-	 			{
-		 		if(cookies[i].getName().equals("c_userId"))
-		 		{
-			 	userIdAusCookie = Integer.parseInt(cookies[i].getValue());
-		 		}
-	 		}
-	 	//Kontrolle
-	 	//out.print("UserID: " + userIdAusCookie + "<br/>");
-	 	
-}
-		
+if( cookies != null)
+{
+	for (int i = 0; i < cookies.length; i++)
+	{
+ 		if(cookies[i].getName().equals("c_userId"))
+ 		{
+		 	userIdAusCookie = Integer.parseInt(cookies[i].getValue());
+ 		}
+	}
+}		
 %>
 
 <div id="head">
@@ -170,19 +165,19 @@ if(request.getParameter("change")!= null)
 {
 	Boolean passwordValid = false;
 	//wenn aktuelles passwort == in DB hinterlegtes PW
-			//-> überprüfe, ob neues PW und PW bestätigen == true bzw. gleich
-			//-> änderungen in DB übernehmen
-			//eingegebenes PW
+	//-> überprüfe, ob neues PW und PW bestätigen == true bzw. gleich
+	//-> änderungen in DB übernehmen
+	//eingegebenes PW
 	Facade fCurrentUserChangePW = new Facade();		
 	//temp CookieID später wieder ersetzen durch userIDAusCookie
 	int tempCookieID = 1;
-			//current Passwort
-			String currentUserPWFromInput = request.getParameter("pwdAkt");
-			String newUserPQFromInput = request.getParameter("pwdNeu");
+	//current Passwort
+	String currentUserPWFromInput = request.getParameter("pwdAkt");
+	String newUserPQFromInput = request.getParameter("pwdNeu");
 			
 			
-			Passwort currentPW = fCurrentUserChangePW.getPasswortByUserId(userIdAusCookie);
-			String passwortFromDB = currentPW.getPasswortValue();
+	Passwort currentPW = fCurrentUserChangePW.getPasswortByUserId(userIdAusCookie);
+	String passwortFromDB = currentPW.getPasswortValue();
 	
 			try
 			{
@@ -191,9 +186,7 @@ if(request.getParameter("change")!= null)
 				String currentHash = en.inc(currentUserPWFromInput);
 				String newHash = en.inc(newUserPQFromInput);
 				//
-				
-				
-				
+
 				out.println(currentUserPWFromInput);
 				out.println(newUserPQFromInput);
 				
@@ -220,16 +213,12 @@ if(request.getParameter("change")!= null)
 				{
 					//out.print("Neues Kennwort kann noch nicht eingegeben werden");
 				}
-					
-			
-				
-			
+
 			}
 			catch(Exception e) 
 			{
 				out.print("Änderung nicht möglich");
 			}
-
 }
 %>
 

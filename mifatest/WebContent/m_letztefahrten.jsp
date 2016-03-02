@@ -19,51 +19,49 @@
 <div class="container"><h1>Deine letzten Fahrten</h1></div>
 
 <%
-	Cookie[] cookies = request.getCookies();
-	int userIdAusCookie = 0;
-	if( cookies != null)
+Cookie[] cookies = request.getCookies();
+int userIdAusCookie = 0;
+if( cookies != null)
+{
+	for (int i = 0; i < cookies.length; i++)
 	{
-		for (int i = 0; i < cookies.length; i++)
+		if(cookies[i].getName().equals("c_userId"))
 		{
-			if(cookies[i].getName().equals("c_userId"))
-			{
-				userIdAusCookie = Integer.parseInt(cookies[i].getValue());
-		 	}
+			userIdAusCookie = Integer.parseInt(cookies[i].getValue());
 	 	}
-	 
-	 out.print("UserID: " + userIdAusCookie + "<br/>");
 	}
-	
-	Facade fFahrten = new Facade();
-	
+	out.print("UserID: " + userIdAusCookie + "<br/>");
+}
+
+	Facade fFahrten = new Facade();	
 	Fahrt fahrt;
 	Fahrt fahrtElem;
-	
-	
 
-	//int letzteFahrt = fahrt.getFahrtID();
-	//String letzteFahrtID = Integer.toString(letzteFahrt);
-	//Date letzteFahrtDate = fahrt.getFahrtDatum();
-	String letzteFahrtDatum = fahrt.getFahrtDatum().toString();
+	List<Fahrt> fahrtenOfUserAsFahrer = fFahrten.getListWithAllAngeboteneFahrtenOfUserByUserId(userIdAusCookie);
+	//String letzteFahrtDatum = fahrt.getFahrtDatum().toString();
+	for(int i = 0; i < fahrtenOfUserAsFahrer.size(); i++)
+	{
+		//Zeigt an, wohin der USer zuletzt gefahren ist (als Mitfahrer)
+		out.print("<div class='container-fluid' align='center'>");
+		out.print("<div class='row'>");
+		out.print("<div class='col-sm-1' style='background-color:#CDDC39'>");
+		out.print("<p>Fahrt</p>");
+		//out.print("<p>"+letzteFahrtDatum+"</p>");
+		out.print("</div>");
+		out.print("<div class='container-fluid' align='center'>");
+		out.print("<div class='row'>");
+		out.print("<div class='col-sm-1' style='background-color:#C0CA33'>");
+		out.print("<p>Fahrtdetails</p>");
+		//out.print("<a href='c_Fahrt.jsp?fahrtid="+ fahrt.getFahrtID()+"'>zur Fahrt</a>");
+		out.print("</div>");
+	}
 	
-	//for(int i = 0; i < letzteFahrt; i++)
-	//{
-		//fahrtElem = letzteFahrt.get(i);
-	//Zeigt an, wohin der USer zuletzt gefahren ist (als Mitfahrer)
-	out.print("<div class='container-fluid' align='center'>");
-	out.print("<div class='row'>");
-	out.print("<div class='col-sm-1' style='background-color:#CDDC39'>");
-	out.print("<p>Datum</p>");
-	out.print("<p>"+letzteFahrtDatum+"</p>");
-	out.print("</div>");
-	out.print("<div class='container-fluid' align='center'>");
-	out.print("<div class='row'>");
-	out.print("<div class='col-sm-1' style='background-color:#C0CA33'>");
-	out.print("<p>Fahrtdetails</p>");
-	out.print("<a href='c_Fahrt.jsp?fahrtid="+ fahrt.getFahrtID()+"'>zur Fahrt</a>");
-	out.print("</div>");
-	
-	//}
+	if (fahrtenOfUserAsFahrer.size()==0)
+	{
+		out.print("<div class='container-fluid' style='background-color:#FFB300' style='font-color:#FFFFFF'>");
+		out.print("<p>Du warst bisher noch kein Fahrer einer Fahrt.</p>");
+		out.print("</div>");
+	}
 	
 %>
 <div id="footer" align="center">
