@@ -48,6 +48,7 @@ if( cookies != null)
 } 
 
 %>
+<!-- Hier aktuelles Datum anzeigen (versteckt) -->
 <p id="jahr" name="jahr" hidden></p>
 <p id="monat" name="monat" hidden></p>
 <p id="tag" name="tag" hidden></p>
@@ -166,6 +167,7 @@ String zielOrt = request.getParameter("formZiel");
 
 String benoetigteKap = request.getParameter("formKapazitaet");
 
+//aktuelles Datum
 String jahrHeute = request.getParameter("jahr");
 String monatHeute = request.getParameter("monat");
 String tagHeute = request.getParameter("tag");
