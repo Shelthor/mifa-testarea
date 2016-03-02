@@ -148,13 +148,13 @@ try
 		fahrzeugid = fahrzeugOwnerDB.getFahrzeugByUserId(userIdAusCookie).getFahrzeugID(); 
 	
  
- 		if (fahrzeugid == userIdAusCookie)
+ 		if (fahrzeugid > 0)
  		{
 	 		//out.print("true");
 	 		fahrzeugvorhanden=true;
  		}
  		
- 		if (fahrzeugid != userIdAusCookie)
+ 		if (fahrzeugid <= 0)
  		{
  			fahrzeugvorhanden=false;
  		}
