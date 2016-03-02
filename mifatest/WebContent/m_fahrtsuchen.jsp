@@ -2,14 +2,17 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<%@page import="com.mysql.jdbc.PreparedStatement.ParseInfo"%>
+<%@page import="com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="javax.persistence.criteria.CriteriaBuilder.In"%>
+<%@page import="java.awt.Button"%>
 <%@ page import="com.mifatest.entities.*" %>
 <%@ page import="com.mifatest.executers.*" %>
 <%@ page import="java.util.*" %>
-<%@ page import="java.sql.Time" %>
-
-<%@ page import="java.text.*"%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta charset="UTF-8">
 <title>Fahrt suchen</title>
 <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
@@ -45,6 +48,17 @@ if( cookies != null)
 } 
 
 %>
+<p id="jahr" name="jahr" hidden></p>
+<p id="monat" name="monat" hidden></p>
+<p id="tag" name="tag" hidden></p>
+<script>
+var jahr = new Date();
+var monat = new Date();
+var tag = new Date();
+document.getElementById("jahr").innerHTML = jahr.getFullYear();
+document.getElementById("monat").innerHTML = monat.getMonth()+1; //getMonth() liefert Wert zwischen 0-11 zurück
+document.getElementById("tag").innerHTML = tag.getDate();
+</script>
 
 <div class="container-fluid">
 
@@ -132,21 +146,47 @@ if( cookies != null)
 							<input type="text" name="formKommentar" style="width: 100%; height: 75px;" autocomplete="off"/><br/>
 							<br/>
 							<br/>
-							<input id="knopf" style="width: 100%;" type="submit" name="ok" value="OK"/>
+							<input id="knopf" style="width: 100%;" type="submit" name="ok" value="OK" onclick="move()"/>
 						</div>
 					</form>
 					</div>
 				</div>
-
-
-
-
-
 </div>
+<%
+
+if (request.getParameter("ok")!=null)
+{
+String reiseDatumJahr = request.getParameter("hJahr");
+String reiseDatumMonat = request.getParameter("hMonat");
+String reiseDatumTag = request.getParameter("hTag");
+String reiseDatum = reiseDatumJahr+"-"+reiseDatumMonat+"-"+reiseDatumTag;
+
+String startOrt = request.getParameter("formStart");
+String zielOrt = request.getParameter("formZiel");
+
+String benoetigteKap = request.getParameter("formKapazitaet");
+
+String jahrHeute = request.getParameter("jahr");
+String monatHeute = request.getParameter("monat");
+String tagHeute = request.getParameter("tag");
+String heute = jahrHeute+"-"+monatHeute+"-"+tagHeute;
+
+out.print("<div class='container-fluid' style='background-color:#FFC400'><h3>Zusammenfassung</h3></div>");
+out.print("<div class='container-fluid'>");
+out.print("<p>Start:"+startOrt+"</p>");
+out.print("<p>Ziel:"+zielOrt+"</p>");
+out.print("<p>Datum:"+reiseDatum+"</p>");
+out.print("<p>Personen:"+benoetigteKap+"</p>");
+out.print("<p>Datum heute:"+heute+"</p>");
+out.print("</div>");
+
+}
+
+%>
 
 <div id="footer" align="center">
 <a href="c_User.jsp">zurück</a>
-<a href="m_hilfe.html#thema_fahrtsuchen">Hilfe</a>	 <!-- So wird auf Anker in anderen Seiten verwiesen -->
+<a href="m_hilfe.html#thema_fahrtsuchen">Hilfe</a>	 <!-- Link zu Anker -->
 </div>
 
 </body>
