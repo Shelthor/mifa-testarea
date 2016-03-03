@@ -86,34 +86,42 @@ if(request.getParameter("submit")!= null)
 		User uLog = fUserLogin.getUserByEmail(email);
 		int uLogId = uLog.getUserID();
 		Passwort uPasswort = fUserLogin.getPasswortByUserId(uLogId);
-	
-	
-	//HASH
-		Encryptor en = new Encryptor();
-		String hash = en.inc(passwd);
-	//
-	
-	
-	if (uPasswort.getPasswortValue().equals(hash))
-	{
-		//Cookie Handling
-
-		Cookie userIdCookie = new Cookie("c_userId",Integer.toString(uLogId));
-
-		userIdCookie.setMaxAge(60*60*24);
-
-		response.addCookie(userIdCookie);
 		
-		//db abfrage
+	
+		if(uLog.getIsActivated().equals("true"))
+		{
+			//HASH
+			Encryptor en = new Encryptor();
+			String hash = en.inc(passwd);
+		//
 		
-		out.print("Passwort stimmt");
-		//Seiten redirect auf Profil
-		response.setStatus(response.SC_MOVED_TEMPORARILY);
-		response.setHeader("Location", loginPage);
 		
-	}else{
-		out.println("Login nicht möglich!");
-	}
+		if (uPasswort.getPasswortValue().equals(hash))
+		{
+			//Cookie Handling
+
+			Cookie userIdCookie = new Cookie("c_userId",Integer.toString(uLogId));
+
+			userIdCookie.setMaxAge(60*60*24);
+
+			response.addCookie(userIdCookie);
+			
+			//db abfrage
+			
+			out.print("Passwort stimmt");
+			//Seiten redirect auf Profil
+			response.setStatus(response.SC_MOVED_TEMPORARILY);
+			response.setHeader("Location", loginPage);
+			
+			}else{
+				out.println("Login nicht möglich!");
+			}
+		}
+		
+		else{
+			out.print("Bitte aktiviere zunächst deinen Account. Du hast dazu eine Mail erhalten.");
+		}
+	
 	
 	
 	//wenn formlogin==true dann check mit registrierten eingaben der DB ob user angemeldet werden kann

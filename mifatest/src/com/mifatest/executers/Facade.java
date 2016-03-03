@@ -261,7 +261,7 @@ public class Facade {
 	    
 	    t.commit();
 	    
-	    System.out.println("success");
+	    System.out.println("success" + user.getUserID());
 	}
  	
  	public User getUserById(int id){ 

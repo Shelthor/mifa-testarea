@@ -273,6 +273,12 @@ if(request.getParameter("register")!= null)
 		
 			fUser.newUser(emailR, d, nachname, vorname, telefon, hash);
 			
+			//emailanUser
+			SendMailTLS mailing = new SendMailTLS();
+
+			mailing.sendMail(emailR, 1);
+			//
+			
 			out.print("<script>sendSQL();</script>");
 			out.print("<script>suc();</script>");
 		}
