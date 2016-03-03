@@ -336,6 +336,15 @@ public class Facade {
 		return result;
 	}
 	
+	public List<Fahrt> getListWithAllFahrtenWhichContainStart(String userEingabe){
+		
+		org.hibernate.Query q= session.createQuery("from Fahrt as u where u.s1 like '" + userEingabe + "' or u.s2 like '" + userEingabe + "' or u.s3 like '" + userEingabe + "' or u.s4 like '" + userEingabe + "' or u.s5 like '" + userEingabe + "'");
+	
+		List result = q.list();
+		
+		return result;
+	}
+	
 	public void updateFahrt(Fahrt f){
 		session.update(f); 
 		t.commit();
