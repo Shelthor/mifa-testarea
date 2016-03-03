@@ -14,59 +14,99 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta charset="UTF-8">
 <title>Meine Fahrten</title>
+
+<link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="css/custom.css" type="text/css" />
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script src="js/npm.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/custom.js"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3f0-lP6PquSnOUBu8j85B5MGM3pDLFx4&signed_in=true&callback=initMap"
+        async defer></script>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+
 </head>
 <body>
 <!-- Seite zeigt die letzten angebotenen Fahrten des Users an -->
 
-<div align="center"><h1>Meine Fahrten als Mitfahrer</h1></div>
-<%
-Cookie[] cookies = request.getCookies();
-int userIdAusCookie = 0;
-if( cookies != null)
-{
-	for (int i = 0; i < cookies.length; i++)
-	{
-		if(cookies[i].getName().equals("c_userId"))
-		{
-			userIdAusCookie = Integer.parseInt(cookies[i].getValue());
-	 	}
-	}
-	out.print("UserID: " + userIdAusCookie + "<br/>");
-}
-
-	Facade fFahrten = new Facade();	
-	PassagierFahrt fahrt;
-	Fahrt fahrtElem;
-	User passagiereOfFahrt;
-
-	List<PassagierFahrt> passagierOfFahrt = fFahrten.getListWithAllPassagierFahrtRelationsByFahrtId(fahrt);
-	//String letzteFahrtDatum = fahrt.getFahrtDatum().toString();
-	for(int i = 0; i < fahrtenOfUserAsMitfahrer.size(); i++)
-	{
-		//Zeigt an, wohin der USer zuletzt gefahren ist (als Mitfahrer)
-		out.print("<div class='container-fluid' align='center'>");
-		out.print("<div class='row'>");
-		out.print("<div class='col-sm-1' style='background-color:#CDDC39'>");
-		out.print("<p>Fahrt</p>");
-		//out.print("<p>"+letzteFahrtDatum+"</p>");
-		out.print("</div>");
-		out.print("<div class='container-fluid' align='center'>");
-		out.print("<div class='row'>");
-		out.print("<div class='col-sm-1' style='background-color:#C0CA33'>");
-		out.print("<p>Fahrtdetails</p>");
-		//out.print("<a href='c_Fahrt.jsp?fahrtid="+ fahrt.getFahrtID()+"'>zur Fahrt</a>");
-		out.print("</div>");
-	}
+	<div class="container">
+	<div class="jumbotron">
+		<h1>Meine Fahrten als Mitfahrer</h1>
+	</div>
 	
-	if (fahrtenOfUserAsFahrer.size()==0)
-	{
-		out.print("<div class='container-fluid' style='background-color:#FFB300' style='font-color:#FFFFFF'>");
-		out.print("<p>Du warst bisher noch kein Mitfahrer einer Fahrt.</p>");
-		out.print("</div>");
-	}
-	
-%>
+			<%
+				Cookie[] cookies = request.getCookies();
+				int userIdAusCookie = 0;
+				if( cookies != null)
+				{
+					for (int i = 0; i < cookies.length; i++)
+					{
+						if(cookies[i].getName().equals("c_userId"))
+						{
+							userIdAusCookie = Integer.parseInt(cookies[i].getValue());
+					 	}
+					}
+				}
+				
+					Facade fFahrten = new Facade();	
+					PassagierFahrt fahrt;
+					Fahrt fahrtElem = new Fahrt();
+					User passagiereOfFahrt;
+					
+					String fahrerName;
+					int fahrerID;
 
+					int fahrtID = 0;
+					
+					List<PassagierFahrt> passagierOfFahrt = fFahrten.getListWithAllPassagierFahrtRelationsByUserId(userIdAusCookie);
+										
+					for(int i = 0; i < passagierOfFahrt.size(); i++)
+					{
+						fahrtElem = passagierOfFahrt.get(i).getFahrtID();
+						fahrerName = fahrtElem.getFahrerID().getvName() + " " +  fahrtElem.getFahrerID().getnName();
+						fahrerID = fahrtElem.getFahrerID().getUserID();
+						
+						out.print("<div class='panel panel-default col-xs-4 col-sm-4 col-md-12'>");
+						
+							out.print("<div class='panel-body'>");
+							
+								out.print("<div class='col-xs-12 col-md-2'>");
+									out.print("<a href='c_UserOeffentlich.jsp?userid=" + fahrerID + "'>" + fahrerName +"</a>" );
+								out.print("</div>");
+								out.print("<div class='col-xs-12 col-md-2'>");
+									out.print(passagierOfFahrt.get(i).getUserStart());
+								out.print("</div>");
+								out.print("<div class='col-xs-12 col-md-2'>");
+									out.print(passagierOfFahrt.get(i).getUserZiel());
+								out.print("</div>");
+								out.print("<div class='col-xs-12 col-md-2'>");
+									out.print(fahrtElem.getFahrtDatum());
+								out.print("</div>");
+								out.print("<div class='col-xs-12 col-md-2'>");
+									out.print(fahrtElem.getFahrtStartZeit());
+								out.print("</div>");
+								out.print("<div class='col-xs-12 col-md-2'>");
+									out.print("link");
+								out.print("</div>");
+							
+							out.print("</div>");
+							
+						out.print("</div>");
+					}
+				
+				%>
+	
+	</div>
+	
+
+	</div>
 <div id="footer">
 <a href="m_hilfe.html#thema_letzteFahrt">Hilfe</a>	 <!-- So wird auf Anker in anderen Seiten verwiesen -->
 </div>

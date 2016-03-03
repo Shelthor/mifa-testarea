@@ -490,6 +490,16 @@ public class Facade {
 		return  luf;
  	}
  	
+ 	public List<PassagierFahrt> getListWithAllPassagierFahrtRelationsByUserId(int uId){
+ 		org.hibernate.Query q= session.createQuery("from PassagierFahrt as u where u.userID =" + " " + uId + "");
+
+		List<PassagierFahrt> luf;
+		
+		luf=q.list();
+		
+		return  luf;
+ 	}
+ 	
  	public PassagierFahrt getPassagierFahrtByFahrtAndMitfahrerId(int fahrtId, int mitfahrerId){
  		/*
  		org.hibernate.Query q= session.createQuery("from PassagierFahrt as u where u.userID =" + " " + mitfahrerId + " and fahrtID = " + fahrtId + "");
