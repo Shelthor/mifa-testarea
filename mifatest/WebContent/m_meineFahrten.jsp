@@ -59,6 +59,7 @@
 					PassagierFahrt fahrt;
 					Fahrt fahrtElem = new Fahrt();
 					User passagiereOfFahrt;
+				
 					
 					String fahrerName;
 					int fahrerID;
@@ -72,6 +73,7 @@
 						fahrtElem = passagierOfFahrt.get(i).getFahrtID();
 						fahrerName = fahrtElem.getFahrerID().getvName() + " " +  fahrtElem.getFahrerID().getnName();
 						fahrerID = fahrtElem.getFahrerID().getUserID();
+						
 						
 						out.print("<div class='panel panel-default col-xs-4 col-sm-4 col-md-12'>");
 						
@@ -93,7 +95,7 @@
 									out.print(fahrtElem.getFahrtStartZeit());
 								out.print("</div>");
 								out.print("<div class='col-xs-12 col-md-2'>");
-									out.print("link");
+									out.print("<a href='c_Fahrt.jsp?fahrtid="+ fahrtElem.getFahrtID() + "'>zur Fahrt</a>");
 								out.print("</div>");
 							
 							out.print("</div>");
@@ -106,9 +108,12 @@
 	</div>
 	
 
+<div class="container-fluid" id="footer" align="center">
+	<div class="row">
+	<div class="col-sm-4 col-md-4 col-lg-4" style="background-color:#CDDC39" align="center"><a href="c_User.jsp">zurück</a></div>
+	<div class="col-sm-4 col-md-4 col-lg-4" style="background-color:#9CCC65" align="center"><a href="c_User.jsp">Startseite</a></div>
+	<div class="col-sm-4 col-md-4 col-lg-4" style="background-color:#CDDC39" align="center"><a href="m_hilfe.html">Hilfe</a></div>
 	</div>
-<div id="footer">
-<a href="m_hilfe.html#thema_letzteFahrt">Hilfe</a>	 <!-- So wird auf Anker in anderen Seiten verwiesen -->
 </div>
 
 </body>
