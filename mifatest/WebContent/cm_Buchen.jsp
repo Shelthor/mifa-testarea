@@ -63,10 +63,10 @@
 							
 							//dresden nach Leipzig
 							
-							fahrt = f.getFahrtById(1);
+							fahrt = f.getFahrtById(8);
 							
 							 userStart = "Dresden";
-							 userZiel = "Grimma"; //vergleichen
+							 userZiel = "Gera"; //vergleichen
 							
 							kap = fahrt.getKapazitaet();
 							
