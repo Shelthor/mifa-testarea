@@ -36,7 +36,10 @@
 <body>
 
 	<div class="container">
-		<div class="jumbotron"><h1>DOKU</h1></div>
+		<div class="jumbotron">
+			<h1>DOKU</h1>
+			<p><a href="c_writeToDoku.jsp">Füge eine Funktion hinzu</a></p>
+		</div>
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<%				

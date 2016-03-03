@@ -59,8 +59,8 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="jumbotron">
-				<h1>INTERN</h1>
-	    		<p>Erweitere unsere Doku!</p>
+				<h1>Erweitere unsere Doku!</h1>
+				<p><a href="c_doku.jsp">Zur Doku</a></p>
 			</div>
 		
 			<div class="panel panel-default" id="whole">
@@ -91,6 +91,7 @@
 									    <option value="float">float</option>
 									    <option value="int">int</option>
 									    <option value="String">String</option>
+									    <option value="void">void</option>
 								</select>
 							</div>
 							<div class="col-md-6 col-sm-12">
@@ -718,6 +719,7 @@
 				<div class='alert alert-success text-center' role='alert'>
 					<h1>Funktion erfolgreich angelegt!</h1>
 				</div>
+				<p><a href="c_writeToDoku.jsp">Füge eine weitere Funktion hinzu</a></p>
 			</div>
 		
 		</div>
