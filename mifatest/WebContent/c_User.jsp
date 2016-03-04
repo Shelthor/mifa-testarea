@@ -111,7 +111,7 @@
 		 <div id="settings" class="col-xs-12 col-md-12 panel panel-default abstandNachOben" style="display:none;">
 		 	<div class="panel-body">	 	
 			 	<ul class="nav nav-pills nav-justified">
-				  <li role="presentation"><a href="m_profil_bearbeiten_profil.jsp">profil bearbeiten</a></li>
+				  <li role="presentation"><a href="m_profil_bearbeiten.jsp">profil bearbeiten</a></li>
 				  <li role="presentation"><a href="m_fahrzeug_landingpage.jsp">Fahrzeug bearbeiten</a></li>
 				  <li role="presentation"><a href="m_passwort_aendern.jsp">passwort ändern</a></li>
 				</ul>
