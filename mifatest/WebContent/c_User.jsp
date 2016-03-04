@@ -37,7 +37,6 @@
 			 }
 		 }
 		 
-		 out.print("UserID: " + userIdAusCookie + "<br/>");
 	}
 %>
 

@@ -90,6 +90,11 @@ li.ortListElem:hover{
 	border-bottom-left-radius:5px;
 }
 
+.userPic{
+	max-width:100px;
+	border-radius: 5px;
+}
+
 #directions-panel {
         margin-top: 20px;
         padding: 10px;

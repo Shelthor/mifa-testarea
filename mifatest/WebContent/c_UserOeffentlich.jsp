@@ -152,7 +152,7 @@
 		    		<h1><%=vorName %> <%=nachName %></h1>
 	   		 	</div>
 	   		 	<div class="col-sm-6">
-		    		<img src="<%=bildUrl %>" alt="hierBild">
+		    		<img class="userPic" src="<%=bildUrl %>" alt="hierBild">
 	   		 	</div> 	
 	   		</div>
 			<div class="row hellgrau">

@@ -30,6 +30,15 @@ public class Facade {
 	
 	private int aktuelleFunktionsID;
 	private int aktuellesFahrzeugID;
+	private int aktuelleUserID;
+
+	public int getAktuelleUserID() {
+		return aktuelleUserID;
+	}
+
+	public void setAktuelleUserID(int aktuelleUserID) {
+		this.aktuelleUserID = aktuelleUserID;
+	}
 
 	public int getAktuelleFunktionsID() {
 		return aktuelleFunktionsID;
@@ -257,11 +266,12 @@ public class Facade {
 	    pass.setPasswortValue(pw);
 	    pass.setUserID(user);
 	    
-	    session.merge(pass);
+	    session.persist(pass);
 	    
 	    t.commit();
+	    aktuelleUserID = user.getUserID();
 	    
-	    System.out.println("success" + user.getUserID());
+	    System.out.println("user " + aktuelleUserID +" anlegen success");
 	}
  	
  	public User getUserById(int id){ 

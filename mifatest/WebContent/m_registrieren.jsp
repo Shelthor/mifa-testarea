@@ -276,7 +276,7 @@ if(request.getParameter("register")!= null)
 			//emailanUser
 			SendMailTLS mailing = new SendMailTLS();
 
-			mailing.sendMail(emailR, 1);
+			mailing.sendMail(emailR, fUser.getAktuelleUserID());
 			//
 			
 			out.print("<script>sendSQL();</script>");

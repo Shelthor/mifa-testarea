@@ -15,17 +15,23 @@ public class EinzeilerTestklasse {
 		//f.newPassagierFahrt(f.getUserById(1), f.getFahrtById(1), "Dresden", "Leipzig");
 		//fdsadasd.newPasswort(fdsadasd.getUserById(2), "duschen");
 		
-		/*
-		String EMAILADRESSE = "cle.kruse@googlemail.com";
+		
+		String EMAILADRESSE = "cle.kruse@googlemail2.com";
 		Date HEUTE = new Date(90, 9, 16);
 		String NACHNAME = "Kruse";
 		String VORNAME = "Clemens";
 		String TELEFONNUMMER = "017684127806";
 		String ISADMIN = "true";
 		String ISACTIVATED = "true";
+		String PW;
 		
-	    f.newUser(EMAILADRESSE, HEUTE, NACHNAME, VORNAME,TELEFONNUMMER, ISADMIN, ISACTIVATED);
-	    */
+		Encryptor en = new Encryptor();
+		
+		PW = en.inc("root");
+		
+		
+	    f.newUser(EMAILADRESSE, HEUTE, NACHNAME, VORNAME,TELEFONNUMMER, PW);
+	    
 		
 		/*
 		List<User> uListA = f.checkBewertungenA(f.getFahrtById(2), f.getUserById(1));
@@ -87,6 +93,7 @@ public class EinzeilerTestklasse {
 		}
 		*/
 		
+	    /*
 		String fBez = "16duschen";
 		String fTyp = "16Ente";
 		String fBesch = "16duscht regelm‰ﬂig";
@@ -125,7 +132,7 @@ public class EinzeilerTestklasse {
 		pBesch = "16duscht regelm‰ﬂig - 4";
 		
 		f2.newParameter(pBez, pTyp, pBesch, fuId);
-		
+		*/
 		
 		
 	}
