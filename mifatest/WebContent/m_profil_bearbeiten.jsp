@@ -176,13 +176,13 @@
 					
 			<div id="form">
 			    <div id="formnames">
-			    	<form class="col-md-12"  style="max-width:600px; margin:auto" action="m_profil_bearbeiten_profil.jsp" method="post">
+			    	<form class="col-md-12"  style="max-width:600px; margin:auto" action="m_profil_bearbeiten.jsp" method="post">
 			    	
 			    		<div class="panel panel-default">
 			    			<div class="panel-body">
 				    		<div class="col-xs-12">
 					    		<div class="col-xs-6">
-					    			<p>Name ändern:</p>
+					    			<p>Vorname ändern:</p>
 					    		</div>
 					  
 					    		<div class="col-xs-6">

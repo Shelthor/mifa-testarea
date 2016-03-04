@@ -14,7 +14,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 
-<link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
 	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
 	<link rel="stylesheet" href="css/custom.css" type="text/css" />
@@ -26,10 +26,10 @@
 	<script src="js/bootstrap.js"></script>
 	<script src="js/custom.js"></script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3f0-lP6PquSnOUBu8j85B5MGM3pDLFx4&signed_in=true&callback=initMap"
-        async defer></script>
-
-<link rel="stylesheet" href="css/style.css" type="text/css" />
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3f0-lP6PquSnOUBu8j85B5MGM3pDLFx4&signed_in=true&callback=initMap"
+	        async defer></script>
+	
+	<link rel="stylesheet" href="css/style.css" type="text/css" />
 
 </head>
 <body>
