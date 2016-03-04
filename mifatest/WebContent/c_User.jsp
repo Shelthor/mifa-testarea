@@ -165,7 +165,6 @@
 								out.print("</div>");
 								out.print("<div class='col-xs-12 col-md-2'>");
 								
-								//c_Bewerten.jsp?empfid=3&fahrtid=1
 									out.print("<a href='c_Bewerten.jsp?fahrtid="+ fahrtElem.getFahrtID() + "&empfid="+ fahrtElem.getFahrerID().getUserID() + "'>Fahrer Bewerten</a><br/>");
 									out.print("<a href='c_Fahrt.jsp?fahrtid="+ fahrtElem.getFahrtID() + "'>zur Fahrt</a>");
 								out.print("</div>");
@@ -241,13 +240,19 @@
 											mifaName = mitfahrer.getvName() + " " + mitfahrer.getnName();
 											
 											dusche = f.getPassagierFahrtByFahrtAndMitfahrerId(fahrt.getFahrtID(), mitfahrer.getUserID());
-											out.print("<div class='col-xs-6'>");
+											out.print("<div class='col-xs-4'>");
 												out.print("<a href='c_UserOeffentlich.jsp?userid=" + mitfahrer.getUserID() + "'>" + mifaName + "</a>");
 											out.print("</div>");
-											out.print("<div class='col-xs-6'>");
+											out.print("<div class='col-xs-4'>");
 												out.print("von <b>" + dusche.getUserStart() +  "</b> ");
 												out.print("nach <b>" + dusche.getUserZiel() +  "</b>");
 											out.print("</div>");
+											out.print("<div class='col-xs-4'>");
+												out.print("<a href='c_Bewerten.jsp?fahrtid="+ fahrt.getFahrtID() + "&empfid="+ mitfahrer.getUserID() + "'>Mitfahrer Bewerten</a><br/>");
+												
+											out.print("</div>");
+											
+											//out.print("<a href='c_Bewerten.jsp?fahrtid="+ fahrtElem.getFahrtID() + "&empfid="+ fahrtElem.getFahrerID().getUserID() + "'>Fahrer Bewerten</a><br/>");
 										}
 									}else{										
 										out.print("<div class='col-xs-12'>");

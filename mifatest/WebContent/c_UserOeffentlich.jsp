@@ -38,7 +38,6 @@
 			 }
 		 }
 		 
-		 out.print("UserID: " + userIdAusCookie + "<br/>");
 	}
 %>
 
@@ -64,10 +63,13 @@
 
 	userId = userIdAusCookie;
 	userIdPublic = Integer.parseInt(request.getParameter("userid"));
+	List<Bewertung> bewertungList = new ArrayList();
 				
 	try{
 		user = f.getUserById(userIdPublic);
 		uIntern = f.getUserById(userId);
+		
+		bewertungList = f.getListWithAllBewertungenToUserByUserId(userIdPublic);
 		
 		vorName = user.getvName();
 		nachName = user.getnName();
@@ -148,38 +150,59 @@
 	<div class="row">
 		<div class="col-sm-12">
 	    	<div class="row randObenRund blau">
-	    		<div class="col-sm-6">
+	    		<div class="col-sm-9">
 		    		<h1><%=vorName %> <%=nachName %></h1>
 	   		 	</div>
-	   		 	<div class="col-sm-6">
+	   		 	   		 	
+	   		 	<div class="col-sm-3">
 		    		<img class="userPic" src="<%=bildUrl %>" alt="hierBild">
 	   		 	</div> 	
 	   		</div>
-			<div class="row hellgrau">
-	    		<div class="col-sm-3">	
+			<div class="row panel-body">
+	    		<div class="col-sm-4">	
 			    	<script>
 						document.write(giveAge('<%=geburtsDatum %>'));
 					</script>
 			    </div>
-			    <div class="col-sm-3">
-			    	<%=telefon %>
+			    <div class="col-sm-4">
+			    	<p>Telefon: <%=telefon %></p>
 			    </div>
-			    <div class="col-sm-3">
-			    	<%=mail %>
+			    <div class="col-sm-4">
+			    
+			    <a href="mailto:<%=mail %>"><%=mail %></a>
 	   			</div>	    	
 		    </div> 
 		</div>
 	</div>
-	<div class="row">
+	<div class="row blau randUntenRund">
 		<div class="col-sm-12">
 			<h1>Erhaltene Bewertungen</h1>
 			
-			<div class="verlauf-orange">
+			<div class="col-sm-12">
 				<p>durchschnittlich: </p>
-				<div class="col-sm-3"><h4>Fahrstil: </h4><p class="verlauf-graublau"><%=drFahrstil %></p></div>
-				<div class="col-sm-3"><h4>Pünktlichkeit: </h4><p class="verlauf-graublau"><%=drPuenktlich %></p></div>
-				<div class="col-sm-3"><h4>Freundlichkeit: </h4><p class="verlauf-graublau"><%=drFreundlich %></p></div>
+				<div class="col-sm-4"><h4>Fahrstil: </h4><p><%=drFahrstil %></p></div>
+				<div class="col-sm-4"><h4>Pünktlichkeit: </h4><p><%=drPuenktlich %></p></div>
+				<div class="col-sm-4"><h4>Freundlichkeit: </h4><p><%=drFreundlich %></p></div>
 			</div>
+			
+			<%
+				Bewertung bListElem;
+				String bewerterName;
+				for(int i = 0; i < bewertungList.size(); i++)
+				{
+					bListElem = bewertungList.get(i);
+					bewerterName = bListElem.getBewertungSenderID().getvName() + " " + bListElem.getBewertungSenderID().getnName();
+					
+					
+					out.print("<div class='panel panel-default col-md-12 abstandNachOben' style='color:#000'>");
+						out.print("<div class='panel-body'>");
+							out.print("<a href='c_UserOeffentlich.jsp?userid=" + bListElem.getBewertungSenderID().getUserID() + "'>" + bewerterName +"</a>" + " schrieb: <br>");
+							out.print(bListElem.getBewertungText());
+						out.print("</div>");
+					out.print("</div>");
+				}
+			%>
+			
 		</div>
 	</div>
 </div>

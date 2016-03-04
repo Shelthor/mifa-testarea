@@ -11,17 +11,17 @@
 <head>
 <meta charset="UTF-8">
 	<title>Ändere dein Kennwort</title>
+	<link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="css/custom.css" type="text/css" />
+	
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="js/npm.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/custom.js"></script>
 <style>
-         a:link {color:white}
-         a:visited{color:white}
-         a:hover{color:white}
-         a:active{color:white}
-
-         p
-         {
-         	font-family: verdana;
-         	color: black;
-         }
+         
 
          #head
          {
@@ -123,13 +123,50 @@ if( cookies != null)
 		 	userIdAusCookie = Integer.parseInt(cookies[i].getValue());
  		}
 	}
-}		
-%>
+}	
 
-<div id="head">
-	<h1>Dein Kennwort</h1>
+Facade fCurrentUserChangePW = new Facade();	
+
+User user = fCurrentUserChangePW.getUserById(userIdAusCookie);
+
+%>
+<div class="container">
+	<div class="row">
+		<nav class="navbar navbar-default navbar-fixed-top">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="c_index.jsp"><img src="img/logo_ba_dresden.png" style="height:100%;"/></a>
+		    </div>
+			    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		    
+		    <ul class="nav navbar-nav navbar-right">
+		        <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hallo <%= user.getvName() %>!<span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="c_UserOeffentlich.jsp?userid=<%=user.getUserID()%>">Mein öffentliches Profil</a></li>
+		            <li><a href="c_User.jsp">Terminal</a></li>
+		          </ul>
+		        </li>
+	      	</ul>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+		
+		<div class="jumbotron">
+	  	  <h1>Ändere dein Kennwort</h1>
+	    </div>	
+	</div>
+
 </div>
-<form action="m_passwort_aendern.jsp" method="post"></form>
+
 <div id="form">
 	<div id="form2">
 	<form action="m_passwort_aendern.jsp" method="post">
@@ -155,11 +192,6 @@ if( cookies != null)
 	</div>
 </div>
 </form>
-<div id="footer">
-	<a href="m_profil_bearbeiten.jsp">zurück</a>
-	<a href="c_User.jsp">Startseite</a>
-	<a href="m_hilfe.html">Hilfe</a>
-</div>
 <%
 if(request.getParameter("change")!= null)
 {
@@ -167,8 +199,7 @@ if(request.getParameter("change")!= null)
 	//wenn aktuelles passwort == in DB hinterlegtes PW
 	//-> überprüfe, ob neues PW und PW bestätigen == true bzw. gleich
 	//-> änderungen in DB übernehmen
-	//eingegebenes PW
-	Facade fCurrentUserChangePW = new Facade();		
+	//eingegebenes PW	
 	//temp CookieID später wieder ersetzen durch userIDAusCookie
 	int tempCookieID = 1;
 	//current Passwort
@@ -186,9 +217,6 @@ if(request.getParameter("change")!= null)
 				String currentHash = en.inc(currentUserPWFromInput);
 				String newHash = en.inc(newUserPQFromInput);
 				//
-
-				out.println(currentUserPWFromInput);
-				out.println(newUserPQFromInput);
 				
 				if(currentHash.equals(passwortFromDB))
 				{
