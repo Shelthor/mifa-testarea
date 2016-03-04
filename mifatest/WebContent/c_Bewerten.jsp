@@ -71,7 +71,7 @@ td.star{
 if(kontrolle == 0){
 	try{
 		empfurl = Integer.parseInt(request.getParameter("empfid"));
-		sendurl = Integer.parseInt(request.getParameter("senderid")); //VERFERINERN -> siehe unten
+		sendurl = userIdAusCookie;
 		fahrturl = Integer.parseInt(request.getParameter("fahrtid"));
 	}
 

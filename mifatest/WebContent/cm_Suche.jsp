@@ -88,16 +88,23 @@
 				    </div><!-- /.navbar-collapse -->
 				  </div><!-- /.container-fluid -->
 			</nav>
-		
-		
-		</div>
-	
-		<div class="row">
+			
 			<div class="jumbotron">
 				<h1>Wohin möchtest du?</h1>
 			</div>
-			
-			<div class="col-sm-12 verlauf-graublau randObenRund randUntenRund">
+		</div>
+		
+		
+		<div class="row">
+			<ul class="nav nav-pills nav-justified">
+			  <li role="presentation" class="active"><a href="cm_Suche.jsp">Fahrt suchen</a></li>
+			  <li role="presentation"><a href="c_FahrtAnbieten.jsp">Fahrt anbieten</a></li>
+			  <li role="presentation"><a onclick="showSettings();">Einstellungen</a></li>
+			</ul>
+		</div>
+	
+		<div class="row">			
+			<div class="col-sm-12 verlauf-graublau randObenRund randUntenRund abstandNachOben">
 				<form>
 					<div class="abstandNachOben">
 						<div class="col-md-6">

@@ -164,6 +164,9 @@
 									out.print(fahrtElem.getFahrtStartZeit());
 								out.print("</div>");
 								out.print("<div class='col-xs-12 col-md-2'>");
+								
+								//c_Bewerten.jsp?empfid=3&fahrtid=1
+									out.print("<a href='c_Bewerten.jsp?fahrtid="+ fahrtElem.getFahrtID() + "&empfid="+ fahrtElem.getFahrerID().getUserID() + "'>Fahrer Bewerten</a><br/>");
 									out.print("<a href='c_Fahrt.jsp?fahrtid="+ fahrtElem.getFahrtID() + "'>zur Fahrt</a>");
 								out.print("</div>");
 							
