@@ -348,7 +348,7 @@ public class Facade {
 	
 	public List<Fahrt> getListWithAllFahrtenWhichContainStart(String userEingabe){
 		
-		org.hibernate.Query q= session.createQuery("from Fahrt as u where u.s1 like '" + userEingabe + "' or u.s2 like '" + userEingabe + "' or u.s3 like '" + userEingabe + "' or u.s4 like '" + userEingabe + "' or u.s5 like '" + userEingabe + "'");
+		org.hibernate.Query q= session.createQuery("from Fahrt as u where u.s1 like '" + userEingabe + "' or u.s2 like '" + userEingabe + "' or u.s3 like '" + userEingabe + "' or u.s4 like '" + userEingabe + "' or u.s5 like '" + userEingabe + "' and u.fahrtDatum > current_date");
 	
 		List result = q.list();
 		

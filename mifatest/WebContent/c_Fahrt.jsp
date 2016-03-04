@@ -25,7 +25,7 @@
 
 </head>
 <body>
-	<%
+<%
 	/*
 		Hole userId aus Cookie heraus
 	*/
@@ -41,8 +41,6 @@
 				 userIdAusCookie = Integer.parseInt(cookies[i].getValue());
 			 }
 		 }
-		 
-		 out.print("UserID: " + userIdAusCookie + "<br/>");
 	}
 %>
 <%! 
