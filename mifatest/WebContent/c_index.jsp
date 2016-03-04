@@ -20,35 +20,19 @@
 
 <div class="container">
   <div class="jumbotron">
-    <h1>LANDINGPAGE</h1>
+    <h1>Willkommen</h1>
+    <p>auf der Mitfahrzentrale der BA Dresden</p>
   </div>
   <div class="row">
 
-   <div class="panel panel-default col-md-6 col-xs-12">
+   <div class="panel panel-default col-xs-12">
 	  <div class="panel-body">
 	    <p><a href=m_index.jsp>Login</a></p>
 		 <p><a href=m_registrieren.jsp>Register</a></p>
 	  </div>
 	</div>
 	
-	<div class="panel panel-default col-md-6 col-xs-12">
-	  <div class="panel-body">
-	    <p>Werbung</p>
-	  </div>
-	</div>
 	
-  </div>
-  <div class="row">
-    <div class="col-xs-12 col-md-6">
-      <h3>Column 1</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-    </div>
-    <div class="col-xs-12 col-md-6">
-      <h3>Column 2</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-    </div>
   </div>
 </div>
 

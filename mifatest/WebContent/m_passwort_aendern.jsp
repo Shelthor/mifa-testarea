@@ -22,16 +22,6 @@
 	<script src="js/custom.js"></script>
 <style>
          
-
-         #head
-         {
-            background-color: #CDDC39;
-            color: white;
-            text-align: center;
-            font-family: verdana;
-            padding: 5px;
-        }
-
         #tools
         {
             line-height: 30px;
@@ -40,29 +30,19 @@
             width: 100px;
             float: left;
             padding: 5px; 
-            font-family: verdana;
+
             color: white; 
             font-size: 100%;
         }
 
-        #footer
-        {
-            background-color: #CDDC39;
-            color:white;
-            clear: both;
-            text-align: center;
-            padding: 5px;
-            font-family: verdana;
-            font-size: 75%;
-        }
+
+
 
         #section
         {
             width: 330px;
             float: left;
             padding: 10;
-            font-family: verdana;
-           font-size: 100%;
         }
 
         ul
@@ -84,23 +64,6 @@
         	background-color: #CDDC39;
             color:white;
             clear: both;
-            font-family: verdana;
-            font-size: 80%;
-        }
-
-        li
-        {
-        	font-family: verdana;
-        }
-
-        hr
-        {
-        	color: white;
-        }
-
-        table
-        {
-        	font-family: verdana;
         }
 
        
