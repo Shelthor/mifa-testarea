@@ -101,9 +101,22 @@
 		<ul class="nav nav-pills nav-justified">
 		  <li role="presentation"><a href="cm_Suche.jsp">Fahrt suchen</a></li>
 		  <li role="presentation"><a href="c_FahrtAnbieten.jsp">Fahrt anbieten</a></li>
-		  <li role="presentation"><a href="m_meineFahrten.jsp">Historie</a></li>
-		  <li role="presentation"><a href="m_profil_bearbeiten.jsp">Settings</a></li>
+		  <li role="presentation"><a onclick="showSettings();">Einstellungen</a></li>
 		</ul>
+		
+		
+		
+					  
+		
+		 <div id="settings" class="col-xs-12 col-md-12 panel panel-default abstandNachOben" style="display:none;">
+		 	<div class="panel-body">	 	
+			 	<ul class="nav nav-pills nav-justified">
+				  <li role="presentation"><a href="m_profil_bearbeiten_profil.jsp">profil bearbeiten</a></li>
+				  <li role="presentation"><a href="m_fahrzeug_landingpage.jsp">Fahrzeug bearbeiten</a></li>
+				  <li role="presentation"><a href="m_passwort_aendern.jsp">passwort ändern</a></li>
+				</ul>
+			</div>
+		 </div>
 		
 		<div class="col-xs-12 col-md-12 randObenRund">
 			<h1>Von mir gebuchte Fahrten</h1>
@@ -194,16 +207,24 @@
 
 							out.print("<div class='panel panel-default'>");
 							out.print("<div class='panel-heading' style='min-height:40px'>");
-								out.print("<h3 class='panel-title col-xs-6'>");
+								out.print("<h3 class='panel-title col-xs-4'>");
 									out.print("<a href='c_Fahrt.jsp?fahrtid=" + fahrt.getFahrtID() + "'>");
 										out.print("von " + fahrt.getS1() + " ");
 										out.print("nach " + fahrt.getS6() + "<br>");
 									out.print("</a></h3>");
-								out.print("<div class='col-xs-6'>");
+								out.print("<div class='col-xs-4'>");
 									out.print("am " + fahrt.getFahrtDatum().toString() + " um " + fahrt.getFahrtStartZeit() + " Uhr");
 								out.print("</div>");
+								
+								out.print("<h3 class='panel-title col-xs-4'>");
+								out.print("<a href='c_FahrtBearbeiten.jsp?fahrtid=" + fahrt.getFahrtID() + "'>");
+									out.print("Bearbeiten");
+								out.print("</a></h3>");
+								
 								out.print("</div>");
 								out.print("<div class='panel-body'>");
+								
+								//c_FahrtBearbeiten.jsp?fahrtid=
 									
 									
 									if(mitfahrerList.size() >0){
@@ -269,5 +290,13 @@
 <div id="pageFooter" align="center">
 <a href="m_hilfe.html">Hilfe</a>
 </div>
+
+<script>
+	function showSettings(){
+		$('#settings').slideDown();
+	}
+</script>
+
+
 </body>
 </html>
