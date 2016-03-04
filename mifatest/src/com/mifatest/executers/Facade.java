@@ -348,8 +348,14 @@ public class Facade {
 	
 	public List<Fahrt> getListWithAllFahrtenWhichContainStart(String userEingabe){
 		
-		org.hibernate.Query q= session.createQuery("from Fahrt as u where u.s1 like '" + userEingabe + "' or u.s2 like '" + userEingabe + "' or u.s3 like '" + userEingabe + "' or u.s4 like '" + userEingabe + "' or u.s5 like '" + userEingabe + "' and u.fahrtDatum > current_date");
-	
+		org.hibernate.Query q= session.createQuery("from Fahrt as u where u.s1 like '" + userEingabe + "' or u.s2 like '" + userEingabe + "' or u.s3 like '" + userEingabe + "' or u.s4 like '" + userEingabe + "' or u.s5 like '" + userEingabe + "'");
+		//org.hibernate.Query q= session.createQuery("from Fahrt as u where u.fahrtDatum >= current_date and u.fahrtStartZeit >= current_time and u.s1 like '" + userEingabe + "' or u.s2 like '" + userEingabe + "' or u.s3 like '" + userEingabe + "' or u.s4 like '" + userEingabe + "' or u.s5 like '" + userEingabe + "'");
+		
+		//org.hibernate.Query q= session.createQuery("from Fahrt as u where (u.fahrtDatum >= current_date and u.fahrtStartZeit >= current_time) and (u.s1 like '" + userEingabe + "' or u.s2 like '" + userEingabe + "' or u.s3 like '" + userEingabe + "' or u.s4 like '" + userEingabe + "' or u.s5 like '" + userEingabe + "')");
+		//org.hibernate.Query q= session.createQuery("from Fahrt as u where (u.fahrtDatum >= current_date and u.fahrtStartZeit >= current_time) and (u.s1 like '" + userEingabe + "' or u.s2 like '" + userEingabe + "' or u.s3 like '" + userEingabe + "' or u.s4 like '" + userEingabe + "' or u.s5 like '" + userEingabe + "')");
+		
+		//org.hibernate.Query q= session.createQuery("from Fahrt as u where u.fahrtDatum >= current_date and u.fahrtStartZeit >= current_time");
+		
 		List result = q.list();
 		
 		return result;

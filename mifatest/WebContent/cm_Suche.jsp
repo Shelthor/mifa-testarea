@@ -81,7 +81,7 @@
 				          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hallo <%= user.getvName() %>!<span class="caret"></span></a>
 				          <ul class="dropdown-menu">
 				            <li><a href="c_UserOeffentlich.jsp?userid=<%=user.getUserID()%>">Mein öffentliches Profil</a></li>
-				            <li><a href="#">Terminal</a></li>
+				            <li><a href="c_User.jsp">Terminal</a></li>
 				          </ul>
 				        </li>
 			      	</ul>
@@ -100,18 +100,11 @@
 			<div class="col-sm-12 verlauf-graublau randObenRund randUntenRund">
 				<form>
 					<div class="abstandNachOben">
-						<div class="col-md-4">
-							<p>Wann</p>
-								<input type="text" id="datepicker" style="width:100%" autocomplete="off" required>								 
-										    <input type="hidden" id="hiddenJahr" name="hJahr" />
-									    	<input type="hidden" id="hiddenMonat" name="hMonat" />
-									        <input type="hidden" id="hiddenTag" name="hTag" />
-						</div>
-						<div class="col-md-4">
+						<div class="col-md-6">
 							<p>Von</p>
 							<input type="text" name="formStart" style="width:100%" id="inS1" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" required autocomplete="off"/><ul class="list-group a"></ul><br/>
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-6">
 							<p>Nach</p>
 							<input type="text" name="formZiel" style="width:100%" id="inS1" onkeyup="sendInfo(this, 'aj_vergleicheEingabeMitOrtTabelle.jsp', '')" required autocomplete="off"/><ul class="list-group a"></ul><br/>
 						</div>

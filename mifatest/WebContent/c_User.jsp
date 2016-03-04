@@ -99,14 +99,14 @@
     <div class="col-xs-12 col-md-12">
 		
 		<ul class="nav nav-pills nav-justified">
-		  <li role="presentation"><a href="m_fahrtsuchen.jsp">Fahrt suchen</a></li>
+		  <li role="presentation"><a href="cm_Suche.jsp">Fahrt suchen</a></li>
 		  <li role="presentation"><a href="c_FahrtAnbieten.jsp">Fahrt anbieten</a></li>
 		  <li role="presentation"><a href="m_meineFahrten.jsp">Historie</a></li>
 		  <li role="presentation"><a href="m_profil_bearbeiten.jsp">Settings</a></li>
 		</ul>
 		
 		<div class="col-xs-12 col-md-12 randObenRund">
-			<h1>Meine gebuchten Fahrten</h1>
+			<h1>Von mir gebuchte Fahrten</h1>
 			<%
 			
 			
@@ -158,6 +158,8 @@
 							
 						out.print("</div>");
 					}
+				}else{
+					out.print("Du hast bisher keine Fahrten gebucht.");
 				}
 			
 			%>
@@ -194,28 +196,41 @@
 							out.print("<div class='panel-heading' style='min-height:40px'>");
 								out.print("<h3 class='panel-title col-xs-6'>");
 									out.print("<a href='c_Fahrt.jsp?fahrtid=" + fahrt.getFahrtID() + "'>");
-									out.print("von " + fahrt.getS1() + " ");
-									out.print("nach " + fahrt.getS6() + "<br>");
+										out.print("von " + fahrt.getS1() + " ");
+										out.print("nach " + fahrt.getS6() + "<br>");
 									out.print("</a></h3>");
 								out.print("<div class='col-xs-6'>");
 									out.print("am " + fahrt.getFahrtDatum().toString() + " um " + fahrt.getFahrtStartZeit() + " Uhr");
 								out.print("</div>");
 								out.print("</div>");
-								out.print("<div class='panel-body'>");	
-							
-									for(int j = 0; j < mitfahrerList.size();j++){
-										mitfahrer = mitfahrerList.get(j);
-										mifaName = mitfahrer.getvName() + " " + mitfahrer.getnName();
+								out.print("<div class='panel-body'>");
+									
+									
+									if(mitfahrerList.size() >0){
+										out.print("<div class='col-xs-12'>");
+										out.print("<b>Mitfahrer</b>");
+										out.print("</div>");
 										
-										dusche = f.getPassagierFahrtByFahrtAndMitfahrerId(fahrt.getFahrtID(), mitfahrer.getUserID());
-										out.print("<div class='col-md-6'>");
-											out.print("<a href='c_UserOeffentlich.jsp?userid=" + mitfahrer.getUserID() + "'>" + mifaName + "</a>");
-										out.print("</div>");
-										out.print("<div class='col-md-6'>");
-											out.print("von <b>" + dusche.getUserStart() +  "</b> ");
-											out.print("nach <b>" + dusche.getUserZiel() +  "</b>");
-										out.print("</div>");
+										for(int j = 0; j < mitfahrerList.size();j++)
+										{
+											mitfahrer = mitfahrerList.get(j);
+											mifaName = mitfahrer.getvName() + " " + mitfahrer.getnName();
+											
+											dusche = f.getPassagierFahrtByFahrtAndMitfahrerId(fahrt.getFahrtID(), mitfahrer.getUserID());
+											out.print("<div class='col-xs-6'>");
+												out.print("<a href='c_UserOeffentlich.jsp?userid=" + mitfahrer.getUserID() + "'>" + mifaName + "</a>");
+											out.print("</div>");
+											out.print("<div class='col-xs-6'>");
+												out.print("von <b>" + dusche.getUserStart() +  "</b> ");
+												out.print("nach <b>" + dusche.getUserZiel() +  "</b>");
+											out.print("</div>");
+										}
+									}else{										
+										out.print("<div class='col-xs-12'>");
+										out.print("Für diese Fahrt gibt es noch keine Mitfahrer.");
+										out.print("</div>");		
 									}
+	
 								out.print("</div>");
 								out.print("</div>");
 							}
