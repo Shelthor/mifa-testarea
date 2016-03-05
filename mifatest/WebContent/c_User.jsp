@@ -53,7 +53,6 @@
 %>
 
 <%
-	//userId = 7;//VERFERINERN -> siehe unten
 	userId = userIdAusCookie;
 	
 	f = new Facade();
@@ -194,6 +193,9 @@
 				int userId = userIdAusCookie;
 				Fahrt fahrt;
 				
+				List<Bewertung> be = new ArrayList();
+				List<String> schonBewertet=  new ArrayList();
+				
 				User mitfahrer;
 				
 				PassagierFahrt dusche;
@@ -249,12 +251,34 @@
 												out.print("nach <b>" + dusche.getUserZiel() +  "</b>");
 											out.print("</div>");
 											out.print("<div class='col-xs-4'>");
-												out.print("<a href='c_Bewerten.jsp?fahrtid="+ fahrt.getFahrtID() + "&empfid="+ mitfahrer.getUserID() + "'>Mitfahrer Bewerten</a><br/>");
+											
+
+											be = f.getListWithAllBewertungenFromUserByUserId(userId);
+											schonBewertet = new ArrayList();
+												for(int h = 0; h < be.size(); h++){
+													if(be.get(h).getBewertungEmpfaengerID().getUserID() == mitfahrer.getUserID() && be.get(h).getFahrtID().getFahrtID() == fahrt.getFahrtID()){
+														schonBewertet.add("true");
+														
+													}else{
+														schonBewertet.add("false");
+													}
+												} be.contains(true);
+												
+												if(schonBewertet.contains("true")){
+													out.print("Bereits bewertet");										
+												} else{
+													out.print("<a href='c_Bewerten.jsp?fahrtid="+ fahrt.getFahrtID() + "&empfid="+ mitfahrer.getUserID() + "'>Mitfahrer Bewerten</a><br/>");
+													
+												}
 												
 											out.print("</div>");
+										}
+												
+												
+											
 											
 											//out.print("<a href='c_Bewerten.jsp?fahrtid="+ fahrtElem.getFahrtID() + "&empfid="+ fahrtElem.getFahrerID().getUserID() + "'>Fahrer Bewerten</a><br/>");
-										}
+										
 									}else{										
 										out.print("<div class='col-xs-12'>");
 										out.print("Für diese Fahrt gibt es noch keine Mitfahrer.");

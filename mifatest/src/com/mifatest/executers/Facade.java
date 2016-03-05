@@ -59,7 +59,7 @@ public class Facade {
 	Funktion funktion;
 
 // - - - Hibernate - - - //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/* Konstruktor öffnet Session und beginnt Transaktion*/
+	/* Konstruktor ï¿½ffnet Session und beginnt Transaktion*/
 	Session session;
 	Transaction t;
 	
@@ -93,7 +93,7 @@ public class Facade {
  		bewertung.setBewertungDatum(datum);
  		bewertung.setFahrtID(fahrtid);
  		
- 		session.merge(bewertung);
+ 		session.persist(bewertung);
  		t.commit();
  	}
 	
@@ -143,7 +143,7 @@ public class Facade {
 	/* Clemens 26.1.2016 */
 	
 	public List<User> getUsersWhoAreRatedByUserId(int fahrtID, int userID){
-		//gib Liste mit Bewerteten Usern zurück, zugehörig zur Fahrt *fahrtID und zum Sender *userID
+		//gib Liste mit Bewerteten Usern zurï¿½ck, zugehï¿½rig zur Fahrt *fahrtID und zum Sender *userID
 		org.hibernate.Query q= session.createQuery("select bewertungEmpfaengerID from Bewertung as u where u.bewertungSenderID =" + " " + userID + " and u.fahrtID = " + fahrtID);
 		
 		List result = q.list();
@@ -259,8 +259,8 @@ public class Facade {
 	    user.setIsActivated(act);
 	    user.setUserBildURL(bild);
 	    
-	    //session.merge(user); 	//diese Zeile hat bei mir Probleme gemacht, scheint als würde er
-	    						//den user automatisch mit "mergen", weil user=fremdschlüssel in passwort
+	    //session.merge(user); 	//diese Zeile hat bei mir Probleme gemacht, scheint als wï¿½rde er
+	    						//den user automatisch mit "mergen", weil user=fremdschlï¿½ssel in passwort
 	    
 	    Passwort pass = new Passwort();
 	    pass.setPasswortValue(pw);
@@ -279,7 +279,7 @@ public class Facade {
 	}
  	public User getUserByEmail(String eMail)
  	{
- 	//from mifatest.user where eMail = 'hallo@tschüss.de';
+ 	//from mifatest.user where eMail = 'hallo@tschï¿½ss.de';
  	org.hibernate.Query q= session.createQuery("from User as u where u.eMail =" + " '" + eMail + "'");
 	
 	List<User> result = q.list();   //nur noch anpassen
@@ -366,7 +366,7 @@ public class Facade {
 		t.commit();
 	}
 	
-//Passwörter//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Passwï¿½rter//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  
 	public void newPasswort(User userid, String value){
 

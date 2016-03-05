@@ -242,12 +242,13 @@ out.print(send.getnName());
 			    out.print("<script>sendSQL();</script>");
 			    out.print("<script>suc();</script>");
 			    
-			    kontrolle = 1;
+			   // kontrolle = 1;
 			    
 			}
 			catch (Exception ex)
 			{
 				out.print("<script>fail();</script>");
+				out.print(ex);
 			}
 		}
 %>
