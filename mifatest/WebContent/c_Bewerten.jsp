@@ -124,17 +124,13 @@ out.print(send.getnName());
     <p>Fahrer: <%= fahrtid.getFahrerID().getvName() %> <%= fahrtid.getFahrerID().getnName() %></p> 
   </div>
   <div class="row">
-
     <div id="whole" class="col-md-12">
-		<div id="sqlForm" class="grau">
+		<div id="sqlForm">
 		
-			<div class="panel panel-default">
-			  <div class="panel-heading">
-			    <h3 class="panel-title">Bitte bewerte <%= empf.getvName() %></h3>
-			  </div>
+			<div class="panel panel-default col-md-4">
 			  <div class="panel-body">
-				<div class="col-md-12">
-					<h3>Pünktlichkeit (nicht erschienen = 1 Stern)</h3>
+
+					Pünktlichkeit: (nicht erschienen = 1 Stern)
 					<table class="text-center" id="sterne1">
 			    		<tr>
 							<td class="star" id="1" onclick="setzen('1', '1'); return false;" onmouseover="leuchten('1', '1'); return false;"></td>
@@ -144,9 +140,12 @@ out.print(send.getnName());
 			                <td class="star" id="5" onclick="setzen('5', '1'); return false;" onmouseover="leuchten('5', '1'); return false;"></td>
 			            </tr>
 			    	</table>
-		    	</div>
-		    	<div id="fahrstil" class="col-md-12">
-		    		<h3>Fahrstil</h3>
+			   </div>
+			 </div>	
+			 <div class="panel panel-default col-md-4">
+			  <div class="panel-body">
+	
+		    		Fahrstil: 
 			    	<table class="text-center" id="sterne2">
 			    		<tr>
 							<td class="star" id="1" onclick="setzen('1', '2'); return false;" onmouseover="leuchten('1', '2'); return false;"></td>
@@ -156,9 +155,15 @@ out.print(send.getnName());
 			                <td class="star" id="5" onclick="setzen('5', '2'); return false;" onmouseover="leuchten('5', '2'); return false;"></td>
 			            </tr>
 			    	</table>
+
 		    	</div>
-		    	<div  class="col-md-12">
-		  		  	<h3>Freundlichkeit</h3>
+			   </div>
+			   
+			   <div class="panel panel-default col-md-4">
+			  <div class="panel-body">
+			   
+
+		  		  	Freundlichkeit: 
 			    	<table class="text-center" id="sterne3">
 			    		<tr>
 							<td class="star" id="1" onclick="setzen('1', '3'); return false;" onmouseover="leuchten('1', '3'); return false;"></td>
@@ -168,11 +173,12 @@ out.print(send.getnName());
 			                <td class="star" id="5" onclick="setzen('5', '3'); return false;" onmouseover="leuchten('5', '3'); return false;"></td>
 			            </tr>
 			    	</table>
+
 		    	</div>
+		    	</div>
+		    	
 				<div  class="col-md-12">
 					<form class="row" action="c_Bewerten.jsp" method="post">
-						<br/>
-						<br/>
 						<div class="col-sm-12">
 							Kommentar?: 
 							<br/>

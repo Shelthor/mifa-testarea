@@ -218,7 +218,17 @@
 				    		</div>
 				    	</div>
 				    	
-				    	<a href="m_upload_user.jsp">Bild hochladen</a>
+				    	<div class="col-xs-12 abstandNachOben">
+				    		<div class="col-xs-6 abstandNachOben">
+								<a href="m_upload_user.jsp">Bild hochladen</a>
+							</div>
+						
+							<div class="col-xs-6 abstandNachOben">
+					    	</div>
+				    	
+				    	</div>
+				    	
+				    	
        		
 			     </form>  
 			    </div>

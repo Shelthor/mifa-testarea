@@ -127,6 +127,9 @@
 				PassagierFahrt pFahrt;
 				Fahrt fahrtElem = new Fahrt();
 				User passagiereOfFahrt;
+				
+				List<Bewertung> be1 = new ArrayList();
+				List<String> schonBewertet1 = new ArrayList();
 			
 				
 				String fahrerName;
@@ -165,8 +168,36 @@
 								out.print("</div>");
 								out.print("<div class='col-xs-12 col-md-2'>");
 								
-									out.print("<a href='c_Bewerten.jsp?fahrtid="+ fahrtElem.getFahrtID() + "&empfid="+ fahrtElem.getFahrerID().getUserID() + "'>Fahrer Bewerten</a><br/>");
+								
+								
+								be1 = fFahrten.getListWithAllBewertungenToUserByUserId(fahrerID);
+								schonBewertet1 = new ArrayList();
+									for(int h = 0; h < be1.size(); h++){
+										if(be1.get(h).getBewertungSenderID().getUserID() == userId && be1.get(h).getFahrtID().getFahrtID() == fahrtElem.getFahrtID()){
+											schonBewertet1.add("true");
+											
+										}else{
+											schonBewertet1.add("false");
+										}
+										
+									} 
+									
+									if(schonBewertet1.contains("true")){
+										out.print("Bereits bewertet | ");										
+									} else{
+										out.print("<a href='c_Bewerten.jsp?fahrtid="+ fahrtElem.getFahrtID() + "&empfid="+ fahrtElem.getFahrerID().getUserID() + "'>Fahrer Bewerten</a> | ");
+										
+									}
+								
+								
+								
+									//out.print("<a href='c_Bewerten.jsp?fahrtid="+ fahrtElem.getFahrtID() + "&empfid="+ fahrtElem.getFahrerID().getUserID() + "'>Fahrer Bewerten</a><br/>");
 									out.print("<a href='c_Fahrt.jsp?fahrtid="+ fahrtElem.getFahrtID() + "'>zur Fahrt</a>");
+									
+									
+									
+									
+									
 								out.print("</div>");
 							
 							out.print("</div>");
@@ -262,7 +293,7 @@
 													}else{
 														schonBewertet.add("false");
 													}
-												} be.contains(true);
+												} 
 												
 												if(schonBewertet.contains("true")){
 													out.print("Bereits bewertet");										
@@ -319,10 +350,6 @@
 	}
 
 %>
-
-<div id="pageFooter" align="center">
-<a href="m_hilfe.html">Hilfe</a>
-</div>
 
 <script>
 	function showSettings(){

@@ -7,14 +7,27 @@ DROP TABLE IF EXISTS `user_fahrzeug`;
 DROP TABLE IF EXISTS `passagier_fahrt`;
 DROP TABLE IF EXISTS `fahrt`;
 
-DROP TABLE IF EXISTS `funktion_parameter`;
-DROP TABLE IF EXISTS `funktion`;
+
 DROP TABLE IF EXISTS `parameter`;
+DROP TABLE IF EXISTS `funktion`;
+
+DROP TABLE IF EXISTS `funktion_parameter`;
 
 DROP TABLE IF EXISTS `fahrzeug`;
-DROP TABLE IF EXISTS `ort`;
+
 DROP TABLE IF EXISTS `passwort`;
 DROP TABLE IF EXISTS `user`;
+
+DROP TABLE IF EXISTS `ort`;
+
+CREATE TABLE `ort` (
+  `ortID` int NOT NULL AUTO_INCREMENT,
+  `PLZ` varchar(10) NOT NULL,
+  `ortBezeichnung` varchar(120) NOT NULL,
+  PRIMARY KEY (`ortID`),
+  
+  CONSTRAINT `uc_avoidDoubleorte` UNIQUE (PLZ,ortBezeichnung)
+  );
 
 CREATE TABLE `user` (
   `userID` int NOT NULL AUTO_INCREMENT,
@@ -27,15 +40,6 @@ CREATE TABLE `user` (
   `nName` varchar(20) NOT NULL,
   `geburtsDatum` DATE,
   PRIMARY KEY (`userID`)
-  );
-  
-CREATE TABLE `ort` (
-  `ortID` int NOT NULL AUTO_INCREMENT,
-  `PLZ` varchar(10) NOT NULL,
-  `ortBezeichnung` varchar(120) NOT NULL,
-  PRIMARY KEY (`ortID`),
-  
-  CONSTRAINT `uc_avoidDoubleorte` UNIQUE (PLZ,ortBezeichnung)
   );
   
 CREATE TABLE `fahrzeug` (
@@ -160,9 +164,10 @@ CREATE TABLE `bewertung` (
   CONSTRAINT `bewertung_sender_fk` FOREIGN KEY (`bewertungSenderID`) REFERENCES `user` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE,
   
   KEY `bewertung_empfaenger_fk` (`bewertungEmpfaengerID`),
-  CONSTRAINT `bewertung_empfaenger_fk` FOREIGN KEY (`bewertungEmpfaengerID`) REFERENCES `user` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `bewertung_empfaenger_fk` FOREIGN KEY (`bewertungEmpfaengerID`) REFERENCES `user` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE
   
-  CONSTRAINT `uc_avoidDoublesB` UNIQUE (fahrtID,bewertungSenderID,bewertungEmpfaengerID)
+  
+  ,CONSTRAINT `uc_avoidDoublesB` UNIQUE (fahrtID,bewertungSenderID,bewertungEmpfaengerID) 
   );
   
 CREATE TABLE `nachricht` (
@@ -181,12 +186,12 @@ CREATE TABLE `nachricht` (
   CONSTRAINT `nachricht_empfaenger_fk` FOREIGN KEY (`nachrichtEmpfaengerID`) REFERENCES `user` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE
   );
   
-INSERT INTO `mifatest`.`user` (`userBildURL`, `isAdmin`, `isActivated`, `telNummer`, `eMail`, `vName`, `nName`, `geburtsDatum`) VALUES ('img/1.png', 'false', 'false', '0123 456 789', 'fake1@mail.de', 'Foxxy', 'Love', '1990-10-16');
-INSERT INTO `mifatest`.`user` (`userBildURL`, `isAdmin`, `isActivated`, `telNummer`, `eMail`, `vName`, `nName`, `geburtsDatum`) VALUES ('img/1.png', 'false', 'false', '0123 456 789', 'fake2@mail.de', 'Peter', 'Griffin', '1989-10-16');
-INSERT INTO `mifatest`.`user` (`userBildURL`, `isAdmin`, `isActivated`, `telNummer`, `eMail`, `vName`, `nName`, `geburtsDatum`) VALUES ('img/1.png', 'false', 'false', '0123 456 789', 'fake3@mail.de', 'Homer', 'Simpson', '1987-10-16');
-INSERT INTO `mifatest`.`user` (`userBildURL`, `isAdmin`, `isActivated`, `telNummer`, `eMail`, `vName`, `nName`, `geburtsDatum`) VALUES ('img/1.png', 'false', 'false', '0123 456 789', 'fake4@mail.de', 'Nelson', 'Mandela', '1992-10-16');
-INSERT INTO `mifatest`.`user` (`userBildURL`, `isAdmin`, `isActivated`, `telNummer`, `eMail`, `vName`, `nName`, `geburtsDatum`) VALUES ('img/1.png', 'false', 'false', '0123 456 789', 'fake5@mail.de', 'John', 'Rambo', '1946-7-6');
-INSERT INTO `mifatest`.`user` (`userBildURL`, `isAdmin`, `isActivated`, `telNummer`, `eMail`, `vName`, `nName`, `geburtsDatum`) VALUES ('img/1.png', 'false', 'false', '0123 456 789', 'fake6@mail.de', 'Will', 'Ferrell', '1967-7-16');
+INSERT INTO `mifatest`.`user` (`userBildURL`, `isAdmin`, `isActivated`, `telNummer`, `eMail`, `vName`, `nName`, `geburtsDatum`) VALUES ('img/1.png', 'false', 'true', '0123 456 789', 'fake1@mail.de', 'Foxxy', 'Love', '1990-10-16');
+INSERT INTO `mifatest`.`user` (`userBildURL`, `isAdmin`, `isActivated`, `telNummer`, `eMail`, `vName`, `nName`, `geburtsDatum`) VALUES ('img/1.png', 'false', 'true', '0123 456 789', 'fake2@mail.de', 'Peter', 'Griffin', '1989-10-16');
+INSERT INTO `mifatest`.`user` (`userBildURL`, `isAdmin`, `isActivated`, `telNummer`, `eMail`, `vName`, `nName`, `geburtsDatum`) VALUES ('img/1.png', 'false', 'true', '0123 456 789', 'fake3@mail.de', 'Homer', 'Simpson', '1987-10-16');
+INSERT INTO `mifatest`.`user` (`userBildURL`, `isAdmin`, `isActivated`, `telNummer`, `eMail`, `vName`, `nName`, `geburtsDatum`) VALUES ('img/1.png', 'false', 'true', '0123 456 789', 'fake4@mail.de', 'Nelson', 'Mandela', '1992-10-16');
+INSERT INTO `mifatest`.`user` (`userBildURL`, `isAdmin`, `isActivated`, `telNummer`, `eMail`, `vName`, `nName`, `geburtsDatum`) VALUES ('img/1.png', 'false', 'true', '0123 456 789', 'fake5@mail.de', 'John', 'Rambo', '1946-7-6');
+INSERT INTO `mifatest`.`user` (`userBildURL`, `isAdmin`, `isActivated`, `telNummer`, `eMail`, `vName`, `nName`, `geburtsDatum`) VALUES ('img/1.png', 'false', 'true', '0123 456 789', 'fake6@mail.de', 'Will', 'Ferrell', '1967-7-16');
 INSERT INTO `mifatest`.`user` (`userBildURL`, `isAdmin`, `isActivated`, `telNummer`, `eMail`, `vName`, `nName`, `geburtsDatum`) VALUES ('img/1.png', 'false', 'false', '0123 456 789', 'fake7@mail.de', 'Captain', 'Hero', '2014-10-16');
 
 INSERT INTO `mifatest`.`fahrt` (`fahrerID`, `fahrtDatum`, `fahrtStartZeit`, `gepaeck`, `kommentar`, `kapazitaet`, `s1`, `s2`, `s6`, `p1`, `p2`, `p3`, `p4`, `p5`, `p6`) VALUES ('1', '2016-01-14', '09:00:00', 'ausreichend Platz', 'Hallo :) freue mich auf nette Mitfahrer', '3', 'Dresden', 'Grimma', 'Leipzig', '2', '2', '2', '2', '2', '2');
