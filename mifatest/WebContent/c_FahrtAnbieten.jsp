@@ -119,7 +119,6 @@
 			<ul class="nav nav-pills nav-justified">
 			  <li role="presentation"><a href="cm_Suche.jsp">Fahrt suchen</a></li>
 			  <li role="presentation" class="active"><a href="c_FahrtAnbieten.jsp">Fahrt anbieten</a></li>
-			  <li role="presentation"><a onclick="showSettings();">Einstellungen</a></li>
 			</ul>
 			
 

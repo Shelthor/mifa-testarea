@@ -18,22 +18,60 @@
 </head>
 <body>
 
-<div class="container">
-  <div class="jumbotron">
-    <h1>Willkommen</h1>
-    <p>auf der Mitfahrzentrale der BA Dresden</p>
-  </div>
-  <div class="row">
+<%
+	/*
+		Hole userId aus Cookie heraus
+	*/
 
-   <div class="panel panel-default col-xs-12">
-	  <div class="panel-body">
-	    <p><a href=m_index.jsp>Login</a></p>
-		 <p><a href=m_registrieren.jsp>Register</a></p>
-	  </div>
+	Cookie[] cookies = request.getCookies();
+
+	int userIdAusCookie = 0;
+	
+	if( cookies != null)
+	{
+		 for (int i = 0; i < cookies.length; i++){
+			 if(cookies[i].getName().equals("c_userId")){
+				 userIdAusCookie = Integer.parseInt(cookies[i].getValue());
+			 }
+		 }
+		 
+	}
+%>
+
+<%
+	if(userIdAusCookie!=0)
+	{
+		//falls schon ein user eingeloggt ist -> redirect ins terminal
+		//SeitenPfad
+		String domain = "http" + "://" +   
+	   		request.getServerName() +       // "myhost"
+	  		":" + request.getServerPort() + // ":" + "8080"
+	    	"/mifatest";
+		
+		
+		//String url = ((HttpServletRequest)request).getRequestURL().toString();
+		String loginPage= domain + "/c_User.jsp";
+		
+		response.setStatus(response.SC_MOVED_TEMPORARILY);
+		response.setHeader("Location", loginPage);
+	}
+
+%>
+
+<div class="container">
+	<div class="jumbotron">
+		<h1>Willkommen</h1>
+		<p>auf der Mitfahrzentrale der BA Dresden</p>
 	</div>
+	<div class="row">
 	
-	
-  </div>
+		<div class="panel panel-default col-xs-12">
+		<div class="panel-body">
+			<p><a href=m_index.jsp>Login</a></p>
+			<p><a href=m_registrieren.jsp>Register</a></p>
+		</div>
+	</div>
+	</div>
 </div>
 
 </body>

@@ -298,12 +298,7 @@ if(userIdAusCookie==0)
 				</div>
 				
 				<div class="col-sm-6" id="newTyp">
-					<form action="m_uploadResult.jsp" method="post" enctype="multipart/form-data">-->
-						<div class="col-sm-4">
-							<input type="file" id="picture" name="picture"/>
-							<input type="submit" name="picture_upload" value="hochladen"/>
-						</div>
-					</form>-->
+				<a href="m_upload_car.jsp">Bild hochladen</a>				
 			    </div>
 			</div>	
 		</form>		

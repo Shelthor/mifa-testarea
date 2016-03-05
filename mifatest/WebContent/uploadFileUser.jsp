@@ -35,8 +35,10 @@
    int maxMemSize = 5000 * 1024;
    ServletContext context = pageContext.getServletContext();
    //String filePath = context.getInitParameter("file-upload");
-   String filePath = "c:/Users/Clemens Kruse/workspace/_newWorkspace/mifa-testarea/mifatest/WebContent/img/usr/";
-
+   //String filePath = "c:/Users/Clemens Kruse/workspace/_newWorkspace/mifa-testarea/mifatest/WebContent/img/usr/";
+   
+   String filePath = "/opt/tomcat/webapps/mifa/img/usr/";
+   
    // Verify the content type
    String contentType = request.getContentType();
    if ((contentType.indexOf("multipart/form-data") >= 0)) {
@@ -83,8 +85,6 @@
             fileName.substring(fileName.lastIndexOf("\\")+1)) ;
             }
             fi.write( file ) ;
-            out.println("Uploaded Filename: " + filePath + 
-            fileName + "<br>");
             }
          }
          out.println("</body>");
@@ -97,6 +97,8 @@
          
          u.setUserBildURL("img/usr/" + fileName);
          f.updateUser(u);
+         
+	     out.print("Bild erfolgreich geändert <a href='c_User.jsp'>Zum Terminal</a>");
          
       }catch(Exception ex) {
          System.out.println(ex);

@@ -173,10 +173,11 @@
 			<div class="jumbotron">
 				<h1>Bearbeite dein Profil</h1>
 			</div>
-					
-			<div id="form">
+			<div class="col-md-2">
+			</div>				
+			<div id="form" class="col-cs-12 col-md-8">
 			    <div id="formnames">
-			    	<form class="col-md-12"  style="max-width:600px; margin:auto" action="m_profil_bearbeiten.jsp" method="post">
+			    	<form class="col-md-12" action="m_profil_bearbeiten.jsp" method="post">
 			    	
 			    		<div class="panel panel-default">
 			    			<div class="panel-body">
@@ -187,14 +188,6 @@
 					  
 					    		<div class="col-xs-6">
 					    			<input type="text" id="name" name="nameField"/>
-					    		</div>
-					    	</div>
-					    	<div class="col-xs-12">
-					    		<div class="col-xs-6">
-					    			<p>(NOT SURE)Profilbild ändern:</p>
-					    		</div>
-					    		<div class="col-xs-6">
-					    			<input type="file" id="profilbildupload" name="picture"/>
 					    		</div>
 					    	</div>
 					    	<div class="col-xs-12">
@@ -224,12 +217,14 @@
 				    			<input type="submit" id="cancel" name="cancel" value="Änderungen verwerfen"/>
 				    		</div>
 				    	</div>
-			    	
-			        		
-			        		
+				    	
+				    	<a href="m_upload_user.jsp">Bild hochladen</a>
+       		
 			     </form>  
 			    </div>
   			</div>
+  			<div class="col-md-2">
+			</div>
 		</div>
 			
 		</div>

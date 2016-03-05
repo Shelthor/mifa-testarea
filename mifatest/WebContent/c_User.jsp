@@ -102,6 +102,7 @@
 		  <li role="presentation"><a href="cm_Suche.jsp">Fahrt suchen</a></li>
 		  <li role="presentation"><a href="c_FahrtAnbieten.jsp">Fahrt anbieten</a></li>
 		  <li role="presentation"><a onclick="showSettings();">Einstellungen</a></li>
+		  <li role="presentation"><a href="c_deleteCookie.jsp">ausloggen</a></li>
 		</ul>
 		
 		
