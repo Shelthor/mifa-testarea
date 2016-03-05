@@ -103,22 +103,27 @@
 			
 			//
 			
-			List<Bewertung> bList = f.getListWithAllBewertungenToUserByUserId(id);
 			
-			List<Integer> fahrstilRating = new ArrayList<Integer>();
-			List<Integer> puenktlichkeitRating = new ArrayList<Integer>();
-			List<Integer> freundlichkeitRating = new ArrayList<Integer>();
 			
-			for(int i = 0; i < bList.size(); i++){
-				fahrstilRating.add(bList.get(i).getFahrstilRating());
-				puenktlichkeitRating.add(bList.get(i).getPuenktlichkeitRating());
-				freundlichkeitRating.add(bList.get(i).getFreundlichkeitRating());
-			}			
 		}
 		catch (Exception e){
 			out.print(e);
 		}
-	}	
+	}
+
+	Fahrzeug fahrz = new Fahrzeug();
+
+	try{
+		fahrz = f.getFahrzeugByUserId(fa.getFahrerID().getUserID());
+	}catch(Exception x){
+		
+		fahrz.setFahrzeugFarbe("");
+		fahrz.setFahrzeugTyp("");
+		fahrz.setFahrzeugBezeichnung("");
+		fahrz.setNummernschild("kein Fahrzeug vorhanden");
+		
+		out.print(x);
+	}
 %>     
 	        
 	        
@@ -265,6 +270,27 @@
 					  <div class="panel-body">
 						<p>Startzeit: <b><%= startZeit %></b></p>
 						<p>Datum: <b><%= fahrtDatum %></b></p>
+					  </div>
+					</div>
+				
+					
+				</div>
+				<div class="col-xs-12">
+				
+					<div class="panel panel-default">
+					  <div class="panel-body">
+					 
+					 <div class="col-xs-6">
+					  	<p><b>Fahrzeug</b></p>
+					    <p><%= fahrz.getFahrzeugBezeichnung() %></p>
+					    <p><%= fahrz.getFahrzeugTyp() %></p>
+					    <p>Nummernschild: <%= fahrz.getNummernschild()%></p>
+					 </div>
+					 <div class="col-xs-6">					 
+						<img class="userPic" src="<%= fahrz.getFahrzeugBildURL()%>" alt="kein Bild vorhanden"/>
+					 </div>  
+					    
+		
 					  </div>
 					</div>
 				
