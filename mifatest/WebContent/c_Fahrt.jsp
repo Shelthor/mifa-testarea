@@ -69,7 +69,7 @@
 		try{
 			id = Integer.parseInt(request.getParameter("fahrtid"));
 			userId = userIdAusCookie;
-	
+	//
 			
 			f = new Facade();	
 			
@@ -246,7 +246,7 @@
 			    <p>von <%= s1 %> nach <%= s6 %></p>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row" id="google">
 	   		 <div id="map"></div>
 	   		 <div id="directions-panel" class="blau randUntenRund"></div>
 		</div>
@@ -309,7 +309,7 @@
 			</div>
 
 			<div class="col-sm-12" id="buchenFeld">
-				<button id="buchenKnopf" style="width:100%" onclick="zeigen('buchenForm')">BUCHEN</button><br/><br/>
+				<button id="buchenKnopf" style="width:100%" onclick="zeigen('buchenForm')">BUCHEN</button>
 				
 				<div class="panel panel-default" style="display:none" id="buchenForm">
 				  <div class="panel-heading">
@@ -353,6 +353,8 @@
 			Buchen finish = new Buchen();
 			finish.passangerBooksHimselfIn(id, uStart, uZiel);
 			
+			out.print("<script>document.getElementById('directions-panel').style.display = 'none'</script>");
+
 			out.print("<script>document.getElementById('anzeige').style.display = 'none'</script>");
 			out.print("<script>document.getElementById('buchenKnopf').style.display = 'none'</script>");
 			out.print("<div class='alert alert-success text-center' role='alert'><h1>Fahrt erfolgreich gebucht!</h1></div>");

@@ -14,6 +14,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Persönliche Änderungen</title>
 
 	<link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
@@ -200,7 +201,7 @@
 					    	</div>
 					    	<div class="col-xs-12">
 					    		<div class="col-xs-6">
-					    			<p>E-Mail Adresse ändern:</p>
+					    			<p>Mail Adresse ändern:</p>
 					    		</div>
 					    		<div class="col-xs-6">
 					    			<input type="text" name="emailAdr"/>

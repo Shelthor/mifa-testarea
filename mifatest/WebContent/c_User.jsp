@@ -54,7 +54,7 @@
 
 <%
 	userId = userIdAusCookie;
-	
+	//
 	f = new Facade();
 	user = f.getUserById(userId);
 %>

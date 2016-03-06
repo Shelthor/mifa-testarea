@@ -6,6 +6,7 @@
 <%@ page import="java.sql.Time" %>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Wohin als nächstes?</title>
 	
 	<link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
@@ -51,7 +52,7 @@ if( cookies != null)
  User user = fahrzeugOwnerDB.getUserById(userIdAusCookie);
  
  Fahrzeug fahrzeug;
-	
+	//
  Fahrzeug fahrz = fahrzeugOwnerDB.getFahrzeugByUserId(userIdAusCookie);
  %>
  

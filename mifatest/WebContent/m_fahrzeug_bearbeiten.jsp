@@ -12,6 +12,7 @@
 <script type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fahrzeug bearbeiten</title>
 
 	<link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
@@ -288,7 +289,7 @@ if(userIdAusCookie==0)
 						</div>
 						
 						<div class="col-sm-6" id="newTyp">
-						<a href="m_upload_car.jsp">Bild hochladen</a>				
+						<a href="m_upload_car.jsp">Lade ein Bild hoch</a>				
 					    </div>
 					</div>
 					<div class="col-sm-12 abstandNachOben">
