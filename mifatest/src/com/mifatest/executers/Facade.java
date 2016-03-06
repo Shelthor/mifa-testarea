@@ -537,6 +537,16 @@ public class Facade {
 		return result.get(0);
  	}
  	
+ 	public void deletePassagierFahrt(int pfId){
+ 		
+ 		PassagierFahrt passagierFahrt = new PassagierFahrt();
+ 		passagierFahrt.setPassagier_fahrtID(pfId);
+ 		
+ 		session.delete(passagierFahrt);
+ 		
+ 		t.commit();
+ 	}
+ 	
 //User-Fahrzeug-Relations//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
  	public void newUserFahrzeug(int fahrzid, int userid){

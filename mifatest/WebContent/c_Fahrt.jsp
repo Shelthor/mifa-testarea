@@ -351,7 +351,7 @@
 			f2.newPassagierFahrt(userId, id, uStart, uZiel);
 			
 			Buchen finish = new Buchen();
-			finish.reserve(id, uStart, uZiel);
+			finish.passangerBooksHimselfIn(id, uStart, uZiel);
 			
 			out.print("<script>document.getElementById('anzeige').style.display = 'none'</script>");
 			out.print("<script>document.getElementById('buchenKnopf').style.display = 'none'</script>");

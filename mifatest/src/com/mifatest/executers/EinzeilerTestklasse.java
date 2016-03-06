@@ -14,8 +14,7 @@ public class EinzeilerTestklasse {
 	//	f.newBewertung("haalll", 2, 2, 3, f.getUserById(1), f.getUserById(2), new Date(), f.getFahrtById(1));
 		//f.newPassagierFahrt(f.getUserById(1), f.getFahrtById(1), "Dresden", "Leipzig");
 		//fdsadasd.newPasswort(fdsadasd.getUserById(2), "duschen");
-		
-		
+		/*
 		String EMAILADRESSE = "cle.kruse@googlemail2.com";
 		Date HEUTE = new Date(90, 9, 16);
 		String NACHNAME = "Kruse";
@@ -31,7 +30,8 @@ public class EinzeilerTestklasse {
 		
 		
 	    f.newUser(EMAILADRESSE, HEUTE, NACHNAME, VORNAME,TELEFONNUMMER, PW);
-	    
+	    */
+		f.deletePassagierFahrt(1);
 		
 		/*
 		List<User> uListA = f.checkBewertungenA(f.getFahrtById(2), f.getUserById(1));
@@ -96,13 +96,13 @@ public class EinzeilerTestklasse {
 	    /*
 		String fBez = "16duschen";
 		String fTyp = "16Ente";
-		String fBesch = "16duscht regelmäßig";
+		String fBesch = "16duscht regelmï¿½ï¿½ig";
 		
 		f.newFunktion(fBez, fTyp, fBesch);
 		
 		String pBez = "16duschen - 1";
 		String pTyp = "16Ente - 1";
-		String pBesch = "16duscht regelmäßig - 1";
+		String pBesch = "16duscht regelmï¿½ï¿½ig - 1";
 		int fuId = f.getAktuelleFunktionsID();
 				
 		Facade f2 = new Facade();
@@ -113,7 +113,7 @@ public class EinzeilerTestklasse {
 		
 		pBez = "16duschen - 2";
 		pTyp = "16Ente - 2";
-		pBesch = "16duscht regelmäßig - 2";
+		pBesch = "16duscht regelmï¿½ï¿½ig - 2";
 		
 		f2.newParameter(pBez, pTyp, pBesch, fuId);
 		
@@ -121,7 +121,7 @@ public class EinzeilerTestklasse {
 		
 		pBez = "16duschen - 3";
 		pTyp = "16Ente - 3";
-		pBesch = "16duscht regelmäßig - 3";
+		pBesch = "16duscht regelmï¿½ï¿½ig - 3";
 		
 		f2.newParameter(pBez, pTyp, pBesch, fuId);
 		
@@ -129,7 +129,7 @@ public class EinzeilerTestklasse {
 		
 		pBez = "16duschen - 4";
 		pTyp = "16Ente - 4";
-		pBesch = "16duscht regelmäßig - 4";
+		pBesch = "16duscht regelmï¿½ï¿½ig - 4";
 		
 		f2.newParameter(pBez, pTyp, pBesch, fuId);
 		*/

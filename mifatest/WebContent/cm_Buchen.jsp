@@ -125,20 +125,20 @@
 							{
 								out.print("DUSCHENJJJJJ " + j);
 								if(j == 1){
-									fahrt.setP1(p1-1);
+									fahrt.setP1(p1+1);
 									
 								}
 								if(j == 2){
-									fahrt.setP2(p2-1);
+									fahrt.setP2(p2+1);
 								}
 								if(j == 3){
-									fahrt.setP3(p3-1);
+									fahrt.setP3(p3+1);
 								}
 								if(j == 4){
-									fahrt.setP4(p4-1);
+									fahrt.setP4(p4+1);
 								}
 								if(j == 5){
-									fahrt.setP5(p5-1);
+									fahrt.setP5(p5+1);
 								}
 								
 							}
