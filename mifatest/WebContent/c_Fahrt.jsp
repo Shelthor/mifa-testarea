@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="com.mifatest.entities.*" %>
 <%@ page import="com.mifatest.executers.*" %>
 <%@ page import="java.util.*" %>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Oeffentlich - Fahrt</title>
 	<link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
@@ -143,7 +143,7 @@
 	function calculateAndDisplayRoute(directionsService, directionsDisplay) {
 		  var waypts = [];
 		  var stationsAusDB = new Array("<%= s2%>", "<%= s3%>", "<%= s4%>", "<%= s5%>");
-		  ////Strecke mit Waypoints / Zwischenstationen füttern
+		  ////Strecke mit Waypoints / Zwischenstationen fÃ¼ttern
 		  
 				// Define the callback function.
 				function setzePoints(value, index, ar) {
@@ -232,7 +232,7 @@
 			        <li class="dropdown">
 			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hallo <%=user.getvName() %>!<span class="caret"></span></a>
 			          <ul class="dropdown-menu">
-			            <li><a href="c_UserOeffentlich.jsp?userid=<%=userId%>">Mein öffentliches Profil</a></li>
+			            <li><a href="c_UserOeffentlich.jsp?userid=<%=userId%>">Mein Ã¶ffentliches Profil</a></li>
 			            <li><a href="c_User.jsp">Terminal</a></li>
 			          </ul>
 			        </li>
@@ -256,9 +256,9 @@
 				
 					<div class="panel panel-default">
 					  <div class="panel-body">
-					    <p>	<b><%= fahrer %></b> fährt von <b><%= s1 %></b> nach <b><%= s6 %></b></p>
+					    <p>	<b><%= fahrer %></b> fÃ¤hrt von <b><%= s1 %></b> nach <b><%= s6 %></b></p>
 		
-						<p>	Angaben zum Gepäck: <b><%= gepaeck %></b></p>
+						<p>	Angaben zum GepÃ¤ck: <b><%= gepaeck %></b></p>
 					  </div>
 					</div>
 				
@@ -359,8 +359,8 @@
 			out.print("<script>document.getElementById('buchenKnopf').style.display = 'none'</script>");
 			out.print("<div class='alert alert-success text-center' role='alert'><h1>Fahrt erfolgreich gebucht!</h1></div>");
 			
-			//VERFEINERN: Je nach Einstiegs- und Ausstiegs-Station müssen die P's (Und damit freie Plätze) angepasst werden
-			//			  Möglicherweise lassen wir die Anzeige der freien plätze auf der Fahrt.jsp auch komplett weg, da
+			//VERFEINERN: Je nach Einstiegs- und Ausstiegs-Station mÃ¼ssen die P's (Und damit freie PlÃ¤tze) angepasst werden
+			//			  MÃ¶glicherweise lassen wir die Anzeige der freien plÃ¤tze auf der Fahrt.jsp auch komplett weg, da
 			//		      Meist nicht eindeutig sobald mehrere Stationen
 		}
 		catch (Exception ex){

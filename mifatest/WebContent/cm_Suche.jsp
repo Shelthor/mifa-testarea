@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <%@ page import="com.mifatest.entities.*" %>
@@ -11,8 +11,9 @@
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
 	<link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
@@ -81,7 +82,7 @@
 				        <li class="dropdown">
 				          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hallo <%= user.getvName() %>!<span class="caret"></span></a>
 				          <ul class="dropdown-menu">
-				            <li><a href="c_UserOeffentlich.jsp?userid=<%=user.getUserID()%>">Mein öffentliches Profil</a></li>
+				            <li><a href="c_UserOeffentlich.jsp?userid=<%=user.getUserID()%>">Mein Ã¶ffentliches Profil</a></li>
 				            <li><a href="c_User.jsp">Terminal</a></li>
 				          </ul>
 				        </li>
@@ -91,7 +92,7 @@
 			</nav>
 			
 			<div class="jumbotron">
-				<h1>Wohin möchtest du?</h1>
+				<h1>Wohin mÃ¶chtest du?</h1>
 			</div>
 		</div>
 		
@@ -138,7 +139,7 @@
 								String userEingabeZiel = request.getParameter("formZiel"); //aktuell noch hart
 								String userEingabeStart = request.getParameter("formStart");  
 								
-								//füttere >>fahrtListe<< mit Fahrt-Elementen die zur Start-Eingabe passen
+								//fÃ¼ttere >>fahrtListe<< mit Fahrt-Elementen die zur Start-Eingabe passen
 								fahrtListe = f.getListWithAllFahrtenWhichContainStart(userEingabeStart); //aktuell noch hart
 								
 								for(int i = 0; i < fahrtListe.size() ; i++ ){
@@ -182,7 +183,7 @@
 									fahrerID = fahrtListeFinal.get(i).getFahrerID().getUserID();
 									//Zeige Endergebnisse >>fahrtListeFinal<< an
 										
-									out.print("<a href='c_UserOeffentlich.jsp?userid=" + fahrerID + "'>" + fahrerName + "</a>" + " fährt von " );
+									out.print("<a href='c_UserOeffentlich.jsp?userid=" + fahrerID + "'>" + fahrerName + "</a>" + " fÃ¤hrt von " );
 									
 									out.print(fahrtListeFinal.get(i).getS1());
 									out.print(" nach " + fahrtListeFinal.get(i).getS6());									
