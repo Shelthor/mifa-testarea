@@ -18,7 +18,7 @@
 		
 		//Platz freigeben
 		Buchen goOut = new Buchen();
-		goOut.passangerBooksHimselfOut(fahrtId, uStart, uZiel);
+		goOut.passengerBooksHimselfOut(fahrtId, uStart, uZiel);
 		
 		//passagier_fahrt-relation löschen
 		Facade f= new Facade();

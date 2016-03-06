@@ -368,10 +368,10 @@ public class Facade {
 	
 //Passw�rter//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  
-	public void newPasswort(User userid, String value){
+	public void newPasswort(User user, String value){
 
  		passwort = new Passwort();
- 		passwort.setUserID(userid);
+ 		passwort.setUserID(user);
  		passwort.setPasswortValue(value);
  		
  		session.persist(passwort);
@@ -517,20 +517,7 @@ public class Facade {
  	}
  	
  	public PassagierFahrt getPassagierFahrtByFahrtAndMitfahrerId(int fahrtId, int mitfahrerId){
- 		/*
- 		org.hibernate.Query q= session.createQuery("from PassagierFahrt as u where u.userID =" + " " + mitfahrerId + " and fahrtID = " + fahrtId + "");
-
-		List<PassagierFahrt> luf;
-		
-		luf=q.list();
-		
-		return  (PassagierFahrt) session.load(PassagierFahrt.class, luf.get(0));
-		
-		
-		/*
-		 * 
-		 */
-		
+ 				
 		org.hibernate.Query q= session.createQuery("from PassagierFahrt as u where u.userID =" + " " + mitfahrerId + " and fahrtID = " + fahrtId + "");
 		List<PassagierFahrt> result = q.list();
 		

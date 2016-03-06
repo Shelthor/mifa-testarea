@@ -9,7 +9,7 @@ import com.mifatest.entities.*;
 
 public class Buchen {
 
-	public void passangerBooksHimselfIn(int fahrtId, String start, String ziel){
+	public void passengerBooksHimselfIn(int fahrtId, String start, String ziel){
 		Facade f = new Facade();
 		
 		Fahrt fahrt = new Fahrt();
@@ -107,7 +107,7 @@ public class Buchen {
 		f.updateFahrt(fahrt);
 	}
 	
-	public void passangerBooksHimselfOut(int fahrtId, String start, String ziel){
+	public void passengerBooksHimselfOut(int fahrtId, String start, String ziel){
 		Facade f = new Facade();
 		
 		Fahrt fahrt = new Fahrt();
