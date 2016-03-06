@@ -349,6 +349,10 @@
 			uZiel = request.getParameter("buchenZiel");
 			
 			f2.newPassagierFahrt(userId, id, uStart, uZiel);
+			
+			Buchen finish = new Buchen();
+			finish.reserve(id, uStart, uZiel);
+			
 			out.print("<script>document.getElementById('anzeige').style.display = 'none'</script>");
 			out.print("<script>document.getElementById('buchenKnopf').style.display = 'none'</script>");
 			out.print("<div class='alert alert-success text-center' role='alert'><h1>Fahrt erfolgreich gebucht!</h1></div>");

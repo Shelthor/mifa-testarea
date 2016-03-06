@@ -1,6 +1,7 @@
 
 body{
-	background-image: url('../img/muster8.png');
+	background-image: url('../img/background.jpg');
+	background-attachment:fixed;
 	
 	font-family: 'Abel', sans-serif;
 
