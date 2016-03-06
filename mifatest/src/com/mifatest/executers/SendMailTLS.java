@@ -37,14 +37,12 @@ public class SendMailTLS {
 			message.setRecipients(Message.RecipientType.TO,
 				InternetAddress.parse(an));
 			message.setSubject("Deine Accountaktivierung bei mifa.de");
-			message.setText("Um deinen Account zu aktivieren, klicke bitte auf folgenden Link: " + 
 			
-					
-					"213.187.73.194/mifa/m_activate.jsp?userid=" + userId);
+			message.setContent("<a href='213.187.73.194/mifa/m_activate.jsp?userid=" + userId + "'> Aktiviere deinen Useraccount </a>", "text/html" );
 
 			Transport.send(message);
 
-			System.out.println("Done");
+			System.out.println("Mail an user " + userId + " erfolgreich gesendet");
 
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
