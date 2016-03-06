@@ -194,7 +194,7 @@
 									//out.print("<a href='c_Bewerten.jsp?fahrtid="+ fahrtElem.getFahrtID() + "&empfid="+ fahrtElem.getFahrerID().getUserID() + "'>Fahrer Bewerten</a><br/>");
 									out.print("<a href='c_Fahrt.jsp?fahrtid="+ fahrtElem.getFahrtID() + "'>zur Fahrt</a> | ");
 									
-									out.print("<a href='booking_passengerBooksHimselfOut.jsp?fahrtid="+ fahrtElem.getFahrtID() + "&start=" + passagierOfFahrt.get(i).getUserStart() + "&ziel=" + passagierOfFahrt.get(i).getUserZiel() + "&del=" + passagierOfFahrt.get(i).getPassagier_fahrtID() + "'>Ausbuchen</a> ");
+									out.print("<a href='bookout.jsp?fahrtid="+ fahrtElem.getFahrtID() + "&start=" + passagierOfFahrt.get(i).getUserStart() + "&ziel=" + passagierOfFahrt.get(i).getUserZiel() + "&del=" + passagierOfFahrt.get(i).getPassagier_fahrtID() + "'>Ausbuchen</a> ");
 									
 									
 									
@@ -301,6 +301,8 @@
 													out.print("<a href='c_Bewerten.jsp?fahrtid="+ fahrt.getFahrtID() + "&empfid="+ mitfahrer.getUserID() + "'>Mitfahrer Bewerten</a><br/>");
 													
 												}
+												
+												out.print("<a href='bookout.jsp?fahrtid="+ fahrt.getFahrtID() + "&start=" + dusche.getUserStart() + "&ziel=" + dusche.getUserZiel() + "&del=" + dusche.getPassagier_fahrtID() + "'> | Ausbuchen</a> ");
 												
 											out.print("</div>");
 										}

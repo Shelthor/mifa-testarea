@@ -5,20 +5,20 @@
 	<%@ page import="java.util.*" %>
 
 <%
-	int id = 0;
+	int fahrtId = 0;
 	int relId = 0;
 	String uStart = new String();
 	String uZiel = new String();
 	
 	try{
-		id = Integer.parseInt(request.getParameter("fahrtid"));
+		fahrtId = Integer.parseInt(request.getParameter("fahrtid"));
 		relId = Integer.parseInt(request.getParameter("del"));
 		uStart = request.getParameter("start");
 		uZiel = request.getParameter("ziel");
 		
 		//Platz freigeben
 		Buchen goOut = new Buchen();
-		goOut.passangerBooksHimselfOut(id, uStart, uZiel);
+		goOut.passangerBooksHimselfOut(fahrtId, uStart, uZiel);
 		
 		//passagier_fahrt-relation löschen
 		Facade f= new Facade();
