@@ -209,14 +209,15 @@
 					    	</div>
 				 	   </div>
 				    	
-				    	<div class="col-xs-12 abstandNachOben">
-				    		<div class="col-xs-6">
-				    			<input type="submit" id="submit" name="submit" value="Änderungen speichern" />
-				    		</div>
-				    		<div class="col-xs-6">
-				    			<input type="submit" id="cancel" name="cancel" value="Änderungen verwerfen"/>
-				    		</div>
-				    	</div>
+				    	<div class="col-sm-12 abstandNachOben">
+						<div class="col-sm-4">
+						</div>
+						<div class="col-sm-4">
+							<input type="submit" id="submit" name="submit" value="Änderungen speichern" />
+						</div>
+						<div class="col-sm-4">
+						</div>		
+					</div>
 				    	
 				    	<div class="col-xs-12 abstandNachOben">
 				    		<div class="col-xs-6 abstandNachOben">

@@ -201,109 +201,116 @@ if(userIdAusCookie==0)
 			</div>
 		
 		
+			<div class="col-xs-12">
+				
 			<div class="panel panel-default">
-				<div class="panel-body">
-					<div class="col-sm-2" style="background-color:#C0CA33">
-						<p id="myCar"><%=kfzBez %></p>
-					</div>
-					<div class="col-sm-2">	
-						<p id="myCar">Text</p>
-					</div>	
-					<div class="col-sm-2" style="background-color:#C0CA33">
-						<p id="myCarTyp"><%=kfzTyp %></p>
-					</div>
-					<div class="col-sm-2">	
-						<p id="myKennz"><%=kfzPlate %></p>
-					</div>	
-						<!-- Format: AA-BB_xxxx -->
-					<div class="col-sm-2" style="background-color:#C0CA33">	
-						<p id="myCarColor"><%=kfzFarbe %></p>
-					</div>	
-					<div class="col-sm-2">	
-							<!--  <form action="m_fileUpload.jsp" enctype="multipart/form-data" method="post"> -->
-							<div id="carImage">
-								<img src="<%=kfzBild %>" class="userPic"/>
-							</div>
-					</div>
-				</div>
+			  <div class="panel-body">
+			 
+			 <div class="col-xs-6">
+			  	<p><b>Fahrzeug</b></p>
+			    <p><%= kfzBez %></p>
+			    <p><%= kfzTyp %></p>
+			    <p><%= kfzFarbe %></p>
+			    <p>Nummernschild: <%= kfzPlate%></p>
+			 </div>
+			 <div class="col-xs-6">					 
+				<img class="userPic" src="<%= kfzBild%>" alt="kein Bild vorhanden"/>
+			 </div>  
+			    	
+			  </div>
 			</div>
+		
+			
+		</div>
 		
 		</div>
 	
 	
-		
+		<p align="center">Was möchtest du ändern?</p>
+		<div class="col-md-3">
+		</div>
+		<div class="col-md-6">
+				<form action="m_fahrzeug_bearbeiten.jsp" method="post">
+					<div class="col-sm-12">
+						<div class="col-sm-6">
+							Hersteller:			
+						</div>
+						
+						<div class="col-sm-6" id="newTyp">
+							<input type="text" id="typ" name="typ">	
+					    </div>
+					</div>
+					<div class="col-sm-12">
+						<div class="col-sm-6">
+							Bezeichnung:		
+						</div>
+						
+						<div class="col-sm-6" id="newTyp">
+							<input type="text" id="bez" name="bez">	
+					    </div>
+					</div>
+					<div class="col-sm-12">
+						<div class="col-sm-6">
+							BKennzeichen:		
+						</div>
+						
+						<div class="col-sm-6" id="newTyp">
+							<input type="text" id="kennz_vorn" name="kennz_vorn" style="text-transform:uppercase" size="1" maxlength="3">-
+							<input type="text" id="kennz_mitte" name="kennz_mitte" style="text-transform:uppercase" size="1" maxlength="2">
+							<input type="text" id="kennz_hinten" name="kennz_hinten" style="text-transform:uppercase" size="4" maxlength="4" min="1" max="9999">
+					    </div>
+					</div>
+					<div class="col-sm-12">
+						<div class="col-sm-6">
+							newPlate:		
+						</div>
+						
+						<div class="col-sm-6" id="newPlate">
+							<input type="text" id="kennz_vorn" name="kennz_vorn" style="text-transform:uppercase" size="1" maxlength="3">-
+							<input type="text" id="kennz_mitte" name="kennz_mitte" style="text-transform:uppercase" size="1" maxlength="2">
+							<input type="text" id="kennz_hinten" name="kennz_hinten" style="text-transform:uppercase" size="4" maxlength="4" min="1" max="9999">
+						</div>
+					</div>		
+					
+					<div class="col-sm-12">
+						<div class="col-sm-6">
+							Farbe:		
+						</div>
+						
+						<div class="col-sm-6" id="newTyp">
+							<input type="text" id="color" name="color">
+					    </div>
+					</div>
+					
+					<div class="col-sm-12">
+						<div class="col-sm-6">
+							Bild:		
+						</div>
+						
+						<div class="col-sm-6" id="newTyp">
+						<a href="m_upload_car.jsp">Bild hochladen</a>				
+					    </div>
+					</div>
+					<div class="col-sm-12 abstandNachOben">
+						<div class="col-sm-4">
+						</div>
+						<div class="col-sm-4">
+							<input type="submit" id="submit" name="send" value="Änderungen speichern" />
+						</div>
+						<div class="col-sm-4">
+						</div>		
+					</div>
+			
+				</form>			
+		</div>
+		<div class="col-md-3">
+		</div>
 		
 		
 				
-		</div>		
+</div>		
 
-<p align="center">Was möchtest du ändern?</p>
-<div id="form" align="center">
-	<div id="form2">
-		<form action="m_fahrzeug_bearbeiten.jsp" method="post">
-			<div class="col-sm-12">
-				<div class="col-sm-6">
-					Hersteller:			
-				</div>
-				
-				<div class="col-sm-6" id="newTyp">
-					<input type="text" id="typ" name="typ">	
-			    </div>
-			</div>
-			<div class="col-sm-12">
-				<div class="col-sm-6">
-					Bezeichnung:		
-				</div>
-				
-				<div class="col-sm-6" id="newTyp">
-					<input type="text" id="bez" name="bez">	
-			    </div>
-			</div>
-			<div class="col-sm-12">
-				<div class="col-sm-6">
-					BKennzeichen:		
-				</div>
-				
-				<div class="col-sm-6" id="newTyp">
-					<input type="text" id="kennz_vorn" name="kennz_vorn" style="text-transform:uppercase" size="1" maxlength="3">-
-					<input type="text" id="kennz_mitte" name="kennz_mitte" style="text-transform:uppercase" size="1" maxlength="2">
-					<input type="text" id="kennz_hinten" name="kennz_hinten" style="text-transform:uppercase" size="4" maxlength="4" min="1" max="9999">
-			    </div>
-			</div>
-			<div class="col-sm-12">
-				<div class="col-sm-6">
-					newPlate:		
-				</div>
-				
-				<div class="col-sm-6" id="newPlate">
-					<input type="text" id="kennz_vorn" name="kennz_vorn" style="text-transform:uppercase" size="1" maxlength="3">-
-					<input type="text" id="kennz_mitte" name="kennz_mitte" style="text-transform:uppercase" size="1" maxlength="2">
-					<input type="text" id="kennz_hinten" name="kennz_hinten" style="text-transform:uppercase" size="4" maxlength="4" min="1" max="9999">
-				</div>
-			</div>		
-			
-			<div class="col-sm-12">
-				<div class="col-sm-6">
-					Farbe:		
-				</div>
-				
-				<div class="col-sm-6" id="newTyp">
-					<input type="text" id="color" name="color">
-			    </div>
-			</div>
-			
-			<div class="col-sm-12">
-				<div class="col-sm-6">
-					Bild:		
-				</div>
-				
-				<div class="col-sm-6" id="newTyp">
-				<a href="m_upload_car.jsp">Bild hochladen</a>				
-			    </div>
-			</div>	
-		</form>		
-	</div>	
-</div>
+
 
 
 </body>

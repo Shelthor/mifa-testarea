@@ -7,108 +7,19 @@
 <head>
 <meta charset="UTF-8">
 	<title>Wohin als nächstes?</title>
-<style>
-         a:link {color:black}
-         a:visited{color:black}
-         a:hover{color:black}
-         a:active{color:black}
-
-         p
-         {
-         	font-family: verdana;
-         	color: black;
-         }
-
-         #head
-         {
-            background-color: #CDDC39;
-            color: white;
-            text-align: center;
-            font-family: verdana;
-            padding: 5px;
-        }
-
-        #tools
-        {
-            line-height: 30px;
-            background-color: #CDDC39;
-            height: 300px;
-            width: 100px;
-            float: left;
-            padding: 5px; 
-            font-family: verdana;
-            color: white; 
-            font-size: 100%;
-        }
-
-        #footer
-        {
-            background-color: #CDDC39;
-            color:white;
-            clear: both;
-            text-align: center;
-            padding: 5px;
-            font-family: verdana;
-            font-size: 75%;
-        }
-
-        #section
-        {
-            width: 330px;
-            float: left;
-            padding: 10;
-            font-family: verdana;
-           font-size: 100%;
-        }
-
-        ul
-        {
-        	display: inline;
-        	padding: 2px;
-        	text-align: center;
-        	float: left;
-        	list-style-type: none;
-        }
-
-        #form
-        {
-        	overflow: auto;
-        }
-
-        #old
-        {
-        	background-color: #CDDC39;
-            color:white;
-            clear: both;
-            font-family: verdana;
-            font-size: 80%;
-        }
-
-        li
-        {
-        	font-family: verdana;
-        }
-
-        hr
-        {
-        	color: white;
-        }
-
-        table
-        {
-        	font-family: verdana;
-        }
-
-       
-</style>
-
-
-
+	
+	<link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="css/custom.css" type="text/css" />
+	
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="js/npm.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/custom.js"></script>
 </head>
 <body>
-<div id="head">
-	<h1>Wohin als nächstes?</h1>
-</div>
+
 
 <%
 //ID aus Cookie holen
@@ -130,77 +41,147 @@ if( cookies != null)
 //wenn nein --> nur "neues Fahrzeug erstellen" möglich
 //wenn ja   --> nur Fahrzeug bearbeiten möglich (1:1-Beziehung in DB)
  int kontrolle = 0;
- String link = "http://localhost:8080/mifatest/";
+ String link = "213.187.73.194/mifa/";
 
  int fahrzeugid,fahrzeuguserid;
  Facade fahrzeugOwnerDB = new Facade();
  Boolean fahrzeugvorhanden=false;
  int fahrzeugNeu = 0;
  
- Fahrzeug fahrzeug,kfz;
+ User user = fahrzeugOwnerDB.getUserById(userIdAusCookie);
  
-try
-{
-		fahrzeugid = fahrzeugOwnerDB.getFahrzeugByUserId(userIdAusCookie).getFahrzeugID(); 
+ Fahrzeug fahrzeug;
 	
+ Fahrzeug fahrz = fahrzeugOwnerDB.getFahrzeugByUserId(userIdAusCookie);
+ %>
  
- 		if (fahrzeugid > 0)
- 		{
-	 		
-	 		fahrzeugvorhanden=true;
- 		}
- 		
- 		if (fahrzeugid <= 0)
- 		{
- 			fahrzeugvorhanden=false;
- 		}
-
- 			if (fahrzeugvorhanden==true)
- 			{
-				out.print("<div class='container' align='center'>");
-	 			out.print("Dein Fahrzeug existiert bereits. Für Änderungen ");
-	 			String linkToUpdateCar = ("m_fahrzeug_bearbeiten.jsp");
-	 			out.print("<a href='http://localhost:8080/mifatest/"+linkToUpdateCar+"'>bitte hier entlang.</a>");
-				out.print("</div>");
- 			}
-
-}
-catch (Exception e)
-{
-		e.toString();
-		if (fahrzeugvorhanden==false)
-		{
-			fahrzeugNeu=1;
-			if(fahrzeugNeu==1)
-			 {
-			 	out.print("<div class='container' align='center'>");
-				out.print("Du hast noch kein Fahrzeug hinterlegt. ");
-				String linkToNewCar = ("m_neues_auto.jsp");
-				out.print("<a href='http://localhost:8080/mifatest/"+linkToNewCar+"'>Das kannst du aber hier.</a>");
-				out.print("</div>");
-			 }
-		}
-}
-
-if(kontrolle == 0)
-{
-		try
-		{
-			fahrzeuguserid = userIdAusCookie;
-			
-		}
+<div class='container'>
+	<div class="row">
+		<nav class="navbar navbar-default navbar-fixed-top">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="c_index.jsp"><img src="img/logo_ba_dresden.png" style="height:100%;"/></a>
+		    </div>
+			    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		    
+		    <ul class="nav navbar-nav navbar-right">
+		        <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hallo <%= user.getvName() %>!<span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="c_UserOeffentlich.jsp?userid=<%=userIdAusCookie%>">Mein öffentliches Profil</a></li>
+		            <li><a href="#">Terminal</a></li>
+		          </ul>
+		        </li>
+	      	</ul>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
 	
-		catch (Exception ex) 
-		{
-			
-		}
-	}
-%>
+	
+		<div class="jumbotron">
+			<h1>Wohin als nächstes?</h1>
+		</div>
+		<div class="col-md-3">
+		</div>
+ 
+ 		<div class="col-md-6">
+ 			<div class="panel panel-default">
+ 				<div class="panel-body">
 
-<div id="footer">
-	<a href="m_profil_bearbeiten.jsp">zurück</a>
-	<a href="c_User.jsp">Startseite</a>
-	<a href="m_hilfe.html">Hilfe</a>
+					<% 
+					 
+					try
+					{
+							fahrzeugid = fahrzeugOwnerDB.getFahrzeugByUserId(userIdAusCookie).getFahrzeugID(); 
+						
+					 
+					 		if (fahrzeugid > 0)
+					 		{
+						 		
+						 		fahrzeugvorhanden=true;
+					 		}
+					 		
+					 		if (fahrzeugid <= 0)
+					 		{
+					 			fahrzeugvorhanden=false;
+					 		}
+					
+					 			if (fahrzeugvorhanden==true)
+					 			{
+									out.print("<div class='col-md-12'>");
+						 			out.print("Dein Fahrzeug existiert bereits. Für Änderungen ");
+						 			String linkToUpdateCar = ("m_fahrzeug_bearbeiten.jsp");
+						 			out.print("<a href='"+linkToUpdateCar+"'>bitte hier entlang.</a>");
+									out.print("</div>");
+					 			}
+					
+					}
+					catch (Exception e)
+					{
+							e.toString();
+							if (fahrzeugvorhanden==false)
+							{
+								fahrzeugNeu=1;
+								if(fahrzeugNeu==1)
+								 {
+								 	out.print("<div class='container' align='center'>");
+									out.print("Du hast noch kein Fahrzeug hinterlegt. ");
+									String linkToNewCar = ("m_neues_auto.jsp");
+									out.print("<a href='"+linkToNewCar+"'>Das kannst du aber hier.</a>");
+									out.print("</div>");
+								 }
+							}
+					}
+					
+					if(kontrolle == 0)
+					{
+							try
+							{
+								fahrzeuguserid = userIdAusCookie;
+								
+							}
+						
+							catch (Exception ex) 
+							{
+								
+							}
+						}
+					%>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-xs-12">
+				
+			<div class="panel panel-default">
+			  <div class="panel-body">
+			 
+			 <div class="col-xs-6">
+			  	<p><b>Fahrzeug</b></p>
+			    <p><%= fahrz.getFahrzeugBezeichnung() %></p>
+			    <p><%= fahrz.getFahrzeugTyp() %></p>
+			    <p>Nummernschild: <%= fahrz.getNummernschild()%></p>
+			 </div>
+			 <div class="col-xs-6">					 
+				<img class="userPic" src="<%= fahrz.getFahrzeugBildURL()%>" alt="kein Bild vorhanden"/>
+			 </div>  
+			    
+	
+			  </div>
+			</div>
+		
+			
+		</div>
+		
+	</div>
 </div>
 
 </body>
