@@ -71,13 +71,16 @@
 						out.print("<div class='panel panel-primary'>");
 						out.print("<div class='panel-heading'>");
 							out.print("<h1 class='panel-title'>");
-							out.print(fuList.get(i).getFunktionBezeichnung() + "(");
+							out.print(fuList.get(i).getFunktionBezeichnung() + "<b>(</b>");
 							
 							for(int j = 0; j < parList.size(); j++){
+										if(parList.size() < 2 | j == (parList.size() - 1))
+											out.print(parList.get(j).getParameterBezeichnung());
+										else
 										out.print(parList.get(j).getParameterBezeichnung() + ",");
 									}
 							
-							out.print(")");
+							out.print("<b>)</b>");
 							out.print(" - Rückgabetyp: ");
 							out.print("<b>" + fuList.get(i).getFunktionTyp() + "</b>");
 									
