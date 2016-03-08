@@ -31,7 +31,7 @@
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 
-<title>Insert title here</title>
+<title>API Schnittstellendokumentation</title>
 
 </head>
 <body>
