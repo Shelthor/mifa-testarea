@@ -12,8 +12,9 @@
 <html>
 <head>
 
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <title>Insert title here</title>
 
 	<link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
@@ -32,7 +33,8 @@
 	        async defer></script>
 	
 	<link rel="stylesheet" href="css/style.css" type="text/css" />
-
+	
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
 
@@ -150,6 +152,7 @@
 									}
 									
 									if(fahrtListe.get(i).getS5() != null){
+									//if(fahrtListe.get(i).getS5() != null && fahrtListe.get(i).getP5() > 0){
 										if(fahrtListe.get(i).getS5().equals(userEingabeZiel)){
 											fahrtListeFinal.add(fahrtListe.get(i));
 										}

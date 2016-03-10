@@ -348,7 +348,8 @@ public class Facade {
 	
 	public List<Fahrt> getListWithAllFahrtenWhichContainStart(String userEingabe){
 		
-		String query = "from Fahrt as u where u.fahrtDatum >= current_date and u.s1 = '" + userEingabe + "' or u.fahrtDatum >= current_date and u.s2 = '" + userEingabe + "' or u.fahrtDatum >= current_date and u.s3 = '" + userEingabe + "' or u.fahrtDatum >= current_date and u.s4 = '" + userEingabe + "' or u.fahrtDatum >= current_date and u.s5 = '" + userEingabe + "'";
+		//String query = "from Fahrt as u where u.fahrtDatum >= current_date and u.s1 = '" + userEingabe + "' or u.fahrtDatum >= current_date and u.s2 = '" + userEingabe + "' or u.fahrtDatum >= current_date and u.s3 = '" + userEingabe + "' or u.fahrtDatum >= current_date and u.s4 = '" + userEingabe + "' or u.fahrtDatum >= current_date and u.s5 = '" + userEingabe + "'";
+		String query = "from Fahrt as u where u.fahrtDatum >= current_date and u.p1 > 0 and u.s1 = '" + userEingabe + "' or u.fahrtDatum >= current_date and u.s2 = '" + userEingabe + "'  and u.p2 > 0 or u.fahrtDatum >= current_date and u.s3 = '" + userEingabe + "'  and u.p3 > 0 or u.fahrtDatum >= current_date and u.s4 = '" + userEingabe + "'  and u.p4 > 0 or u.fahrtDatum >= current_date and u.s5 = '" + userEingabe + "'  and u.p5 > 0";
 
 		org.hibernate.Query q= session.createQuery(query);
 
