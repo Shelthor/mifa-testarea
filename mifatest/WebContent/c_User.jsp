@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@page import="com.mysql.jdbc.PreparedStatement.ParseInfo"%>
 <%@page import="com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -11,7 +11,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Terminal</title>
 	<link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
@@ -23,6 +22,8 @@
 	<script src="js/npm.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script src="js/custom.js"></script>
+	
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
 
@@ -80,7 +81,7 @@
 		        <li class="dropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hallo <%= user.getvName() %>!<span class="caret"></span></a>
 		          <ul class="dropdown-menu">
-		            <li><a href="c_UserOeffentlich.jsp?userid=<%=userId%>">Mein öffentliches Profil</a></li>
+		            <li><a href="c_UserOeffentlich.jsp?userid=<%=userId%>">Mein Ã¶ffentliches Profil</a></li>
 		            <li><a href="#">Terminal</a></li>
 		          </ul>
 		        </li>
@@ -92,7 +93,7 @@
   <div class="jumbotron">
     <h1>Terminal</h1>
     <p>Hallo <%= user.getvName() %>!</p>
-    <p>Willkommen in deinem Persönlichen Bereich! von hier aus kannst du alles regeln, was deine Fahrten betrifft :)</p> 
+    <p>Willkommen in deinem PersÃ¶nlichen Bereich! von hier aus kannst du alles regeln, was deine Fahrten betrifft :)</p> 
   </div>
   <div class="row">
     <div class="col-xs-12 col-md-12">
@@ -113,7 +114,7 @@
 			 	<ul class="nav nav-pills nav-justified">
 				  <li role="presentation"><a href="m_profil_bearbeiten.jsp">profil bearbeiten</a></li>
 				  <li role="presentation"><a href="m_fahrzeug_landingpage.jsp">Fahrzeug bearbeiten</a></li>
-				  <li role="presentation"><a href="m_passwort_aendern.jsp">passwort ändern</a></li>
+				  <li role="presentation"><a href="m_passwort_aendern.jsp">passwort Ã¤ndern</a></li>
 				</ul>
 			</div>
 		 </div>
@@ -314,7 +315,7 @@
 										
 									}else{										
 										out.print("<div class='col-xs-12'>");
-										out.print("Für diese Fahrt gibt es noch keine Mitfahrer.");
+										out.print("FÃ¼r diese Fahrt gibt es noch keine Mitfahrer.");
 										out.print("</div>");		
 									}
 	

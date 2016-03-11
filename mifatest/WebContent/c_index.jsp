@@ -46,7 +46,7 @@
 		String domain = "http" + "://" +   
 	   		request.getServerName() +       // "myhost"
 	  		":" + request.getServerPort() + // ":" + "8080"
-	    	"/mifatest";
+	    	"/mifa";
 		
 		
 		//String url = ((HttpServletRequest)request).getRequestURL().toString();

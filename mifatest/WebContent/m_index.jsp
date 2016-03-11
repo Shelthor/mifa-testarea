@@ -44,7 +44,7 @@
 					  	<input type="text" name="email" required id="emailID"/><br/>
 						<p>Passwort</p>
 					  	<input type="password" name="password" required id="pwdID"/><br/><br/>
-					  	<input type="submit" name="submit"/>
+					  	<input type="submit" name="submit" value="OK"/>
 					 </form>
 				 </div>
 		</div>
@@ -69,7 +69,7 @@ if(request.getParameter("submit")!= null)
 	String domain = "http" + "://" +   
    		request.getServerName() +       // "myhost"
   		":" + request.getServerPort() + // ":" + "8080"
-    	"/mifatest";
+    	"/mifa";
 	
 	
 	//String url = ((HttpServletRequest)request).getRequestURL().toString();

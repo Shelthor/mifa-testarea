@@ -47,7 +47,7 @@
 	Facade f;
 	Fahrt fa;
 	
-	int id, userId;
+	int id, userId, fahrerId ;
 	
 	String  kommentar;
 	
@@ -83,7 +83,9 @@
 			gepaeck = fa.getGepaeck();
 			startZeit = fa.getFahrtStartZeit().toString();
 			
-			fahrer = f.getFahrerByFahrtId(id).getvName() + " " + f.getFahrerByFahrtId(id).getnName() ;
+			fahrer = f.getFahrerByFahrtId(id).getvName() + " " + f.getFahrerByFahrtId(id).getnName();
+			
+			fahrerId = f.getFahrerByFahrtId(id).getUserID();
 			
 			kap = fa.getKapazitaet();
 		
@@ -256,7 +258,7 @@
 				
 					<div class="panel panel-default">
 					  <div class="panel-body">
-					    <p>	<b><%= fahrer %></b> fährt von <b><%= s1 %></b> nach <b><%= s6 %></b></p>
+					    <p>	<a href="c_UserOeffentlich.jsp?userid=<%= fahrerId %>"><b><%= fahrer %></b></a> fährt von <b><%= s1 %></b> nach <b><%= s6 %></b></p>
 		
 						<p>	Angaben zum Gepäck: <b><%= gepaeck %></b></p>
 					  </div>
