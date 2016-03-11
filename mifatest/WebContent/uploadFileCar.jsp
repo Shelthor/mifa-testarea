@@ -93,10 +93,11 @@
          //// -> BildName in DB speichern
          
          Facade f = new Facade();
-         User u = f.getUserById(userIdAusCookie);
+
+         Fahrzeug fahrz = f.getFahrzeugByUserId(userIdAusCookie);
          
-         u.setUserBildURL("img/usr/" + fileName);
-         f.updateUser(u);
+         fahrz.setFahrzeugBildURL("img/car/" + fileName);
+         f.updateFahrzeug(fahrz);
          
 	     out.print("Bild erfolgreich geändert <a href='c_User.jsp'>Zum Terminal</a>");
          
