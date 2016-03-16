@@ -297,13 +297,13 @@
 												} 
 												
 												if(schonBewertet.contains("true")){
-													out.print("Bereits bewertet");										
+													out.print("Bereits bewertet |");										
 												} else{
-													out.print("<a href='c_Bewerten.jsp?fahrtid="+ fahrt.getFahrtID() + "&empfid="+ mitfahrer.getUserID() + "'>Mitfahrer Bewerten</a><br/>");
+													out.print("<a href='c_Bewerten.jsp?fahrtid="+ fahrt.getFahrtID() + "&empfid="+ mitfahrer.getUserID() + "'>Mitfahrer Bewerten</a> |");
 													
 												}
 												
-												out.print("<a href='bookout.jsp?fahrtid="+ fahrt.getFahrtID() + "&start=" + dusche.getUserStart() + "&ziel=" + dusche.getUserZiel() + "&del=" + dusche.getPassagier_fahrtID() + "'> | Ausbuchen</a> ");
+												out.print("<a href='bookout.jsp?fahrtid="+ fahrt.getFahrtID() + "&start=" + dusche.getUserStart() + "&ziel=" + dusche.getUserZiel() + "&del=" + dusche.getPassagier_fahrtID() + "'> Ausbuchen</a> ");
 												
 											out.print("</div>");
 										}
